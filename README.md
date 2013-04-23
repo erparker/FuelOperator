@@ -227,3 +227,8 @@ We now require that anyone who is writing an application that supports iOS3 add 
 5. Click the + to add a new library 
 6. Find libSystem.dylib in the list and add it 
 7. To the right of libSystem.dylib in the Link Binary With Libraries pane change "Required" to "Optional"
+=======
+FuelOperator
+============
+
+iphone app, for Bob Barnes
