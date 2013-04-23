@@ -1,0 +1,222 @@
+//
+//  InspectionsFormCell.m
+//  FuelOperator
+//
+//  Created by Gary Robinson on 4/19/13.
+//  Copyright (c) 2013 GaryRobinson. All rights reserved.
+//
+
+#import "InspectionsFormCell.h"
+
+#define ANSWER_WIDTH 46
+
+@interface InspectionsFormCell ()
+
+@property (nonatomic, strong) UILabel *questionLabel;
+@property (nonatomic, strong) UIImageView *commentNeededImageView;
+@property (nonatomic, strong) UIImageView *warningImageView;
+@property (nonatomic, strong) UILabel *warningLabel;
+@property (nonatomic, strong) UIButton *answerButton;
+@property (nonatomic, strong) UIView *answerSeparator;
+@property (nonatomic, strong) UIView *cellSeparator;
+@property (nonatomic, weak) id accessoryTarget;
+
+@end
+
+@implementation InspectionsFormCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withTarget:(id)target
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+        
+        self.accessoryTarget = target;
+        self.state = 0;
+        //self.accessoryView = self.answerButton;
+
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [self.contentView addSubview:self.questionLabel];
+        [self.contentView addSubview:self.commentNeededImageView];
+        [self.contentView addSubview:self.warningImageView];
+        [self.contentView addSubview:self.warningLabel];
+        [self.contentView addSubview:self.answerButton];
+        [self.contentView addSubview:self.answerSeparator];
+        [self.contentView addSubview:self.cellSeparator];
+        
+    }
+    return self;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (UILabel*)questionLabel
+{
+    if(_questionLabel == nil)
+    {
+        _questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 230, 30)];
+        _questionLabel.backgroundColor = [UIColor clearColor];
+        _questionLabel.font = [UIFont regularFontOfSize:14];
+        _questionLabel.textColor = [UIColor fopDarkText];
+        _questionLabel.numberOfLines = 0;
+        //_questionLabel.text = @"a";
+        //[_questionLabel sizeToFit];
+        //_questionLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    }
+    return _questionLabel;
+}
+
+- (UIImageView*)commentNeededImageView
+{
+    if(_commentNeededImageView == nil)
+    {
+        _commentNeededImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"form-accessory"]];
+        _commentNeededImageView.center = CGPointMake(260, INSPECTION_FORM_CELL_HEIGHT/2);
+        _commentNeededImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    }
+    return _commentNeededImageView;
+}
+
+- (UIImageView*)warningImageView
+{
+    if(_warningImageView == nil)
+    {
+        _warningImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"warning"]];
+        _warningImageView.center = CGPointMake(15, 36);
+        _warningImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    }
+    return _warningImageView;
+}
+
+- (UILabel*)warningLabel
+{
+    if(_warningLabel == nil)
+    {
+        _warningLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 30, 230, 15)];
+        _warningLabel.backgroundColor = [UIColor clearColor];
+        _warningLabel.font = [UIFont regularFontOfSize:14];
+        _warningLabel.textColor = [UIColor redColor];
+        _warningLabel.text = @"Missing a comment and/or photo";
+        _warningLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    }
+    return _warningLabel;
+}
+
+- (UIButton*)answerButton
+{
+    if(_answerButton == nil)
+    {
+        UIImage *image = [UIImage imageNamed:@"noanswer"];
+        _answerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _answerButton.backgroundColor = [UIColor fopOffWhiteColor];
+        [_answerButton setImage:image forState:UIControlStateNormal];;
+        _answerButton.frame = CGRectMake(self.contentView.bounds.size.width - ANSWER_WIDTH, 0, ANSWER_WIDTH, self.contentView.frame.size.height);
+        [_answerButton addTarget:self.accessoryTarget action:@selector(didSelectAccessory:event:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _answerButton;
+}
+
+- (UIView*)answerSeparator
+{
+    if(_answerSeparator == nil)
+    {
+        _answerSeparator = [[UIView alloc] initWithFrame:CGRectMake(self.contentView.bounds.size.width - ANSWER_WIDTH - 1, 0, 1, INSPECTION_FORM_CELL_HEIGHT)];
+        _answerSeparator.backgroundColor = [UIColor fopLightGreyColor];
+        _answerSeparator.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    }
+    return _answerSeparator;
+}
+
+- (UIView*)cellSeparator
+{
+    if(_cellSeparator == nil)
+    {
+        _cellSeparator = [[UIView alloc] initWithFrame:CGRectMake(0, self.contentView.frame.size.height - 1, self.contentView.bounds.size.width, 1)];
+        _cellSeparator.backgroundColor = [UIColor fopLightGreyColor];
+        _cellSeparator.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    }
+    return _cellSeparator;
+}
+
+-(void)setQuestion:(NSString*)question
+{
+    _question = question;
+    self.questionLabel.text = _question;
+    [self.questionLabel sizeToFit];
+    
+    [self setCellHeight];
+    
+}
+
+-(void)setState:(int)state
+{
+    _state = state;
+    
+    if(_state == 0)
+    {
+        [self.answerButton setImage:[UIImage imageNamed:@"noanswer"] forState:UIControlStateNormal];
+        self.answerButton.backgroundColor = [UIColor fopOffWhiteColor];
+        self.commentNeededImageView.hidden = YES;
+        self.warningImageView.hidden = YES;
+        self.warningLabel.hidden = YES;
+    }
+    else if(_state == 1)
+    {
+        [self.answerButton setImage:[UIImage imageNamed:@"thumbsup"] forState:UIControlStateNormal];
+        self.answerButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
+        self.commentNeededImageView.hidden = YES;
+        self.warningImageView.hidden = YES;
+        self.warningLabel.hidden = YES;
+    }
+    else
+    {
+        [self.answerButton setImage:[UIImage imageNamed:@"thumbsdown"] forState:UIControlStateNormal];
+        self.answerButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
+        self.commentNeededImageView.hidden = NO;
+        self.warningImageView.hidden = NO;
+        self.warningLabel.hidden = NO;
+    }
+    
+    [self setCellHeight];
+}
+
+-(void)setCellHeight
+{
+    CGRect rect = self.contentView.frame;
+    //CGFloat height = [self getCellHeightForQuestion:self.question withState:self.state];
+    CGFloat height = self.questionLabel.frame.origin.y + self.questionLabel.frame.size.height + 10;
+    if(height < 40)
+        height = 40;
+    if(self.state == 2)
+        height += 20;
+    if(height < INSPECTION_FORM_CELL_HEIGHT)
+        height = INSPECTION_FORM_CELL_HEIGHT;
+    rect.size.height = height;
+    self.contentView.frame = rect;
+    
+    rect = self.answerButton.frame;
+    rect.size.height = height;
+    self.answerButton.frame = rect;
+}
+
++(CGFloat)getCellHeightForQuestion:(NSString*)question withState:(NSInteger)state
+{
+	CGSize labelSize = [question sizeWithFont:[UIFont regularFontOfSize:14] constrainedToSize:CGSizeMake(230.0f, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+	CGFloat height = 10 + labelSize.height + 10;
+    if(height < 40)
+        height = 40;
+    if(state == 2)
+        height += 20;
+    if(height < INSPECTION_FORM_CELL_HEIGHT)
+        height = INSPECTION_FORM_CELL_HEIGHT;
+    return height;
+}
+
+
+@end
