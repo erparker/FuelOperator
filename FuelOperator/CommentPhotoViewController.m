@@ -7,7 +7,7 @@
 //
 
 #import "CommentPhotoViewController.h"
-#import "InnerShadowView.h"
+//#import "InnerShadowView.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 @interface CommentPhotoViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -16,7 +16,8 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *questionLabel;
 @property (nonatomic, strong) UILabel *commentLabel;
-@property (nonatomic, strong) InnerShadowView *shadowView;
+//@property (nonatomic, strong) InnerShadowView *shadowView;
+@property (nonatomic, strong) UIImageView *commentBackgroundView;
 @property (nonatomic, strong) UITextView *commentTextView;
 @property (nonatomic, strong) UILabel *photosLabel;
 @property (nonatomic, strong) UILabel *noPhotosLabel;
@@ -31,6 +32,7 @@
 @property (nonatomic, strong) UIButton *removeImageButton2;
 @property (nonatomic, strong) UIButton *removeImageButton3;
 @property (nonatomic, strong) UIButton *takePhotoButton;
+@property (nonatomic) NSInteger removeIndex;
 
 @end
 
@@ -92,6 +94,13 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self showPhotos];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -116,7 +125,7 @@
         [_fakeNavBar addSubview:cancelButton];
         
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(cancelButton.frame.size.width, 0, 200, 45)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(cancelButton.frame.size.width, 3, 200, 45)];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.font = [UIFont boldFontOfSize:16];
         titleLabel.textColor = [UIColor whiteColor];
@@ -148,8 +157,10 @@
     //comments
     NSString *commentFormat = [NSString stringWithFormat:@"comment_%d.txt", self.row];
     NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
-    [self.commentTextView.text writeToFile:commentPath atomically:YES encoding:NSStringEncodingConversionAllowLossy error:nil];
-    
+    if(![self.commentTextView.text isEqualToString:@""])
+        [self.commentTextView.text writeToFile:commentPath atomically:YES encoding:NSStringEncodingConversionAllowLossy error:nil];
+    else
+        [[NSFileManager defaultManager] removeItemAtPath:commentPath error:nil];
     
     //images
     if(self.image1)
@@ -185,7 +196,7 @@
         
         [_scrollView addSubview:self.questionLabel];
         [_scrollView addSubview:self.commentLabel];
-        [_scrollView addSubview:self.shadowView];
+        [_scrollView addSubview:self.commentBackgroundView];
         [_scrollView addSubview:self.commentTextView];
         [_scrollView addSubview:self.photosLabel];
         [_scrollView addSubview:self.noPhotosLabel];
@@ -230,15 +241,33 @@
     return _commentLabel;
 }
 
-- (InnerShadowView*)shadowView
+//- (InnerShadowView*)shadowView
+//{
+//    if(_shadowView == nil)
+//    {
+//        _shadowView = [[InnerShadowView alloc] initWithFrame:CGRectMake(10, 65 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 130)];
+//        _shadowView.layer.cornerRadius = 10;
+//        _shadowView.layer.masksToBounds = YES;
+//    }
+//    return _shadowView;
+//}
+
+- (UIImageView*)commentBackgroundView
 {
-    if(_shadowView == nil)
+    if(_commentBackgroundView == nil)
     {
-        _shadowView = [[InnerShadowView alloc] initWithFrame:CGRectMake(10, 65 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 130)];
-        _shadowView.layer.cornerRadius = 10;
-        _shadowView.layer.masksToBounds = YES;
+        UIImage *commentBackgroundImage = [UIImage imageNamed:@"commentBackground"];
+        commentBackgroundImage = [commentBackgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 12, 12)];
+        
+        _commentBackgroundView = [[UIImageView alloc] initWithImage:commentBackgroundImage];
+        _commentBackgroundView.contentMode = UIViewContentModeScaleToFill;
+        _commentBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _commentBackgroundView.frame = CGRectMake(10, 65 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 130);
+        
+        _commentBackgroundView.layer.cornerRadius = 5;//10;
+        _commentBackgroundView.layer.masksToBounds = YES;
     }
-    return _shadowView;
+    return _commentBackgroundView;
 }
 
 - (UITextView*)commentTextView
@@ -322,21 +351,53 @@
 
 - (void)removeImageButton1Tapped:(id)sender
 {
-    if(self.image2)
-    {
-        self.image1 = self.image2;
-        if(self.image3)
+    self.removeIndex = 1;
+    UIAlertView *alert = [[UIAlertView alloc] init];
+	[alert setTitle:@"Delete Photo"];
+	[alert setMessage:@"Are you sure?"];
+	[alert setDelegate:self];
+	[alert addButtonWithTitle:@"Yes"];
+	[alert addButtonWithTitle:@"No"];
+	[alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 0)
+	{
+        if(self.removeIndex == 1)
         {
-            self.image2 = self.image3;
-            self.image3 = nil;
+            if(self.image2)
+            {
+                self.image1 = self.image2;
+                if(self.image3)
+                {
+                    self.image2 = self.image3;
+                    self.image3 = nil;
+                }
+                else
+                    self.image2 = nil;
+            }
+            else
+                self.image1 = nil;
+        }
+        else if(self.removeIndex == 2)
+        {
+            if(self.image3)
+            {
+                self.image2 = self.image3;
+                self.image3 = nil;
+            }
+            else
+                self.image2 = nil;
         }
         else
-            self.image2 = nil;
-    }
-    else
-        self.image1 = nil;
-    
-    [self showPhotos];
+        {
+            self.image3 = nil;
+        }
+        
+        [self showPhotos];
+	}
 }
 
 - (UIImageView*)imageView2
@@ -363,15 +424,14 @@
 
 - (void)removeImageButton2Tapped:(id)sender
 {
-    if(self.image3)
-    {
-        self.image2 = self.image3;
-        self.image3 = nil;
-    }
-    else
-        self.image2 = nil;
-    
-    [self showPhotos];
+    self.removeIndex = 2;
+    UIAlertView *alert = [[UIAlertView alloc] init];
+	[alert setTitle:@"Delete Photo"];
+	[alert setMessage:@"Are you sure?"];
+	[alert setDelegate:self];
+	[alert addButtonWithTitle:@"Yes"];
+	[alert addButtonWithTitle:@"No"];
+	[alert show];
 }
 
 - (UIImageView*)imageView3
@@ -399,9 +459,14 @@
 //
 - (void)removeImageButton3Tapped:(id)sender
 {
-    self.image3 = nil;
-    
-    [self showPhotos];
+    self.removeIndex = 3;
+    UIAlertView *alert = [[UIAlertView alloc] init];
+	[alert setTitle:@"Delete Photo"];
+	[alert setMessage:@"Are you sure?"];
+	[alert setDelegate:self];
+	[alert addButtonWithTitle:@"Yes"];
+	[alert addButtonWithTitle:@"No"];
+	[alert show];
 }
 
 - (UIButton*)takePhotoButton

@@ -161,7 +161,9 @@
 {
     if(_switchView == nil)
     {
-        _switchView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleView.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.navigationController.navigationBar.frame.size.height - self.titleView.frame.size.height)];
+        CGFloat a = self.view.bounds.size.height;
+        CGFloat b = self.view.frame.size.height;
+        _switchView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleView.frame.size.height, self.view.bounds.size.width, self.view.frame.size.height - self.titleView.frame.size.height - 50)];
     }
     return _switchView;
 }
@@ -170,7 +172,7 @@
 {
     if(_tableView == nil)
     {
-        _tableView = [[UITableView alloc] initWithFrame:self.switchView.bounds];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.switchView.frame.size.width, self.switchView.frame.size.height)];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = [UIColor fopOffWhiteColor];
@@ -266,7 +268,7 @@
 {
     if(_mapView == nil)
     {
-        _mapView = [[MKMapView alloc] initWithFrame:self.switchView.bounds];
+        _mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.switchView.frame.size.width, self.switchView.frame.size.height)];
         _mapView.delegate = self;
         
         UIButton *locationButton = [UIButton buttonWithType:UIButtonTypeCustom];

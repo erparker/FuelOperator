@@ -173,8 +173,12 @@
     self.questionLabel.text = _question;
     [self.questionLabel sizeToFit];
     
-    [self setCellHeight];
+    CGRect rect = self.questionLabel.frame;
+    rect.size.width = 230;
+    self.questionLabel.frame = rect;
     
+    //NSLog(@"question width= %f", self.questionLabel.frame.size.width);
+    [self setCellHeight];
 }
 
 -(void)setState:(int)state
