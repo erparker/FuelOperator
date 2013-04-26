@@ -9,13 +9,16 @@
 #import "InspectionsFormCell.h"
 
 #define ANSWER_WIDTH 46
+#define QUESTION_FONT_SIZE 18
 
 @interface InspectionsFormCell ()
 
+@property (nonatomic, strong) UIView *highlightView;
 @property (nonatomic, strong) UILabel *questionLabel;
 @property (nonatomic, strong) UIImageView *commentNeededImageView;
 @property (nonatomic, strong) UIImageView *warningImageView;
 @property (nonatomic, strong) UILabel *warningLabel;
+@property (nonatomic, strong) UIImageView *commentImageView;
 @property (nonatomic, strong) UIButton *answerButton;
 @property (nonatomic, strong) UIView *answerSeparator;
 @property (nonatomic, strong) UIView *cellSeparator;
@@ -33,17 +36,19 @@
         
         self.accessoryTarget = target;
         self.state = 0;
-        //self.accessoryView = self.answerButton;
-
+        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [self.contentView addSubview:self.questionLabel];
         [self.contentView addSubview:self.commentNeededImageView];
         [self.contentView addSubview:self.warningImageView];
         [self.contentView addSubview:self.warningLabel];
+        [self.contentView addSubview:self.commentImageView];
         [self.contentView addSubview:self.answerButton];
         [self.contentView addSubview:self.answerSeparator];
         [self.contentView addSubview:self.cellSeparator];
+        [self.contentView addSubview:self.highlightView];
+        
         
     }
     return self;
@@ -56,18 +61,25 @@
     // Configure the view for the selected state
 }
 
+- (UIView*)highlightView
+{
+    if(_highlightView == nil)
+    {
+        _highlightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 1)];
+        _highlightView.backgroundColor = [UIColor whiteColor];
+    }
+    return _highlightView;
+}
+
 - (UILabel*)questionLabel
 {
     if(_questionLabel == nil)
     {
         _questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 230, 30)];
         _questionLabel.backgroundColor = [UIColor clearColor];
-        _questionLabel.font = [UIFont regularFontOfSize:14];
+        _questionLabel.font = [UIFont regularFontOfSize:QUESTION_FONT_SIZE];
         _questionLabel.textColor = [UIColor fopDarkText];
         _questionLabel.numberOfLines = 0;
-        //_questionLabel.text = @"a";
-        //[_questionLabel sizeToFit];
-        //_questionLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     }
     return _questionLabel;
 }
@@ -88,7 +100,7 @@
     if(_warningImageView == nil)
     {
         _warningImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"warning"]];
-        _warningImageView.center = CGPointMake(15, 36);
+        _warningImageView.center = CGPointMake(15, 34);
         _warningImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     }
     return _warningImageView;
@@ -98,7 +110,7 @@
 {
     if(_warningLabel == nil)
     {
-        _warningLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 30, 230, 15)];
+        _warningLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 28, 230, 15)];
         _warningLabel.backgroundColor = [UIColor clearColor];
         _warningLabel.font = [UIFont regularFontOfSize:14];
         _warningLabel.textColor = [UIColor redColor];
@@ -106,6 +118,17 @@
         _warningLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     }
     return _warningLabel;
+}
+
+- (UIImageView*)commentImageView
+{
+    if(_commentImageView == nil)
+    {
+        _commentImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"comment"]];
+        _commentImageView.center = CGPointMake(15, 34);
+        _commentImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    }
+    return _commentImageView;
 }
 
 - (UIButton*)answerButton
@@ -178,9 +201,44 @@
     {
         [self.answerButton setImage:[UIImage imageNamed:@"thumbsdown"] forState:UIControlStateNormal];
         self.answerButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
-        self.commentNeededImageView.hidden = NO;
-        self.warningImageView.hidden = NO;
-        self.warningLabel.hidden = NO;
+        
+        if(self.commentState == 0)
+        {
+            self.commentNeededImageView.hidden = NO;
+            self.warningImageView.hidden = NO;
+            self.warningLabel.hidden = NO;
+        }
+    }
+    
+    [self setCellHeight];
+}
+
+-(void)setCommentState:(int)commentState
+{
+    _commentState = commentState;
+    
+    if(_commentState == 0)
+    {
+        self.commentImageView.hidden = YES;
+        if(self.state == 2)
+        {
+            self.commentNeededImageView.hidden = NO;
+            self.warningImageView.hidden = NO;
+            self.warningLabel.hidden = NO;
+        }
+        else
+        {
+            self.commentNeededImageView.hidden = YES;
+            self.warningImageView.hidden = YES;
+            self.warningLabel.hidden = YES;
+        }
+    }
+    else
+    {
+        self.commentImageView.hidden = NO;
+        self.commentNeededImageView.hidden = YES;
+        self.warningImageView.hidden = YES;
+        self.warningLabel.hidden = YES;
     }
     
     [self setCellHeight];
@@ -193,7 +251,7 @@
     CGFloat height = self.questionLabel.frame.origin.y + self.questionLabel.frame.size.height + 10;
     if(height < 40)
         height = 40;
-    if(self.state == 2)
+    if(self.state == 2 || self.commentState)
         height += 20;
     if(height < INSPECTION_FORM_CELL_HEIGHT)
         height = INSPECTION_FORM_CELL_HEIGHT;
@@ -205,13 +263,13 @@
     self.answerButton.frame = rect;
 }
 
-+(CGFloat)getCellHeightForQuestion:(NSString*)question withState:(NSInteger)state
++(CGFloat)getCellHeightForQuestion:(NSString*)question withState:(NSInteger)state withComment:(BOOL)hasComment
 {
-	CGSize labelSize = [question sizeWithFont:[UIFont regularFontOfSize:14] constrainedToSize:CGSizeMake(230.0f, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+	CGSize labelSize = [question sizeWithFont:[UIFont regularFontOfSize:QUESTION_FONT_SIZE] constrainedToSize:CGSizeMake(230.0f, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
 	CGFloat height = 10 + labelSize.height + 10;
     if(height < 40)
         height = 40;
-    if(state == 2)
+    if(state == 2 || hasComment)
         height += 20;
     if(height < INSPECTION_FORM_CELL_HEIGHT)
         height = INSPECTION_FORM_CELL_HEIGHT;

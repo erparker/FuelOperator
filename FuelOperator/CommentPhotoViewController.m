@@ -59,6 +59,37 @@
 	// Do any additional setup after loading the view.
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)]];
+    
+    //load the appropriate comment and images, if they exist
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *commentFormat = [NSString stringWithFormat:@"comment_%d.txt", self.row];
+    NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
+    
+    NSString *comment = [[NSString alloc]initWithContentsOfFile:commentPath usedEncoding:nil error:nil];
+    self.commentTextView.text = comment;
+    
+    
+    NSString* path1 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 1]];
+    UIImage* image1 = [UIImage imageWithContentsOfFile:path1];
+    if(image1)
+        self.image1 = image1;
+    
+    NSString* path2 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 2]];
+    UIImage* image2 = [UIImage imageWithContentsOfFile:path2];
+    if(image2)
+        self.image2 = image2;
+    
+    NSString* path3 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 3]];
+    UIImage* image3 = [UIImage imageWithContentsOfFile:path3];
+    if(image3)
+        self.image3 = image3;
+    
+    self.imageView1.image = self.image1;
+    self.imageView2.image = self.image2;
+    self.imageView3.image = self.image3;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,15 +141,36 @@
 
 - (void)saveTapped:(id)sender
 {
-    //?? save the images to the docs directory
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    NSString* path = [documentsDirectory stringByAppendingPathComponent:@"test.png"];
-//    NSData* data = UIImagePNGRepresentation(imageToSave);
-//    [data writeToFile:path atomically:YES];
+    //?? save the coments and images to the docs directory
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    //?? also need to save the comments
-
+    //comments
+    NSString *commentFormat = [NSString stringWithFormat:@"comment_%d.txt", self.row];
+    NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
+    [self.commentTextView.text writeToFile:commentPath atomically:YES encoding:NSStringEncodingConversionAllowLossy error:nil];
+    
+    
+    //images
+    if(self.image1)
+    {
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 1]];
+        NSData* data = UIImagePNGRepresentation(self.image1);
+        [data writeToFile:path atomically:YES];
+    }
+    if(self.image2)
+    {
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 2]];
+        NSData* data = UIImagePNGRepresentation(self.image2);
+        [data writeToFile:path atomically:YES];
+    }
+    if(self.image3)
+    {
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 3]];
+        NSData* data = UIImagePNGRepresentation(self.image3);
+        [data writeToFile:path atomically:YES];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -341,9 +393,10 @@
         [_removeImageButton3 setImage:[UIImage imageNamed:@"removeButtonImage"] forState:UIControlStateNormal];
         [_removeImageButton3 addTarget:self action:@selector(removeImageButton3Tapped:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _removeImageButton3;
+    return _removeImageButton3; 
 }
 
+//
 - (void)removeImageButton3Tapped:(id)sender
 {
     self.image3 = nil;

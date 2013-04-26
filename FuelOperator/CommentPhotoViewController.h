@@ -11,5 +11,7 @@
 @interface CommentPhotoViewController : UIViewController
 
 @property (nonatomic, strong) NSString *question;
+@property (nonatomic) NSInteger row;
+@property (nonatomic, strong) UITableView *questionsTableView;
 
 @end

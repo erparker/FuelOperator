@@ -11,7 +11,7 @@
 #import "InspectionsListViewController.h"
 
 #define UPCOMING_INSPECTIONS_CELL_VIEW_TAG 2
-#define HEADER_HEIGHT 20
+#define HEADER_HEIGHT 25
 
 @interface UpcomingInspectionsViewController ()
 
@@ -128,7 +128,7 @@
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:rect];
     headerLabel.backgroundColor = [UIColor clearColor];
     headerLabel.textColor = [UIColor whiteColor];
-    headerLabel.font = [UIFont boldFontOfSize:12];
+    headerLabel.font = [UIFont boldFontOfSize:18];
     headerLabel.textAlignment = NSTextAlignmentLeft;
     headerLabel.numberOfLines = 1;
     
@@ -154,7 +154,7 @@
     }
     
     [headerLabel sizeToFit];
-    headerLabel.frame = CGRectMake(5, 5, tableView.bounds.size.width - 5, headerLabel.frame.size.height);
+    headerLabel.frame = CGRectMake(5, 6, tableView.bounds.size.width - 5, headerLabel.frame.size.height);
     
     [headerView addSubview:headerLabel];
     

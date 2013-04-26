@@ -10,13 +10,15 @@
 
 #define INSPECTION_FORM_CELL_HEIGHT 50
 
+
 @interface InspectionsFormCell : UITableViewCell
 
 @property (nonatomic) int state;
 @property (nonatomic, strong) NSString *question;
+@property (nonatomic) int commentState;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withTarget:(id)target;
 
-+ (CGFloat)getCellHeightForQuestion:(NSString*)question withState:(NSInteger)state;
++ (CGFloat)getCellHeightForQuestion:(NSString*)question withState:(NSInteger)state withComment:(BOOL)hasComment;
 
 @end

@@ -10,7 +10,7 @@
 #import "InspectionsFormCell.h"
 #import "CommentPhotoViewController.h"
 
-#define HEADER_HEIGHT 20
+#define HEADER_HEIGHT 25
 #define BUTTON_HEIGHT 47
 #define PROGRESS_HEIGHT 25
 #define NAV_BAR_HEIGHT 40
@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) NSMutableArray *questionsState;
 @property (nonatomic, strong) NSMutableArray *questions;
+@property (nonatomic, strong) NSMutableArray *questionsCommentState;
 
 @end
 
@@ -62,7 +63,16 @@
     
     self.questionsState = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
     
+    self.questionsCommentState = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+    
     self.questions = [[NSMutableArray alloc] initWithObjects:@"Is emergency response plan present?", @"UST Permit present and not expired?", @"Are all operator records present?", @"ATG working properly and not in alarm?", @"Are vents and vent caps undamaged?", @"Are fire extinguishers located within 100' of dispensers and not expired?", @"Is ESO located within 100' of dispensers and working properly?", @"Have all employees passed Class C Operator training and have proof?", nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+    [self updateProgress];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,11 +109,6 @@
         _progressView.backgroundColor = [UIColor fopProgressBackgroundColor];
         [_progressView addSubview:self.progressLabel];
         [_progressView addSubview:self.progressSlider];
-        
-//        //?? make this a real slider
-//        UIImageView *progressImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"progressbar"]];
-//        progressImageView.frame = CGRectMake(93, 8, progressImageView.image.size.width, progressImageView.image.size.height);
-//        [_progressView addSubview:progressImageView];
     }
     return _progressView;
 }
@@ -169,7 +174,7 @@
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:rect];
     headerLabel.backgroundColor = [UIColor clearColor];
     headerLabel.textColor = [UIColor whiteColor];
-    headerLabel.font = [UIFont boldFontOfSize:12];
+    headerLabel.font = [UIFont boldFontOfSize:18];
     headerLabel.textAlignment = NSTextAlignmentLeft;
     headerLabel.numberOfLines = 1;
     headerLabel.text = @"Category 1";
@@ -193,9 +198,30 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    BOOL bHasComment = NO;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *commentFormat = [NSString stringWithFormat:@"comment_%d.txt", indexPath.row];
+    NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
+    NSString *comment = [[NSString alloc]initWithContentsOfFile:commentPath usedEncoding:nil error:nil];
+    if(comment)
+    {
+        bHasComment = YES;
+    }
+    else
+    {
+        NSString* path1 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", indexPath.row, 1]];
+        UIImage* image1 = [UIImage imageWithContentsOfFile:path1];
+        if(image1)
+            bHasComment = YES;
+    }
+    [self.questionsCommentState setObject:[NSNumber numberWithBool:bHasComment] atIndexedSubscript:indexPath.row];
+    
+    
     NSNumber* state = [self.questionsState objectAtIndex:indexPath.row];
     NSString* question = [self.questions objectAtIndex:indexPath.row];
-    CGFloat height = [InspectionsFormCell getCellHeightForQuestion:question withState:[state integerValue]];
+    NSNumber* hasComment = [self.questionsCommentState objectAtIndex:indexPath.row];
+    CGFloat height = [InspectionsFormCell getCellHeightForQuestion:question withState:[state integerValue] withComment:[hasComment integerValue]];
     //NSLog(@"height at row %d: %f\n", indexPath.row, height);
     return height;
 }
@@ -208,24 +234,22 @@
     if (cell == nil)
         cell = [[InspectionsFormCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withTarget:self];
     
+    //?? make an enumeration for the states
+    //?? check the documents directory to see if there are comments/photos to set the state
     NSNumber *curState = [self.questionsState objectAtIndex:indexPath.row];
     cell.state = [curState integerValue];
     cell.question = [self.questions objectAtIndex:indexPath.row];
-
-    //NSLog(@"contentSize at row %d: %f\n", indexPath.row, cell.contentView.frame.size.height);
+    cell.commentState = [[self.questionsCommentState objectAtIndex:indexPath.row] integerValue];
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *question = [self.questions objectAtIndex:indexPath.row];
-    NSNumber* state = [self.questionsState objectAtIndex:indexPath.row];
-    //if([state integerValue] == 2)
-    //{
-        CommentPhotoViewController *commentPhotoVC = [[CommentPhotoViewController alloc] init];
-        commentPhotoVC.question = question;
-        [self presentViewController:commentPhotoVC animated:YES completion:nil];
-    //}
+    CommentPhotoViewController *commentPhotoVC = [[CommentPhotoViewController alloc] init];
+    commentPhotoVC.question = [self.questions objectAtIndex:indexPath.row];
+    commentPhotoVC.row = indexPath.row;
+    [self presentViewController:commentPhotoVC animated:YES completion:nil];
 }
 
 - (void)didSelectAccessory:(id)sender event:(id)event
@@ -235,26 +259,32 @@
     CGPoint currentTouchPosition = [touch locationInView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint: currentTouchPosition];
     
-    NSNumber* state = [self.questionsState objectAtIndex:indexPath.row];
-    int newState = [state integerValue] + 1;
-    if(newState > 2)
-        newState = 0;
-    [self.questionsState setObject:[NSNumber numberWithInt:newState] atIndexedSubscript:indexPath.row];
+    //update the question state according to the tap
+    NSInteger state = [[self.questionsState objectAtIndex:indexPath.row] integerValue] + 1;
+    if(state > 2)
+        state = 0;
+    [self.questionsState setObject:[NSNumber numberWithInt:state] atIndexedSubscript:indexPath.row];
     
-    //?? update the progress indicator
+    [self updateProgress];
+    [self.tableView reloadData];
+}
+
+- (void)updateProgress
+{
     NSUInteger numCompleted = 0;
     for(NSUInteger i=0; i<self.questionsState.count; i++)
     {
         NSNumber* state = [self.questionsState objectAtIndex:i];
+        NSNumber* commentState = [self.questionsCommentState objectAtIndex:i];
         if([state integerValue] == 1)
+            numCompleted++;
+        else if(([state integerValue] == 2) && ([commentState integerValue] == 1))
             numCompleted++;
     }
     float progress = ((float)(numCompleted)/(float)(self.questionsState.count));
     [self.progressSlider setValue:progress];
     NSInteger percent = (NSInteger)(progress * 100.);
     self.progressLabel.text = [NSString stringWithFormat:@"%d%% Complete", percent];
-    
-    [self.tableView reloadData];
 }
 
 - (UIButton*)facilityButton
