@@ -25,6 +25,10 @@
 		3C2778161710A7EA000E4749 /* segemented-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C2778141710A7EA000E4749 /* segemented-background@2x.png */; };
 		3C29B259172ACF4700380A96 /* comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C29B258172ACF4700380A96 /* comment@2x.png */; };
 		3C29B25B172AECE600380A96 /* commentBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C29B25A172AECE600380A96 /* commentBackground@2x.png */; };
+		3C29B25D172C6BDA00380A96 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C29B25C172C6BD900380A96 /* CoreLocation.framework */; };
+		3C29B263172C726F00380A96 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C29B262172C726F00380A96 /* MapAnnotation.m */; };
+		3C29B266172C7D3700380A96 /* mappin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C29B264172C7D3700380A96 /* mappin@2x.png */; };
+		3C29B26D172C8EE500380A96 /* MapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C29B26C172C8EE500380A96 /* MapAnnotationView.m */; };
 		3C31EA6A1703F3A6001310B2 /* dispensers-btn-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C31EA671703F3A6001310B2 /* dispensers-btn-normal@2x.png */; };
 		3C31EA6B1703F3A6001310B2 /* facility-btn-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C31EA681703F3A6001310B2 /* facility-btn-normal@2x.png */; };
 		3C31EA6C1703F3A6001310B2 /* tanks-btn-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C31EA691703F3A6001310B2 /* tanks-btn-normal@2x.png */; };
@@ -110,6 +114,12 @@
 		3C2778141710A7EA000E4749 /* segemented-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "segemented-background@2x.png"; path = "Resources/segemented-background@2x.png"; sourceTree = "<group>"; };
 		3C29B258172ACF4700380A96 /* comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "comment@2x.png"; path = "Resources/comment@2x.png"; sourceTree = "<group>"; };
 		3C29B25A172AECE600380A96 /* commentBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "commentBackground@2x.png"; path = "Resources/commentBackground@2x.png"; sourceTree = "<group>"; };
+		3C29B25C172C6BD900380A96 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3C29B261172C726F00380A96 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
+		3C29B262172C726F00380A96 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
+		3C29B264172C7D3700380A96 /* mappin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mappin@2x.png"; path = "Resources/mappin@2x.png"; sourceTree = "<group>"; };
+		3C29B26B172C8EE500380A96 /* MapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotationView.h; sourceTree = "<group>"; };
+		3C29B26C172C8EE500380A96 /* MapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotationView.m; sourceTree = "<group>"; };
 		3C31EA671703F3A6001310B2 /* dispensers-btn-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dispensers-btn-normal@2x.png"; path = "Resources/dispensers-btn-normal@2x.png"; sourceTree = "<group>"; };
 		3C31EA681703F3A6001310B2 /* facility-btn-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facility-btn-normal@2x.png"; path = "Resources/facility-btn-normal@2x.png"; sourceTree = "<group>"; };
 		3C31EA691703F3A6001310B2 /* tanks-btn-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tanks-btn-normal@2x.png"; path = "Resources/tanks-btn-normal@2x.png"; sourceTree = "<group>"; };
@@ -198,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C29B25D172C6BDA00380A96 /* CoreLocation.framework in Frameworks */,
 				3CA5EDDE17265A8600FD437F /* MobileCoreServices.framework in Frameworks */,
 				3C3AC47616FF2C6E003CA498 /* libz.dylib in Frameworks */,
 				3C1B6D7816F518A1007CD5F4 /* MapKit.framework in Frameworks */,
@@ -241,6 +252,7 @@
 				3C78334A16DDD5E70037ED08 /* UIKit.framework */,
 				3C78334C16DDD5E70037ED08 /* Foundation.framework */,
 				3C78334E16DDD5E70037ED08 /* CoreGraphics.framework */,
+				3C29B25C172C6BD900380A96 /* CoreLocation.framework */,
 				3C78335016DDD5E70037ED08 /* CoreData.framework */,
 			);
 			name = Frameworks;
@@ -314,6 +326,7 @@
 		3C78337F16DDE1240037ED08 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3C29B264172C7D3700380A96 /* mappin@2x.png */,
 				3C29B25A172AECE600380A96 /* commentBackground@2x.png */,
 				3C29B258172ACF4700380A96 /* comment@2x.png */,
 				3CA5EDDF17266F1B00FD437F /* removeButtonImage@2x.png */,
@@ -389,6 +402,10 @@
 				3CE0661B1718BBBD00E41881 /* InnerShadowView.m */,
 				3C2610951721C1E7007589C1 /* InspectionsFormCell.h */,
 				3C2610961721C1E8007589C1 /* InspectionsFormCell.m */,
+				3C29B261172C726F00380A96 /* MapAnnotation.h */,
+				3C29B262172C726F00380A96 /* MapAnnotation.m */,
+				3C29B26B172C8EE500380A96 /* MapAnnotationView.h */,
+				3C29B26C172C8EE500380A96 /* MapAnnotationView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -493,6 +510,7 @@
 				3CA5EDE017266F1B00FD437F /* removeButtonImage@2x.png in Resources */,
 				3C29B259172ACF4700380A96 /* comment@2x.png in Resources */,
 				3C29B25B172AECE600380A96 /* commentBackground@2x.png in Resources */,
+				3C29B266172C7D3700380A96 /* mappin@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +542,8 @@
 				3C27781217108C9D000E4749 /* AccessoryView.m in Sources */,
 				3CE0661C1718BBBD00E41881 /* InnerShadowView.m in Sources */,
 				3C2610971721C1E8007589C1 /* InspectionsFormCell.m in Sources */,
+				3C29B263172C726F00380A96 /* MapAnnotation.m in Sources */,
+				3C29B26D172C8EE500380A96 /* MapAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

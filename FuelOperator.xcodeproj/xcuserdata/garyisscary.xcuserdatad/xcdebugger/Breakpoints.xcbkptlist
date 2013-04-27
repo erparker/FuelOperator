@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "FuelOperator/InspectionsListViewController.m"
-         timestampString = "388690772.896862"
+         timestampString = "388793696.177214"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "168"
-         endingLineNumber = "168"
+         startingLineNumber = "164"
+         endingLineNumber = "164"
          landmarkName = "-switchView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "FuelOperator/InspectionsListViewController.m"
-         timestampString = "388690769.115771"
+         timestampString = "388793696.177214"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167"
+         startingLineNumber = "163"
+         endingLineNumber = "163"
          landmarkName = "-switchView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -85,14 +85,14 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "FuelOperator/InspectionsListViewController.m"
-         timestampString = "388690783.150198"
+         filePath = "FuelOperator/MapAnnotation.m"
+         timestampString = "388789214.979545"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "166"
-         endingLineNumber = "166"
-         landmarkName = "-switchView"
-         landmarkType = "5">
+         startingLineNumber = "11"
+         endingLineNumber = "11"
+         landmarkName = "@implementation MapAnnotation"
+         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

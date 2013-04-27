@@ -10,6 +10,7 @@
 #import "InspectionsListCellView.h"
 #import <MapKit/MapKit.h>
 #import "InspectionFormViewController.h"
+#import "MapAnnotation.h"
 
 #define INSPECTIONS_LIST_CELL_VIEW_TAG 3
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) MKMapView *mapView;
 @property (nonatomic, strong) UIView *switchView;
+@property (nonatomic, strong) NSArray *mapAnnotations;
 
 @end
 
@@ -46,10 +48,6 @@
     [self.view addSubview:self.switchView];
     [self.switchView addSubview:self.mapView];
     [self.switchView addSubview:self.tableView];
-    
-    //this just forces proper initialization of the map view
-    //[self.switchView addSubview:self.mapView];
-    //[self.mapView removeFromSuperview];
 }
 
 - (void)viewDidLoad
@@ -161,8 +159,6 @@
 {
     if(_switchView == nil)
     {
-        CGFloat a = self.view.bounds.size.height;
-        CGFloat b = self.view.frame.size.height;
         _switchView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleView.frame.size.height, self.view.bounds.size.width, self.view.frame.size.height - self.titleView.frame.size.height - 50)];
     }
     return _switchView;
@@ -277,12 +273,109 @@
         locationButton.frame = CGRectMake(10, _mapView.frame.size.height - 10 - locationImage.size.height, locationImage.size.width, locationImage.size.height);
         [locationButton addTarget:self action:@selector(locationTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_mapView addSubview:locationButton];
+        
+        //populate an array of pin annotations for the map
+        MapAnnotation *anno1 = [[MapAnnotation alloc] init];
+        anno1.coordinate = CLLocationCoordinate2DMake(40.525863,-111.863403);
+        anno1.title = @"Holiday Oil";
+        anno1.subtitle = @"Draper, UT";
+        [_mapView addAnnotation:anno1];
+        
+        MapAnnotation *anno2 = [[MapAnnotation alloc] init];
+        anno2.coordinate = CLLocationCoordinate2DMake(40.573863,-111.899109);
+        anno2.title = @"Sinclair";
+        anno2.subtitle = @"Sandy, UT";
+        [_mapView addAnnotation:anno2];
+        
+        MapAnnotation *anno3 = [[MapAnnotation alloc] init];
+        anno3.coordinate = CLLocationCoordinate2DMake(40.041868,-111.701355);
+        anno3.title = @"Texaco";
+        anno3.subtitle = @"Payson, UT";
+        [_mapView addAnnotation:anno3];
+        
+        MapAnnotation *anno4 = [[MapAnnotation alloc] init];
+        anno4.coordinate = CLLocationCoordinate2DMake(39.352178,-112.57717);
+        anno4.title = @"Kicks 66";
+        anno4.subtitle = @"Delta, UT";
+        [_mapView addAnnotation:anno4];
+        
+        MapAnnotation *anno5 = [[MapAnnotation alloc] init];
+        anno5.coordinate = CLLocationCoordinate2DMake(40.607466,-111.955109);
+        anno5.title = @"Maverick";
+        anno5.subtitle = @"West Jordan, UT";
+        [_mapView addAnnotation:anno5];
+        
+        MapAnnotation *anno6 = [[MapAnnotation alloc] init];
+        anno6.coordinate = CLLocationCoordinate2DMake(40.511479,-111.878204);
+        anno6.title = @"7-Eleven";
+        anno6.subtitle = @"Draper, UT";
+        [_mapView addAnnotation:anno6];
+        
+        MapAnnotation *anno7 = [[MapAnnotation alloc] init];
+        anno7.coordinate = CLLocationCoordinate2DMake(40.391302,-111.849365);
+        anno7.title = @"Texaco";
+        anno7.subtitle = @"Lehi, UT";
+        [_mapView addAnnotation:anno7];
+        
+        MapAnnotation *anno8 = [[MapAnnotation alloc] init];
+        anno8.coordinate = CLLocationCoordinate2DMake(41.220789,-111.985321);
+        anno8.title = @"Crest";
+        anno8.subtitle = @"Ogden, UT";
+        [_mapView addAnnotation:anno8];
+        
+        self.mapAnnotations = [NSArray arrayWithObjects:anno1, anno2, anno3, anno4, anno5, anno6, anno7, anno8, nil];
+        
+        
+        //set the starting view of the map - slc, northern utah
+        CLLocationCoordinate2D center = CLLocationCoordinate2DMake(40.770951,-112.13501); //slc
+        _mapView.region = MKCoordinateRegionMake(center, MKCoordinateSpanMake(2.0, 2.0));
     }
     return _mapView;
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)sender viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    MKAnnotationView *aView = [sender dequeueReusableAnnotationViewWithIdentifier:@"mapAnnotation"];
+    if(!aView)
+    {
+        aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"mapAnnotation"];
+        aView.image = [UIImage imageNamed:@"mappin"];
+        
+    }
+    
+    // set canShowCallout to YES and build aView’s callout accessory views here }
+    aView.canShowCallout = YES;
+    aView.annotation = annotation; // yes, this happens twice if no dequeue
+    
+    UIView* popupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    popupView.backgroundColor = [UIColor fopYellowColor];
+    aView.leftCalloutAccessoryView = popupView;
+    // maybe load up accessory views here (if not too expensive)?
+    // or reset them and wait until mapView:didSelectAnnotationView: to load actual data
+    return aView;
+}
+
+//- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+//{
+//    //?? i need to put the data into the MapAnnotation class itself, then call a function on it to build the view i need
+//    if ([view.leftCalloutAccessoryView isKindOfClass:[UIImageView class]]) {
+//        UIImageView *imageView = (UIImageView *)(view.leftCalloutAccessoryView);
+//        if ([view.annotation respondsToSelector:@selector(thumbnail)]) {
+//            // this should be done in a different thread!
+//            imageView.image = [view.annotation performSelector:@selector(thumbnail)];
+//        }
+//    }
+//}
+
+//- (void)mapView:(MKMapView *)sender annotationView:(MKAnnotationView *)aView calloutAccessoryControlTapped:(UIControl *)control
+//{
+//    // the annotation was tapped, push on to the form
+//}
+
 - (void)locationTapped:(id)sender
 {
+    //?? change the center of the map to the current location
+    //?? make the span 1.0 instead of 2.0
     NSLog(@"locationTapped\n");
 }
 
