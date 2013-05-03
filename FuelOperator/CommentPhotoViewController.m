@@ -7,7 +7,6 @@
 //
 
 #import "CommentPhotoViewController.h"
-//#import "InnerShadowView.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 @interface CommentPhotoViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -16,7 +15,6 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *questionLabel;
 @property (nonatomic, strong) UILabel *commentLabel;
-//@property (nonatomic, strong) InnerShadowView *shadowView;
 @property (nonatomic, strong) UIImageView *commentBackgroundView;
 @property (nonatomic, strong) UITextView *commentTextView;
 @property (nonatomic, strong) UILabel *photosLabel;
@@ -66,24 +64,24 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    NSString *commentFormat = [NSString stringWithFormat:@"comment_%d.txt", self.row];
+    NSString *commentFormat = [NSString stringWithFormat:@"%@_comment_%d.txt", self.tabName, self.row];
     NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
     
     NSString *comment = [[NSString alloc]initWithContentsOfFile:commentPath usedEncoding:nil error:nil];
     self.commentTextView.text = comment;
     
     
-    NSString* path1 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 1]];
+    NSString* path1 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 1]];
     UIImage* image1 = [UIImage imageWithContentsOfFile:path1];
     if(image1)
         self.image1 = image1;
     
-    NSString* path2 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 2]];
+    NSString* path2 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 2]];
     UIImage* image2 = [UIImage imageWithContentsOfFile:path2];
     if(image2)
         self.image2 = image2;
     
-    NSString* path3 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 3]];
+    NSString* path3 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 3]];
     UIImage* image3 = [UIImage imageWithContentsOfFile:path3];
     if(image3)
         self.image3 = image3;
@@ -155,7 +153,7 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
     //comments
-    NSString *commentFormat = [NSString stringWithFormat:@"comment_%d.txt", self.row];
+    NSString *commentFormat = [NSString stringWithFormat:@"%@_comment_%d.txt", self.tabName, self.row];
     NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
     if(![self.commentTextView.text isEqualToString:@""])
         [self.commentTextView.text writeToFile:commentPath atomically:YES encoding:NSStringEncodingConversionAllowLossy error:nil];
@@ -165,19 +163,19 @@
     //images
     if(self.image1)
     {
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 1]];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 1]];
         NSData* data = UIImagePNGRepresentation(self.image1);
         [data writeToFile:path atomically:YES];
     }
     if(self.image2)
     {
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 2]];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 2]];
         NSData* data = UIImagePNGRepresentation(self.image2);
         [data writeToFile:path atomically:YES];
     }
     if(self.image3)
     {
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image_%d_%d.png", self.row, 3]];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 3]];
         NSData* data = UIImagePNGRepresentation(self.image3);
         [data writeToFile:path atomically:YES];
     }
@@ -191,8 +189,6 @@
     {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 45, self.view.bounds.size.width, self.view.bounds.size.height - 45)];
         _scrollView.backgroundColor = [UIColor fopOffWhiteColor];
-        
-        //?? read the docs dir here and load up the images and comment
         
         [_scrollView addSubview:self.questionLabel];
         [_scrollView addSubview:self.commentLabel];
@@ -240,17 +236,6 @@
     }
     return _commentLabel;
 }
-
-//- (InnerShadowView*)shadowView
-//{
-//    if(_shadowView == nil)
-//    {
-//        _shadowView = [[InnerShadowView alloc] initWithFrame:CGRectMake(10, 65 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 130)];
-//        _shadowView.layer.cornerRadius = 10;
-//        _shadowView.layer.masksToBounds = YES;
-//    }
-//    return _shadowView;
-//}
 
 - (UIImageView*)commentBackgroundView
 {

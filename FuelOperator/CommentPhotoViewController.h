@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSString *question;
 @property (nonatomic) NSInteger row;
-@property (nonatomic, strong) UITableView *questionsTableView;
+@property (nonatomic, strong) NSString *tabName;
 
 @end
