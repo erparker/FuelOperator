@@ -94,5 +94,31 @@
          landmarkName = "@implementation MapAnnotation"
          landmarkType = "3">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "FuelOperator/UpcomingInspectionsViewController.m"
+         timestampString = "389301512.680967"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
+         landmarkName = "-loadView"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "FuelOperator/IIViewDeckController.h"
+         timestampString = "389299138.932905"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "242"
+         endingLineNumber = "242"
+         landmarkName = "-isSideClosed:"
+         landmarkType = "4">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

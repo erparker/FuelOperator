@@ -14,6 +14,15 @@
 #import "LoginViewController.h"
 #import "TestFlight.h"
 
+@interface AppDelegate ()
+
+@property (nonatomic, strong) IIViewDeckController *deckController;
+@property (nonatomic, strong) UINavigationController *inspectionsNC;
+@property (nonatomic, strong) SettingsViewController *settingsVC;
+@property (nonatomic, strong) UIView *blockingNavView;
+@property (nonatomic, strong) UIView *blockingView;
+
+@end
 
 @implementation AppDelegate
 
@@ -45,24 +54,89 @@
 
 - (void)loginCompleted:(id)sender
 {
-    UpcomingInspectionsViewController *upcomingInspectionsVC = [[UpcomingInspectionsViewController alloc] init];
-    UINavigationController *inspectionsNC = [[UINavigationController alloc] initWithRootViewController:upcomingInspectionsVC];
-    
-    SettingsViewController *settingsVC = [[SettingsViewController alloc] init];
-    
-    IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:inspectionsNC
-                                                                                    leftViewController:settingsVC
-                                                                                   rightViewController:nil];
-    
-    upcomingInspectionsVC.viewDeckController = deckController;
-    
-    //self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = deckController;
+    self.window.rootViewController = self.deckController;
 }
 
 - (void)logout:(id)sender
 {
     [self setupLoginScreen];
+}
+
+- (void)toggleLeftView:(id)sender
+{
+    [self.deckController toggleLeftView];
+}
+
+- (void)settingsWillAppear:(id)sender
+{
+    [self.inspectionsNC.navigationBar addSubview:self.blockingNavView];
+    [self.inspectionsNC.visibleViewController.view addSubview:self.blockingView];
+}
+
+- (void)settingsWillDisappear:(id)sender
+{
+    [self.blockingNavView removeFromSuperview];
+    self.blockingNavView = nil;
+    [self.blockingView removeFromSuperview];
+    self.blockingView = nil;
+}
+
+- (IIViewDeckController*)deckController
+{
+    if(_deckController == nil)
+    {
+        _deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.inspectionsNC leftViewController:self.settingsVC rightViewController:nil];
+        [_deckController setLeftSize:66];
+    }
+    return _deckController;
+}
+
+- (UINavigationController*)inspectionsNC
+{
+    if(_inspectionsNC == nil)
+    {
+        UpcomingInspectionsViewController *upcomingInspectionsVC = [[UpcomingInspectionsViewController alloc] init];
+        _inspectionsNC = [[UINavigationController alloc] initWithRootViewController:upcomingInspectionsVC];
+    }
+    return _inspectionsNC;
+}
+
+- (SettingsViewController*)settingsVC
+{
+    if(_settingsVC == nil)
+    {
+        _settingsVC = [[SettingsViewController alloc] init];
+    }
+    return _settingsVC;
+}
+
+- (UIView *)blockingNavView
+{
+    if(_blockingNavView == nil)
+    {
+        _blockingNavView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.inspectionsNC.navigationBar.frame.size.width, self.inspectionsNC.navigationBar.frame.size.height)];
+        _blockingNavView.backgroundColor = [UIColor clearColor];
+        _blockingNavView.userInteractionEnabled = YES;
+        [_blockingNavView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(blockingViewTapped:)]];
+    }
+    return _blockingNavView;
+}
+
+- (UIView *)blockingView
+{
+    if(_blockingView == nil)
+    {
+        _blockingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.inspectionsNC.visibleViewController.view.frame.size.width, self.inspectionsNC.visibleViewController.view.frame.size.height)];
+        _blockingView.backgroundColor = [UIColor clearColor];
+        _blockingView.userInteractionEnabled = YES;
+        [_blockingView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(blockingViewTapped:)]];
+    }
+    return _blockingView;
+}
+
+- (void)blockingViewTapped:(id)sender
+{
+    [self toggleLeftView:self];
 }
 
 - (void)applyStyle

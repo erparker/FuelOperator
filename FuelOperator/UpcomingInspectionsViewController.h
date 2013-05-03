@@ -11,6 +11,4 @@
 
 @interface UpcomingInspectionsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) IIViewDeckController *viewDeckController;
-
 @end

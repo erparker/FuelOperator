@@ -9,6 +9,7 @@
 #import "UpcomingInspectionsViewController.h"
 #import "UpcomingInspectionsCellView.h"
 #import "InspectionsListViewController.h"
+#import "AppDelegate.h"
 
 #define UPCOMING_INSPECTIONS_CELL_VIEW_TAG 2
 #define HEADER_HEIGHT 25
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) UIButton *addSiteBtn;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSDate *startOfThisWeek;
+@property (nonatomic) BOOL settingsOpen;
 
 @end
 
@@ -52,7 +54,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-        
+    
+    self.settingsOpen = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,15 +76,10 @@
     return _settingsBtn;
 }
 
-- (void)setViewDeckController:(IIViewDeckController *)viewDeckController
-{
-    _viewDeckController = viewDeckController;
-    [_viewDeckController setLeftSize:66];
-}
-
 - (void)toggleLeftView:(id)sender
 {
-    [self.viewDeckController toggleLeftView];
+    AppDelegate *appDelegate = (AppDelegate*)([[UIApplication sharedApplication] delegate]);
+    [appDelegate toggleLeftView:self];
 }
 
 - (UILabel *)titleLabel

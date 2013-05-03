@@ -12,8 +12,10 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-
 - (void)loginCompleted:(id)sender;
 - (void)logout:(id)sender;
+- (void)toggleLeftView:(id)sender;
+- (void)settingsWillAppear:(id)sender;
+- (void)settingsWillDisappear:(id)sender;
 
 @end

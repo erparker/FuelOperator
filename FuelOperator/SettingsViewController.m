@@ -49,6 +49,22 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    AppDelegate *appDelegate = (AppDelegate*)([[UIApplication sharedApplication] delegate]);
+    [appDelegate settingsWillAppear:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    AppDelegate *appDelegate = (AppDelegate*)([[UIApplication sharedApplication] delegate]);
+    [appDelegate settingsWillDisappear:self];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
