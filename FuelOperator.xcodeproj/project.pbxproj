@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		3C0BA24D174FF2BB0043D256 /* mapCalloutGas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0BA24C174FF2BB0043D256 /* mapCalloutGas@2x.png */; };
+		3C0BA265174FFC920043D256 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA264174FFC920043D256 /* Photo.m */; };
+		3C0BA268174FFC930043D256 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA267174FFC930043D256 /* Location.m */; };
+		3C0BA26B174FFC930043D256 /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA26A174FFC930043D256 /* FormQuestion.m */; };
+		3C0BA26E174FFC930043D256 /* FormAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA26D174FFC930043D256 /* FormAnswer.m */; };
+		3C0BA271174FFC930043D256 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA270174FFC930043D256 /* Station.m */; };
+		3C0BA274174FFC930043D256 /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA273174FFC930043D256 /* Inspection.m */; };
+		3C0BA277174FFC930043D256 /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA276174FFC930043D256 /* Form.m */; };
 		3C1B6D7016F437F5007CD5F4 /* btn-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C1B6D6F16F437F5007CD5F4 /* btn-back@2x.png */; };
 		3C1B6D7316F5138A007CD5F4 /* listView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C1B6D7116F5138A007CD5F4 /* listView@2x.png */; };
 		3C1B6D7416F5138A007CD5F4 /* mapView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C1B6D7216F5138A007CD5F4 /* mapView@2x.png */; };
@@ -108,6 +115,20 @@
 
 /* Begin PBXFileReference section */
 		3C0BA24C174FF2BB0043D256 /* mapCalloutGas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mapCalloutGas@2x.png"; path = "Resources/mapCalloutGas@2x.png"; sourceTree = "<group>"; };
+		3C0BA263174FFC920043D256 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		3C0BA264174FFC920043D256 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		3C0BA266174FFC930043D256 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		3C0BA267174FFC930043D256 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		3C0BA269174FFC930043D256 /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
+		3C0BA26A174FFC930043D256 /* FormQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormQuestion.m; sourceTree = "<group>"; };
+		3C0BA26C174FFC930043D256 /* FormAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormAnswer.h; sourceTree = "<group>"; };
+		3C0BA26D174FFC930043D256 /* FormAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormAnswer.m; sourceTree = "<group>"; };
+		3C0BA26F174FFC930043D256 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		3C0BA270174FFC930043D256 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
+		3C0BA272174FFC930043D256 /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
+		3C0BA273174FFC930043D256 /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
+		3C0BA275174FFC930043D256 /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Form.h; sourceTree = "<group>"; };
+		3C0BA276174FFC930043D256 /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Form.m; sourceTree = "<group>"; };
 		3C1B6D6F16F437F5007CD5F4 /* btn-back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn-back@2x.png"; path = "Resources/btn-back@2x.png"; sourceTree = "<group>"; };
 		3C1B6D7116F5138A007CD5F4 /* listView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "listView@2x.png"; path = "Resources/listView@2x.png"; sourceTree = "<group>"; };
 		3C1B6D7216F5138A007CD5F4 /* mapView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mapView@2x.png"; path = "Resources/mapView@2x.png"; sourceTree = "<group>"; };
@@ -423,6 +444,20 @@
 			isa = PBXGroup;
 			children = (
 				3C78336416DDD5E70037ED08 /* FuelOperator.xcdatamodeld */,
+				3C0BA275174FFC930043D256 /* Form.h */,
+				3C0BA276174FFC930043D256 /* Form.m */,
+				3C0BA272174FFC930043D256 /* Inspection.h */,
+				3C0BA273174FFC930043D256 /* Inspection.m */,
+				3C0BA26F174FFC930043D256 /* Station.h */,
+				3C0BA270174FFC930043D256 /* Station.m */,
+				3C0BA26C174FFC930043D256 /* FormAnswer.h */,
+				3C0BA26D174FFC930043D256 /* FormAnswer.m */,
+				3C0BA269174FFC930043D256 /* FormQuestion.h */,
+				3C0BA26A174FFC930043D256 /* FormQuestion.m */,
+				3C0BA266174FFC930043D256 /* Location.h */,
+				3C0BA267174FFC930043D256 /* Location.m */,
+				3C0BA263174FFC920043D256 /* Photo.h */,
+				3C0BA264174FFC920043D256 /* Photo.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -598,6 +633,13 @@
 				3C2610971721C1E8007589C1 /* InspectionsFormCell.m in Sources */,
 				3C29B263172C726F00380A96 /* MapAnnotation.m in Sources */,
 				3C29B26D172C8EE500380A96 /* MapAnnotationView.m in Sources */,
+				3C0BA265174FFC920043D256 /* Photo.m in Sources */,
+				3C0BA268174FFC930043D256 /* Location.m in Sources */,
+				3C0BA26B174FFC930043D256 /* FormQuestion.m in Sources */,
+				3C0BA26E174FFC930043D256 /* FormAnswer.m in Sources */,
+				3C0BA271174FFC930043D256 /* Station.m in Sources */,
+				3C0BA274174FFC930043D256 /* Inspection.m in Sources */,
+				3C0BA277174FFC930043D256 /* Form.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

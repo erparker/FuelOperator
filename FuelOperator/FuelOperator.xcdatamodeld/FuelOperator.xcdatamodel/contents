@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Form" syncable="YES">
+    <entity name="Form" representedClassName="Form" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="formQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="form" inverseEntity="FormQuestion" syncable="YES"/>
     </entity>
-    <entity name="FormAnswer" syncable="YES">
+    <entity name="FormAnswer" representedClassName="FormAnswer" syncable="YES">
         <attribute name="affirmitive" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="formQuestion" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="formAnswers" inverseEntity="FormQuestion" syncable="YES"/>
         <relationship name="inspection" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Inspection" inverseName="formAnswers" inverseEntity="Inspection" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="formAnswer" inverseEntity="Photo" syncable="YES"/>
     </entity>
-    <entity name="FormQuestion" syncable="YES">
+    <entity name="FormQuestion" representedClassName="FormQuestion" syncable="YES">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -19,12 +19,12 @@
         <relationship name="form" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Form" inverseName="formQuestions" inverseEntity="Form" syncable="YES"/>
         <relationship name="formAnswers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="formQuestion" inverseEntity="FormAnswer" syncable="YES"/>
     </entity>
-    <entity name="Inspection" syncable="YES">
+    <entity name="Inspection" representedClassName="Inspection" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="formAnswers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="inspection" inverseEntity="FormAnswer" syncable="YES"/>
         <relationship name="station" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="inspections" inverseEntity="Station" syncable="YES"/>
     </entity>
-    <entity name="Location" syncable="YES">
+    <entity name="Location" representedClassName="Location" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lattitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -33,11 +33,11 @@
         <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="station" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="location" inverseEntity="Station" syncable="YES"/>
     </entity>
-    <entity name="Photo" syncable="YES">
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="imageFile" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="formAnswer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="photos" inverseEntity="FormAnswer" syncable="YES"/>
     </entity>
-    <entity name="Station" syncable="YES">
+    <entity name="Station" representedClassName="Station" syncable="YES">
         <attribute name="companyName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="inspections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Inspection" inverseName="station" inverseEntity="Inspection" syncable="YES"/>
         <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="station" inverseEntity="Location" syncable="YES"/>
