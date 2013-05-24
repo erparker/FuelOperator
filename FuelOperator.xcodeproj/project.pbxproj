@@ -337,6 +337,8 @@
 			children = (
 				3CF6E04316F05A3D00C60DFB /* LoginViewController.h */,
 				3CF6E04416F05A3D00C60DFB /* LoginViewController.m */,
+				3C0BA2AA17500E800043D256 /* RootContainerViewController.h */,
+				3C0BA2AB17500E800043D256 /* RootContainerViewController.m */,
 				3C78336C16DDD65D0037ED08 /* SettingsViewController.h */,
 				3C78336D16DDD65D0037ED08 /* SettingsViewController.m */,
 				3C78336F16DDD78B0037ED08 /* UpcomingInspectionsViewController.h */,
@@ -347,8 +349,6 @@
 				3C1B6D7C16F53A41007CD5F4 /* InspectionFormViewController.m */,
 				3CB1EF3817065A460058CF9A /* CommentPhotoViewController.h */,
 				3CB1EF3917065A470058CF9A /* CommentPhotoViewController.m */,
-				3C0BA2AA17500E800043D256 /* RootContainerViewController.h */,
-				3C0BA2AB17500E800043D256 /* RootContainerViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

@@ -28,7 +28,6 @@
     
     [self setupLoginScreen];
     
-    
     //[self.window makeKeyAndVisible];
     
     return YES;
@@ -51,35 +50,6 @@
 {
     [self setupLoginScreen];
 }
-
-//- (void)toggleLeftView:(id)sender
-//{
-//    [self.deckController toggleLeftView];
-//}
-//
-//- (void)settingsWillAppear:(id)sender
-//{
-//    [self.inspectionsNC.navigationBar addSubview:self.blockingNavView];
-//    [self.inspectionsNC.visibleViewController.view addSubview:self.blockingView];
-//}
-//
-//- (void)settingsWillDisappear:(id)sender
-//{
-//    [self.blockingNavView removeFromSuperview];
-//    self.blockingNavView = nil;
-//    [self.blockingView removeFromSuperview];
-//    self.blockingView = nil;
-//}
-//
-//- (IIViewDeckController*)deckController
-//{
-//    if(_deckController == nil)
-//    {
-//        _deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.inspectionsNC leftViewController:self.settingsVC rightViewController:nil];
-//        [_deckController setLeftSize:66];
-//    }
-//    return _deckController;
-//}
 
 -(RootContainerViewController *)rootViewController
 {

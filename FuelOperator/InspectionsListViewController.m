@@ -43,6 +43,8 @@
 {
     [super loadView];
     
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
+    
     self.navigationItem.titleView = self.listMapControl;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.addSiteBtn];
     [self.view addSubview:self.titleView];
@@ -277,64 +279,64 @@
         //populate an array of pin annotations for the map
         MapAnnotation *anno1 = [[MapAnnotation alloc] init];
         anno1.coordinate = CLLocationCoordinate2DMake(40.525863,-111.863403);
-        anno1.testTitle = @"Holiday Oil";
-        anno1.subtitle = @"Draper, UT";
+        anno1.annotationTitle = @"Holiday Oil";
+        anno1.annotationSubtitle = @"Draper, UT";
         anno1.title = @" ";
         anno1.subtitle = @" ";
         [_mapView addAnnotation:anno1];
         
         MapAnnotation *anno2 = [[MapAnnotation alloc] init];
         anno2.coordinate = CLLocationCoordinate2DMake(40.573863,-111.899109);
-        anno2.testTitle = @"Sinclair";
-        anno2.subtitle = @"Sandy, UT";
+        anno2.annotationTitle = @"Sinclair";
+        anno2.annotationSubtitle = @"Sandy, UT";
         anno2.title = @" ";
         anno2.subtitle = @" ";
         [_mapView addAnnotation:anno2];
         
         MapAnnotation *anno3 = [[MapAnnotation alloc] init];
         anno3.coordinate = CLLocationCoordinate2DMake(40.041868,-111.701355);
-        anno3.testTitle = @"Texaco";
-        anno3.subtitle = @"Payson, UT";
+        anno3.annotationTitle = @"Texaco";
+        anno3.annotationSubtitle = @"Payson, UT";
         anno3.title = @" ";
         anno3.subtitle = @" ";
         [_mapView addAnnotation:anno3];
         
         MapAnnotation *anno4 = [[MapAnnotation alloc] init];
         anno4.coordinate = CLLocationCoordinate2DMake(39.352178,-112.57717);
-        anno4.testTitle = @"Kicks 66";
-        anno4.subtitle = @"Delta, UT";
+        anno4.annotationTitle = @"Kicks 66";
+        anno4.annotationSubtitle = @"Delta, UT";
         anno4.title = @" ";
         anno4.subtitle = @" ";
         [_mapView addAnnotation:anno4];
         
         MapAnnotation *anno5 = [[MapAnnotation alloc] init];
         anno5.coordinate = CLLocationCoordinate2DMake(40.607466,-111.955109);
-        anno5.testTitle = @"Maverick";
-        anno5.subtitle = @"West Jordan, UT";
+        anno5.annotationTitle = @"Maverick";
+        anno5.annotationSubtitle = @"West Jordan, UT";
         anno5.title = @" ";
         anno5.subtitle = @" ";
         [_mapView addAnnotation:anno5];
         
         MapAnnotation *anno6 = [[MapAnnotation alloc] init];
         anno6.coordinate = CLLocationCoordinate2DMake(40.511479,-111.878204);
-        anno6.testTitle = @"7-Eleven";
-        anno6.subtitle = @"Draper, UT";
+        anno6.annotationTitle = @"7-Eleven";
+        anno6.annotationSubtitle = @"Draper, UT";
         anno6.title = @" ";
         anno6.subtitle = @" ";
         [_mapView addAnnotation:anno6];
         
         MapAnnotation *anno7 = [[MapAnnotation alloc] init];
         anno7.coordinate = CLLocationCoordinate2DMake(40.391302,-111.849365);
-        anno7.testTitle = @"Texaco";
-        anno7.subtitle = @"Lehi, UT";
+        anno7.annotationTitle = @"Texaco";
+        anno7.annotationSubtitle = @"Lehi, UT";
         anno7.title = @" ";
         anno7.subtitle = @" ";
         [_mapView addAnnotation:anno7];
         
         MapAnnotation *anno8 = [[MapAnnotation alloc] init];
         anno8.coordinate = CLLocationCoordinate2DMake(41.220789,-111.985321);
-        anno8.testTitle = @"Crest";
-        anno8.subtitle = @"Ogden, UT";
+        anno8.annotationTitle = @"Crest";
+        anno8.annotationSubtitle = @"Ogden, UT";
         anno8.title = @" ";
         anno8.subtitle = @" ";
         [_mapView addAnnotation:anno8];
@@ -357,13 +359,13 @@
         MapAnnotationView *mapView = [[MapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"mapAnnotation"];
         mapView.image = [UIImage imageNamed:@"mappin"];
         
+        MapAnnotation *mapAnnotation = (MapAnnotation *)annotation;
+        mapView.annotationTitle = mapAnnotation.annotationTitle;
+        mapView.annotationSubtitle = mapAnnotation.annotationSubtitle;
         mapView.delegate = self;
         
         aView = mapView;
     }
-    
-//    MapAnnotation *test = (MapAnnotation *)annotation;
-//    NSLog(@"annotationTitle %@", test.testTitle);
     
     // set canShowCallout to YES and build aView’s callout accessory views here }
     aView.canShowCallout = YES;
@@ -372,8 +374,7 @@
     UIView* popupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAP_ANNOTATION_VIEW_WIDTH, MAP_ANNOTATION_VIEW_HEIGHT)];
     //popupView.backgroundColor = [UIColor fopYellowColor];
     aView.leftCalloutAccessoryView = popupView;
-    // maybe load up accessory views here (if not too expensive)?
-    // or reset them and wait until mapView:didSelectAnnotationView: to load actual data
+    
     return aView;
 }
 

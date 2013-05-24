@@ -69,11 +69,13 @@
 {
     if(_blockingView == nil)
     {
-        CGFloat height = self.inspectionsNC.visibleViewController.view.frame.size.height;
-        _blockingView = [[UIView alloc] initWithFrame:CGRectMake(0, self.inspectionsNC.view.frame.size.height - height, self.inspectionsNC.visibleViewController.view.frame.size.width, height)];
+        CGRect rect = CGRectMake(0, 0, self.inspectionsNC.view.frame.size.width, self.inspectionsNC.view.frame.size.height);
+//        CGFloat height = self.inspectionsNC.visibleViewController.view.frame.size.height;
+        _blockingView = [[UIView alloc] initWithFrame:rect/*CGRectMake(0, self.inspectionsNC.view.frame.size.height - height, self.inspectionsNC.visibleViewController.view.frame.size.width, height)*/];
         _blockingView.backgroundColor = [UIColor clearColor];
         _blockingView.userInteractionEnabled = YES;
         [_blockingView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(blockingViewTapped:)]];
+        [_blockingView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(mainNavPanned:)]];
     }
     return _blockingView;
 }

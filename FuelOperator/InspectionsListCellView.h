@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define INSPECTIONS_LIST_CELL_HEIGHT 60
+#define INSPECTIONS_LIST_CELL_HEIGHT 80
 
 @interface InspectionsListCellView : UIView
 

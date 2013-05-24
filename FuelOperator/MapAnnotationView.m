@@ -10,45 +10,10 @@
 
 @interface MapAnnotationView ()
 
-@property (nonatomic, strong) UIView *customView;
-
 @end
 
 @implementation MapAnnotationView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-//{
-//    [super setSelected:selected animated:animated];
-//    
-//    if(selected)
-//        [self addSubview:self.customView];
-//    else
-//        [self.customView removeFromSuperview];
-//}
-//
-
-- (UIView *)customView
-{
-    if(_customView == nil)
-    {
-        _customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAP_ANNOTATION_VIEW_WIDTH, MAP_ANNOTATION_VIEW_HEIGHT)];
-        _customView.layer.cornerRadius = 5.0;
-        _customView.backgroundColor = [UIColor clearColor];
-        
-//        UIImageView *test = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Icon"]];
-//        [_customView addSubview:test];
-    }
-    return _customView;
-}
 
 - (void)didAddSubview:(UIView *)subview
 {
@@ -60,64 +25,46 @@
             if([subsubView class] == [UIImageView class])
             {
                 UIImageView *imageView = ((UIImageView *)subsubView);
-//                CGRect rect = imageView.frame;
-//                rect.size.width *= 1.5;
-//                imageView.frame = rect;
-                
                 switch (image)
                 {
                     case 0:
-                        //left
-//                        [imageView setImage:[UIImage imageWithColor:[UIColor redColor]]];
                         [imageView setImage:[UIImage imageNamed:@"mapAnnoLeft"]];
-                        
-                        NSLog(@"left view %@", imageView);
                         break;
                     case 1:
-                        //right
-//                        [imageView setImage:[UIImage imageWithColor:[UIColor blueColor]]];
                         [imageView setImage:[UIImage imageNamed:@"mapAnnoRight"]];
-                        
-                        NSLog(@"right view %@", imageView);
                         break;
                     case 3:
-                        //arrow
-//                        [imageView setImage:[UIImage imageWithColor:[UIColor greenColor]]];
                         [imageView setImage:[UIImage imageNamed:@"mapAnnoArrow"]];
-                        NSLog(@"arrow view %@", imageView);
                         break;
-//                    case 4:
-//                        [imageView setImage:[UIImage imageWithColor:[UIColor purpleColor]]];
-//                        NSLog(@"4 view %@", imageView);
-//                        break;
-//                    case 5:
-//                        [imageView setImage:[UIImage imageWithColor:[UIColor orangeColor]]];
-//                        NSLog(@"5 view %@", imageView);
-//                        break;
                     default:
-                        //mid
-//                        [imageView setImage:[UIImage imageWithColor:[UIColor yellowColor]]];
                         [imageView setImage:[UIImage imageNamed:@"mapAnnoMid"]];
                         
                         UIImage *gasIconImage = [UIImage imageNamed:@"mapCalloutGas"];
                         UIImageView *gasIcon = [[UIImageView alloc] initWithImage:gasIconImage];
-                        gasIcon.frame = CGRectMake(10, 6, gasIconImage.size.width, gasIconImage.size.height);
+                        gasIcon.frame = CGRectMake(10, 7, gasIconImage.size.width, gasIconImage.size.height);
                         [imageView.superview addSubview:gasIcon];
                         
-                        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 100, 30)];
-                        label.backgroundColor = [UIColor clearColor];
-                        label.textColor = [UIColor whiteColor];
-                        label.font = [UIFont regularFontOfSize:16];
-                        label.text = @"Holiday Oil";
-                        [imageView.superview addSubview:label];
+                        UILabel *annoTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 200, 30)];
+                        annoTitle.backgroundColor = [UIColor clearColor];
+                        annoTitle.textColor = [UIColor whiteColor];
+                        annoTitle.font = [UIFont regularFontOfSize:16];
+                        annoTitle.text = self.annotationTitle;
+                        [imageView.superview addSubview:annoTitle];
                         
-                        UIView *tapView = [[UIView alloc] initWithFrame:imageView.superview.bounds];
+                        UILabel *annoSubtitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 27, 200, 30)];
+                        annoSubtitle.backgroundColor = [UIColor clearColor];
+                        annoSubtitle.textColor = [UIColor fopDarkText];
+                        annoSubtitle.font = [UIFont regularFontOfSize:16];
+                        annoSubtitle.text = self.annotationSubtitle;
+                        [imageView.superview addSubview:annoSubtitle];
+                        
+                        UIView *tapView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 70)/*imageView.superview.bounds*/];
                         tapView.backgroundColor = [UIColor clearColor];
                         tapView.userInteractionEnabled = YES;
-                        [tapView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapCalloutTapped:)]];
+                        [tapView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(mapCalloutTapped:)]];
                         [imageView.superview addSubview:tapView];
+                        [imageView.superview bringSubviewToFront:tapView];
                         
-                        NSLog(@"mid view %d, %@", image, imageView);
                         break;
                 }
                 image++;
@@ -126,14 +73,13 @@
                 [subsubView removeFromSuperview];
         }
         
-//        subview.backgroundColor = [UIColor clearColor];
-        
-//        [subview addSubview:self.customView];
-        
-        NSLog(@"calloutFrame %@", subview);
-        NSLog(@"mapAnnotationView frame %@", self);
     }
 }
+
+//- (void)mapCalloutTapped:(id)sender
+//{
+//    NSLog(@"fuck");
+//}
 
 
 /*

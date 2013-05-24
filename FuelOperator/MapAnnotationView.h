@@ -14,6 +14,9 @@
 
 @interface MapAnnotationView : MKAnnotationView
 
+@property (nonatomic, strong) NSString *annotationTitle;
+@property (nonatomic, strong) NSString *annotationSubtitle;
+
 @property (nonatomic, weak) UIViewController *delegate;
 
 @end

@@ -39,8 +39,8 @@
 {
     if(_nameLabel == nil)
     {
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.bounds.size.width/2., 20)];
-        _nameLabel.font = [UIFont mediumFontOfSize:15];
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.bounds.size.width - 20, 30)];
+        _nameLabel.font = [UIFont mediumFontOfSize:18];
         _nameLabel.textColor = [UIColor fopDarkText];
         _nameLabel.backgroundColor = [UIColor clearColor];
     }
@@ -51,8 +51,8 @@
 {
     if(_addressLine1Label == nil)
     {
-        _addressLine1Label = [[UILabel alloc] initWithFrame:CGRectMake(10, 25, self.bounds.size.width/2., 15)];
-        _addressLine1Label.font = [UIFont regularFontOfSize:12];
+        _addressLine1Label = [[UILabel alloc] initWithFrame:CGRectMake(10, 35, self.bounds.size.width - 20, 20)];
+        _addressLine1Label.font = [UIFont regularFontOfSize:16];
         _addressLine1Label.textColor = [UIColor fopDarkText];
         _addressLine1Label.backgroundColor = [UIColor clearColor];
     }
@@ -63,8 +63,8 @@
 {
     if(_addressLine2Label == nil)
     {
-        _addressLine2Label = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, self.bounds.size.width/2., 15)];
-        _addressLine2Label.font = [UIFont regularFontOfSize:12];
+        _addressLine2Label = [[UILabel alloc] initWithFrame:CGRectMake(10, 55, self.bounds.size.width - 20, 20)];
+        _addressLine2Label.font = [UIFont regularFontOfSize:16];
         _addressLine2Label.textColor = [UIColor fopDarkText];
         _addressLine2Label.backgroundColor = [UIColor clearColor];
     }
