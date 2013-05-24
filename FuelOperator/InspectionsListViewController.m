@@ -11,6 +11,7 @@
 #import <MapKit/MapKit.h>
 #import "InspectionFormViewController.h"
 #import "MapAnnotation.h"
+#import "MapAnnotationView.h"
 
 #define INSPECTIONS_LIST_CELL_VIEW_TAG 3
 
@@ -62,7 +63,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//?? I should replace this with 2 buttons side by side
 - (UISegmentedControl*)listMapControl
 {
     if(_listMapControl == nil)
@@ -277,50 +277,66 @@
         //populate an array of pin annotations for the map
         MapAnnotation *anno1 = [[MapAnnotation alloc] init];
         anno1.coordinate = CLLocationCoordinate2DMake(40.525863,-111.863403);
-        anno1.title = @"Holiday Oil";
+        anno1.testTitle = @"Holiday Oil";
         anno1.subtitle = @"Draper, UT";
+        anno1.title = @" ";
+        anno1.subtitle = @" ";
         [_mapView addAnnotation:anno1];
         
         MapAnnotation *anno2 = [[MapAnnotation alloc] init];
         anno2.coordinate = CLLocationCoordinate2DMake(40.573863,-111.899109);
-        anno2.title = @"Sinclair";
+        anno2.testTitle = @"Sinclair";
         anno2.subtitle = @"Sandy, UT";
+        anno2.title = @" ";
+        anno2.subtitle = @" ";
         [_mapView addAnnotation:anno2];
         
         MapAnnotation *anno3 = [[MapAnnotation alloc] init];
         anno3.coordinate = CLLocationCoordinate2DMake(40.041868,-111.701355);
-        anno3.title = @"Texaco";
+        anno3.testTitle = @"Texaco";
         anno3.subtitle = @"Payson, UT";
+        anno3.title = @" ";
+        anno3.subtitle = @" ";
         [_mapView addAnnotation:anno3];
         
         MapAnnotation *anno4 = [[MapAnnotation alloc] init];
         anno4.coordinate = CLLocationCoordinate2DMake(39.352178,-112.57717);
-        anno4.title = @"Kicks 66";
+        anno4.testTitle = @"Kicks 66";
         anno4.subtitle = @"Delta, UT";
+        anno4.title = @" ";
+        anno4.subtitle = @" ";
         [_mapView addAnnotation:anno4];
         
         MapAnnotation *anno5 = [[MapAnnotation alloc] init];
         anno5.coordinate = CLLocationCoordinate2DMake(40.607466,-111.955109);
-        anno5.title = @"Maverick";
+        anno5.testTitle = @"Maverick";
         anno5.subtitle = @"West Jordan, UT";
+        anno5.title = @" ";
+        anno5.subtitle = @" ";
         [_mapView addAnnotation:anno5];
         
         MapAnnotation *anno6 = [[MapAnnotation alloc] init];
         anno6.coordinate = CLLocationCoordinate2DMake(40.511479,-111.878204);
-        anno6.title = @"7-Eleven";
+        anno6.testTitle = @"7-Eleven";
         anno6.subtitle = @"Draper, UT";
+        anno6.title = @" ";
+        anno6.subtitle = @" ";
         [_mapView addAnnotation:anno6];
         
         MapAnnotation *anno7 = [[MapAnnotation alloc] init];
         anno7.coordinate = CLLocationCoordinate2DMake(40.391302,-111.849365);
-        anno7.title = @"Texaco";
+        anno7.testTitle = @"Texaco";
         anno7.subtitle = @"Lehi, UT";
+        anno7.title = @" ";
+        anno7.subtitle = @" ";
         [_mapView addAnnotation:anno7];
         
         MapAnnotation *anno8 = [[MapAnnotation alloc] init];
         anno8.coordinate = CLLocationCoordinate2DMake(41.220789,-111.985321);
-        anno8.title = @"Crest";
+        anno8.testTitle = @"Crest";
         anno8.subtitle = @"Ogden, UT";
+        anno8.title = @" ";
+        anno8.subtitle = @" ";
         [_mapView addAnnotation:anno8];
         
         self.mapAnnotations = [NSArray arrayWithObjects:anno1, anno2, anno3, anno4, anno5, anno6, anno7, anno8, nil];
@@ -338,39 +354,33 @@
     MKAnnotationView *aView = [sender dequeueReusableAnnotationViewWithIdentifier:@"mapAnnotation"];
     if(!aView)
     {
-        aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"mapAnnotation"];
-        aView.image = [UIImage imageNamed:@"mappin"];
+        MapAnnotationView *mapView = [[MapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"mapAnnotation"];
+        mapView.image = [UIImage imageNamed:@"mappin"];
         
+        mapView.delegate = self;
+        
+        aView = mapView;
     }
+    
+//    MapAnnotation *test = (MapAnnotation *)annotation;
+//    NSLog(@"annotationTitle %@", test.testTitle);
     
     // set canShowCallout to YES and build aView’s callout accessory views here }
     aView.canShowCallout = YES;
     aView.annotation = annotation; // yes, this happens twice if no dequeue
     
-    UIView* popupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    popupView.backgroundColor = [UIColor fopYellowColor];
+    UIView* popupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAP_ANNOTATION_VIEW_WIDTH, MAP_ANNOTATION_VIEW_HEIGHT)];
+    //popupView.backgroundColor = [UIColor fopYellowColor];
     aView.leftCalloutAccessoryView = popupView;
     // maybe load up accessory views here (if not too expensive)?
     // or reset them and wait until mapView:didSelectAnnotationView: to load actual data
     return aView;
 }
 
-//- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-//{
-//    //?? i need to put the data into the MapAnnotation class itself, then call a function on it to build the view i need
-//    if ([view.leftCalloutAccessoryView isKindOfClass:[UIImageView class]]) {
-//        UIImageView *imageView = (UIImageView *)(view.leftCalloutAccessoryView);
-//        if ([view.annotation respondsToSelector:@selector(thumbnail)]) {
-//            // this should be done in a different thread!
-//            imageView.image = [view.annotation performSelector:@selector(thumbnail)];
-//        }
-//    }
-//}
-
-//- (void)mapView:(MKMapView *)sender annotationView:(MKAnnotationView *)aView calloutAccessoryControlTapped:(UIControl *)control
-//{
-//    // the annotation was tapped, push on to the form
-//}
+- (void)mapCalloutTapped:(id)sender
+{
+    NSLog(@"mapCalloutTapped");
+}
 
 - (void)locationTapped:(id)sender
 {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0BA24D174FF2BB0043D256 /* mapCalloutGas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0BA24C174FF2BB0043D256 /* mapCalloutGas@2x.png */; };
 		3C1B6D7016F437F5007CD5F4 /* btn-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C1B6D6F16F437F5007CD5F4 /* btn-back@2x.png */; };
 		3C1B6D7316F5138A007CD5F4 /* listView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C1B6D7116F5138A007CD5F4 /* listView@2x.png */; };
 		3C1B6D7416F5138A007CD5F4 /* mapView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C1B6D7216F5138A007CD5F4 /* mapView@2x.png */; };
@@ -36,8 +37,11 @@
 		3C3AC47616FF2C6E003CA498 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3AC47516FF2C6E003CA498 /* libz.dylib */; };
 		3C441ABA16F37AE000EB07EF /* inspection-accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C441AB916F37AE000EB07EF /* inspection-accessory@2x.png */; };
 		3C441ABD16F3858000EB07EF /* InspectionsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C441ABC16F3858000EB07EF /* InspectionsListViewController.m */; };
-		3C441AC016F3859000EB07EF /* InspectionsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C441ABF16F3859000EB07EF /* InspectionsMapViewController.m */; };
 		3C441AC316F38A3300EB07EF /* InspectionsListCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C441AC216F38A3300EB07EF /* InspectionsListCellView.m */; };
+		3C4CF48B1746BB6500BB00A9 /* mapAnnoArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C4CF48A1746BB6500BB00A9 /* mapAnnoArrow@2x.png */; };
+		3C4CF48D1746BBD100BB00A9 /* mapAnnoMid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C4CF48C1746BBD100BB00A9 /* mapAnnoMid@2x.png */; };
+		3C4CF48F1746C28100BB00A9 /* mapAnnoRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C4CF48E1746C28100BB00A9 /* mapAnnoRight@2x.png */; };
+		3C4CF4911746C2BB00BB00A9 /* mapAnnoLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C4CF4901746C2BA00BB00A9 /* mapAnnoLeft@2x.png */; };
 		3C78334B16DDD5E70037ED08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C78334A16DDD5E70037ED08 /* UIKit.framework */; };
 		3C78334D16DDD5E70037ED08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C78334C16DDD5E70037ED08 /* Foundation.framework */; };
 		3C78334F16DDD5E70037ED08 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C78334E16DDD5E70037ED08 /* CoreGraphics.framework */; };
@@ -103,6 +107,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C0BA24C174FF2BB0043D256 /* mapCalloutGas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mapCalloutGas@2x.png"; path = "Resources/mapCalloutGas@2x.png"; sourceTree = "<group>"; };
 		3C1B6D6F16F437F5007CD5F4 /* btn-back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn-back@2x.png"; path = "Resources/btn-back@2x.png"; sourceTree = "<group>"; };
 		3C1B6D7116F5138A007CD5F4 /* listView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "listView@2x.png"; path = "Resources/listView@2x.png"; sourceTree = "<group>"; };
 		3C1B6D7216F5138A007CD5F4 /* mapView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mapView@2x.png"; path = "Resources/mapView@2x.png"; sourceTree = "<group>"; };
@@ -139,10 +144,12 @@
 		3C441AB916F37AE000EB07EF /* inspection-accessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "inspection-accessory@2x.png"; path = "Resources/inspection-accessory@2x.png"; sourceTree = "<group>"; };
 		3C441ABB16F3858000EB07EF /* InspectionsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionsListViewController.h; sourceTree = "<group>"; };
 		3C441ABC16F3858000EB07EF /* InspectionsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionsListViewController.m; sourceTree = "<group>"; };
-		3C441ABE16F3859000EB07EF /* InspectionsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionsMapViewController.h; sourceTree = "<group>"; };
-		3C441ABF16F3859000EB07EF /* InspectionsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionsMapViewController.m; sourceTree = "<group>"; };
 		3C441AC116F38A3300EB07EF /* InspectionsListCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionsListCellView.h; sourceTree = "<group>"; };
 		3C441AC216F38A3300EB07EF /* InspectionsListCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionsListCellView.m; sourceTree = "<group>"; };
+		3C4CF48A1746BB6500BB00A9 /* mapAnnoArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mapAnnoArrow@2x.png"; path = "Resources/mapAnnoArrow@2x.png"; sourceTree = "<group>"; };
+		3C4CF48C1746BBD100BB00A9 /* mapAnnoMid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mapAnnoMid@2x.png"; path = "Resources/mapAnnoMid@2x.png"; sourceTree = "<group>"; };
+		3C4CF48E1746C28100BB00A9 /* mapAnnoRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mapAnnoRight@2x.png"; path = "Resources/mapAnnoRight@2x.png"; sourceTree = "<group>"; };
+		3C4CF4901746C2BA00BB00A9 /* mapAnnoLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mapAnnoLeft@2x.png"; path = "Resources/mapAnnoLeft@2x.png"; sourceTree = "<group>"; };
 		3C78334716DDD5E70037ED08 /* FuelOperator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuelOperator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C78334A16DDD5E70037ED08 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3C78334C16DDD5E70037ED08 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -322,8 +329,6 @@
 				3C78337016DDD78B0037ED08 /* UpcomingInspectionsViewController.m */,
 				3C441ABB16F3858000EB07EF /* InspectionsListViewController.h */,
 				3C441ABC16F3858000EB07EF /* InspectionsListViewController.m */,
-				3C441ABE16F3859000EB07EF /* InspectionsMapViewController.h */,
-				3C441ABF16F3859000EB07EF /* InspectionsMapViewController.m */,
 				3C1B6D7B16F53A41007CD5F4 /* InspectionFormViewController.h */,
 				3C1B6D7C16F53A41007CD5F4 /* InspectionFormViewController.m */,
 				3CB1EF3817065A460058CF9A /* CommentPhotoViewController.h */,
@@ -348,6 +353,11 @@
 		3C78337F16DDE1240037ED08 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3C0BA24C174FF2BB0043D256 /* mapCalloutGas@2x.png */,
+				3C4CF4901746C2BA00BB00A9 /* mapAnnoLeft@2x.png */,
+				3C4CF48E1746C28100BB00A9 /* mapAnnoRight@2x.png */,
+				3C4CF48C1746BBD100BB00A9 /* mapAnnoMid@2x.png */,
+				3C4CF48A1746BB6500BB00A9 /* mapAnnoArrow@2x.png */,
 				3C85D0D0173460BD00716EAF /* btn-background-normal@2x.png */,
 				3C85D0D1173460BD00716EAF /* btn-background-selected@2x.png */,
 				3C85D0C41734592500716EAF /* btn-dispensers-normal@2x.png */,
@@ -551,6 +561,11 @@
 				3C85D0CF1734592500716EAF /* btn-tanks-selected@2x.png in Resources */,
 				3C85D0D2173460BD00716EAF /* btn-background-normal@2x.png in Resources */,
 				3C85D0D3173460BD00716EAF /* btn-background-selected@2x.png in Resources */,
+				3C4CF48B1746BB6500BB00A9 /* mapAnnoArrow@2x.png in Resources */,
+				3C4CF48D1746BBD100BB00A9 /* mapAnnoMid@2x.png in Resources */,
+				3C4CF48F1746C28100BB00A9 /* mapAnnoRight@2x.png in Resources */,
+				3C4CF4911746C2BB00BB00A9 /* mapAnnoLeft@2x.png in Resources */,
+				3C0BA24D174FF2BB0043D256 /* mapCalloutGas@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,7 +590,6 @@
 				3CF6E04516F05A3D00C60DFB /* LoginViewController.m in Sources */,
 				3CF6E04A16F05F9000C60DFB /* UpcomingInspectionsCellView.m in Sources */,
 				3C441ABD16F3858000EB07EF /* InspectionsListViewController.m in Sources */,
-				3C441AC016F3859000EB07EF /* InspectionsMapViewController.m in Sources */,
 				3C441AC316F38A3300EB07EF /* InspectionsListCellView.m in Sources */,
 				3C1B6D7D16F53A41007CD5F4 /* InspectionFormViewController.m in Sources */,
 				3CB1EF3A17065A470058CF9A /* CommentPhotoViewController.m in Sources */,

@@ -472,6 +472,7 @@
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         return;
     
+    //?? add another button for choosing from the library: UIImagePickerControllerSourceTypePhotoLibrary
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
     cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
     cameraUI.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
