@@ -79,7 +79,7 @@
 - (void)toggleLeftView:(id)sender
 {
     AppDelegate *appDelegate = (AppDelegate*)([[UIApplication sharedApplication] delegate]);
-    [appDelegate toggleLeftView:self];
+    [appDelegate.rootViewController toggleOpen];
 }
 
 - (UILabel *)titleLabel

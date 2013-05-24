@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootContainerViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) RootContainerViewController *rootViewController;
 
 - (void)loginCompleted:(id)sender;
 - (void)logout:(id)sender;
-- (void)toggleLeftView:(id)sender;
-- (void)settingsWillAppear:(id)sender;
-- (void)settingsWillDisappear:(id)sender;
 
 @end
