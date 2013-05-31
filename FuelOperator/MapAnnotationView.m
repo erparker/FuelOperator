@@ -58,10 +58,13 @@
                         annoSubtitle.text = self.annotationSubtitle;
                         [imageView.superview addSubview:annoSubtitle];
                         
-                        UIView *tapView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 70)/*imageView.superview.bounds*/];
+                        UIView *tapView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 70)];
                         tapView.backgroundColor = [UIColor clearColor];
                         tapView.userInteractionEnabled = YES;
-                        [tapView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(mapCalloutTapped:)]];
+                        MapGestureRecognizer *mapGesture = [[MapGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(mapCalloutTapped:)];
+                        mapGesture.annotationTitle = self.annotationTitle;
+                        mapGesture.annotationSubtitle = self.annotationSubtitle;
+                        [tapView addGestureRecognizer:mapGesture];
                         [imageView.superview addSubview:tapView];
                         [imageView.superview bringSubviewToFront:tapView];
                         
@@ -74,6 +77,33 @@
         }
         
     }
+}
+
+-(UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event
+{
+    //test touched point in map view
+    //when hit test return nil callout close immediately by default
+    UIView* hitView = [super hitTest:point withEvent:event];
+    // if hittest return nil test touch point
+    if (hitView == nil){
+        //dig view to find custom touchable view lately added by us
+        for(UIView *firstView in self.subviews){
+            if([firstView isKindOfClass:[NSClassFromString(@"UICalloutView") class]]){
+                for(UIView *touchableView in firstView.subviews){
+                    if([touchableView isKindOfClass:[UIView class]]){ //this is our touchable view class
+                        //define touchable area
+                        CGRect touchableArea = CGRectMake(firstView.frame.origin.x, firstView.frame.origin.y, touchableView.frame.size.width, touchableView.frame.size.height);
+                        //test touch point if in touchable area
+                        if (CGRectContainsPoint(touchableArea, point)){
+                            //if touch point is in touchable area return touchable view as a touched view
+                            hitView = touchableView;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return hitView;
 }
 
 //- (void)mapCalloutTapped:(id)sender
@@ -90,5 +120,11 @@
     // Drawing code
 }
 */
+
+@end
+
+
+
+@implementation MapGestureRecognizer
 
 @end

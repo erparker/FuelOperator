@@ -80,13 +80,21 @@
     return _accessoryView;
 }
 
-
-- (void)setName:(NSString *)name withAddressLine1:(NSString*)line1 andAddressLine2:(NSString*)line2
+- (void)setStation:(Station *)station
 {
-    self.nameLabel.text = name;
-    self.addressLine1Label.text = line1;
-    self.addressLine2Label.text = line2;
+    _station = station;
+    
+    self.nameLabel.text = _station.companyName;
+    self.addressLine1Label.text = _station.location.streetAddress;
+    self.addressLine2Label.text = [NSString stringWithFormat:@"%@, %@ %@", _station.location.city, _station.location.state, _station.location.zipCode];
 }
+
+//- (void)setName:(NSString *)name withAddressLine1:(NSString*)line1 andAddressLine2:(NSString*)line2
+//{
+//    self.nameLabel.text = name;
+//    self.addressLine1Label.text = line1;
+//    self.addressLine2Label.text = line2;
+//}
 
 /*
 // Only override drawRect: if you perform custom drawing.

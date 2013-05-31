@@ -12,6 +12,8 @@
 
 @interface InspectionsListCellView : UIView
 
-- (void)setName:(NSString *)name withAddressLine1:(NSString*)line1 andAddressLine2:(NSString*)line2;
+@property (nonatomic, strong) Station *station;
+
+//- (void)setName:(NSString *)name withAddressLine1:(NSString*)line1 andAddressLine2:(NSString*)line2;
 
 @end

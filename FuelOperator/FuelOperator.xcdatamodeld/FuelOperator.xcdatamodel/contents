@@ -29,6 +29,7 @@
         <attribute name="lattitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateShort" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="station" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="location" inverseEntity="Station" syncable="YES"/>
@@ -43,12 +44,12 @@
         <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="station" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Station" positionX="-486" positionY="-216" width="128" height="88"/>
-        <element name="Location" positionX="-308" positionY="-225" width="128" height="148"/>
-        <element name="Inspection" positionX="-668" positionY="-126" width="128" height="88"/>
-        <element name="Form" positionX="-648" positionY="32" width="128" height="73"/>
-        <element name="FormQuestion" positionX="-578" positionY="158" width="128" height="133"/>
-        <element name="FormAnswer" positionX="-369" positionY="-28" width="128" height="118"/>
-        <element name="Photo" positionX="-198" positionY="-18" width="128" height="73"/>
+        <element name="Form" positionX="-675" positionY="18" width="128" height="73"/>
+        <element name="FormAnswer" positionX="-497" positionY="144" width="128" height="118"/>
+        <element name="FormQuestion" positionX="-479" positionY="-43" width="128" height="133"/>
+        <element name="Inspection" positionX="-668" positionY="-124" width="128" height="88"/>
+        <element name="Location" positionX="-450" positionY="-234" width="128" height="163"/>
+        <element name="Photo" positionX="-675" positionY="170" width="128" height="73"/>
+        <element name="Station" positionX="-621" positionY="-268" width="128" height="88"/>
     </elements>
 </model>

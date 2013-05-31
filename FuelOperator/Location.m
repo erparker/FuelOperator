@@ -2,7 +2,7 @@
 //  Location.m
 //  FuelOperator
 //
-//  Created by Gary Robinson on 5/24/13.
+//  Created by Gary Robinson on 5/31/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -12,12 +12,13 @@
 
 @implementation Location
 
-@dynamic streetAddress;
-@dynamic longitude;
-@dynamic lattitude;
 @dynamic city;
+@dynamic lattitude;
+@dynamic longitude;
 @dynamic state;
+@dynamic streetAddress;
 @dynamic zipCode;
+@dynamic stateShort;
 @dynamic station;
 
 @end

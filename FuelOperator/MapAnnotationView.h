@@ -20,3 +20,11 @@
 @property (nonatomic, weak) UIViewController *delegate;
 
 @end
+
+
+@interface MapGestureRecognizer : UITapGestureRecognizer
+
+@property (nonatomic, strong) NSString *annotationTitle;
+@property (nonatomic, strong) NSString *annotationSubtitle;
+
+@end

@@ -24,8 +24,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    [self applyStyle];
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"FuelOperator.sqllite"];
+    [self initCoreData];
     
+    
+    [self applyStyle];
     [self setupLoginScreen];
     
     //[self.window makeKeyAndVisible];
@@ -88,6 +91,8 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -102,7 +107,43 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-
+    [MagicalRecord cleanUp];
 }
+
+- (void)initCoreData
+{
+    //?? populate the database with default testing data
+    NSString* resourcesRoot = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/"];
+    NSString *plistFile = [resourcesRoot stringByAppendingString:@"DefaultData.plist"];
+    NSDictionary* plistDict = [[NSDictionary alloc] initWithContentsOfFile:plistFile];
+    
+    //make the stations
+    NSArray *stations = [plistDict objectForKey:@"Stations"];
+    for(NSUInteger i=0; i<stations.count; i++)
+    {
+        NSDictionary *stationDict = [stations objectAtIndex:i];
+        NSDictionary *locationDict = [stationDict objectForKey:@"location"];
+        Station *station = [Station MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"companyName = %@ AND location.streetAddress = %@", [stationDict objectForKey:@"companyName"], [locationDict objectForKey:@"streetAddress"]]];
+        if(!station)
+        {
+            station = [Station MR_createEntity];
+            station.companyName = [stationDict objectForKey:@"companyName"];
+            
+            Location *stationLocation = [Location MR_createEntity];
+            stationLocation.city = [locationDict objectForKey:@"city"];
+            stationLocation.lattitude = [locationDict objectForKey:@"lattitude"];
+            stationLocation.longitude = [locationDict objectForKey:@"longitude"];
+            stationLocation.state = [locationDict objectForKey:@"state"];
+            stationLocation.stateShort = [locationDict objectForKey:@"stateShort"];
+            stationLocation.streetAddress = [locationDict objectForKey:@"streetAddress"];
+            stationLocation.zipCode = [locationDict objectForKey:@"zipCode"];
+            
+            station.location = stationLocation;
+        }
+    }
+ 
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
+
 
 @end

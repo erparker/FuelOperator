@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3C0BA24D174FF2BB0043D256 /* mapCalloutGas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0BA24C174FF2BB0043D256 /* mapCalloutGas@2x.png */; };
 		3C0BA265174FFC920043D256 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA264174FFC920043D256 /* Photo.m */; };
-		3C0BA268174FFC930043D256 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA267174FFC930043D256 /* Location.m */; };
 		3C0BA26B174FFC930043D256 /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA26A174FFC930043D256 /* FormQuestion.m */; };
 		3C0BA26E174FFC930043D256 /* FormAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA26D174FFC930043D256 /* FormAnswer.m */; };
 		3C0BA271174FFC930043D256 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA270174FFC930043D256 /* Station.m */; };
@@ -110,14 +109,16 @@
 		3CF6E04516F05A3D00C60DFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF6E04416F05A3D00C60DFB /* LoginViewController.m */; };
 		3CF6E04716F05E2B00C60DFB /* btn-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF6E04616F05E2B00C60DFB /* btn-login@2x.png */; };
 		3CF6E04A16F05F9000C60DFB /* UpcomingInspectionsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF6E04916F05F9000C60DFB /* UpcomingInspectionsCellView.m */; };
+		3CFBA4CA1759060A00F47978 /* DefaultData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CFBA4C91759060A00F47978 /* DefaultData.plist */; };
+		3CFBA4CD17590BDA00F47978 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFBA4CC17590BDA00F47978 /* Location.m */; };
+		576F0791C5664242A046FD65 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C115DDE9BD140A08715A0B5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AA562F2A03D405ABE7ECDFB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		3C0BA24C174FF2BB0043D256 /* mapCalloutGas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mapCalloutGas@2x.png"; path = "Resources/mapCalloutGas@2x.png"; sourceTree = "<group>"; };
 		3C0BA263174FFC920043D256 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		3C0BA264174FFC920043D256 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		3C0BA266174FFC930043D256 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
-		3C0BA267174FFC930043D256 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		3C0BA269174FFC930043D256 /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
 		3C0BA26A174FFC930043D256 /* FormQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormQuestion.m; sourceTree = "<group>"; };
 		3C0BA26C174FFC930043D256 /* FormAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormAnswer.h; sourceTree = "<group>"; };
@@ -246,6 +247,10 @@
 		3CF6E04616F05E2B00C60DFB /* btn-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn-login@2x.png"; path = "Resources/btn-login@2x.png"; sourceTree = "<group>"; };
 		3CF6E04816F05F9000C60DFB /* UpcomingInspectionsCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingInspectionsCellView.h; sourceTree = "<group>"; };
 		3CF6E04916F05F9000C60DFB /* UpcomingInspectionsCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingInspectionsCellView.m; sourceTree = "<group>"; };
+		3CFBA4C91759060A00F47978 /* DefaultData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultData.plist; sourceTree = "<group>"; };
+		3CFBA4CB17590BDA00F47978 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		3CFBA4CC17590BDA00F47978 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		4C115DDE9BD140A08715A0B5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +268,7 @@
 				3C78334F16DDD5E70037ED08 /* CoreGraphics.framework in Frameworks */,
 				3C78335116DDD5E70037ED08 /* CoreData.framework in Frameworks */,
 				3C3AC47416FF2C2A003CA498 /* libTestFlight.a in Frameworks */,
+				576F0791C5664242A046FD65 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +283,7 @@
 				3C78335216DDD5E70037ED08 /* FuelOperator */,
 				3C78334916DDD5E70037ED08 /* Frameworks */,
 				3C78334816DDD5E70037ED08 /* Products */,
+				1AA562F2A03D405ABE7ECDFB /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -301,6 +308,7 @@
 				3C78334E16DDD5E70037ED08 /* CoreGraphics.framework */,
 				3C29B25C172C6BD900380A96 /* CoreLocation.framework */,
 				3C78335016DDD5E70037ED08 /* CoreData.framework */,
+				4C115DDE9BD140A08715A0B5 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -438,6 +446,8 @@
 		3C78338016DDE13E0037ED08 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3CFBA4CB17590BDA00F47978 /* Location.h */,
+				3CFBA4CC17590BDA00F47978 /* Location.m */,
 				3C78336416DDD5E70037ED08 /* FuelOperator.xcdatamodeld */,
 				3C0BA275174FFC930043D256 /* Form.h */,
 				3C0BA276174FFC930043D256 /* Form.m */,
@@ -449,10 +459,9 @@
 				3C0BA26D174FFC930043D256 /* FormAnswer.m */,
 				3C0BA269174FFC930043D256 /* FormQuestion.h */,
 				3C0BA26A174FFC930043D256 /* FormQuestion.m */,
-				3C0BA266174FFC930043D256 /* Location.h */,
-				3C0BA267174FFC930043D256 /* Location.m */,
 				3C0BA263174FFC920043D256 /* Photo.h */,
 				3C0BA264174FFC920043D256 /* Photo.m */,
+				3CFBA4C91759060A00F47978 /* DefaultData.plist */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -487,9 +496,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C78336916DDD5E70037ED08 /* Build configuration list for PBXNativeTarget "FuelOperator" */;
 			buildPhases = (
+				DB47C6D5532E4C6E9932CDBF /* Check Pods Manifest.lock */,
 				3C78334316DDD5E70037ED08 /* Sources */,
 				3C78334416DDD5E70037ED08 /* Frameworks */,
 				3C78334516DDD5E70037ED08 /* Resources */,
+				50A78C7D340A43298D384ABF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -596,10 +607,42 @@
 				3C4CF48F1746C28100BB00A9 /* mapAnnoRight@2x.png in Resources */,
 				3C4CF4911746C2BB00BB00A9 /* mapAnnoLeft@2x.png in Resources */,
 				3C0BA24D174FF2BB0043D256 /* mapCalloutGas@2x.png in Resources */,
+				3CFBA4CA1759060A00F47978 /* DefaultData.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50A78C7D340A43298D384ABF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		DB47C6D5532E4C6E9932CDBF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3C78334316DDD5E70037ED08 /* Sources */ = {
@@ -627,13 +670,13 @@
 				3C29B263172C726F00380A96 /* MapAnnotation.m in Sources */,
 				3C29B26D172C8EE500380A96 /* MapAnnotationView.m in Sources */,
 				3C0BA265174FFC920043D256 /* Photo.m in Sources */,
-				3C0BA268174FFC930043D256 /* Location.m in Sources */,
 				3C0BA26B174FFC930043D256 /* FormQuestion.m in Sources */,
 				3C0BA26E174FFC930043D256 /* FormAnswer.m in Sources */,
 				3C0BA271174FFC930043D256 /* Station.m in Sources */,
 				3C0BA274174FFC930043D256 /* Inspection.m in Sources */,
 				3C0BA277174FFC930043D256 /* Form.m in Sources */,
 				3C0BA2AC17500E800043D256 /* RootContainerViewController.m in Sources */,
+				3CFBA4CD17590BDA00F47978 /* Location.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +752,7 @@
 		};
 		3C78336A16DDD5E70037ED08 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AA562F2A03D405ABE7ECDFB /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FuelOperator/FuelOperator-Prefix.pch";
@@ -724,6 +768,7 @@
 		};
 		3C78336B16DDD5E70037ED08 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AA562F2A03D405ABE7ECDFB /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Gary Robinson";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Gary Robinson";
@@ -735,8 +780,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "57EE1369-D62A-4D5F-B5E1-5479233E8D20";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "57EE1369-D62A-4D5F-B5E1-5479233E8D20";
+				PROVISIONING_PROFILE = "CD0256EB-B4F8-4B22-BBF2-79EA16CDF11C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD0256EB-B4F8-4B22-BBF2-79EA16CDF11C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

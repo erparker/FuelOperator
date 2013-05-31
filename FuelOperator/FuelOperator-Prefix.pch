@@ -13,16 +13,18 @@
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
     #import <QuartzCore/QuartzCore.h>
+
+    #import "UIColor+Additions.h"
+    #import "UIFont+Additions.h"
+    #import "UIImage+Additions.h"
+
+    #import "CoreData+MagicalRecord.h"
+    #import "Form.h"
+    #import "Inspection.h"
+    #import "Station.h"
+    #import "FormAnswer.h"
+    #import "FormQuestion.h"
+    #import "Location.h"
+    #import "Photo.h"
 #endif
 
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
-#import "UIImage+Additions.h"
-
-#import "Form.h"
-#import "Inspection.h"
-#import "Station.h"
-#import "FormAnswer.h"
-#import "FormQuestion.h"
-#import "Location.h"
-#import "Photo.h"

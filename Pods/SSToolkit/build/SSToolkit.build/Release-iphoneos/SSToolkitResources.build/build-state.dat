@@ -1,0 +1,1219 @@
+TSSToolkitResources
+v5
+r1
+cCheck dependencies
+cProcessInfoPlistFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/Info.plist Resources/SSToolkitResources-Info.plist
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/de.lproj/SSToolkit.strings Resources/de.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/en.lproj/SSToolkit.strings Resources/en.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/es.lproj/SSToolkit.strings Resources/es.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/fr.lproj/SSToolkit.strings Resources/fr.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/id.lproj/SSToolkit.strings Resources/id.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/it.lproj/SSToolkit.strings Resources/it.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ja.lproj/SSToolkit.strings Resources/ja.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ko.lproj/SSToolkit.strings Resources/ko.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ms.lproj/SSToolkit.strings Resources/ms.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/nl.lproj/SSToolkit.strings Resources/nl.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/pt_PT.lproj/SSToolkit.strings Resources/pt_PT.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/pt.lproj/SSToolkit.strings Resources/pt.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ru.lproj/SSToolkit.strings Resources/ru.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/sv.lproj/SSToolkit.strings Resources/sv.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/zh_Hans.lproj/SSToolkit.strings Resources/zh_Hans.lproj/SSToolkit.strings
+cCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/zh_Hant.lproj/SSToolkit.strings Resources/zh_Hant.lproj/SSToolkit.strings
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-check.png Resources/Images/hud-check.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-check@2x.png Resources/Images/hud-check@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-x.png Resources/Images/hud-x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-x@2x.png Resources/Images/hud-x@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/gray-star.png Resources/Images/gray-star.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/orange-star.png Resources/Images/orange-star.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/gray-star@2x.png Resources/Images/gray-star@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/orange-star@2x.png Resources/Images/orange-star@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldReload.png Resources/Images/SSAddressBarTextFieldReload.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldBackground.png Resources/Images/SSAddressBarTextFieldBackground.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldBackground@2x.png Resources/Images/SSAddressBarTextFieldBackground@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldReload@2x.png Resources/Images/SSAddressBarTextFieldReload@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldStop.png Resources/Images/SSAddressBarTextFieldStop.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldStop@2x.png Resources/Images/SSAddressBarTextFieldStop@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButton.png Resources/Images/UISegmentBarButton.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButton@2x.png Resources/Images/UISegmentBarButton@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButtonHighlighted@2x.png Resources/Images/UISegmentBarButtonHighlighted@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButtonHighlighted.png Resources/Images/UISegmentBarButtonHighlighted.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDivider.png Resources/Images/UISegmentBarDivider.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDivider@2x.png Resources/Images/UISegmentBarDivider@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDividerHighlighted.png Resources/Images/UISegmentBarDividerHighlighted.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDividerHighlighted@2x.png Resources/Images/UISegmentBarDividerHighlighted@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button-mini@2x.png Resources/Images/action-button-mini@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button-mini.png Resources/Images/action-button-mini.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button@2x.png Resources/Images/action-button@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button.png Resources/Images/action-button.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button-mini@2x.png Resources/Images/back-button-mini@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button-mini.png Resources/Images/back-button-mini.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button.png Resources/Images/back-button.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button@2x.png Resources/Images/back-button@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button-mini.png Resources/Images/forward-button-mini.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button-mini@2x.png Resources/Images/forward-button-mini@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button.png Resources/Images/forward-button.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button@2x.png Resources/Images/forward-button@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button-mini.png Resources/Images/reload-button-mini.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button-mini@2x.png Resources/Images/reload-button-mini@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button.png Resources/Images/reload-button.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button@2x.png Resources/Images/reload-button@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button-mini.png Resources/Images/safari-button-mini.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button-mini@2x.png Resources/Images/safari-button-mini@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button.png Resources/Images/safari-button.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button-mini.png Resources/Images/stop-button-mini.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button@2x.png Resources/Images/safari-button@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button-mini@2x.png Resources/Images/stop-button-mini@2x.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button.png Resources/Images/stop-button.png
+cCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button@2x.png Resources/Images/stop-button@2x.png
+cTouch /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/Info.plist
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldBackground.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldBackground@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldReload.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldReload@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldStop.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldStop@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButton.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButton@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButtonHighlighted.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButtonHighlighted@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDivider.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDivider@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDividerHighlighted.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDividerHighlighted@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button-mini.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button-mini@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button-mini.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button-mini@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/de.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/en.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/es.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button-mini.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button-mini@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/fr.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/gray-star.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/gray-star@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-check.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-check@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-x@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/id.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/it.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ja.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ko.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ms.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/nl.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/orange-star.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/orange-star@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/pt.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/pt_PT.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button-mini.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button-mini@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ru.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button-mini.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button-mini@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button-mini.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button-mini@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button@2x.png
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/sv.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/zh_Hans.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/zh_Hant.lproj/SSToolkit.strings
+t2
+s0
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldBackground.png
+c0000000051A8C9C40000000000000100
+t1370016196
+s256
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldBackground@2x.png
+c0000000051A8C9C4000000000000015E
+t1370016196
+s350
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldReload.png
+c0000000051A8C9C4000000000000036F
+t1370016196
+s879
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldReload@2x.png
+c0000000051A8C9C400000000000004E0
+t1370016196
+s1248
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldStop.png
+c0000000051A8C9C4000000000000027C
+t1370016196
+s636
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldStop@2x.png
+c0000000051A8C9C400000000000003C9
+t1370016196
+s969
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButton.png
+c0000000051A8C9C40000000000000240
+t1370016196
+s576
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButton@2x.png
+c0000000051A8C9C40000000000000525
+t1370016196
+s1317
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButtonHighlighted.png
+c0000000051A8C9C40000000000000248
+t1370016196
+s584
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButtonHighlighted@2x.png
+c0000000051A8C9C4000000000000053E
+t1370016196
+s1342
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDivider.png
+c0000000051A8C9C4000000000000008E
+t1370016196
+s142
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDivider@2x.png
+c0000000051A8C9C400000000000000CC
+t1370016196
+s204
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDividerHighlighted.png
+c0000000051A8C9C4000000000000008E
+t1370016196
+s142
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDividerHighlighted@2x.png
+c0000000051A8C9C400000000000000E7
+t1370016196
+s231
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button-mini.png
+c0000000051A8C9C4000000000000012C
+t1370016196
+s300
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button-mini@2x.png
+c0000000051A8C9C400000000000001FE
+t1370016196
+s510
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button.png
+c0000000051A8C9C4000000000000015F
+t1370016196
+s351
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button@2x.png
+c0000000051A8C9C40000000000000262
+t1370016196
+s610
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button-mini.png
+c0000000051A8C9C4000000000000008E
+t1370016196
+s142
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button-mini@2x.png
+c0000000051A8C9C400000000000000FC
+t1370016196
+s252
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button.png
+c0000000051A8C9C400000000000000BB
+t1370016196
+s187
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button@2x.png
+c0000000051A8C9C400000000000000FD
+t1370016196
+s253
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button-mini.png
+c0000000051A8C9C40000000000000094
+t1370016196
+s148
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button-mini@2x.png
+c0000000051A8C9C400000000000000ED
+t1370016196
+s237
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button.png
+c0000000051A8C9C400000000000000AE
+t1370016196
+s174
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button@2x.png
+c0000000051A8C9C40000000000000104
+t1370016196
+s260
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/gray-star.png
+c0000000051A8C9C40000000000000DC4
+t1370016196
+s3524
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/gray-star@2x.png
+c0000000051A8C9C4000000000000118E
+t1370016196
+s4494
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-check.png
+c0000000051A8C9C400000000000001A1
+t1370016196
+s417
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-check@2x.png
+c0000000051A8C9C40000000000000299
+t1370016196
+s665
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-x.png
+c0000000051A8C9C400000000000001BA
+t1370016196
+s442
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-x@2x.png
+c0000000051A8C9C40000000000000310
+t1370016196
+s784
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/orange-star.png
+c0000000051A8C9C40000000000000EB3
+t1370016196
+s3763
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/orange-star@2x.png
+c0000000051A8C9C40000000000001456
+t1370016196
+s5206
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button-mini.png
+c0000000051A8C9C40000000000000106
+t1370016196
+s262
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button-mini@2x.png
+c0000000051A8C9C4000000000000020E
+t1370016196
+s526
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button.png
+c0000000051A8C9C40000000000000175
+t1370016196
+s373
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button@2x.png
+c0000000051A8C9C400000000000002AE
+t1370016196
+s686
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button-mini.png
+c0000000051A8C9C40000000000000116
+t1370016196
+s278
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button-mini@2x.png
+c0000000051A8C9C400000000000002A4
+t1370016196
+s676
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button.png
+c0000000051A8C9C400000000000001A2
+t1370016196
+s418
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button@2x.png
+c0000000051A8C9C40000000000000317
+t1370016196
+s791
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button-mini.png
+c0000000051A8C9C400000000000000D2
+t1370016196
+s210
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button-mini@2x.png
+c0000000051A8C9C40000000000000135
+t1370016196
+s309
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button.png
+c0000000051A8C9C400000000000000FC
+t1370016196
+s252
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button@2x.png
+c0000000051A8C9C40000000000000170
+t1370016196
+s368
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/de.lproj/SSToolkit.strings
+c0000000051A8C9C40000000000000369
+t1370016196
+s873
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/en.lproj/SSToolkit.strings
+c0000000051A8C9C40000000000000352
+t1370016196
+s850
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/es.lproj/SSToolkit.strings
+c0000000051A8C9C40000000000000374
+t1370016196
+s884
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/fr.lproj/SSToolkit.strings
+c0000000051A8C9C40000000000000361
+t1370016196
+s865
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/id.lproj/SSToolkit.strings
+c0000000051A8C9C40000000000000361
+t1370016196
+s865
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/it.lproj/SSToolkit.strings
+c0000000051A8C9C4000000000000035C
+t1370016196
+s860
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/ja.lproj/SSToolkit.strings
+c0000000051A8C9C400000000000005F0
+t1370016196
+s1520
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/ko.lproj/SSToolkit.strings
+c0000000051A8C9C4000000000000033A
+t1370016196
+s826
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/ms.lproj/SSToolkit.strings
+c0000000051A8C9C40000000000000370
+t1370016196
+s880
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/nl.lproj/SSToolkit.strings
+c0000000051A8C9C40000000000000376
+t1370016196
+s886
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/pt.lproj/SSToolkit.strings
+c0000000051A8C9C4000000000000035A
+t1370016196
+s858
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/pt_PT.lproj/SSToolkit.strings
+c0000000051A8C9C40000000000000361
+t1370016196
+s865
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/ru.lproj/SSToolkit.strings
+c0000000051A8C9C40000000000000382
+t1370016196
+s898
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/sv.lproj/SSToolkit.strings
+c0000000051A8C9C4000000000000036C
+t1370016196
+s876
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/zh_Hans.lproj/SSToolkit.strings
+c0000000051A8C9C4000000000000035A
+t1370016196
+s858
+
+N/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/zh_Hant.lproj/SSToolkit.strings
+c0000000051A8C9C40000000000000358
+t1370016196
+s856
+
+NResources/SSToolkitResources-Info.plist
+c0000000051A8C9C40000000000000572
+t1370016196
+s1394
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies5d6fa7470159b741^da91b6470159b741^---0#1#0#--18"Check dependencies36"864B5CA3-793B-49ED-AC3B-145BB9B5A8A7-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldBackground.png Resources/Images/SSAddressBarTextFieldBackground.png
+s391708999.846952
+e391708999.875062
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldBackground.png
+xResources/Images/SSAddressBarTextFieldBackground.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection128"CopyPNGFile ./SSToolkitResources.bundle/SSAddressBarTextFieldBackground.png Resources/Images/SSAddressBarTextFieldBackground.pngd0eed8470159b741^0c05e0470159b741^---0#0#0#-19%DVTDocumentLocation2@124"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldBackground.png0000000000000000^933"CopyPNGFile ./SSToolkitResources.bundle/SSAddressBarTextFieldBackground.png Resources/Images/SSAddressBarTextFieldBackground.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldBackground.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldBackground.png36"99D4975B-2E6A-45F6-8963-F161E7C370EB-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldBackground@2x.png Resources/Images/SSAddressBarTextFieldBackground@2x.png
+s391708999.846955
+e391708999.882883
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldBackground@2x.png
+xResources/Images/SSAddressBarTextFieldBackground@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection134"CopyPNGFile ./SSToolkitResources.bundle/SSAddressBarTextFieldBackground@2x.png Resources/Images/SSAddressBarTextFieldBackground@2x.png30f0d8470159b741^cd05e2470159b741^---0#0#0#-19%DVTDocumentLocation2@127"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldBackground@2x.png0000000000000000^953"CopyPNGFile "./SSToolkitResources.bundle/SSAddressBarTextFieldBackground@2x.png" "Resources/Images/SSAddressBarTextFieldBackground@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldBackground@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldBackground@2x.png"36"B37BA16C-DA8E-4B72-AFD1-67F4F2B4FAF1-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldReload.png Resources/Images/SSAddressBarTextFieldReload.png
+s391708999.846942
+e391708999.878347
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldReload.png
+xResources/Images/SSAddressBarTextFieldReload.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection120"CopyPNGFile ./SSToolkitResources.bundle/SSAddressBarTextFieldReload.png Resources/Images/SSAddressBarTextFieldReload.png9eeed8470159b741^47e3e0470159b741^---0#0#0#-19%DVTDocumentLocation2@120"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldReload.png0000000000000000^917"CopyPNGFile ./SSToolkitResources.bundle/SSAddressBarTextFieldReload.png Resources/Images/SSAddressBarTextFieldReload.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldReload.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldReload.png36"13E47B8A-474E-4E01-BCF8-67FBE8F5DC67-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldReload@2x.png Resources/Images/SSAddressBarTextFieldReload@2x.png
+s391708999.846964
+e391708999.879775
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldReload@2x.png
+xResources/Images/SSAddressBarTextFieldReload@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection126"CopyPNGFile ./SSToolkitResources.bundle/SSAddressBarTextFieldReload@2x.png Resources/Images/SSAddressBarTextFieldReload@2x.png35efd8470159b741^cc40e1470159b741^---0#0#0#-19%DVTDocumentLocation2@123"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldReload@2x.png0000000000000000^937"CopyPNGFile "./SSToolkitResources.bundle/SSAddressBarTextFieldReload@2x.png" "Resources/Images/SSAddressBarTextFieldReload@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldReload@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldReload@2x.png"36"6AE6A441-9BD2-4B55-8619-058BD3563E60-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldStop.png Resources/Images/SSAddressBarTextFieldStop.png
+s391708999.846970
+e391708999.875240
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldStop.png
+xResources/Images/SSAddressBarTextFieldStop.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection116"CopyPNGFile ./SSToolkitResources.bundle/SSAddressBarTextFieldStop.png Resources/Images/SSAddressBarTextFieldStop.pngafeed8470159b741^9c16e0470159b741^---0#0#0#-19%DVTDocumentLocation2@118"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldStop.png0000000000000000^909"CopyPNGFile ./SSToolkitResources.bundle/SSAddressBarTextFieldStop.png Resources/Images/SSAddressBarTextFieldStop.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldStop.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldStop.png36"E2910123-9D9A-42DE-ADED-49BF6BB1D162-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldStop@2x.png Resources/Images/SSAddressBarTextFieldStop@2x.png
+s391708999.846983
+e391708999.880062
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldStop@2x.png
+xResources/Images/SSAddressBarTextFieldStop@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection122"CopyPNGFile ./SSToolkitResources.bundle/SSAddressBarTextFieldStop@2x.png Resources/Images/SSAddressBarTextFieldStop@2x.pngddefd8470159b741^2b4ee1470159b741^---0#0#0#-19%DVTDocumentLocation2@121"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldStop@2x.png0000000000000000^929"CopyPNGFile "./SSToolkitResources.bundle/SSAddressBarTextFieldStop@2x.png" "Resources/Images/SSAddressBarTextFieldStop@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/SSAddressBarTextFieldStop@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/SSAddressBarTextFieldStop@2x.png"36"D0EB66F3-C219-46A5-918B-D206FD711CA5-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButton.png Resources/Images/UISegmentBarButton.png
+s391708999.850808
+e391708999.882077
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButton.png
+xResources/Images/UISegmentBarButton.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection102"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarButton.png Resources/Images/UISegmentBarButton.pngd2e5d9470159b741^e5d1e1470159b741^---0#0#0#-19%DVTDocumentLocation2@111"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButton.png0000000000000000^881"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarButton.png Resources/Images/UISegmentBarButton.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButton.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButton.png36"537466C1-3B79-45F2-B885-0F75FE108CCA-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButton@2x.png Resources/Images/UISegmentBarButton@2x.png
+s391708999.850818
+e391708999.883014
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButton@2x.png
+xResources/Images/UISegmentBarButton@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarButton@2x.png Resources/Images/UISegmentBarButton@2x.pngf4e1d9470159b741^350de2470159b741^---0#0#0#-19%DVTDocumentLocation2@114"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButton@2x.png0000000000000000^901"CopyPNGFile "./SSToolkitResources.bundle/UISegmentBarButton@2x.png" "Resources/Images/UISegmentBarButton@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButton@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButton@2x.png"36"6619EEAA-5EBD-41C0-9974-8F3083C38C17-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButtonHighlighted.png Resources/Images/UISegmentBarButtonHighlighted.png
+s391708999.876402
+e391708999.905274
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButtonHighlighted.png
+xResources/Images/UISegmentBarButtonHighlighted.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection124"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarButtonHighlighted.png Resources/Images/UISegmentBarButtonHighlighted.png1078e0470159b741^5ad8e7470159b741^---0#0#0#-19%DVTDocumentLocation2@122"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButtonHighlighted.png0000000000000000^925"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarButtonHighlighted.png Resources/Images/UISegmentBarButtonHighlighted.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButtonHighlighted.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButtonHighlighted.png36"CB7FB810-A360-4159-AE5C-B6591D0356D6-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButtonHighlighted@2x.png Resources/Images/UISegmentBarButtonHighlighted@2x.png
+s391708999.876389
+e391708999.906897
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButtonHighlighted@2x.png
+xResources/Images/UISegmentBarButtonHighlighted@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection130"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarButtonHighlighted@2x.png Resources/Images/UISegmentBarButtonHighlighted@2x.pnge675e0470159b741^db32e8470159b741^---0#0#0#-19%DVTDocumentLocation2@125"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButtonHighlighted@2x.png0000000000000000^945"CopyPNGFile "./SSToolkitResources.bundle/UISegmentBarButtonHighlighted@2x.png" "Resources/Images/UISegmentBarButtonHighlighted@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarButtonHighlighted@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarButtonHighlighted@2x.png"36"207E3DCE-CC19-4901-BC44-BFEA5FEC98C4-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDivider.png Resources/Images/UISegmentBarDivider.png
+s391708999.879521
+e391708999.906205
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDivider.png
+xResources/Images/UISegmentBarDivider.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection104"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarDivider.png Resources/Images/UISegmentBarDivider.png5648e1470159b741^cd03e8470159b741^---0#0#0#-19%DVTDocumentLocation2@112"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDivider.png0000000000000000^885"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarDivider.png Resources/Images/UISegmentBarDivider.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDivider.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDivider.png36"740854A3-BBA8-4516-AABD-A9BB60A0A3C8-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDivider@2x.png Resources/Images/UISegmentBarDivider@2x.png
+s391708999.880993
+e391708999.907994
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDivider@2x.png
+xResources/Images/UISegmentBarDivider@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection110"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarDivider@2x.png Resources/Images/UISegmentBarDivider@2x.png9da0e1470159b741^c172e8470159b741^---0#0#0#-19%DVTDocumentLocation2@115"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDivider@2x.png0000000000000000^905"CopyPNGFile "./SSToolkitResources.bundle/UISegmentBarDivider@2x.png" "Resources/Images/UISegmentBarDivider@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDivider@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDivider@2x.png"36"A7480C99-7BBF-4C26-8A7B-CD91AD76C148-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDividerHighlighted.png Resources/Images/UISegmentBarDividerHighlighted.png
+s391708999.881002
+e391708999.908630
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDividerHighlighted.png
+xResources/Images/UISegmentBarDividerHighlighted.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection126"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarDividerHighlighted.png Resources/Images/UISegmentBarDividerHighlighted.pngc39fe1470159b741^fa9be8470159b741^---0#0#0#-19%DVTDocumentLocation2@123"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDividerHighlighted.png0000000000000000^929"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarDividerHighlighted.png Resources/Images/UISegmentBarDividerHighlighted.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDividerHighlighted.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDividerHighlighted.png36"5BBFBA85-D888-4E89-910D-FF08BEEFD5A8-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDividerHighlighted@2x.png Resources/Images/UISegmentBarDividerHighlighted@2x.png
+s391708999.883236
+e391708999.912322
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDividerHighlighted@2x.png
+xResources/Images/UISegmentBarDividerHighlighted@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection132"CopyPNGFile ./SSToolkitResources.bundle/UISegmentBarDividerHighlighted@2x.png Resources/Images/UISegmentBarDividerHighlighted@2x.pngb136e2470159b741^1b9be9470159b741^---0#0#0#-19%DVTDocumentLocation2@126"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDividerHighlighted@2x.png0000000000000000^949"CopyPNGFile "./SSToolkitResources.bundle/UISegmentBarDividerHighlighted@2x.png" "Resources/Images/UISegmentBarDividerHighlighted@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/UISegmentBarDividerHighlighted@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/UISegmentBarDividerHighlighted@2x.png"36"0156719C-B332-404F-8440-C0582FE0FF75-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button-mini.png Resources/Images/action-button-mini.png
+s391708999.883254
+e391708999.912911
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button-mini.png
+xResources/Images/action-button-mini.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection102"CopyPNGFile ./SSToolkitResources.bundle/action-button-mini.png Resources/Images/action-button-mini.png2f35e2470159b741^56b8e9470159b741^---0#0#0#-19%DVTDocumentLocation2@111"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button-mini.png0000000000000000^881"CopyPNGFile ./SSToolkitResources.bundle/action-button-mini.png Resources/Images/action-button-mini.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button-mini.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button-mini.png36"43D49D33-DA8F-4744-B239-839D895F5F26-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button-mini@2x.png Resources/Images/action-button-mini@2x.png
+s391708999.883246
+e391708999.914055
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button-mini@2x.png
+xResources/Images/action-button-mini@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"CopyPNGFile ./SSToolkitResources.bundle/action-button-mini@2x.png Resources/Images/action-button-mini@2x.pngf436e2470159b741^b9fee9470159b741^---0#0#0#-19%DVTDocumentLocation2@114"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button-mini@2x.png0000000000000000^901"CopyPNGFile "./SSToolkitResources.bundle/action-button-mini@2x.png" "Resources/Images/action-button-mini@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button-mini@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button-mini@2x.png"36"7195BE9E-0BB4-4E3F-8211-9067230A7075-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button.png Resources/Images/action-button.png
+s391708999.906534
+e391708999.938395
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button.png
+xResources/Images/action-button.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection92"CopyPNGFile ./SSToolkitResources.bundle/action-button.png Resources/Images/action-button.png952be8470159b741^874df0470159b741^---0#0#0#-19%DVTDocumentLocation2@106"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button.png0000000000000000^861"CopyPNGFile ./SSToolkitResources.bundle/action-button.png Resources/Images/action-button.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button.png36"535B2247-5FE1-4EFF-A337-7BFFCDA76741-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button@2x.png Resources/Images/action-button@2x.png
+s391708999.906530
+e391708999.942742
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button@2x.png
+xResources/Images/action-button@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"CopyPNGFile ./SSToolkitResources.bundle/action-button@2x.png Resources/Images/action-button@2x.png3831e8470159b741^2766f1470159b741^---0#0#0#-19%DVTDocumentLocation2@109"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button@2x.png0000000000000000^881"CopyPNGFile "./SSToolkitResources.bundle/action-button@2x.png" "Resources/Images/action-button@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/action-button@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/action-button@2x.png"36"D454353F-9E41-44C2-A38C-971C713825B5-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button-mini.png Resources/Images/back-button-mini.png
+s391708999.908109
+e391708999.941950
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button-mini.png
+xResources/Images/back-button-mini.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"CopyPNGFile ./SSToolkitResources.bundle/back-button-mini.png Resources/Images/back-button-mini.png658fe8470159b741^7d5af1470159b741^---0#0#0#-19%DVTDocumentLocation2@109"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button-mini.png0000000000000000^873"CopyPNGFile ./SSToolkitResources.bundle/back-button-mini.png Resources/Images/back-button-mini.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button-mini.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button-mini.png36"DA39C0DB-C643-400C-8552-4DF79F257A37-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button-mini@2x.png Resources/Images/back-button-mini@2x.png
+s391708999.908104
+e391708999.942919
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button-mini@2x.png
+xResources/Images/back-button-mini@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection104"CopyPNGFile ./SSToolkitResources.bundle/back-button-mini@2x.png Resources/Images/back-button-mini@2x.png658fe8470159b741^2881f1470159b741^---0#0#0#-19%DVTDocumentLocation2@112"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button-mini@2x.png0000000000000000^893"CopyPNGFile "./SSToolkitResources.bundle/back-button-mini@2x.png" "Resources/Images/back-button-mini@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button-mini@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button-mini@2x.png"36"F0BCC6C8-6278-48E0-BF6A-B47CF3FB0C8D-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button.png Resources/Images/back-button.png
+s391708999.909876
+e391708999.946374
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button.png
+xResources/Images/back-button.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection88"CopyPNGFile ./SSToolkitResources.bundle/back-button.png Resources/Images/back-button.png780ae9470159b741^d848f2470159b741^---0#0#0#-19%DVTDocumentLocation2@104"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button.png0000000000000000^853"CopyPNGFile ./SSToolkitResources.bundle/back-button.png Resources/Images/back-button.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button.png36"754A14CD-FF08-4187-B20A-6972EDCDE987-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button@2x.png Resources/Images/back-button@2x.png
+s391708999.913551
+e391708999.947212
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button@2x.png
+xResources/Images/back-button@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"CopyPNGFile ./SSToolkitResources.bundle/back-button@2x.png Resources/Images/back-button@2x.png7ff8e9470159b741^7c7cf2470159b741^---0#0#0#-19%DVTDocumentLocation2@107"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button@2x.png0000000000000000^873"CopyPNGFile "./SSToolkitResources.bundle/back-button@2x.png" "Resources/Images/back-button@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/back-button@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/back-button@2x.png"36"2F85A265-67D0-4569-89E3-D480C2A55E5B-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button-mini.png Resources/Images/forward-button-mini.png
+s391708999.913581
+e391708999.952002
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button-mini.png
+xResources/Images/forward-button-mini.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection104"CopyPNGFile ./SSToolkitResources.bundle/forward-button-mini.png Resources/Images/forward-button-mini.png09fce9470159b741^89b6f3470159b741^---0#0#0#-19%DVTDocumentLocation2@112"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button-mini.png0000000000000000^885"CopyPNGFile ./SSToolkitResources.bundle/forward-button-mini.png Resources/Images/forward-button-mini.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button-mini.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button-mini.png36"B4CEA329-7B0A-4CD7-95CF-46EFEE67AFD0-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button-mini@2x.png Resources/Images/forward-button-mini@2x.png
+s391708999.915308
+e391708999.952109
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button-mini@2x.png
+xResources/Images/forward-button-mini@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection110"CopyPNGFile ./SSToolkitResources.bundle/forward-button-mini@2x.png Resources/Images/forward-button-mini@2x.png986eea470159b741^bebdf3470159b741^---0#0#0#-19%DVTDocumentLocation2@115"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button-mini@2x.png0000000000000000^905"CopyPNGFile "./SSToolkitResources.bundle/forward-button-mini@2x.png" "Resources/Images/forward-button-mini@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button-mini@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button-mini@2x.png"36"162D2A5A-A029-4A37-A4EA-0C0C9A184FA0-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button.png Resources/Images/forward-button.png
+s391708999.942170
+e391708999.975109
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button.png
+xResources/Images/forward-button.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"CopyPNGFile ./SSToolkitResources.bundle/forward-button.png Resources/Images/forward-button.pngd194f1470159b741^09c2f9470159b741^---0#0#0#-19%DVTDocumentLocation2@107"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button.png0000000000000000^865"CopyPNGFile ./SSToolkitResources.bundle/forward-button.png Resources/Images/forward-button.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button.png36"5C26B5D8-1481-4225-A971-257FFA18699C-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button@2x.png Resources/Images/forward-button@2x.png
+s391708999.945688
+e391708999.980144
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button@2x.png
+xResources/Images/forward-button@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection100"CopyPNGFile ./SSToolkitResources.bundle/forward-button@2x.png Resources/Images/forward-button@2x.pngfb57f2470159b741^50fefa470159b741^---0#0#0#-19%DVTDocumentLocation2@110"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button@2x.png0000000000000000^885"CopyPNGFile "./SSToolkitResources.bundle/forward-button@2x.png" "Resources/Images/forward-button@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/forward-button@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/forward-button@2x.png"36"24CA05C4-6758-40B3-A7CA-219110325F93-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/gray-star.png Resources/Images/gray-star.png
+s391708999.748501
+e391708999.846253
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/gray-star.png
+xResources/Images/gray-star.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"CopyPNGFile ./SSToolkitResources.bundle/gray-star.png Resources/Images/gray-star.pngc5acbf470159b741^55a6d8470159b741^---0#0#0#-19%DVTDocumentLocation2@102"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/gray-star.png0000000000000000^845"CopyPNGFile ./SSToolkitResources.bundle/gray-star.png Resources/Images/gray-star.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/gray-star.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/gray-star.png36"C9E066F3-59A9-41DD-833A-6803B288D1E2-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/gray-star@2x.png Resources/Images/gray-star@2x.png
+s391708999.749709
+e391708999.849607
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/gray-star@2x.png
+xResources/Images/gray-star@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection90"CopyPNGFile ./SSToolkitResources.bundle/gray-star@2x.png Resources/Images/gray-star@2x.pnge3fabf470159b741^ed7ed9470159b741^---0#0#0#-19%DVTDocumentLocation2@105"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/gray-star@2x.png0000000000000000^865"CopyPNGFile "./SSToolkitResources.bundle/gray-star@2x.png" "Resources/Images/gray-star@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/gray-star@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/gray-star@2x.png"36"A4100F71-0AEE-4C71-9F3C-6A918F4D83FF-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-check.png Resources/Images/hud-check.png
+s391708999.743872
+e391708999.845763
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-check.png
+xResources/Images/hud-check.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"CopyPNGFile ./SSToolkitResources.bundle/hud-check.png Resources/Images/hud-check.pngc782be470159b741^5c8dd8470159b741^---0#0#0#-19%DVTDocumentLocation2@102"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-check.png0000000000000000^845"CopyPNGFile ./SSToolkitResources.bundle/hud-check.png Resources/Images/hud-check.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-check.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-check.png36"8DED2348-68B5-43C4-9B04-40141E9C60F3-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-check@2x.png Resources/Images/hud-check@2x.png
+s391708999.745001
+e391708999.846437
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-check@2x.png
+xResources/Images/hud-check@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection90"CopyPNGFile ./SSToolkitResources.bundle/hud-check@2x.png Resources/Images/hud-check@2x.png4bc9be470159b741^8eb0d8470159b741^---0#0#0#-19%DVTDocumentLocation2@105"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-check@2x.png0000000000000000^865"CopyPNGFile "./SSToolkitResources.bundle/hud-check@2x.png" "Resources/Images/hud-check@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-check@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-check@2x.png"36"9981F824-F354-41E9-A086-D65900A918E4-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-x.png Resources/Images/hud-x.png
+s391708999.746175
+e391708999.846008
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-x.png
+xResources/Images/hud-x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection76"CopyPNGFile ./SSToolkitResources.bundle/hud-x.png Resources/Images/hud-x.png9012bf470159b741^2d94d8470159b741^---0#0#0#-19%DVTDocumentLocation2@98"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-x.png0000000000000000^829"CopyPNGFile ./SSToolkitResources.bundle/hud-x.png Resources/Images/hud-x.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-x.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-x.png36"FC3DE409-3069-44A1-B610-3E5A40EFB06C-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-x@2x.png Resources/Images/hud-x@2x.png
+s391708999.747344
+e391708999.846649
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-x@2x.png
+xResources/Images/hud-x@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection82"CopyPNGFile ./SSToolkitResources.bundle/hud-x@2x.png Resources/Images/hud-x@2x.png815fbf470159b741^a9bdd8470159b741^---0#0#0#-19%DVTDocumentLocation2@101"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-x@2x.png0000000000000000^849"CopyPNGFile "./SSToolkitResources.bundle/hud-x@2x.png" "Resources/Images/hud-x@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/hud-x@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/hud-x@2x.png"36"31E846A3-D9D4-431F-9DFD-F69CD0669343-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/orange-star.png Resources/Images/orange-star.png
+s391708999.749703
+e391708999.846284
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/orange-star.png
+xResources/Images/orange-star.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection88"CopyPNGFile ./SSToolkitResources.bundle/orange-star.png Resources/Images/orange-star.pnga5f9bf470159b741^15a9d8470159b741^---0#0#0#-19%DVTDocumentLocation2@104"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/orange-star.png0000000000000000^853"CopyPNGFile ./SSToolkitResources.bundle/orange-star.png Resources/Images/orange-star.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/orange-star.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/orange-star.png36"AFE44CE9-ECC7-4643-B917-EBF09517C7B0-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/orange-star@2x.png Resources/Images/orange-star@2x.png
+s391708999.752014
+e391708999.849983
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/orange-star@2x.png
+xResources/Images/orange-star@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"CopyPNGFile ./SSToolkitResources.bundle/orange-star@2x.png Resources/Images/orange-star@2x.pngd191c0470159b741^0798d9470159b741^---0#0#0#-19%DVTDocumentLocation2@107"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/orange-star@2x.png0000000000000000^873"CopyPNGFile "./SSToolkitResources.bundle/orange-star@2x.png" "Resources/Images/orange-star@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/orange-star@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/orange-star@2x.png"36"BC6DB608-C176-40F1-ABF6-CF54DB3AD314-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button-mini.png Resources/Images/reload-button-mini.png
+s391708999.946160
+e391708999.980140
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button-mini.png
+xResources/Images/reload-button-mini.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection102"CopyPNGFile ./SSToolkitResources.bundle/reload-button-mini.png Resources/Images/reload-button-mini.png4050f2470159b741^77f5fa470159b741^---0#0#0#-19%DVTDocumentLocation2@111"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button-mini.png0000000000000000^881"CopyPNGFile ./SSToolkitResources.bundle/reload-button-mini.png Resources/Images/reload-button-mini.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button-mini.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button-mini.png36"4F082A11-F1C5-46E7-ABBC-2C1B109ABAAD-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button-mini@2x.png Resources/Images/reload-button-mini@2x.png
+s391708999.946166
+e391708999.981926
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button-mini@2x.png
+xResources/Images/reload-button-mini@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"CopyPNGFile ./SSToolkitResources.bundle/reload-button-mini@2x.png Resources/Images/reload-button-mini@2x.png698cf2470159b741^1860fb470159b741^---0#0#0#-19%DVTDocumentLocation2@114"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button-mini@2x.png0000000000000000^901"CopyPNGFile "./SSToolkitResources.bundle/reload-button-mini@2x.png" "Resources/Images/reload-button-mini@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button-mini@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button-mini@2x.png"36"145A830F-45B4-4BB6-A975-43D789F8A440-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button.png Resources/Images/reload-button.png
+s391708999.951986
+e391708999.986145
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button.png
+xResources/Images/reload-button.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection92"CopyPNGFile ./SSToolkitResources.bundle/reload-button.png Resources/Images/reload-button.pngddcdf3470159b741^147bfc470159b741^---0#0#0#-19%DVTDocumentLocation2@106"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button.png0000000000000000^861"CopyPNGFile ./SSToolkitResources.bundle/reload-button.png Resources/Images/reload-button.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button.png36"ABA185A1-81CC-429C-8DCF-BFD851313B9F-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button@2x.png Resources/Images/reload-button@2x.png
+s391708999.952010
+e391708999.990387
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button@2x.png
+xResources/Images/reload-button@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"CopyPNGFile ./SSToolkitResources.bundle/reload-button@2x.png Resources/Images/reload-button@2x.png67d1f3470159b741^c18cfd470159b741^---0#0#0#-19%DVTDocumentLocation2@109"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button@2x.png0000000000000000^881"CopyPNGFile "./SSToolkitResources.bundle/reload-button@2x.png" "Resources/Images/reload-button@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/reload-button@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/reload-button@2x.png"36"83B4CE17-27EB-4330-9A18-CC06309A4F44-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button-mini.png Resources/Images/safari-button-mini.png
+s391708999.953138
+e391708999.990025
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button-mini.png
+xResources/Images/safari-button-mini.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection102"CopyPNGFile ./SSToolkitResources.bundle/safari-button-mini.png Resources/Images/safari-button-mini.pnga418f4470159b741^207bfd470159b741^---0#0#0#-19%DVTDocumentLocation2@111"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button-mini.png0000000000000000^881"CopyPNGFile ./SSToolkitResources.bundle/safari-button-mini.png Resources/Images/safari-button-mini.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button-mini.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button-mini.png36"C0AF55B6-5208-4E77-A7FB-0C0D64E921F8-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button-mini@2x.png Resources/Images/safari-button-mini@2x.png
+s391708999.953164
+e391708999.990638
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button-mini@2x.png
+xResources/Images/safari-button-mini@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"CopyPNGFile ./SSToolkitResources.bundle/safari-button-mini@2x.png Resources/Images/safari-button-mini@2x.png9015f4470159b741^c79efd470159b741^---0#0#0#-19%DVTDocumentLocation2@114"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button-mini@2x.png0000000000000000^901"CopyPNGFile "./SSToolkitResources.bundle/safari-button-mini@2x.png" "Resources/Images/safari-button-mini@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button-mini@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button-mini@2x.png"36"78AA98EC-0819-4046-8905-B25E71F28EBC-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button.png Resources/Images/safari-button.png
+s391708999.976355
+e391709000.005371
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button.png
+xResources/Images/safari-button.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection92"CopyPNGFile ./SSToolkitResources.bundle/safari-button.png Resources/Images/safari-button.png450dfa470159b741^575f01480159b741^---0#0#0#-19%DVTDocumentLocation2@106"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button.png0000000000000000^861"CopyPNGFile ./SSToolkitResources.bundle/safari-button.png Resources/Images/safari-button.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button.png36"C85944C8-B720-4DF0-8E5A-9B6136A0B136-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button@2x.png Resources/Images/safari-button@2x.png
+s391708999.981380
+e391709000.011460
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button@2x.png
+xResources/Images/safari-button@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"CopyPNGFile ./SSToolkitResources.bundle/safari-button@2x.png Resources/Images/safari-button@2x.png4c54fb470159b741^5fef02480159b741^---0#0#0#-19%DVTDocumentLocation2@109"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button@2x.png0000000000000000^881"CopyPNGFile "./SSToolkitResources.bundle/safari-button@2x.png" "Resources/Images/safari-button@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/safari-button@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/safari-button@2x.png"36"E1BA246A-17B4-4EEF-9A25-A99629A72C34-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button-mini.png Resources/Images/stop-button-mini.png
+s391708999.981375
+e391709000.008208
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button-mini.png
+xResources/Images/stop-button-mini.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"CopyPNGFile ./SSToolkitResources.bundle/stop-button-mini.png Resources/Images/stop-button-mini.pnge753fb470159b741^b91902480159b741^---0#0#0#-19%DVTDocumentLocation2@109"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button-mini.png0000000000000000^873"CopyPNGFile ./SSToolkitResources.bundle/stop-button-mini.png Resources/Images/stop-button-mini.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button-mini.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button-mini.png36"68254496-68F9-4922-9504-41FB103BF743-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button-mini@2x.png Resources/Images/stop-button-mini@2x.png
+s391708999.983053
+e391709000.009551
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button-mini@2x.png
+xResources/Images/stop-button-mini@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection104"CopyPNGFile ./SSToolkitResources.bundle/stop-button-mini@2x.png Resources/Images/stop-button-mini@2x.pngf4c0fb470159b741^697102480159b741^---0#0#0#-19%DVTDocumentLocation2@112"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button-mini@2x.png0000000000000000^893"CopyPNGFile "./SSToolkitResources.bundle/stop-button-mini@2x.png" "Resources/Images/stop-button-mini@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button-mini@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button-mini@2x.png"36"4BD6B133-9D55-42F0-A11F-4C8D2C4AEA5C-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button.png Resources/Images/stop-button.png
+s391708999.987692
+e391709000.011345
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button.png
+xResources/Images/stop-button.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection88"CopyPNGFile ./SSToolkitResources.bundle/stop-button.png Resources/Images/stop-button.png34f3fc470159b741^92e702480159b741^---0#0#0#-19%DVTDocumentLocation2@104"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button.png0000000000000000^853"CopyPNGFile ./SSToolkitResources.bundle/stop-button.png Resources/Images/stop-button.png    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button.png /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button.png36"1BDE8EB4-87D6-472D-B4A4-F2738C28E2E1-
+
+CCopyPNGFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button@2x.png Resources/Images/stop-button@2x.png
+s391708999.991201
+e391709000.015543
+r1
+xCopyPNGFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button@2x.png
+xResources/Images/stop-button@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"CopyPNGFile ./SSToolkitResources.bundle/stop-button@2x.png Resources/Images/stop-button@2x.png30d8fd470159b741^f4fa03480159b741^---0#0#0#-19%DVTDocumentLocation2@107"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button@2x.png0000000000000000^873"CopyPNGFile "./SSToolkitResources.bundle/stop-button@2x.png" "Resources/Images/stop-button@2x.png"    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/Images/stop-button@2x.png" "/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/stop-button@2x.png"36"AD62B5FA-DBDD-4ED9-BC7C-801C1C511F16-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/de.lproj/SSToolkit.strings Resources/de.lproj/SSToolkit.strings
+s391708999.731014
+e391708999.739287
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/de.lproj/SSToolkit.strings
+xResources/de.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/de.lproj/SSToolkit.stringsd74bbb470159b741^ea41bd470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/de.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/de.lproj/SSToolkit.strings Resources/de.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/de.lproj -- Resources/de.lproj/SSToolkit.strings36"438308FC-3476-40A3-96E8-5CB861B535E4-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/en.lproj/SSToolkit.strings Resources/en.lproj/SSToolkit.strings
+s391708999.731026
+e391708999.741575
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/en.lproj/SSToolkit.strings
+xResources/en.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/en.lproj/SSToolkit.strings6a4dbb470159b741^fed7bd470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/en.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/en.lproj/SSToolkit.strings Resources/en.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/en.lproj -- Resources/en.lproj/SSToolkit.strings36"9AEE6712-FA53-4E2F-BD86-86C2DC0EBDD2-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/es.lproj/SSToolkit.strings Resources/es.lproj/SSToolkit.strings
+s391708999.731043
+e391708999.740565
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/es.lproj/SSToolkit.strings
+xResources/es.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/es.lproj/SSToolkit.strings554ebb470159b741^8995bd470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/es.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/es.lproj/SSToolkit.strings Resources/es.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/es.lproj -- Resources/es.lproj/SSToolkit.strings36"1E7189A8-8006-4DFC-B5D8-265FF03C1BEE-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/fr.lproj/SSToolkit.strings Resources/fr.lproj/SSToolkit.strings
+s391708999.731049
+e391708999.738146
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/fr.lproj/SSToolkit.strings
+xResources/fr.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/fr.lproj/SSToolkit.stringsc24cbb470159b741^55f7bc470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/fr.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/fr.lproj/SSToolkit.strings Resources/fr.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/fr.lproj -- Resources/fr.lproj/SSToolkit.strings36"4C6F1542-799F-47E8-9332-4F20880BE97C-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/id.lproj/SSToolkit.strings Resources/id.lproj/SSToolkit.strings
+s391708999.731062
+e391708999.735805
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/id.lproj/SSToolkit.strings
+xResources/id.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/id.lproj/SSToolkit.stringsa94abb470159b741^b75dbc470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/id.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/id.lproj/SSToolkit.strings Resources/id.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/id.lproj -- Resources/id.lproj/SSToolkit.strings36"F7E6167A-DEEA-4E10-BB5E-082ED67B2B31-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/it.lproj/SSToolkit.strings Resources/it.lproj/SSToolkit.strings
+s391708999.731078
+e391708999.733871
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/it.lproj/SSToolkit.strings
+xResources/it.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/it.lproj/SSToolkit.strings344abb470159b741^1adfbb470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/it.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/it.lproj/SSToolkit.strings Resources/it.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/it.lproj -- Resources/it.lproj/SSToolkit.strings36"5AEF6CB8-263E-4BFF-B359-DF4069CEC1F1-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ja.lproj/SSToolkit.strings Resources/ja.lproj/SSToolkit.strings
+s391708999.731090
+e391708999.737071
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ja.lproj/SSToolkit.strings
+xResources/ja.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/ja.lproj/SSToolkit.strings844bbb470159b741^9fb0bc470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/ja.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/ja.lproj/SSToolkit.strings Resources/ja.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ja.lproj -- Resources/ja.lproj/SSToolkit.strings36"5706B6A3-458F-4271-A9DE-BF5C9C7E41EF-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ko.lproj/SSToolkit.strings Resources/ko.lproj/SSToolkit.strings
+s391708999.731288
+e391708999.734784
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ko.lproj/SSToolkit.strings
+xResources/ko.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/ko.lproj/SSToolkit.strings7b49bb470159b741^ef1abc470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/ko.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/ko.lproj/SSToolkit.strings Resources/ko.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ko.lproj -- Resources/ko.lproj/SSToolkit.strings36"C08691F3-FDD4-45E9-B25C-6EDED3819ACF-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ms.lproj/SSToolkit.strings Resources/ms.lproj/SSToolkit.strings
+s391708999.735080
+e391708999.742727
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ms.lproj/SSToolkit.strings
+xResources/ms.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/ms.lproj/SSToolkit.stringse23cbc470159b741^6c23be470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/ms.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/ms.lproj/SSToolkit.strings Resources/ms.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ms.lproj -- Resources/ms.lproj/SSToolkit.strings36"6AB652F5-0EB8-430A-ADE3-4C244F56745A-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/nl.lproj/SSToolkit.strings Resources/nl.lproj/SSToolkit.strings
+s391708999.735098
+e391708999.743867
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/nl.lproj/SSToolkit.strings
+xResources/nl.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/nl.lproj/SSToolkit.strings8941bc470159b741^986ebe470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/nl.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/nl.lproj/SSToolkit.strings Resources/nl.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/nl.lproj -- Resources/nl.lproj/SSToolkit.strings36"A5BD3336-86D6-4863-A4CD-90E38584B9B2-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/pt.lproj/SSToolkit.strings Resources/pt.lproj/SSToolkit.strings
+s391708999.738214
+e391708999.746179
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/pt.lproj/SSToolkit.strings
+xResources/pt.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/pt.lproj/SSToolkit.strings1809bd470159b741^6405bf470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/pt.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/pt.lproj/SSToolkit.strings Resources/pt.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/pt.lproj -- Resources/pt.lproj/SSToolkit.strings36"9C084E66-F869-4A3B-A6F9-33DE916624B4-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/pt_PT.lproj/SSToolkit.strings Resources/pt_PT.lproj/SSToolkit.strings
+s391708999.736942
+e391708999.744999
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/pt_PT.lproj/SSToolkit.strings
+xResources/pt_PT.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection44"Copy Resources/pt_PT.lproj/SSToolkit.strings85b6bc470159b741^30b8be470159b741^---0#0#0#-19%DVTDocumentLocation2@111"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/pt_PT.lproj/SSToolkit.strings0000000000000000^804"CopyStringsFile ./SSToolkitResources.bundle/pt_PT.lproj/SSToolkit.strings Resources/pt_PT.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/pt_PT.lproj -- Resources/pt_PT.lproj/SSToolkit.strings36"480F75FC-D40A-4387-87E2-001BB56AAC64-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ru.lproj/SSToolkit.strings Resources/ru.lproj/SSToolkit.strings
+s391708999.739303
+e391708999.747358
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ru.lproj/SSToolkit.strings
+xResources/ru.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/ru.lproj/SSToolkit.strings0d51bd470159b741^9752bf470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/ru.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/ru.lproj/SSToolkit.strings Resources/ru.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/ru.lproj -- Resources/ru.lproj/SSToolkit.strings36"29C22827-8FD6-4229-BCF0-5DAF9A624A4D-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/sv.lproj/SSToolkit.strings Resources/sv.lproj/SSToolkit.strings
+s391708999.740494
+e391708999.748606
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/sv.lproj/SSToolkit.strings
+xResources/sv.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy Resources/sv.lproj/SSToolkit.strings419ebd470159b741^40a4bf470159b741^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/sv.lproj/SSToolkit.strings0000000000000000^792"CopyStringsFile ./SSToolkitResources.bundle/sv.lproj/SSToolkit.strings Resources/sv.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/sv.lproj -- Resources/sv.lproj/SSToolkit.strings36"751DA2DC-B81B-49B6-99BF-1B9A394C285B-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/zh_Hans.lproj/SSToolkit.strings Resources/zh_Hans.lproj/SSToolkit.strings
+s391708999.741671
+e391708999.749621
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/zh_Hans.lproj/SSToolkit.strings
+xResources/zh_Hans.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection46"Copy Resources/zh_Hans.lproj/SSToolkit.stringsc8ebbd470159b741^b0e7bf470159b741^---0#0#0#-19%DVTDocumentLocation2@113"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/zh_Hans.lproj/SSToolkit.strings0000000000000000^812"CopyStringsFile ./SSToolkitResources.bundle/zh_Hans.lproj/SSToolkit.strings Resources/zh_Hans.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/zh_Hans.lproj -- Resources/zh_Hans.lproj/SSToolkit.strings36"07849200-DA77-4C6E-953B-E4E5C53DD304-
+
+CCopyStringsFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/zh_Hant.lproj/SSToolkit.strings Resources/zh_Hant.lproj/SSToolkit.strings
+s391708999.741681
+e391708999.750885
+r1
+xCopyStringsFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/zh_Hant.lproj/SSToolkit.strings
+xResources/zh_Hant.lproj/SSToolkit.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection46"Copy Resources/zh_Hant.lproj/SSToolkit.stringscceebd470159b741^213ac0470159b741^---0#0#0#-19%DVTDocumentLocation2@113"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/zh_Hant.lproj/SSToolkit.strings0000000000000000^812"CopyStringsFile ./SSToolkitResources.bundle/zh_Hant.lproj/SSToolkit.strings Resources/zh_Hant.lproj/SSToolkit.strings    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/zh_Hant.lproj -- Resources/zh_Hant.lproj/SSToolkit.strings36"745FD598-929E-4E06-8569-F7162C1875E4-
+
+CProcessInfoPlistFile /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/Info.plist Resources/SSToolkitResources-Info.plist
+s391708999.720658
+e391708999.723321
+r1
+xProcessInfoPlistFile
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/Info.plist
+xResources/SSToolkitResources-Info.plist
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Process Resources/SSToolkitResources-Info.plistde92b8470159b741^912bb9470159b741^---0#0#0#-19%DVTDocumentLocation2@111"file://localhost/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/Resources/SSToolkitResources-Info.plist0000000000000000^783"ProcessInfoPlistFile ./SSToolkitResources.bundle/Info.plist Resources/SSToolkitResources-Info.plist    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    builtin-infoPlistUtility Resources/SSToolkitResources-Info.plist -expandbuildsettings -format binary -platform iphoneos -o /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle/Info.plist36"238BDAB1-3B0F-4F88-AEC9-137F4C51CEC9-
+
+CTouch /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle
+s391709000.023054
+e391709000.027805
+r1
+xTouch
+x/Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection89"Touch /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle12f605480159b741^3a1e07480159b741^---0#0#0#--601"Touch ./SSToolkitResources.bundle    cd /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/garyisscary/Projects/eclipse/android-sdks/tools:/Users/garyisscary/Projects/eclipse/android-sdks/platform-tools:/Users/garyisscary/Projects/eclipse/android-ndk"    /usr/bin/touch -c /Users/garyisscary/Projects/FuelOperator/Pods/SSToolkit/./SSToolkitResources.bundle36"9259E80B-59F8-44B8-B4E6-7DE8D3755FD2-
+

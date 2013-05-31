@@ -2,7 +2,7 @@
 //  Location.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 5/24/13.
+//  Created by Gary Robinson on 5/31/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -13,12 +13,13 @@
 
 @interface Location : NSManagedObject
 
-@property (nonatomic, retain) NSString * streetAddress;
-@property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSNumber * lattitude;
 @property (nonatomic, retain) NSString * city;
+@property (nonatomic, retain) NSNumber * lattitude;
+@property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSString * state;
+@property (nonatomic, retain) NSString * streetAddress;
 @property (nonatomic, retain) NSString * zipCode;
+@property (nonatomic, retain) NSString * stateShort;
 @property (nonatomic, retain) Station *station;
 
 @end

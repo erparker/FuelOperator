@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Stations</key>
+	<array>
+		<dict>
+			<key>companyName</key>
+			<string>Holiday Oil</string>
+			<key>location</key>
+			<dict>
+				<key>city</key>
+				<string>Draper</string>
+				<key>lattitude</key>
+				<real>40.525863</real>
+				<key>longitude</key>
+				<real>-111.863403</real>
+				<key>state</key>
+				<string>Utah</string>
+				<key>stateShort</key>
+				<string>UT</string>
+				<key>streetAddress</key>
+				<string>9854 N 5400 W</string>
+				<key>zipCode</key>
+				<string>84947</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>companyName</key>
+			<string>Sinclair</string>
+			<key>location</key>
+			<dict>
+				<key>city</key>
+				<string>Ogden</string>
+				<key>lattitude</key>
+				<real>41.219992</real>
+				<key>longitude</key>
+				<real>-111.969737</real>
+				<key>state</key>
+				<string>Utah</string>
+				<key>stateShort</key>
+				<string>UT</string>
+				<key>streetAddress</key>
+				<string>710 Washington Blvd. E. 700 S</string>
+				<key>zipCode</key>
+				<string>84004</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>companyName</key>
+			<string>Texaco</string>
+			<key>location</key>
+			<dict>
+				<key>city</key>
+				<string>Payson</string>
+				<key>lattitude</key>
+				<real>40.041868</real>
+				<key>longitude</key>
+				<real>-111.701355</real>
+				<key>state</key>
+				<string>Utah</string>
+				<key>stateShort</key>
+				<string>UT</string>
+				<key>streetAddress</key>
+				<string>354 State St</string>
+				<key>zipCode</key>
+				<string>84567</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>companyName</key>
+			<string>Kicks 66</string>
+			<key>location</key>
+			<dict>
+				<key>city</key>
+				<string>Delta</string>
+				<key>lattitude</key>
+				<real>39.352178</real>
+				<key>longitude</key>
+				<real>-112.57717</real>
+				<key>state</key>
+				<string>Utah</string>
+				<key>stateShort</key>
+				<string>UT</string>
+				<key>streetAddress</key>
+				<string>5619 E 4298 S</string>
+				<key>zipCode</key>
+				<string>84947</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>companyName</key>
+			<string>Maverick</string>
+			<key>location</key>
+			<dict>
+				<key>city</key>
+				<string>West Jordan</string>
+				<key>lattitude</key>
+				<real>40.607466</real>
+				<key>longitude</key>
+				<real>-111.955109</real>
+				<key>state</key>
+				<string>Utah</string>
+				<key>stateShort</key>
+				<string>UT</string>
+				<key>streetAddress</key>
+				<string>5948 Redwood Rd</string>
+				<key>zipCode</key>
+				<string>84947</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>companyName</key>
+			<string>7-Eleven</string>
+			<key>location</key>
+			<dict>
+				<key>city</key>
+				<string>Draper</string>
+				<key>lattitude</key>
+				<real>40.511479</real>
+				<key>longitude</key>
+				<real>-111.878204</real>
+				<key>state</key>
+				<string>Utah</string>
+				<key>stateShort</key>
+				<string>UT</string>
+				<key>streetAddress</key>
+				<string>11657 S 9000 E</string>
+				<key>zipCode</key>
+				<string>84947</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>companyName</key>
+			<string>Texaco</string>
+			<key>location</key>
+			<dict>
+				<key>city</key>
+				<string>Lehi</string>
+				<key>lattitude</key>
+				<real>40.391302</real>
+				<key>longitude</key>
+				<real>-111.849365</real>
+				<key>state</key>
+				<string>Utah</string>
+				<key>stateShort</key>
+				<string>UT</string>
+				<key>streetAddress</key>
+				<string>710 Washington Blvd. E. 700 S</string>
+				<key>zipCode</key>
+				<string>84045</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>companyName</key>
+			<string>Crest</string>
+			<key>location</key>
+			<dict>
+				<key>city</key>
+				<string>Ogden</string>
+				<key>lattitude</key>
+				<real>41.220789</real>
+				<key>longitude</key>
+				<real>-111.985321</real>
+				<key>state</key>
+				<string>Utah</string>
+				<key>stateShort</key>
+				<string>UT</string>
+				<key>streetAddress</key>
+				<string>710 Washington Blvd. E. 700 S</string>
+				<key>zipCode</key>
+				<string>84004</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
