@@ -17,6 +17,7 @@
     #import "UIColor+Additions.h"
     #import "UIFont+Additions.h"
     #import "UIImage+Additions.h"
+    #import "NSDate+Additions.h"
 
     #import "CoreData+MagicalRecord.h"
     #import "Form.h"

@@ -48,10 +48,11 @@
 {
     if(_numInspectionsLabel == nil)
     {
-        _numInspectionsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320-40, 0, 40, UPCOMING_INSPECTIONS_CELL_HEIGHT)];
+        _numInspectionsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320-65, 0, 40, UPCOMING_INSPECTIONS_CELL_HEIGHT)];
         _numInspectionsLabel.font = [UIFont lightFontOfSize:20];
         _numInspectionsLabel.textColor = [UIColor fopRegularText];
         _numInspectionsLabel.backgroundColor = [UIColor clearColor];
+        _numInspectionsLabel.textAlignment = NSTextAlignmentRight;
     }
     return _numInspectionsLabel;
 }

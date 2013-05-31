@@ -2,6 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Forms</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>DefaultForm</string>
+			<key>Facility</key>
+			<array>
+				<string>Is emergency response plan present?</string>
+				<string>UST Permit present and not expired?</string>
+				<string>Are all operator records present?</string>
+				<string>ATG working properly and not in alarm?</string>
+				<string>Are vents and vent caps undamaged?</string>
+				<string>Are fire extinguishers located within 100&apos; of dispensers and not expired?</string>
+				<string>Is ESO located within 100&apos; of dispensers and working properly?</string>
+				<string>Have all employees passed Class C Operator training and have proof?</string>
+			</array>
+			<key>Tanks</key>
+			<array>
+				<string>Is emergency response plan present?</string>
+				<string>UST Permit present and not expired?</string>
+				<string>Are all operator records present?</string>
+				<string>ATG working properly and not in alarm?</string>
+				<string>Are vents and vent caps undamaged?</string>
+				<string>Are fire extinguishers located within 100&apos; of dispensers and not expired?</string>
+				<string>Is ESO located within 100&apos; of dispensers and working properly?</string>
+				<string>Have all employees passed Class C Operator training and have proof?</string>
+			</array>
+			<key>Dispensers</key>
+			<array>
+				<string>Is emergency response plan present?</string>
+				<string>UST Permit present and not expired?</string>
+				<string>Are all operator records present?</string>
+				<string>ATG working properly and not in alarm?</string>
+				<string>Are vents and vent caps undamaged?</string>
+				<string>Are fire extinguishers located within 100&apos; of dispensers and not expired?</string>
+				<string>Is ESO located within 100&apos; of dispensers and working properly?</string>
+				<string>Have all employees passed Class C Operator training and have proof?</string>
+			</array>
+		</dict>
+	</array>
 	<key>Stations</key>
 	<array>
 		<dict>

@@ -2,7 +2,7 @@
 //  FormQuestion.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 5/24/13.
+//  Created by Gary Robinson on 5/31/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -13,10 +13,10 @@
 
 @interface FormQuestion : NSManagedObject
 
-@property (nonatomic, retain) NSString * question;
-@property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSString * category;
+@property (nonatomic, retain) NSString * question;
 @property (nonatomic, retain) NSNumber * sortOrder;
+@property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSSet *form;
 @property (nonatomic, retain) NSSet *formAnswers;
 @end

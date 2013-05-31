@@ -2,7 +2,7 @@
 //  FormAnswer.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 5/24/13.
+//  Created by Gary Robinson on 5/31/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -15,9 +15,9 @@
 
 @property (nonatomic, retain) NSNumber * affirmitive;
 @property (nonatomic, retain) NSString * comment;
-@property (nonatomic, retain) NSSet *photos;
-@property (nonatomic, retain) Inspection *inspection;
 @property (nonatomic, retain) FormQuestion *formQuestion;
+@property (nonatomic, retain) Inspection *inspection;
+@property (nonatomic, retain) NSSet *photos;
 @end
 
 @interface FormAnswer (CoreDataGeneratedAccessors)

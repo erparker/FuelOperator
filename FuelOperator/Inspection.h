@@ -2,20 +2,21 @@
 //  Inspection.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 5/24/13.
+//  Created by Gary Robinson on 5/31/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class FormAnswer, Station;
+@class Form, FormAnswer, Station;
 
 @interface Inspection : NSManagedObject
 
 @property (nonatomic, retain) NSDate * date;
-@property (nonatomic, retain) Station *station;
 @property (nonatomic, retain) NSSet *formAnswers;
+@property (nonatomic, retain) Station *station;
+@property (nonatomic, retain) Form *form;
 @end
 
 @interface Inspection (CoreDataGeneratedAccessors)

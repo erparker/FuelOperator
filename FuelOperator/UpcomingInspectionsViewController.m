@@ -133,12 +133,8 @@
     //based off the current date
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/yy"];
-    NSDate *now = [NSDate date];
     
-    NSDateComponents *weekdayComponents = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:now];
-    int currentWeekday = [weekdayComponents weekday]; //[1;7] ... 1 is sunday, 7 is saturday in gregorian calendar
-    self.startOfThisWeek = [now dateByAddingTimeInterval:-60.0 * 60.0 * 24.0 * (currentWeekday - 1)];
-    
+    self.startOfThisWeek = [NSDate startOfTheWeekFromToday];
     if(section == 0)
     {
         NSDate *endOfWeek = [self.startOfThisWeek dateByAddingTimeInterval:60.0 * 60.0 * 24.0 * 6.0];
@@ -196,18 +192,38 @@
         cellView = (UpcomingInspectionsCellView *)[cell.contentView viewWithTag:UPCOMING_INSPECTIONS_CELL_VIEW_TAG];
     }
     
+    NSString *dayTitle;
     if(indexPath.row == 0)
-        [cellView setDayTitle:@"Monday" withNumInspections:8];
+        dayTitle = @"Monday";
     else if(indexPath.row == 1)
-        [cellView setDayTitle:@"Tuesday" withNumInspections:6];
+        dayTitle = @"Tuesday";
     else if(indexPath.row == 2)
-        [cellView setDayTitle:@"Wednesday" withNumInspections:7];
+        dayTitle = @"Wednesday";
     else if(indexPath.row == 3)
-        [cellView setDayTitle:@"Thursday" withNumInspections:7];
+        dayTitle = @"Thursday";
     else
-        [cellView setDayTitle:@"Friday" withNumInspections:4];
+        dayTitle = @"Friday";
+    
+    [cellView setDayTitle:dayTitle withNumInspections:[self numInspectionsWithIndexPath:indexPath]];
     
     return cell;
+}
+
+- (NSInteger)numInspectionsWithIndexPath:(NSIndexPath *)indexPath
+{
+    NSDate *startDate;
+    NSDate *endDate;
+    
+    if(indexPath.section == 0)
+        startDate = [NSDate dateWithNumberOfDays:indexPath.row+1 sinceDate:[NSDate startOfTheWeekFromToday]];
+    else
+        startDate = [NSDate dateWithNumberOfDays:indexPath.row+1 sinceDate:[NSDate startOfNextWeekFromToday]];
+    
+    endDate = [NSDate dateWithNumberOfDays:1 sinceDate:startDate];
+    
+    NSArray *inspections = [Inspection MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate]];
+    
+    return inspections.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

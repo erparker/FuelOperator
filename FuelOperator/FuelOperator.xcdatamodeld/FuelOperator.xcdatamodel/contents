@@ -3,6 +3,7 @@
     <entity name="Form" representedClassName="Form" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="formQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="form" inverseEntity="FormQuestion" syncable="YES"/>
+        <relationship name="newRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Inspection" inverseName="form" inverseEntity="Inspection" syncable="YES"/>
     </entity>
     <entity name="FormAnswer" representedClassName="FormAnswer" syncable="YES">
         <attribute name="affirmitive" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -21,6 +22,7 @@
     </entity>
     <entity name="Inspection" representedClassName="Inspection" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="form" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Form" inverseName="newRelationship" inverseEntity="Form" syncable="YES"/>
         <relationship name="formAnswers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="inspection" inverseEntity="FormAnswer" syncable="YES"/>
         <relationship name="station" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="inspections" inverseEntity="Station" syncable="YES"/>
     </entity>
@@ -44,10 +46,10 @@
         <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="station" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Form" positionX="-675" positionY="18" width="128" height="73"/>
+        <element name="Form" positionX="-675" positionY="18" width="128" height="88"/>
         <element name="FormAnswer" positionX="-497" positionY="144" width="128" height="118"/>
         <element name="FormQuestion" positionX="-479" positionY="-43" width="128" height="133"/>
-        <element name="Inspection" positionX="-668" positionY="-124" width="128" height="88"/>
+        <element name="Inspection" positionX="-668" positionY="-135" width="128" height="103"/>
         <element name="Location" positionX="-450" positionY="-234" width="128" height="163"/>
         <element name="Photo" positionX="-675" positionY="170" width="128" height="73"/>
         <element name="Station" positionX="-621" positionY="-268" width="128" height="88"/>

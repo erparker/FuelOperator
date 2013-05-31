@@ -30,19 +30,19 @@
 @property (nonatomic, strong) UITableView *facilityTableView;
 @property (nonatomic, strong) UIButton *facilityButton;
 @property (nonatomic, strong) NSMutableArray *facilityQuestionsState;
-@property (nonatomic, strong) NSMutableArray *facilityQuestions;
+@property (nonatomic, strong) NSArray *facilityQuestions;
 @property (nonatomic, strong) NSMutableArray *facilityQuestionsCommentState;
 
 @property (nonatomic, strong) UITableView *tanksTableView;
 @property (nonatomic, strong) UIButton *tanksButton;
 @property (nonatomic, strong) NSMutableArray *tanksQuestionsState;
-@property (nonatomic, strong) NSMutableArray *tanksQuestions;
+@property (nonatomic, strong) NSArray *tanksQuestions;
 @property (nonatomic, strong) NSMutableArray *tanksQuestionsCommentState;
 
 @property (nonatomic, strong) UITableView *dispensersTableView;
 @property (nonatomic, strong) UIButton *dispensersButton;
 @property (nonatomic, strong) NSMutableArray *dispensersQuestionsState;
-@property (nonatomic, strong) NSMutableArray *dispensersQuestions;
+@property (nonatomic, strong) NSArray *dispensersQuestions;
 @property (nonatomic, strong) NSMutableArray *dispensersQuestionsCommentState;
 
 @end
@@ -70,19 +70,35 @@
     
     self.navigationItem.titleView = self.navigationLabel;
     
-    self.facilityQuestionsState = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+    self.facilityQuestions = [FormQuestion MR_findAllSortedBy:@"sortOrder" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Facility"]];
     
-    self.facilityQuestionsCommentState = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+    self.facilityQuestionsState = [[NSMutableArray alloc] initWithCapacity:self.facilityQuestions.count];
+    self.facilityQuestionsCommentState = [[NSMutableArray alloc] initWithCapacity:self.facilityQuestions.count];
+    for(NSUInteger i=0; i<self.facilityQuestions.count; i++)
+    {
+        [self.facilityQuestionsState addObject:[NSNumber numberWithInt:0]];
+        [self.facilityQuestionsCommentState addObject:[NSNumber numberWithInt:0]];
+    }
     
-    self.facilityQuestions = [[NSMutableArray alloc] initWithObjects:@"Is emergency response plan present?", @"UST Permit present and not expired?", @"Are all operator records present?", @"ATG working properly and not in alarm?", @"Are vents and vent caps undamaged?", @"Are fire extinguishers located within 100' of dispensers and not expired?", @"Is ESO located within 100' of dispensers and working properly?", @"Have all employees passed Class C Operator training and have proof?", nil];
+    self.tanksQuestions = [FormQuestion MR_findAllSortedBy:@"sortOrder" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Tanks"]];
     
-    self.tanksQuestionsState = [[NSMutableArray alloc] initWithArray:self.facilityQuestionsState copyItems:YES];
-    self.tanksQuestionsCommentState = [[NSMutableArray alloc] initWithArray:self.facilityQuestionsCommentState copyItems:YES];
-    self.tanksQuestions = [[NSMutableArray alloc] initWithArray:self.facilityQuestions copyItems:YES];
+    self.tanksQuestionsState = [[NSMutableArray alloc] initWithCapacity:self.tanksQuestions.count];
+    self.tanksQuestionsCommentState = [[NSMutableArray alloc] initWithCapacity:self.tanksQuestions.count];
+    for(NSUInteger i=0; i<self.facilityQuestions.count; i++)
+    {
+        [self.tanksQuestionsState addObject:[NSNumber numberWithInt:0]];
+        [self.tanksQuestionsCommentState addObject:[NSNumber numberWithInt:0]];
+    }
     
-    self.dispensersQuestionsState = [[NSMutableArray alloc] initWithArray:self.facilityQuestionsState copyItems:YES];
-    self.dispensersQuestionsCommentState = [[NSMutableArray alloc] initWithArray:self.facilityQuestionsCommentState copyItems:YES];
-    self.dispensersQuestions = [[NSMutableArray alloc] initWithArray:self.facilityQuestions copyItems:YES];
+    self.dispensersQuestions = [FormQuestion MR_findAllSortedBy:@"sortOrder" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Dispensers"]];
+    
+    self.dispensersQuestionsState = [[NSMutableArray alloc] initWithCapacity:self.dispensersQuestions.count];
+    self.dispensersQuestionsCommentState = [[NSMutableArray alloc] initWithCapacity:self.dispensersQuestions.count];
+    for(NSUInteger i=0; i<self.facilityQuestions.count; i++)
+    {
+        [self.dispensersQuestionsState addObject:[NSNumber numberWithInt:0]];
+        [self.dispensersQuestionsCommentState addObject:[NSNumber numberWithInt:0]];
+    }
     
     [self facilityButtonTapped:self];
 }
@@ -278,7 +294,7 @@
     }
     
     NSNumber* state = nil;
-    NSString* question = nil;
+    FormQuestion* question = nil;
     NSNumber* hasComment = nil;
     if(tableView == self.facilityTableView)
     {
@@ -302,7 +318,7 @@
         hasComment = [self.dispensersQuestionsCommentState objectAtIndex:indexPath.row];
     }
     
-    CGFloat height = [InspectionsFormCell getCellHeightForQuestion:question withState:[state integerValue] withComment:[hasComment integerValue]];
+    CGFloat height = [InspectionsFormCell getCellHeightForQuestion:question.question withState:[state integerValue] withComment:[hasComment integerValue]];
     return height;
 }
 
@@ -318,21 +334,24 @@
     {
         NSNumber *curState = [self.facilityQuestionsState objectAtIndex:indexPath.row];
         cell.state = [curState integerValue];
-        cell.question = [self.facilityQuestions objectAtIndex:indexPath.row];
+        FormQuestion *formQuestion = [self.facilityQuestions objectAtIndex:indexPath.row];
+        cell.question = formQuestion.question;
         cell.commentState = [[self.facilityQuestionsCommentState objectAtIndex:indexPath.row] integerValue];
     }
     else if(tableView == self.tanksTableView)
     {
         NSNumber *curState = [self.tanksQuestionsState objectAtIndex:indexPath.row];
         cell.state = [curState integerValue];
-        cell.question = [self.tanksQuestions objectAtIndex:indexPath.row];
+        FormQuestion *formQuestion = [self.tanksQuestions objectAtIndex:indexPath.row];
+        cell.question = formQuestion.question;
         cell.commentState = [[self.tanksQuestionsCommentState objectAtIndex:indexPath.row] integerValue];
     }
     else if(tableView == self.dispensersTableView)
     {
         NSNumber *curState = [self.dispensersQuestionsState objectAtIndex:indexPath.row];
         cell.state = [curState integerValue];
-        cell.question = [self.dispensersQuestions objectAtIndex:indexPath.row];
+        FormQuestion *formQuestion = [self.dispensersQuestions objectAtIndex:indexPath.row];
+        cell.question = formQuestion.question;
         cell.commentState = [[self.dispensersQuestionsCommentState objectAtIndex:indexPath.row] integerValue];
     }
     
@@ -345,17 +364,20 @@
     
     if(tableView == self.facilityTableView)
     {
-        commentPhotoVC.question = [self.facilityQuestions objectAtIndex:indexPath.row];
+        FormQuestion *formQuestion = [self.facilityQuestions objectAtIndex:indexPath.row];
+        commentPhotoVC.question = formQuestion.question;
         commentPhotoVC.tabName = FACILITY_TAB_NAME;
     }
     else if(tableView == self.tanksTableView)
     {
-        commentPhotoVC.question = [self.tanksQuestions objectAtIndex:indexPath.row];
+        FormQuestion *formQuestion = [self.tanksQuestions objectAtIndex:indexPath.row];
+        commentPhotoVC.question = formQuestion.question;
         commentPhotoVC.tabName = @"tanks";
     }
     else if(tableView == self.dispensersTableView)
     {
-        commentPhotoVC.question = [self.dispensersQuestions objectAtIndex:indexPath.row];
+        FormQuestion *formQuestion = [self.dispensersQuestions objectAtIndex:indexPath.row];
+        commentPhotoVC.question = formQuestion.question;
         commentPhotoVC.tabName = @"dispensers";
     }
     
