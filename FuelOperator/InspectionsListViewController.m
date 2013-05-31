@@ -25,7 +25,7 @@
 @property (nonatomic, strong) MKMapView *mapView;
 @property (nonatomic, strong) UIView *switchView;
 
-@property (nonatomic, strong) NSArray *stations;
+@property (nonatomic, strong) NSArray *inspections;
 
 @end
 
@@ -57,13 +57,27 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSArray *)stations
+- (void)setDate:(NSDate *)date
 {
-    if(_stations == nil)
-    {
-        _stations = [Station MR_findAll];
-    }
-    return _stations;
+    _date = date;
+    
+    self.inspections = [Inspection MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", _date, [NSDate dateWithNumberOfDays:1 sinceDate:_date]]];
+    
+    //format the date selected here like: "Mon Oct 6, 2012"
+    NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
+    [dayFormatter setDateFormat:@"EE"];
+    NSString *day = [dayFormatter stringFromDate:_date];
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:_date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    int monthIndex = [components month] - 1;
+    NSString *monthName = [[formatter monthSymbols] objectAtIndex:monthIndex];
+    monthName = [monthName substringToIndex:3];
+    
+    [formatter setDateFormat:@"dd, yyyy"];
+    NSString *dayAndYear = [formatter stringFromDate:_date];
+    
+    self.dateString = [NSString stringWithFormat:@"%@ %@ %@", day, monthName, dayAndYear];
 }
 
 - (UISegmentedControl*)listMapControl
@@ -186,7 +200,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.stations.count;
+    return self.inspections.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -215,7 +229,8 @@
         cellView = (InspectionsListCellView *)[cell.contentView viewWithTag:INSPECTIONS_LIST_CELL_VIEW_TAG];
     }
     
-    cellView.station = [self.stations objectAtIndex:indexPath.row];
+    Inspection *inspection = [self.inspections objectAtIndex:indexPath.row];
+    cellView.station = inspection.station;
     
     return cell;
 }
@@ -228,8 +243,8 @@
     
     InspectionFormViewController *inspectionFormVC = [[InspectionFormViewController alloc] init];
     
-    Station *station = [self.stations objectAtIndex:indexPath.row];
-    inspectionFormVC.formTitle = [NSString stringWithFormat:@"%@ - %@, %@", station.companyName, station.location.city, station.location.stateShort];
+    Inspection *inspection = [self.inspections objectAtIndex:indexPath.row];
+    inspectionFormVC.formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.station.companyName, inspection.station.location.city, inspection.station.location.stateShort];
     
     [self.navigationController pushViewController:inspectionFormVC animated:YES];
 }
@@ -248,13 +263,14 @@
         [locationButton addTarget:self action:@selector(locationTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_mapView addSubview:locationButton];
         
-        for(NSUInteger i=0; i<self.stations.count; i++)
+        for(NSUInteger i=0; i<self.inspections.count; i++)
         {
-            Station *station = [self.stations objectAtIndex:i];
+            Inspection *inspection = [self.inspections objectAtIndex:i];
+//            Station *station = [self.stations objectAtIndex:i];
             MapAnnotation *anno = [[MapAnnotation alloc] init];
-            anno.coordinate = CLLocationCoordinate2DMake([station.location.lattitude floatValue], [station.location.longitude floatValue]);
-            anno.annotationTitle = station.companyName;
-            anno.annotationSubtitle = [NSString stringWithFormat:@"%@, %@", station.location.city, station.location.stateShort];
+            anno.coordinate = CLLocationCoordinate2DMake([inspection.station.location.lattitude floatValue], [inspection.station.location.longitude floatValue]);
+            anno.annotationTitle = inspection.station.companyName;
+            anno.annotationSubtitle = [NSString stringWithFormat:@"%@, %@", inspection.station.location.city, inspection.station.location.stateShort];
             anno.title = @" ";
             anno.subtitle = @" ";
             [_mapView addAnnotation:anno];

@@ -232,26 +232,10 @@
     
     self.navigationItem.title = @" ";
     
-    //format the date selected here like: "Mon Oct 6, 2012"
     NSDate *dateSelected = [self.startOfThisWeek dateByAddingTimeInterval:60.0 * 60.0 * 24.0 * (1 + indexPath.row + 7 * indexPath.section)];
-    
-    NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
-    [dayFormatter setDateFormat:@"EE"];
-    NSString *day = [dayFormatter stringFromDate:dateSelected];
-    
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:dateSelected];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    int monthIndex = [components month] - 1;
-    NSString *monthName = [[formatter monthSymbols] objectAtIndex:monthIndex];
-    monthName = [monthName substringToIndex:3];
-    
-    [formatter setDateFormat:@"dd, yyyy"];
-    NSString *dayAndYear = [formatter stringFromDate:dateSelected];
-    
-    NSString *dateString = [NSString stringWithFormat:@"%@ %@ %@", day, monthName, dayAndYear];
-    
+       
     InspectionsListViewController *inspectionsListVC = [[InspectionsListViewController alloc] init];
-    [inspectionsListVC setDateString:dateString];
+    inspectionsListVC.date = dateSelected;
     [self.navigationController pushViewController:inspectionsListVC animated:YES];
 }
 
