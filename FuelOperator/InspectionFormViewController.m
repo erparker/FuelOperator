@@ -70,7 +70,7 @@
     
     self.navigationItem.titleView = self.navigationLabel;
     
-    self.facilityQuestions = [FormQuestion MR_findAllSortedBy:@"sortOrder" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Facility"]];
+    self.facilityQuestions = [FormQuestion MR_findAllSortedBy:@"sortOrder" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Facilities"]];
     
     self.facilityQuestionsState = [[NSMutableArray alloc] initWithCapacity:self.facilityQuestions.count];
     self.facilityQuestionsCommentState = [[NSMutableArray alloc] initWithCapacity:self.facilityQuestions.count];
@@ -84,7 +84,7 @@
     
     self.tanksQuestionsState = [[NSMutableArray alloc] initWithCapacity:self.tanksQuestions.count];
     self.tanksQuestionsCommentState = [[NSMutableArray alloc] initWithCapacity:self.tanksQuestions.count];
-    for(NSUInteger i=0; i<self.facilityQuestions.count; i++)
+    for(NSUInteger i=0; i<self.tanksQuestions.count; i++)
     {
         [self.tanksQuestionsState addObject:[NSNumber numberWithInt:0]];
         [self.tanksQuestionsCommentState addObject:[NSNumber numberWithInt:0]];
@@ -94,7 +94,7 @@
     
     self.dispensersQuestionsState = [[NSMutableArray alloc] initWithCapacity:self.dispensersQuestions.count];
     self.dispensersQuestionsCommentState = [[NSMutableArray alloc] initWithCapacity:self.dispensersQuestions.count];
-    for(NSUInteger i=0; i<self.facilityQuestions.count; i++)
+    for(NSUInteger i=0; i<self.dispensersQuestions.count; i++)
     {
         [self.dispensersQuestionsState addObject:[NSNumber numberWithInt:0]];
         [self.dispensersQuestionsCommentState addObject:[NSNumber numberWithInt:0]];
@@ -123,6 +123,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setInspection:(Inspection *)inspection
+{
+    _inspection = inspection;
+    
+    NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.station.companyName, inspection.station.location.city, inspection.station.location.stateShort];
+    self.navigationLabel.text = formTitle;
+}
+
 - (UILabel*)navigationLabel
 {
     if(_navigationLabel == nil)
@@ -137,11 +145,11 @@
     return _navigationLabel;
 }
 
-- (void)setFormTitle:(NSString *)formTitle
-{
-    _formTitle = formTitle;
-    self.navigationLabel.text = _formTitle;
-}
+//- (void)setFormTitle:(NSString *)formTitle
+//{
+//    _formTitle = formTitle;
+//    self.navigationLabel.text = _formTitle;
+//}
 
 - (UIView*)progressView
 {
@@ -261,6 +269,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(tableView == self.facilityTableView)
+        return self.facilityQuestions.count;
+    else if(tableView == self.tanksTableView)
+        return self.tanksQuestions.count;
+    else if(tableView == self.dispensersTableView)
+        return self.dispensersQuestions.count;
+    
     return 8;
 }
 

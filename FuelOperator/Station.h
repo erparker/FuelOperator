@@ -2,7 +2,7 @@
 //  Station.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 5/31/13.
+//  Created by Gary Robinson on 8/17/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface Station : NSManagedObject
 
 @property (nonatomic, retain) NSString * companyName;
+@property (nonatomic, retain) NSNumber * storeID;
 @property (nonatomic, retain) NSSet *inspections;
 @property (nonatomic, retain) Location *location;
 @end

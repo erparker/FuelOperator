@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[InspectionFormViewController tableView:heightForRowAtIndexPath:]:InspectionFormViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__37-[OnlineService addQuestionsForForm:]_block_invoke:OnlineService.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "results">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OnlineService realLogin]:OnlineService.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "path">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__32-[OnlineService login:password:]_block_invoke_2:OnlineService.m">
+      </ContextState>
+      <ContextState
+         contextName = "__56-[OnlineService getScheduledInspectionsFromDate:toDate:]_block_invoke:OnlineService.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "results">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[InspectionFormViewController tableView:cellForRowAtIndexPath:]:InspectionFormViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__32-[OnlineService login:password:]_block_invoke:OnlineService.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[OnlineService authenticate]:OnlineService.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[InspectionFormViewController viewDidLoad]:InspectionFormViewController.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

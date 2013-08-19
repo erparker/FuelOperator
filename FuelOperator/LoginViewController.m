@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIButton *loginButton;
 @property (nonatomic, strong) UITextField *usernameTextField;
 @property (nonatomic, strong) UITextField *passwordTextField;
+@property (nonatomic, strong) UIActivityIndicatorView *loginActivityView;
 
 @end
 
@@ -42,6 +43,7 @@
     [self.view addSubview:self.usernameTextField];
     [self.view addSubview:self.passwordTextField];
     [self.view addSubview:self.loginButton];
+    [self.view addSubview:self.loginActivityView];
 }
 
 - (void)viewDidLoad
@@ -123,7 +125,7 @@
         [_loginButton setImage:loginImage forState:UIControlStateNormal];
         _loginButton.frame = CGRectMake(0, 0, loginImage.size.width, loginImage.size.height);
         _loginButton.center = CGPointMake(self.view.bounds.size.width/2., 284/*self.view.bounds.size.height/2.*/);
-        [_loginButton addTarget:self action:@selector(loginCompleted:) forControlEvents:UIControlEventTouchUpInside];
+        [_loginButton addTarget:self action:@selector(loginTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _loginButton;
 }
@@ -134,14 +136,53 @@
     return YES;
 }
 
--(void)loginCompleted:(id)sender
+- (UIActivityIndicatorView *)loginActivityView
+{
+    if(_loginActivityView == nil)
+    {
+        _loginActivityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        _loginActivityView.center = CGPointMake(self.loginButton.center.x, self.loginButton.center.y + 60);
+        _loginActivityView.hidesWhenStopped = YES;
+        [_loginActivityView stopAnimating];
+    }
+    return _loginActivityView;
+}
+
+-(void)loginTapped:(id)sender
 {
     [self.usernameTextField resignFirstResponder];
     [self.passwordTextField resignFirstResponder];
     
-    //NSLog(@"username= %@, password= %@\n", self.usernameTextField.text, self.passwordTextField.text);
-    AppDelegate *appD = [[UIApplication sharedApplication] delegate];
-    [appD loginCompleted:self];
+    self.view.userInteractionEnabled = NO;
+//    self.usernameTextField.userInteractionEnabled = NO;
+//    self.passwordTextField.userInteractionEnabled = NO;
+//    self.loginButton.userInteractionEnabled = NO;
+    [self.loginActivityView startAnimating];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginDone:) name:@"loginDone" object:nil];
+    [[OnlineService sharedService] attemptLogin:self.usernameTextField.text password:self.passwordTextField.text];
+}
+
+- (void)loginDone:(NSNotification *)notification
+{
+    self.view.userInteractionEnabled = YES;
+//    self.usernameTextField.userInteractionEnabled = YES;
+//    self.passwordTextField.userInteractionEnabled = YES;
+//    self.loginButton.userInteractionEnabled = YES;
+    [self.loginActivityView stopAnimating];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginDone" object:nil];
+    
+    NSNumber *sucess = [notification.userInfo objectForKey:@"Success"];
+    if([sucess boolValue] == YES)
+    {
+        //NSLog(@"username= %@, password= %@\n", self.usernameTextField.text, self.passwordTextField.text);
+        AppDelegate *appD = [[UIApplication sharedApplication] delegate];
+        [appD loginCompleted:self];
+    }
+    else
+    {
+        NSLog(@"login failed");
+    }
 }
 
 @end

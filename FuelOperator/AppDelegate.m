@@ -25,7 +25,7 @@
     // Override point for customization after application launch.
     
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"FuelOperator.sqllite"];
-    [self initCoreData];
+//    [self initCoreData];
     
     
     [self applyStyle];

@@ -14,5 +14,6 @@
 + (NSDate *)startOfTheWeekFromToday;
 + (NSDate *)startOfNextWeekFromToday;
 + (NSDate *)dateWithNumberOfDays:(NSInteger)days sinceDate:(NSDate*)date;
++ (NSDate *)getDateFromJSON:(NSString *)dateString;
 
 @end

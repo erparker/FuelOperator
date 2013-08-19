@@ -19,6 +19,8 @@
     #import "UIImage+Additions.h"
     #import "NSDate+Additions.h"
 
+    #import "OnlineService.h"
+
     #import "CoreData+MagicalRecord.h"
     #import "Form.h"
     #import "Inspection.h"

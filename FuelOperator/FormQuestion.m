@@ -2,7 +2,7 @@
 //  FormQuestion.m
 //  FuelOperator
 //
-//  Created by Gary Robinson on 5/31/13.
+//  Created by Gary Robinson on 8/18/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @dynamic question;
 @dynamic sortOrder;
 @dynamic type;
+@dynamic questionID;
 @dynamic form;
 @dynamic formAnswers;
 

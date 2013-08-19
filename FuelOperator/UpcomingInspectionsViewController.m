@@ -56,12 +56,27 @@
 	// Do any additional setup after loading the view.
     
     self.settingsOpen = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inspectionsUpdated:) name:@"inspectionsUpdated" object:nil];
+    [self updateInspections];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)updateInspections
+{
+    NSDate *start = [NSDate startOfTheWeekFromToday];
+    NSDate *end = [NSDate dateWithNumberOfDays:12 sinceDate:start];
+    [[OnlineService sharedService] getScheduledInspectionsFromDate:start toDate:end];
+}
+
+- (void)inspectionsUpdated:(id)sender
+{
+    [self.tableView reloadData];
 }
 
 - (UIButton*)settingsBtn
@@ -238,6 +253,7 @@
     inspectionsListVC.date = dateSelected;
     [self.navigationController pushViewController:inspectionsListVC animated:YES];
 }
+
 
 
 

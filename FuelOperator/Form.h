@@ -2,7 +2,7 @@
 //  Form.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 5/31/13.
+//  Created by Gary Robinson on 8/17/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *formQuestions;
-@property (nonatomic, retain) NSSet *newRelationship;
+@property (nonatomic, retain) Inspection *inspection;
 @end
 
 @interface Form (CoreDataGeneratedAccessors)
@@ -24,10 +24,5 @@
 - (void)removeFormQuestionsObject:(FormQuestion *)value;
 - (void)addFormQuestions:(NSSet *)values;
 - (void)removeFormQuestions:(NSSet *)values;
-
-- (void)addNewRelationshipObject:(Inspection *)value;
-- (void)removeNewRelationshipObject:(Inspection *)value;
-- (void)addNewRelationship:(NSSet *)values;
-- (void)removeNewRelationship:(NSSet *)values;
 
 @end

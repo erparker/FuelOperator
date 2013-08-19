@@ -244,7 +244,7 @@
     InspectionFormViewController *inspectionFormVC = [[InspectionFormViewController alloc] init];
     
     Inspection *inspection = [self.inspections objectAtIndex:indexPath.row];
-    inspectionFormVC.formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.station.companyName, inspection.station.location.city, inspection.station.location.stateShort];
+    inspectionFormVC.inspection = inspection;
     
     [self.navigationController pushViewController:inspectionFormVC animated:YES];
 }
@@ -314,7 +314,7 @@
     MapGestureRecognizer *mapGesture = (MapGestureRecognizer *)sender;
     
     InspectionFormViewController *inspectionFormVC = [[InspectionFormViewController alloc] init];
-    inspectionFormVC.formTitle = [NSString stringWithFormat:@"%@ - %@", mapGesture.annotationTitle, mapGesture.annotationSubtitle];
+//    inspectionFormVC.formTitle = [NSString stringWithFormat:@"%@ - %@", mapGesture.annotationTitle, mapGesture.annotationSubtitle];
     [self.navigationController pushViewController:inspectionFormVC animated:YES];
 }
 
