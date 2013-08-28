@@ -11,7 +11,6 @@
 @interface InspectionFormViewController : UIViewController
 
 @property (nonatomic, strong) Inspection *inspection;
-//@property (nonatomic, strong) NSString *formTitle;
 
 -(void)didSelectAccessory:(id)sender event:(id)event;
 

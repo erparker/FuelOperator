@@ -13,12 +13,15 @@
 
 @interface InspectionsFormCell : UITableViewCell
 
-@property (nonatomic) int state;
-@property (nonatomic, strong) NSString *question;
-@property (nonatomic) int commentState;
+@property (nonatomic, strong) FormAnswer *formAnswer;
+
+//@property (nonatomic) int state;
+//@property (nonatomic, strong) NSString *question;
+//@property (nonatomic) int commentState;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withTarget:(id)target;
 
-+ (CGFloat)getCellHeightForQuestion:(NSString*)question withState:(NSInteger)state withComment:(BOOL)hasComment;
+//+ (CGFloat)getCellHeightForQuestion:(NSString*)question withState:(NSInteger)state withComment:(BOOL)hasComment;
++ (CGFloat)getCellHeightForQuestion:(FormQuestion*)question withAnswer:(FormAnswer*)answer;
 
 @end

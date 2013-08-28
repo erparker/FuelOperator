@@ -180,6 +180,7 @@ static OnlineService *sharedOnlineService = nil;
             NSLog(@"inspectionDate: %@", [formatter stringFromDate:date]);
             inspection = [Inspection MR_createEntity];
             inspection.date = date;
+            inspection.progress = [NSNumber numberWithFloat:0.0];
             inspection.inspectionID = [dict objectForKey:@"InspectionID"];
             
             NSString *companyName = [dict objectForKey:@"CompanyName"];
@@ -230,7 +231,7 @@ static OnlineService *sharedOnlineService = nil;
              Inspection *inspection = [Inspection MR_findFirstByAttribute:@"inspectionID" withValue:insepctionID];
              FormQuestion *question = [FormQuestion MR_findFirstByAttribute:@"questionID" withValue:questionID];
              if(inspection && question)
-                 question.inspection = inspection;
+                 [question addInspectionsObject:inspection];
          }
          
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];

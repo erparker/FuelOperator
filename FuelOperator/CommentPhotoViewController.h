@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FormCategoryView.h"
 
 @interface CommentPhotoViewController : UIViewController
 
-@property (nonatomic, strong) NSString *question;
-@property (nonatomic) NSInteger row;
-@property (nonatomic, strong) NSString *tabName;
+@property (nonatomic, weak) id <FormCategoryDelegate> formCategoryDelegate;
+
+@property (nonatomic, strong) FormAnswer *answer;
+
+//@property (nonatomic, strong) NSString *question;
+//@property (nonatomic) NSInteger row;
+//@property (nonatomic, strong) NSString *tabName;
 
 @end

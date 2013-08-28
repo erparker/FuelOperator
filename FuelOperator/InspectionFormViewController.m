@@ -9,17 +9,15 @@
 #import "InspectionFormViewController.h"
 #import "InspectionsFormCell.h"
 #import "CommentPhotoViewController.h"
+#import "FormCategoryView.h"
 
 #define HEADER_HEIGHT 25
 #define BUTTON_HEIGHT 47
 #define PROGRESS_HEIGHT 25
 #define NAV_BAR_HEIGHT 40
 
-#define FACILITY_TAB_NAME @"facility"
-#define TANKS_TAB_NAME @"tanks"
-#define DISPENSERS_TAB_NAME @"dispensers"
 
-@interface InspectionFormViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface InspectionFormViewController () <UITableViewDataSource, UITableViewDelegate, FormCategoryDelegate>
 
 @property (nonatomic, strong) UILabel *navigationLabel;
 
@@ -27,23 +25,14 @@
 @property (nonatomic, strong) UILabel *progressLabel;
 @property (nonatomic, strong) UISlider *progressSlider;
 
-@property (nonatomic, strong) UITableView *facilityTableView;
+@property (nonatomic, strong) FormCategoryView *facilityView;
 @property (nonatomic, strong) UIButton *facilityButton;
-@property (nonatomic, strong) NSMutableArray *facilityQuestionsState;
-@property (nonatomic, strong) NSArray *facilityQuestions;
-@property (nonatomic, strong) NSMutableArray *facilityQuestionsCommentState;
 
-@property (nonatomic, strong) UITableView *tanksTableView;
+@property (nonatomic, strong) FormCategoryView *tanksView;
 @property (nonatomic, strong) UIButton *tanksButton;
-@property (nonatomic, strong) NSMutableArray *tanksQuestionsState;
-@property (nonatomic, strong) NSArray *tanksQuestions;
-@property (nonatomic, strong) NSMutableArray *tanksQuestionsCommentState;
 
-@property (nonatomic, strong) UITableView *dispensersTableView;
+@property (nonatomic, strong) FormCategoryView *dispensersView;
 @property (nonatomic, strong) UIButton *dispensersButton;
-@property (nonatomic, strong) NSMutableArray *dispensersQuestionsState;
-@property (nonatomic, strong) NSArray *dispensersQuestions;
-@property (nonatomic, strong) NSMutableArray *dispensersQuestionsCommentState;
 
 @end
 
@@ -54,11 +43,11 @@
     [super loadView];
     
     [self.view addSubview:self.progressView];
-    [self.view addSubview:self.facilityTableView];
+    [self.view addSubview:self.facilityView];
     [self.view addSubview:self.facilityButton];
-    [self.view addSubview:self.tanksTableView];
+    [self.view addSubview:self.tanksView];
     [self.view addSubview:self.tanksButton];
-    [self.view addSubview:self.dispensersTableView];
+    [self.view addSubview:self.dispensersView];
     [self.view addSubview:self.dispensersButton];
     
 }
@@ -69,37 +58,7 @@
 	// Do any additional setup after loading the view.
     
     self.navigationItem.titleView = self.navigationLabel;
-    
-    self.facilityQuestions = [FormQuestion MR_findAllSortedBy:@"sortOrder" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Facilities"]];
-    
-    self.facilityQuestionsState = [[NSMutableArray alloc] initWithCapacity:self.facilityQuestions.count];
-    self.facilityQuestionsCommentState = [[NSMutableArray alloc] initWithCapacity:self.facilityQuestions.count];
-    for(NSUInteger i=0; i<self.facilityQuestions.count; i++)
-    {
-        [self.facilityQuestionsState addObject:[NSNumber numberWithInt:0]];
-        [self.facilityQuestionsCommentState addObject:[NSNumber numberWithInt:0]];
-    }
-    
-    self.tanksQuestions = [FormQuestion MR_findAllSortedBy:@"sortOrder" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Tanks"]];
-    
-    self.tanksQuestionsState = [[NSMutableArray alloc] initWithCapacity:self.tanksQuestions.count];
-    self.tanksQuestionsCommentState = [[NSMutableArray alloc] initWithCapacity:self.tanksQuestions.count];
-    for(NSUInteger i=0; i<self.tanksQuestions.count; i++)
-    {
-        [self.tanksQuestionsState addObject:[NSNumber numberWithInt:0]];
-        [self.tanksQuestionsCommentState addObject:[NSNumber numberWithInt:0]];
-    }
-    
-    self.dispensersQuestions = [FormQuestion MR_findAllSortedBy:@"sortOrder" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Dispensers"]];
-    
-    self.dispensersQuestionsState = [[NSMutableArray alloc] initWithCapacity:self.dispensersQuestions.count];
-    self.dispensersQuestionsCommentState = [[NSMutableArray alloc] initWithCapacity:self.dispensersQuestions.count];
-    for(NSUInteger i=0; i<self.dispensersQuestions.count; i++)
-    {
-        [self.dispensersQuestionsState addObject:[NSNumber numberWithInt:0]];
-        [self.dispensersQuestionsCommentState addObject:[NSNumber numberWithInt:0]];
-    }
-    
+        
     [self facilityButtonTapped:self];
 }
 
@@ -107,14 +66,7 @@
 {
     [super viewWillAppear:animated];
     
-    if(!self.facilityTableView.hidden)
-        [self.facilityTableView reloadData];
-    else if(!self.tanksTableView.hidden)
-        [self.tanksTableView reloadData];
-    else if(!self.dispensersTableView.hidden)
-        [self.dispensersTableView reloadData];
-    
-    [self updateProgress];
+    [self updateProgressView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -144,12 +96,6 @@
     }
     return _navigationLabel;
 }
-
-//- (void)setFormTitle:(NSString *)formTitle
-//{
-//    _formTitle = formTitle;
-//    self.navigationLabel.text = _formTitle;
-//}
 
 - (UIView*)progressView
 {
@@ -196,295 +142,93 @@
     return _progressSlider;
 }
 
-- (UITableView*)facilityTableView
+- (void)updateProgressView
 {
-    if(_facilityTableView == nil)
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    NSArray *allAnswers = [self.inspection.formAnswers allObjects];
+    NSInteger numAnswered = 0;
+    for(FormAnswer *a in allAnswers)
     {
-        _facilityTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT - NAV_BAR_HEIGHT)];
-        _facilityTableView.dataSource = self;
-        _facilityTableView.delegate = self;
-        _facilityTableView.backgroundColor = [UIColor fopOffWhiteColor];
-        _facilityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        if([a isAnswered])
+            numAnswered++;
     }
-    return _facilityTableView;
+    float value = (float)(numAnswered) / (float)(allAnswers.count);
+    self.inspection.progress = [NSNumber numberWithFloat:value];
+    self.progressSlider.value = [self.inspection.progress floatValue];
+    NSInteger percent = (NSInteger)(self.progressSlider.value * 100. + 0.5);
+    self.progressLabel.text = [NSString stringWithFormat:@"%d%% Complete", percent];
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    //?? reload visible table view
+//    if(self.facilityView.hidden)
 }
 
-- (UITableView*)tanksTableView
-{
-    if(_tanksTableView == nil)
-    {
-        _tanksTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT - NAV_BAR_HEIGHT)];
-        _tanksTableView.dataSource = self;
-        _tanksTableView.delegate = self;
-        _tanksTableView.backgroundColor = [UIColor fopOffWhiteColor];
-        _tanksTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    }
-    return _tanksTableView;
-}
-
-- (UITableView*)dispensersTableView
-{
-    if(_dispensersTableView == nil)
-    {
-        _dispensersTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT - NAV_BAR_HEIGHT)];
-        _dispensersTableView.dataSource = self;
-        _dispensersTableView.delegate = self;
-        _dispensersTableView.backgroundColor = [UIColor fopOffWhiteColor];
-        _dispensersTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    }
-    return _dispensersTableView;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-	return 1;
-}
-
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    CGRect rect = CGRectMake(0, 0, tableView.bounds.size.width, HEADER_HEIGHT);
-    UIView *headerView = [[UIView alloc] initWithFrame:rect];
-    headerView.backgroundColor = [UIColor fopYellowColor];
-    
-    rect.origin.x = 5;
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:rect];
-    headerLabel.backgroundColor = [UIColor clearColor];
-    headerLabel.textColor = [UIColor whiteColor];
-    headerLabel.font = [UIFont boldFontOfSize:18];
-    headerLabel.textAlignment = NSTextAlignmentLeft;
-    headerLabel.numberOfLines = 1;
-    headerLabel.text = @"Category 1";
-    [headerLabel sizeToFit];
-    headerLabel.frame = CGRectMake(5, 5, tableView.bounds.size.width - 5, headerLabel.frame.size.height);
-    
-    [headerView addSubview:headerLabel];
-    
-    return headerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return HEADER_HEIGHT;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if(tableView == self.facilityTableView)
-        return self.facilityQuestions.count;
-    else if(tableView == self.tanksTableView)
-        return self.tanksQuestions.count;
-    else if(tableView == self.dispensersTableView)
-        return self.dispensersQuestions.count;
-    
-    return 8;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    BOOL bHasComment = NO;
-    
-    NSString *tabName = nil;
-    if(tableView == self.facilityTableView)
-        tabName = FACILITY_TAB_NAME;
-    else if(tableView == self.tanksTableView)
-        tabName = TANKS_TAB_NAME;
-    else if(tableView == self.dispensersTableView)
-        tabName = DISPENSERS_TAB_NAME;
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *commentFormat = [NSString stringWithFormat:@"%@_comment_%d.txt", tabName, indexPath.row];
-    NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
-    NSString *comment = [[NSString alloc]initWithContentsOfFile:commentPath usedEncoding:nil error:nil];
-    if(comment)
-    {
-        bHasComment = YES;
-    }
-    else
-    {
-        NSString* path1 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", tabName, indexPath.row, 1]];
-        UIImage* image1 = [UIImage imageWithContentsOfFile:path1];
-        if(image1)
-            bHasComment = YES;
-    }
-    
-    NSNumber* state = nil;
-    FormQuestion* question = nil;
-    NSNumber* hasComment = nil;
-    if(tableView == self.facilityTableView)
-    {
-        [self.facilityQuestionsCommentState setObject:[NSNumber numberWithBool:bHasComment] atIndexedSubscript:indexPath.row];
-        state = [self.facilityQuestionsState objectAtIndex:indexPath.row];
-        question = [self.facilityQuestions objectAtIndex:indexPath.row];
-        hasComment = [self.facilityQuestionsCommentState objectAtIndex:indexPath.row];
-    }
-    else if(tableView == self.tanksTableView)
-    {
-        [self.tanksQuestionsCommentState setObject:[NSNumber numberWithBool:bHasComment] atIndexedSubscript:indexPath.row];
-        state = [self.tanksQuestionsState objectAtIndex:indexPath.row];
-        question = [self.tanksQuestions objectAtIndex:indexPath.row];
-        hasComment = [self.tanksQuestionsCommentState objectAtIndex:indexPath.row];
-    }
-    else if(tableView == self.dispensersTableView)
-    {
-        [self.dispensersQuestionsCommentState setObject:[NSNumber numberWithBool:bHasComment] atIndexedSubscript:indexPath.row];
-        state = [self.dispensersQuestionsState objectAtIndex:indexPath.row];
-        question = [self.dispensersQuestions objectAtIndex:indexPath.row];
-        hasComment = [self.dispensersQuestionsCommentState objectAtIndex:indexPath.row];
-    }
-    
-    CGFloat height = [InspectionsFormCell getCellHeightForQuestion:question.question withState:[state integerValue] withComment:[hasComment integerValue]];
-    return height;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"inspectionsFormCell";
-    
-    InspectionsFormCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-        cell = [[InspectionsFormCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withTarget:self];
-    
-    if(tableView == self.facilityTableView)
-    {
-        NSNumber *curState = [self.facilityQuestionsState objectAtIndex:indexPath.row];
-        cell.state = [curState integerValue];
-        FormQuestion *formQuestion = [self.facilityQuestions objectAtIndex:indexPath.row];
-        cell.question = formQuestion.question;
-        cell.commentState = [[self.facilityQuestionsCommentState objectAtIndex:indexPath.row] integerValue];
-    }
-    else if(tableView == self.tanksTableView)
-    {
-        NSNumber *curState = [self.tanksQuestionsState objectAtIndex:indexPath.row];
-        cell.state = [curState integerValue];
-        FormQuestion *formQuestion = [self.tanksQuestions objectAtIndex:indexPath.row];
-        cell.question = formQuestion.question;
-        cell.commentState = [[self.tanksQuestionsCommentState objectAtIndex:indexPath.row] integerValue];
-    }
-    else if(tableView == self.dispensersTableView)
-    {
-        NSNumber *curState = [self.dispensersQuestionsState objectAtIndex:indexPath.row];
-        cell.state = [curState integerValue];
-        FormQuestion *formQuestion = [self.dispensersQuestions objectAtIndex:indexPath.row];
-        cell.question = formQuestion.question;
-        cell.commentState = [[self.dispensersQuestionsCommentState objectAtIndex:indexPath.row] integerValue];
-    }
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)editCommentPhotosForAnswer:(FormAnswer *)formAnswer
 {
     CommentPhotoViewController *commentPhotoVC = [[CommentPhotoViewController alloc] init];
-    
-    if(tableView == self.facilityTableView)
-    {
-        FormQuestion *formQuestion = [self.facilityQuestions objectAtIndex:indexPath.row];
-        commentPhotoVC.question = formQuestion.question;
-        commentPhotoVC.tabName = FACILITY_TAB_NAME;
-    }
-    else if(tableView == self.tanksTableView)
-    {
-        FormQuestion *formQuestion = [self.tanksQuestions objectAtIndex:indexPath.row];
-        commentPhotoVC.question = formQuestion.question;
-        commentPhotoVC.tabName = @"tanks";
-    }
-    else if(tableView == self.dispensersTableView)
-    {
-        FormQuestion *formQuestion = [self.dispensersQuestions objectAtIndex:indexPath.row];
-        commentPhotoVC.question = formQuestion.question;
-        commentPhotoVC.tabName = @"dispensers";
-    }
-    
-    commentPhotoVC.row = indexPath.row;
+    commentPhotoVC.answer = formAnswer;
+    commentPhotoVC.formCategoryDelegate = self;
     [self presentViewController:commentPhotoVC animated:YES completion:nil];
 }
 
-- (void)didSelectAccessory:(id)sender event:(id)event
+- (FormCategoryView *)facilityView
 {
-    NSSet *touches = [event allTouches];
-    UITouch *touch = [touches anyObject];
-    
-    if(!self.facilityTableView.hidden)
+    if(_facilityView == nil)
     {
-        CGPoint currentTouchPosition = [touch locationInView:self.facilityTableView];
-        NSIndexPath *indexPath = [self.facilityTableView indexPathForRowAtPoint: currentTouchPosition];
+        _facilityView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT - NAV_BAR_HEIGHT)];
         
-        //update the question state according to the tap
-        NSInteger state = [[self.facilityQuestionsState objectAtIndex:indexPath.row] integerValue] + 1;
-        if(state > 2)
-            state = 0;
-        [self.facilityQuestionsState setObject:[NSNumber numberWithInt:state] atIndexedSubscript:indexPath.row];
-        
-        [self updateProgress];
-        [self.facilityTableView reloadData];
+        _facilityView.formCategoryDelegate = self;
+        _facilityView.inspection = self.inspection;
+        NSArray *allQuestions = [self.inspection.formQuestions allObjects];
+        NSArray *facilityQuestions = [allQuestions filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Facilities"]];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortOrder" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        NSArray *sortedQuestions = [facilityQuestions sortedArrayUsingDescriptors:sortDescriptors];
+        _facilityView.formQuestions = sortedQuestions;
     }
-    else if(!self.tanksTableView.hidden)
-    {
-        CGPoint currentTouchPosition = [touch locationInView:self.tanksTableView];
-        NSIndexPath *indexPath = [self.tanksTableView indexPathForRowAtPoint: currentTouchPosition];
-        
-        //update the question state according to the tap
-        NSInteger state = [[self.tanksQuestionsState objectAtIndex:indexPath.row] integerValue] + 1;
-        if(state > 2)
-            state = 0;
-        [self.tanksQuestionsState setObject:[NSNumber numberWithInt:state] atIndexedSubscript:indexPath.row];
-        
-        [self updateProgress];
-        [self.tanksTableView reloadData];
-    }
-    else if(!self.dispensersTableView.hidden)
-    {
-        CGPoint currentTouchPosition = [touch locationInView:self.dispensersTableView];
-        NSIndexPath *indexPath = [self.dispensersTableView indexPathForRowAtPoint: currentTouchPosition];
-        
-        //update the question state according to the tap
-        NSInteger state = [[self.dispensersQuestionsState objectAtIndex:indexPath.row] integerValue] + 1;
-        if(state > 2)
-            state = 0;
-        [self.dispensersQuestionsState setObject:[NSNumber numberWithInt:state] atIndexedSubscript:indexPath.row];
-        
-        [self updateProgress];
-        [self.dispensersTableView reloadData];
-    }
+    return _facilityView;
 }
 
-- (void)updateProgress
+- (FormCategoryView *)tanksView
 {
-    NSUInteger numCompleted = 0;
-    for(NSUInteger i=0; i<self.facilityQuestionsState.count; i++)
+    if(_tanksView == nil)
     {
-        NSNumber* state = [self.facilityQuestionsState objectAtIndex:i];
-        NSNumber* commentState = [self.facilityQuestionsCommentState objectAtIndex:i];
-        if([state integerValue] == 1)
-            numCompleted++;
-        else if(([state integerValue] == 2) && ([commentState integerValue] == 1))
-            numCompleted++;
+        _tanksView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT - NAV_BAR_HEIGHT)];
+        
+        _tanksView.formCategoryDelegate = self;
+        _tanksView.inspection = self.inspection;
+        NSArray *allQuestions = [self.inspection.formQuestions allObjects];
+        NSArray *facilityQuestions = [allQuestions filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Tanks"]];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortOrder" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        NSArray *sortedQuestions = [facilityQuestions sortedArrayUsingDescriptors:sortDescriptors];
+        _tanksView.formQuestions = sortedQuestions;
     }
-    for(NSUInteger i=0; i<self.tanksQuestionsState.count; i++)
-    {
-        NSNumber* state = [self.tanksQuestionsState objectAtIndex:i];
-        NSNumber* commentState = [self.tanksQuestionsCommentState objectAtIndex:i];
-        if([state integerValue] == 1)
-            numCompleted++;
-        else if(([state integerValue] == 2) && ([commentState integerValue] == 1))
-            numCompleted++;
-    }
-    for(NSUInteger i=0; i<self.dispensersQuestionsState.count; i++)
-    {
-        NSNumber* state = [self.dispensersQuestionsState objectAtIndex:i];
-        NSNumber* commentState = [self.dispensersQuestionsCommentState objectAtIndex:i];
-        if([state integerValue] == 1)
-            numCompleted++;
-        else if(([state integerValue] == 2) && ([commentState integerValue] == 1))
-            numCompleted++;
-    }
-
-    float progress = ((float)(numCompleted)/(float)(self.facilityQuestionsState.count + self.tanksQuestionsState.count + self.dispensersQuestionsState.count));
-    [self.progressSlider setValue:progress];
-    NSInteger percent = (NSInteger)(progress * 100.);
-    self.progressLabel.text = [NSString stringWithFormat:@"%d%% Complete", percent];
+    return _tanksView;
 }
+
+- (FormCategoryView *)dispensersView
+{
+    if(_dispensersView == nil)
+    {
+        _dispensersView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT - NAV_BAR_HEIGHT)];
+        
+        _dispensersView.formCategoryDelegate = self;
+        _dispensersView.inspection = self.inspection;
+        NSArray *allQuestions = [self.inspection.formQuestions allObjects];
+        NSArray *facilityQuestions = [allQuestions filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Dispensers"]];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortOrder" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        NSArray *sortedQuestions = [facilityQuestions sortedArrayUsingDescriptors:sortDescriptors];
+        _dispensersView.formQuestions = sortedQuestions;
+    }
+    return _dispensersView;
+}
+
+
+
 
 - (UIButton*)facilityButton
 {
@@ -503,11 +247,11 @@
 
 - (void)facilityButtonTapped:(id)sender
 {
-    self.facilityTableView.hidden = NO;
+    self.facilityView.hidden = NO;
     self.facilityButton.selected = YES;
-    self.tanksTableView.hidden = YES;
+    self.tanksView.hidden = YES;
     self.tanksButton.selected = NO;
-    self.dispensersTableView.hidden = YES;
+    self.dispensersView.hidden = YES;
     self.dispensersButton.selected = NO;
 }
 
@@ -528,11 +272,11 @@
 
 - (void)tanksButtonTapped:(id)sender
 {
-    self.facilityTableView.hidden = YES;
+    self.facilityView.hidden = YES;
     self.facilityButton.selected = NO;
-    self.tanksTableView.hidden = NO;
+    self.tanksView.hidden = NO;
     self.tanksButton.selected = YES;
-    self.dispensersTableView.hidden = YES;
+    self.dispensersView.hidden = YES;
     self.dispensersButton.selected = NO;
 }
 
@@ -553,11 +297,11 @@
 
 - (void)dispensersButtonTapped:(id)sender
 {
-    self.facilityTableView.hidden = YES;
+    self.facilityView.hidden = YES;
     self.facilityButton.selected = NO;
-    self.tanksTableView.hidden = YES;
+    self.tanksView.hidden = YES;
     self.tanksButton.selected = NO;
-    self.dispensersTableView.hidden = NO;
+    self.dispensersView.hidden = NO;
     self.dispensersButton.selected = YES;
 }
 

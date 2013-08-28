@@ -1,18 +1,15 @@
 //
-//  Photo.m
+//  FormAnswer+Additions.h
 //  FuelOperator
 //
 //  Created by Gary Robinson on 8/28/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
-#import "Photo.h"
 #import "FormAnswer.h"
 
+@interface FormAnswer (Additions)
 
-@implementation Photo
-
-@dynamic imageFile;
-@dynamic formAnswer;
+- (BOOL)isAnswered;
 
 @end

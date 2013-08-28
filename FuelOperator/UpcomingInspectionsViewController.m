@@ -79,8 +79,8 @@
 
 - (void)updateInspections
 {
-    NSDate *start = [NSDate startOfTheWeekFromToday];
-    NSDate *end = [NSDate dateWithNumberOfDays:12 sinceDate:start];
+    NSDate *start = [NSDate dateWithNumberOfDays:-14 sinceDate:[NSDate startOfTheWeekFromToday]];
+    NSDate *end = [NSDate dateWithNumberOfDays:6*7 sinceDate:start];
     [[OnlineService sharedService] updateInspectionsFromDate:start toDate:end];
 }
 

@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C08348317C47407002439CA /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C08348217C47407002439CA /* Inspection.m */; };
-		3C08348617C47407002439CA /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C08348517C47407002439CA /* FormQuestion.m */; };
-		3C08348917C47407002439CA /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C08348817C47407002439CA /* Location.m */; };
-		3C08348C17C47407002439CA /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C08348B17C47407002439CA /* Photo.m */; };
-		3C08348F17C47407002439CA /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C08348E17C47407002439CA /* Station.m */; };
-		3C08349217C47407002439CA /* FormAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C08349117C47407002439CA /* FormAnswer.m */; };
+		3C063F8A17CDC4D600BAF3FE /* FormCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C063F8917CDC4D600BAF3FE /* FormCategoryView.m */; };
+		3C063F9F17CDDBC200BAF3FE /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C063F9E17CDDBC200BAF3FE /* FormQuestion.m */; };
+		3C063FA217CDDBC200BAF3FE /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C063FA117CDDBC200BAF3FE /* Location.m */; };
+		3C063FA517CDDBC200BAF3FE /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C063FA417CDDBC200BAF3FE /* Inspection.m */; };
+		3C063FA817CDDBC200BAF3FE /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C063FA717CDDBC200BAF3FE /* Photo.m */; };
+		3C063FAB17CDDBC200BAF3FE /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C063FAA17CDDBC200BAF3FE /* Station.m */; };
+		3C063FAE17CDDBC200BAF3FE /* FormAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C063FAD17CDDBC200BAF3FE /* FormAnswer.m */; };
+		3C063FB117CDE6F600BAF3FE /* FormAnswer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C063FB017CDE6F600BAF3FE /* FormAnswer+Additions.m */; };
 		3C0BA24D174FF2BB0043D256 /* mapCalloutGas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0BA24C174FF2BB0043D256 /* mapCalloutGas@2x.png */; };
 		3C0BA2AC17500E800043D256 /* RootContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BA2AB17500E800043D256 /* RootContainerViewController.m */; };
 		3C1B6D7016F437F5007CD5F4 /* btn-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C1B6D6F16F437F5007CD5F4 /* btn-back@2x.png */; };
@@ -117,18 +119,22 @@
 
 /* Begin PBXFileReference section */
 		1AA562F2A03D405ABE7ECDFB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		3C08348117C47407002439CA /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
-		3C08348217C47407002439CA /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
-		3C08348417C47407002439CA /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
-		3C08348517C47407002439CA /* FormQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormQuestion.m; sourceTree = "<group>"; };
-		3C08348717C47407002439CA /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
-		3C08348817C47407002439CA /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
-		3C08348A17C47407002439CA /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		3C08348B17C47407002439CA /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		3C08348D17C47407002439CA /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
-		3C08348E17C47407002439CA /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
-		3C08349017C47407002439CA /* FormAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormAnswer.h; sourceTree = "<group>"; };
-		3C08349117C47407002439CA /* FormAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormAnswer.m; sourceTree = "<group>"; };
+		3C063F8817CDC4D600BAF3FE /* FormCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormCategoryView.h; sourceTree = "<group>"; };
+		3C063F8917CDC4D600BAF3FE /* FormCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormCategoryView.m; sourceTree = "<group>"; };
+		3C063F9D17CDDBC200BAF3FE /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
+		3C063F9E17CDDBC200BAF3FE /* FormQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormQuestion.m; sourceTree = "<group>"; };
+		3C063FA017CDDBC200BAF3FE /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		3C063FA117CDDBC200BAF3FE /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		3C063FA317CDDBC200BAF3FE /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
+		3C063FA417CDDBC200BAF3FE /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
+		3C063FA617CDDBC200BAF3FE /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		3C063FA717CDDBC200BAF3FE /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		3C063FA917CDDBC200BAF3FE /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		3C063FAA17CDDBC200BAF3FE /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
+		3C063FAC17CDDBC200BAF3FE /* FormAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormAnswer.h; sourceTree = "<group>"; };
+		3C063FAD17CDDBC200BAF3FE /* FormAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormAnswer.m; sourceTree = "<group>"; };
+		3C063FAF17CDE6F600BAF3FE /* FormAnswer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormAnswer+Additions.h"; sourceTree = "<group>"; };
+		3C063FB017CDE6F600BAF3FE /* FormAnswer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormAnswer+Additions.m"; sourceTree = "<group>"; };
 		3C0BA24C174FF2BB0043D256 /* mapCalloutGas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mapCalloutGas@2x.png"; path = "Resources/mapCalloutGas@2x.png"; sourceTree = "<group>"; };
 		3C0BA2AA17500E800043D256 /* RootContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootContainerViewController.h; sourceTree = "<group>"; };
 		3C0BA2AB17500E800043D256 /* RootContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootContainerViewController.m; sourceTree = "<group>"; };
@@ -453,20 +459,22 @@
 		3C78338016DDE13E0037ED08 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3C063F9D17CDDBC200BAF3FE /* FormQuestion.h */,
+				3C063FAC17CDDBC200BAF3FE /* FormAnswer.h */,
+				3C063FAD17CDDBC200BAF3FE /* FormAnswer.m */,
+				3C063FA917CDDBC200BAF3FE /* Station.h */,
+				3C063FAA17CDDBC200BAF3FE /* Station.m */,
+				3C063FA617CDDBC200BAF3FE /* Photo.h */,
+				3C063FA717CDDBC200BAF3FE /* Photo.m */,
+				3C063FA317CDDBC200BAF3FE /* Inspection.h */,
+				3C063FA417CDDBC200BAF3FE /* Inspection.m */,
+				3C063FA017CDDBC200BAF3FE /* Location.h */,
+				3C063FA117CDDBC200BAF3FE /* Location.m */,
+				3C063F9E17CDDBC200BAF3FE /* FormQuestion.m */,
 				3C78336416DDD5E70037ED08 /* FuelOperator.xcdatamodeld */,
-				3C08349017C47407002439CA /* FormAnswer.h */,
-				3C08349117C47407002439CA /* FormAnswer.m */,
-				3C08348D17C47407002439CA /* Station.h */,
-				3C08348E17C47407002439CA /* Station.m */,
-				3C08348A17C47407002439CA /* Photo.h */,
-				3C08348B17C47407002439CA /* Photo.m */,
-				3C08348717C47407002439CA /* Location.h */,
-				3C08348817C47407002439CA /* Location.m */,
-				3C08348417C47407002439CA /* FormQuestion.h */,
-				3C08348517C47407002439CA /* FormQuestion.m */,
-				3C08348117C47407002439CA /* Inspection.h */,
-				3C08348217C47407002439CA /* Inspection.m */,
 				3CFBA4C91759060A00F47978 /* DefaultData.plist */,
+				3C063FAF17CDE6F600BAF3FE /* FormAnswer+Additions.h */,
+				3C063FB017CDE6F600BAF3FE /* FormAnswer+Additions.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -490,6 +498,8 @@
 				3C29B262172C726F00380A96 /* MapAnnotation.m */,
 				3C29B26B172C8EE500380A96 /* MapAnnotationView.h */,
 				3C29B26C172C8EE500380A96 /* MapAnnotationView.m */,
+				3C063F8817CDC4D600BAF3FE /* FormCategoryView.h */,
+				3C063F8917CDC4D600BAF3FE /* FormCategoryView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -677,12 +687,14 @@
 				3C29B26D172C8EE500380A96 /* MapAnnotationView.m in Sources */,
 				3C0BA2AC17500E800043D256 /* RootContainerViewController.m in Sources */,
 				3CFBA4D0175946BC00F47978 /* NSDate+Additions.m in Sources */,
-				3C08348317C47407002439CA /* Inspection.m in Sources */,
-				3C08348617C47407002439CA /* FormQuestion.m in Sources */,
-				3C08348917C47407002439CA /* Location.m in Sources */,
-				3C08348C17C47407002439CA /* Photo.m in Sources */,
-				3C08348F17C47407002439CA /* Station.m in Sources */,
-				3C08349217C47407002439CA /* FormAnswer.m in Sources */,
+				3C063F8A17CDC4D600BAF3FE /* FormCategoryView.m in Sources */,
+				3C063F9F17CDDBC200BAF3FE /* FormQuestion.m in Sources */,
+				3C063FA217CDDBC200BAF3FE /* Location.m in Sources */,
+				3C063FA517CDDBC200BAF3FE /* Inspection.m in Sources */,
+				3C063FA817CDDBC200BAF3FE /* Photo.m in Sources */,
+				3C063FAB17CDDBC200BAF3FE /* Station.m in Sources */,
+				3C063FAE17CDDBC200BAF3FE /* FormAnswer.m in Sources */,
+				3C063FB117CDE6F600BAF3FE /* FormAnswer+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

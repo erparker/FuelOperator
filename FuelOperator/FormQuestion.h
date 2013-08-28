@@ -2,7 +2,7 @@
 //  FormQuestion.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 8/20/13.
+//  Created by Gary Robinson on 8/28/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSNumber * sortOrder;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSSet *formAnswers;
-@property (nonatomic, retain) Inspection *inspection;
+@property (nonatomic, retain) NSSet *inspections;
 @end
 
 @interface FormQuestion (CoreDataGeneratedAccessors)
@@ -28,5 +28,10 @@
 - (void)removeFormAnswersObject:(FormAnswer *)value;
 - (void)addFormAnswers:(NSSet *)values;
 - (void)removeFormAnswers:(NSSet *)values;
+
+- (void)addInspectionsObject:(Inspection *)value;
+- (void)removeInspectionsObject:(Inspection *)value;
+- (void)addInspections:(NSSet *)values;
+- (void)removeInspections:(NSSet *)values;
 
 @end

@@ -61,35 +61,45 @@
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)]];
     
     //load the appropriate comment and images, if they exist
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    
+//    NSString *commentFormat = [NSString stringWithFormat:@"%@_comment_%d.txt", self.tabName, self.row];
+//    NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
+//    
+//    NSString *comment = [[NSString alloc]initWithContentsOfFile:commentPath usedEncoding:nil error:nil];
+//    self.commentTextView.text = comment;
     
-    NSString *commentFormat = [NSString stringWithFormat:@"%@_comment_%d.txt", self.tabName, self.row];
-    NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
     
-    NSString *comment = [[NSString alloc]initWithContentsOfFile:commentPath usedEncoding:nil error:nil];
-    self.commentTextView.text = comment;
-    
-    
-    NSString* path1 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 1]];
-    UIImage* image1 = [UIImage imageWithContentsOfFile:path1];
-    if(image1)
-        self.image1 = image1;
-    
-    NSString* path2 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 2]];
-    UIImage* image2 = [UIImage imageWithContentsOfFile:path2];
-    if(image2)
-        self.image2 = image2;
-    
-    NSString* path3 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 3]];
-    UIImage* image3 = [UIImage imageWithContentsOfFile:path3];
-    if(image3)
-        self.image3 = image3;
+//    NSString* path1 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 1]];
+//    UIImage* image1 = [UIImage imageWithContentsOfFile:path1];
+//    if(image1)
+//        self.image1 = image1;
+//    
+//    NSString* path2 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 2]];
+//    UIImage* image2 = [UIImage imageWithContentsOfFile:path2];
+//    if(image2)
+//        self.image2 = image2;
+//    
+//    NSString* path3 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 3]];
+//    UIImage* image3 = [UIImage imageWithContentsOfFile:path3];
+//    if(image3)
+//        self.image3 = image3;
     
     self.imageView1.image = self.image1;
     self.imageView2.image = self.image2;
     self.imageView3.image = self.image3;
     
+}
+
+- (void)setAnswer:(FormAnswer *)answer
+{
+    _answer = answer;
+    
+    if(_answer.comment)
+        self.commentTextView.text = _answer.comment;
+    else
+        self.commentTextView.text = @"";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -149,36 +159,32 @@
 - (void)saveTapped:(id)sender
 {
     //?? save the coments and images to the docs directory
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
     
     //comments
-    NSString *commentFormat = [NSString stringWithFormat:@"%@_comment_%d.txt", self.tabName, self.row];
-    NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
-    if(![self.commentTextView.text isEqualToString:@""])
-        [self.commentTextView.text writeToFile:commentPath atomically:YES encoding:NSStringEncodingConversionAllowLossy error:nil];
-    else
-        [[NSFileManager defaultManager] removeItemAtPath:commentPath error:nil];
+    self.answer.comment = self.commentTextView.text;
+    [self.formCategoryDelegate updateProgressView];
     
     //images
-    if(self.image1)
-    {
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 1]];
-        NSData* data = UIImagePNGRepresentation(self.image1);
-        [data writeToFile:path atomically:YES];
-    }
-    if(self.image2)
-    {
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 2]];
-        NSData* data = UIImagePNGRepresentation(self.image2);
-        [data writeToFile:path atomically:YES];
-    }
-    if(self.image3)
-    {
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 3]];
-        NSData* data = UIImagePNGRepresentation(self.image3);
-        [data writeToFile:path atomically:YES];
-    }
+//    if(self.image1)
+//    {
+//        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 1]];
+//        NSData* data = UIImagePNGRepresentation(self.image1);
+//        [data writeToFile:path atomically:YES];
+//    }
+//    if(self.image2)
+//    {
+//        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 2]];
+//        NSData* data = UIImagePNGRepresentation(self.image2);
+//        [data writeToFile:path atomically:YES];
+//    }
+//    if(self.image3)
+//    {
+//        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 3]];
+//        NSData* data = UIImagePNGRepresentation(self.image3);
+//        [data writeToFile:path atomically:YES];
+//    }
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -217,7 +223,7 @@
         _questionLabel.backgroundColor = [UIColor clearColor];
         _questionLabel.font = [UIFont boldFontOfSize:20];
         _questionLabel.textColor = [UIColor fopDarkGreyColor];
-        _questionLabel.text = self.question;
+        _questionLabel.text = self.answer.formQuestion.question;
         _questionLabel.numberOfLines = 0;
         [_questionLabel sizeToFit];
     }

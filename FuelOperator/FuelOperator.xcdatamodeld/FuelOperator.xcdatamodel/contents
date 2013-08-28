@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="13A538g" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="13A558" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="FormAnswer" representedClassName="FormAnswer" syncable="YES">
-        <attribute name="affirmitive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="answer" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="formQuestion" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="formAnswers" inverseEntity="FormQuestion" syncable="YES"/>
+        <relationship name="inspection" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Inspection" inverseName="formAnswers" inverseEntity="Inspection" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="formAnswer" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="FormQuestion" representedClassName="FormQuestion" syncable="YES">
@@ -13,12 +14,14 @@
         <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="formAnswers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="formQuestion" inverseEntity="FormAnswer" syncable="YES"/>
-        <relationship name="inspection" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Inspection" inverseName="formQuestions" inverseEntity="Inspection" syncable="YES"/>
+        <relationship name="inspections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Inspection" inverseName="formQuestions" inverseEntity="Inspection" syncable="YES"/>
     </entity>
     <entity name="Inspection" representedClassName="Inspection" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="inspectionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="formQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="inspection" inverseEntity="FormQuestion" syncable="YES"/>
+        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="formAnswers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="inspection" inverseEntity="FormAnswer" syncable="YES"/>
+        <relationship name="formQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="inspections" inverseEntity="FormQuestion" syncable="YES"/>
         <relationship name="station" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="inspections" inverseEntity="Station" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName="Location" syncable="YES">
@@ -42,11 +45,11 @@
         <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="station" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FormAnswer" positionX="-333" positionY="72" width="128" height="103"/>
-        <element name="FormQuestion" positionX="-515" positionY="63" width="128" height="148"/>
-        <element name="Inspection" positionX="-684" positionY="-64" width="128" height="103"/>
-        <element name="Location" positionX="-324" positionY="-147" width="128" height="165"/>
-        <element name="Photo" positionX="-153" positionY="72" width="128" height="73"/>
-        <element name="Station" positionX="-513" positionY="-151" width="128" height="88"/>
+        <element name="FormAnswer" positionX="-531" positionY="-261" width="128" height="118"/>
+        <element name="FormQuestion" positionX="-513" positionY="-112" width="128" height="148"/>
+        <element name="Inspection" positionX="-765" positionY="-67" width="128" height="133"/>
+        <element name="Location" positionX="-351" positionY="81" width="128" height="165"/>
+        <element name="Photo" positionX="-351" positionY="-261" width="128" height="73"/>
+        <element name="Station" positionX="-524" positionY="81" width="128" height="88"/>
     </elements>
 </model>
