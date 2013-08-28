@@ -127,7 +127,7 @@
 {
     _inspection = inspection;
     
-    NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.station.companyName, inspection.station.location.city, inspection.station.location.stateShort];
+    NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.station.companyName, inspection.station.location.city, inspection.station.location.state];
     self.navigationLabel.text = formTitle;
 }
 

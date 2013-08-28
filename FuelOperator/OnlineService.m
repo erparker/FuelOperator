@@ -101,6 +101,46 @@ static OnlineService *sharedOnlineService = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"loginDone" object:nil userInfo:userInfo];
 }
 
+- (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
+{
+    [self addQuestionsFromDate:dateFrom toDate:dateTo];
+}
+
+- (void)addQuestionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
+{
+    //?? should I use the current location of the phone?
+    NSString *path = [NSString stringWithFormat:@"Questions/%@/%@", self.sessionGuid, @"UT"];
+    [self.httpClient getPath:path parameters:nil
+                     success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error;
+         NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         
+         for(NSDictionary *dict in results)
+         {
+             NSNumber *questionID = [dict objectForKey:@"QuestionID"];
+             FormQuestion *question = [FormQuestion MR_findFirstByAttribute:@"questionID" withValue:questionID];
+             if(!question)
+             {
+                 question = [FormQuestion MR_createEntity];
+                 question.questionID = [dict objectForKey:@"QuestionID"];
+                 question.question = [dict objectForKey:@"Question"];
+                 question.category = [dict objectForKey:@"CategoryDescription"];
+                 question.sortOrder = [dict objectForKey:@"SortOrder"];
+                 question.type = [dict objectForKey:@"CategoryDescription"];
+             }
+         }
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         
+         [self getScheduledInspectionsFromDate:dateFrom toDate:dateTo];
+     }
+                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         
+     }
+     ];
+}
+
 - (void)getScheduledInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -115,6 +155,7 @@ static OnlineService *sharedOnlineService = nil;
          NSError *error;
          NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
          [self addInspections:results];
+         [self addQuestionsByScheduleFromDate:dateFrom toDate:dateTo];
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -149,62 +190,60 @@ static OnlineService *sharedOnlineService = nil;
             
             Location *location = [Location MR_createEntity];
             location.streetAddress = [dict objectForKey:@"Address1"];
-            location.address2 = [dict objectForKey:@"Address2"];
+            NSString *address2 = [dict objectForKey:@"Address2"];
+            if(address2 && (address2 != [NSNull null]))
+                location.address2 = address2;
             location.city = [dict objectForKey:@"City"];
             location.zipCode = [dict objectForKey:@"ZipCode"];
             location.state = [dict objectForKey:@"StateID"];
-            location.stateShort = [dict objectForKey:@"StateID"];
-            //?? need LatLong
+            location.lattitude = [NSNumber numberWithFloat:[[dict objectForKey:@"Latitude"] floatValue]];
+            location.longitude = [NSNumber numberWithFloat:[[dict objectForKey:@"Longitude"] floatValue]];
             location.station = station;
-            
-            //?? also add in the form
-            Form *form = [Form MR_createEntity];
-            form.name = @"Filler";
-            inspection.form = form;
-            
-            [self addQuestionsForForm:form];
         }
     }
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
 }
 
-- (void)addQuestionsForForm:(Form *)form
+- (void)addQuestionsByScheduleFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
 {
-    NSString *path = [NSString stringWithFormat:@"Questions/%@/%@", self.sessionGuid, @"UT"/*form.inspection.station.location.stateShort*/];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM-dd-yyyy"];
+    NSString *stringFrom = [formatter stringFromDate:dateFrom];
+    NSString *stringTo = [formatter stringFromDate:dateTo];
+    
+    NSString *path = [NSString stringWithFormat:@"questionsbyschedule/%@/%@/%@/%@", self.sessionGuid, @"UT", stringFrom, stringTo];
     [self.httpClient getPath:path parameters:nil
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSError *error;
-         NSArray *re`sults = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         
+         //?? results has a list of questionIds and InspectionIds
+         //?? use these to make the relationships
          
          for(NSDictionary *dict in results)
          {
+             NSNumber *insepctionID = [dict objectForKey:@"InspectionID"];
              NSNumber *questionID = [dict objectForKey:@"QuestionID"];
+             
+             Inspection *inspection = [Inspection MR_findFirstByAttribute:@"inspectionID" withValue:insepctionID];
              FormQuestion *question = [FormQuestion MR_findFirstByAttribute:@"questionID" withValue:questionID];
-             if(!question)
-             {
-                 question = [FormQuestion MR_createEntity];
-                 question.questionID = [dict objectForKey:@"QuestionID"];
-                 question.question = [dict objectForKey:@"Question"];
-                 question.category = [dict objectForKey:@"CategoryDescription"];
-                 question.sortOrder = [dict objectForKey:@"SortOrder"];
-                 question.type = [dict objectForKey:@"CategoryDescription"];
-                 
-                 question.form = form;
-             }
+             if(inspection && question)
+                 question.inspection = inspection;
          }
+         
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          
      }
      ];
-    
-    
 }
+
+
 
 
 

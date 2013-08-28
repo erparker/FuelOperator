@@ -71,7 +71,7 @@
 {
     NSDate *start = [NSDate startOfTheWeekFromToday];
     NSDate *end = [NSDate dateWithNumberOfDays:12 sinceDate:start];
-    [[OnlineService sharedService] getScheduledInspectionsFromDate:start toDate:end];
+    [[OnlineService sharedService] updateInspectionsFromDate:start toDate:end];
 }
 
 - (void)inspectionsUpdated:(id)sender

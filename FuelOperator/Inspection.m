@@ -2,13 +2,12 @@
 //  Inspection.m
 //  FuelOperator
 //
-//  Created by Gary Robinson on 8/17/13.
+//  Created by Gary Robinson on 8/20/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
 #import "Inspection.h"
-#import "Form.h"
-#import "FormAnswer.h"
+#import "FormQuestion.h"
 #import "Station.h"
 
 
@@ -16,8 +15,7 @@
 
 @dynamic date;
 @dynamic inspectionID;
-@dynamic form;
-@dynamic formAnswers;
 @dynamic station;
+@dynamic formQuestions;
 
 @end

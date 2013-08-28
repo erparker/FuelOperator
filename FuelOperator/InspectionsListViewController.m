@@ -269,8 +269,9 @@
 //            Station *station = [self.stations objectAtIndex:i];
             MapAnnotation *anno = [[MapAnnotation alloc] init];
             anno.coordinate = CLLocationCoordinate2DMake([inspection.station.location.lattitude floatValue], [inspection.station.location.longitude floatValue]);
+            anno.inspection = inspection;
             anno.annotationTitle = inspection.station.companyName;
-            anno.annotationSubtitle = [NSString stringWithFormat:@"%@, %@", inspection.station.location.city, inspection.station.location.stateShort];
+            anno.annotationSubtitle = [NSString stringWithFormat:@"%@, %@", inspection.station.location.city, inspection.station.location.state];
             anno.title = @" ";
             anno.subtitle = @" ";
             [_mapView addAnnotation:anno];
@@ -292,6 +293,7 @@
         mapView.image = [UIImage imageNamed:@"mappin"];
         
         MapAnnotation *mapAnnotation = (MapAnnotation *)annotation;
+        mapView.inspection = mapAnnotation.inspection;
         mapView.annotationTitle = mapAnnotation.annotationTitle;
         mapView.annotationSubtitle = mapAnnotation.annotationSubtitle;
         mapView.delegate = self;
@@ -314,7 +316,7 @@
     MapGestureRecognizer *mapGesture = (MapGestureRecognizer *)sender;
     
     InspectionFormViewController *inspectionFormVC = [[InspectionFormViewController alloc] init];
-//    inspectionFormVC.formTitle = [NSString stringWithFormat:@"%@ - %@", mapGesture.annotationTitle, mapGesture.annotationSubtitle];
+    inspectionFormVC.inspection = mapGesture.inspection;
     [self.navigationController pushViewController:inspectionFormVC animated:YES];
 }
 

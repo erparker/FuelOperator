@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong, readonly) NSString *sessionGuid;
 
-- (void)getScheduledInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo;
+- (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo;
+
 
 @end

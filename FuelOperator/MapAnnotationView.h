@@ -14,6 +14,7 @@
 
 @interface MapAnnotationView : MKAnnotationView
 
+@property (nonatomic, strong) Inspection *inspection;
 @property (nonatomic, strong) NSString *annotationTitle;
 @property (nonatomic, strong) NSString *annotationSubtitle;
 
@@ -24,6 +25,7 @@
 
 @interface MapGestureRecognizer : UITapGestureRecognizer
 
+@property (nonatomic, strong) Inspection *inspection;
 @property (nonatomic, strong) NSString *annotationTitle;
 @property (nonatomic, strong) NSString *annotationSubtitle;
 
