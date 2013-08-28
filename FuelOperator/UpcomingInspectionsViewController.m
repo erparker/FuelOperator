@@ -18,10 +18,10 @@
 
 @property (nonatomic, strong) UIButton *settingsBtn;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIButton *addSiteBtn;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSDate *startOfThisWeek;
 @property (nonatomic) BOOL settingsOpen;
+@property (nonatomic) BOOL firstAppear;
 
 @end
 
@@ -46,8 +46,6 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.settingsBtn];
     self.navigationItem.titleView = self.titleLabel;
-    
-    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.addSiteBtn];
 }
 
 - (void)viewDidLoad
@@ -56,9 +54,21 @@
 	// Do any additional setup after loading the view.
     
     self.settingsOpen = NO;
+    self.firstAppear = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inspectionsUpdated:) name:@"inspectionsUpdated" object:nil];
     [self updateInspections];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if(self.firstAppear)
+    {
+        self.firstAppear = NO;
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,10 +135,25 @@
     return _tableView;
 }
 
+- (NSDate *)startOfThisWeek
+{
+    if(_startOfThisWeek == nil)
+    {
+        _startOfThisWeek = [NSDate startOfTheWeekFromToday];
+    }
+    return _startOfThisWeek;
+}
+
+
+- (NSInteger)sectionMultiplier:(NSInteger)section
+{
+    //also shows the previous 2 weeks
+    return (section - 2);
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 2;
+	return 6;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -149,18 +174,9 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/yy"];
     
-    self.startOfThisWeek = [NSDate startOfTheWeekFromToday];
-    if(section == 0)
-    {
-        NSDate *endOfWeek = [self.startOfThisWeek dateByAddingTimeInterval:60.0 * 60.0 * 24.0 * 6.0];
-        headerLabel.text = [NSString stringWithFormat:@"%@ - %@", [formatter stringFromDate:self.startOfThisWeek], [formatter stringFromDate:endOfWeek]];
-    }
-    else
-    {
-        NSDate *weekFromStart = [self.startOfThisWeek dateByAddingTimeInterval:60.0 * 60.0 * 24.0 * 7.0];
-        NSDate *endOfWeekFromNow = [self.startOfThisWeek dateByAddingTimeInterval:60.0 * 60.0 * 24.0 * 13.0];
-        headerLabel.text = [NSString stringWithFormat:@"%@ - %@", [formatter stringFromDate:weekFromStart], [formatter stringFromDate:endOfWeekFromNow]];
-    }
+    NSDate *startOfWeek = [self.startOfThisWeek dateByAddingTimeInterval:[NSDate secondsPerDay] * 7.0 * [self sectionMultiplier:section]];
+    NSDate *endOfWeek = [self.startOfThisWeek dateByAddingTimeInterval:[NSDate secondsPerDay] * (6.0 + 7.0 * [self sectionMultiplier:section])];
+    headerLabel.text = [NSString stringWithFormat:@"%@ - %@", [formatter stringFromDate:startOfWeek], [formatter stringFromDate:endOfWeek]];
     
     [headerLabel sizeToFit];
     headerLabel.frame = CGRectMake(5, 6, tableView.bounds.size.width - 5, headerLabel.frame.size.height);
@@ -172,7 +188,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -209,15 +225,19 @@
     
     NSString *dayTitle;
     if(indexPath.row == 0)
-        dayTitle = @"Monday";
+        dayTitle = @"Sunday";
     else if(indexPath.row == 1)
-        dayTitle = @"Tuesday";
+        dayTitle = @"Monday";
     else if(indexPath.row == 2)
-        dayTitle = @"Wednesday";
+        dayTitle = @"Tuesday";
     else if(indexPath.row == 3)
+        dayTitle = @"Wednesday";
+    else if(indexPath.row == 4)
         dayTitle = @"Thursday";
-    else
+    else if(indexPath.row == 5)
         dayTitle = @"Friday";
+    else
+        dayTitle = @"Saturday";
     
     [cellView setDayTitle:dayTitle withNumInspections:[self numInspectionsWithIndexPath:indexPath]];
     
@@ -229,15 +249,10 @@
     NSDate *startDate;
     NSDate *endDate;
     
-    if(indexPath.section == 0)
-        startDate = [NSDate dateWithNumberOfDays:indexPath.row+1 sinceDate:[NSDate startOfTheWeekFromToday]];
-    else
-        startDate = [NSDate dateWithNumberOfDays:indexPath.row+1 sinceDate:[NSDate startOfNextWeekFromToday]];
-    
+    startDate = [NSDate dateWithNumberOfDays:(indexPath.row + 7 * [self sectionMultiplier:indexPath.section]) sinceDate:self.startOfThisWeek];
     endDate = [NSDate dateWithNumberOfDays:1 sinceDate:startDate];
     
     NSArray *inspections = [Inspection MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate]];
-    
     return inspections.count;
 }
 
@@ -247,7 +262,7 @@
     
     self.navigationItem.title = @" ";
     
-    NSDate *dateSelected = [self.startOfThisWeek dateByAddingTimeInterval:60.0 * 60.0 * 24.0 * (1 + indexPath.row + 7 * indexPath.section)];
+    NSDate *dateSelected = [self.startOfThisWeek dateByAddingTimeInterval:[NSDate secondsPerDay] * (indexPath.row + 7 * [self sectionMultiplier:indexPath.section])];
        
     InspectionsListViewController *inspectionsListVC = [[InspectionsListViewController alloc] init];
     inspectionsListVC.date = dateSelected;

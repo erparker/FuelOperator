@@ -10,6 +10,11 @@
 
 @implementation NSDate (Additions)
 
++ (NSTimeInterval)secondsPerDay
+{
+    return 60 * 60 * 24;
+}
+
 + (NSDate *)startOfToday
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
@@ -26,17 +31,17 @@
 {
     NSDateComponents *weekdayComponents = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:[NSDate startOfToday]];
     int currentWeekday = [weekdayComponents weekday]; //[1;7] ... 1 is sunday, 7 is saturday in gregorian calendar
-    return [[NSDate startOfToday] dateByAddingTimeInterval:-60.0 * 60.0 * 24.0 * (currentWeekday - 1)];
+    return [[NSDate startOfToday] dateByAddingTimeInterval:(-1 * [NSDate secondsPerDay] * (currentWeekday - 1))];
 }
 
 + (NSDate *)startOfNextWeekFromToday
 {
-    return [NSDate dateWithTimeInterval:60.0 * 60.0 * 24.0 * 7 sinceDate:[NSDate startOfTheWeekFromToday]];
+    return [NSDate dateWithTimeInterval:([NSDate secondsPerDay] * 7) sinceDate:[NSDate startOfTheWeekFromToday]];
 }
 
 + (NSDate *)dateWithNumberOfDays:(NSInteger)days sinceDate:(NSDate*)date
 {
-    return [NSDate dateWithTimeInterval:60.0*60.0*24.0*days sinceDate:date];
+    return [NSDate dateWithTimeInterval:([NSDate secondsPerDay]*days) sinceDate:date];
 }
 
 + (NSDate*) getDateFromJSON:(NSString *)dateString

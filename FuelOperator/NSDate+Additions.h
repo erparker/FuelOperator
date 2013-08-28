@@ -10,6 +10,7 @@
 
 @interface NSDate (Additions)
 
++ (NSTimeInterval)secondsPerDay;
 + (NSDate *)startOfToday;
 + (NSDate *)startOfTheWeekFromToday;
 + (NSDate *)startOfNextWeekFromToday;

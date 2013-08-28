@@ -64,6 +64,7 @@
                         MapGestureRecognizer *mapGesture = [[MapGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(mapCalloutTapped:)];
                         mapGesture.annotationTitle = self.annotationTitle;
                         mapGesture.annotationSubtitle = self.annotationSubtitle;
+                        mapGesture.inspection = self.inspection;
                         [tapView addGestureRecognizer:mapGesture];
                         [imageView.superview addSubview:tapView];
                         [imageView.superview bringSubviewToFront:tapView];
