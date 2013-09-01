@@ -35,7 +35,8 @@
         <relationship name="station" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="location" inverseEntity="Station" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
-        <attribute name="imageFile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="pngData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="formAnswer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="photos" inverseEntity="FormAnswer" syncable="YES"/>
     </entity>
     <entity name="Station" representedClassName="Station" syncable="YES">
@@ -49,7 +50,7 @@
         <element name="FormQuestion" positionX="-513" positionY="-112" width="128" height="148"/>
         <element name="Inspection" positionX="-765" positionY="-67" width="128" height="133"/>
         <element name="Location" positionX="-351" positionY="81" width="128" height="165"/>
-        <element name="Photo" positionX="-351" positionY="-261" width="128" height="73"/>
+        <element name="Photo" positionX="-351" positionY="-261" width="128" height="88"/>
         <element name="Station" positionX="-524" positionY="81" width="128" height="88"/>
     </elements>
 </model>

@@ -21,6 +21,9 @@
 @property (nonatomic, strong) UITextView *commentTextView;
 @property (nonatomic, strong) UILabel *photosLabel;
 @property (nonatomic, strong) UILabel *noPhotosLabel;
+@property (nonatomic, strong) Photo *photo1;
+@property (nonatomic, strong) Photo *photo2;
+@property (nonatomic, strong) Photo *photo3;
 @property (nonatomic, strong) UIImage *image1;
 @property (nonatomic, strong) UIImage *image2;
 @property (nonatomic, strong) UIImage *image3;
@@ -44,6 +47,26 @@
     if(self)
     {
         self.answer = answer;
+        
+        NSArray *photos = [self.answer.photos allObjects];
+        for(Photo *p in photos)
+        {
+            if([p.index integerValue] == 0)
+            {
+                self.photo1 = p;
+                self.image1 = [UIImage imageWithData:p.pngData];
+            }
+            else if([p.index integerValue] == 1)
+            {
+                self.photo2 = p;
+                self.image2 = [UIImage imageWithData:p.pngData];
+            }
+            else if([p.index integerValue] == 2)
+            {
+                self.photo3 = p;
+                self.image3 = [UIImage imageWithData:p.pngData];
+            }
+        }
     }
     return self;
 }
@@ -63,47 +86,11 @@
     
     [self.scrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)]];
     
-    //load the appropriate comment and images, if they exist
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    
-//    NSString *commentFormat = [NSString stringWithFormat:@"%@_comment_%d.txt", self.tabName, self.row];
-//    NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
-//    
-//    NSString *comment = [[NSString alloc]initWithContentsOfFile:commentPath usedEncoding:nil error:nil];
-//    self.commentTextView.text = self.answer.comment;
-    
-    
-//    NSString* path1 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 1]];
-//    UIImage* image1 = [UIImage imageWithContentsOfFile:path1];
-//    if(image1)
-//        self.image1 = image1;
-//    
-//    NSString* path2 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 2]];
-//    UIImage* image2 = [UIImage imageWithContentsOfFile:path2];
-//    if(image2)
-//        self.image2 = image2;
-//    
-//    NSString* path3 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 3]];
-//    UIImage* image3 = [UIImage imageWithContentsOfFile:path3];
-//    if(image3)
-//        self.image3 = image3;
-    
     self.imageView1.image = self.image1;
     self.imageView2.image = self.image2;
     self.imageView3.image = self.image3;
     
 }
-
-//- (void)setAnswer:(FormAnswer *)answer
-//{
-//    _answer = answer;
-//    
-//    if(_answer.comment)
-//        self.commentTextView.text = _answer.comment;
-//    else
-//        self.commentTextView.text = @"";
-//}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -163,37 +150,57 @@
 {
     [self.commentTextView resignFirstResponder];
     
-    //?? save the coments and images to the docs directory
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
     //comments
     self.answer.comment = self.commentTextView.text;
     [self.formCategoryDelegate updateProgressView];
     
     //images
-//    if(self.image1)
-//    {
-//        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 1]];
-//        NSData* data = UIImagePNGRepresentation(self.image1);
-//        [data writeToFile:path atomically:YES];
-//    }
-//    if(self.image2)
-//    {
-//        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 2]];
-//        NSData* data = UIImagePNGRepresentation(self.image2);
-//        [data writeToFile:path atomically:YES];
-//    }
-//    if(self.image3)
-//    {
-//        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 3]];
-//        NSData* data = UIImagePNGRepresentation(self.image3);
-//        [data writeToFile:path atomically:YES];
-//    }
+    if(self.image1)
+    {
+        if(!self.photo1)
+            self.photo1 = [Photo MR_createEntity];
+        
+        self.photo1.index = [NSNumber numberWithInt:0];
+        self.photo1.pngData = UIImagePNGRepresentation(self.image1);
+        self.photo1.formAnswer = self.answer;
+    }
+    else if(self.photo1)
+    {
+        //image got deleted in UI, remove it from core data
+        [[NSManagedObjectContext MR_defaultContext] deleteObject:self.photo1];
+    }
     
+    if(self.image2)
+    {
+        if(!self.photo2)
+            self.photo2 = [Photo MR_createEntity];
+        
+        self.photo2.index = [NSNumber numberWithInt:1];
+        self.photo2.pngData = UIImagePNGRepresentation(self.image2);
+        self.photo2.formAnswer = self.answer;
+    }
+    else if(self.photo2)
+    {
+        //image got deleted in UI, remove it from core data
+        [[NSManagedObjectContext MR_defaultContext] deleteObject:self.photo2];
+    }
+    
+    if(self.image3)
+    {
+        if(!self.photo3)
+            self.photo3 = [Photo MR_createEntity];
+        
+        self.photo3.index = [NSNumber numberWithInt:2];
+        self.photo3.pngData = UIImagePNGRepresentation(self.image3);
+        self.photo3.formAnswer = self.answer;
+    }
+    else if(self.photo3)
+    {
+        //image got deleted in UI, remove it from core data
+        [[NSManagedObjectContext MR_defaultContext] deleteObject:self.photo3];
+    }
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
