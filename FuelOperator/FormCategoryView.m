@@ -17,7 +17,6 @@
 
 @interface FormCategoryView () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *formAnswers;
 
 @end
@@ -52,16 +51,16 @@
 {
     _formQuestions = formQuestions;
     
-    //?? make all the formAnswers too
     NSMutableArray *answers = [[NSMutableArray alloc] initWithCapacity:_formQuestions.count];
     for(FormQuestion *q in _formQuestions)
     {
-        FormAnswer *a = [FormAnswer MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"formQuestion.questionID = %d", [q.questionID integerValue]]];
+        FormAnswer *a = [FormAnswer MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"(formQuestion.questionID = %d) AND (inspection.inspectionID = %d)", [q.questionID integerValue], [self.inspection.inspectionID integerValue]]];
         if(!a)
         {
             a = [FormAnswer MR_createEntity];
             a.answer = [NSNumber numberWithInt:0];
             a.inspection = self.inspection;
+            NSLog(@"added answer with questionID: %d, inspectionID: %d", [q.questionID integerValue], [self.inspection.inspectionID integerValue]);
             a.formQuestion = q;
         }
         [answers addObject:a];

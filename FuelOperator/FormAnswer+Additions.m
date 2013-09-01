@@ -17,7 +17,7 @@
     if([self.answer integerValue] == 1)
         return YES;
     
-    if(self.comment)
+    if(self.comment && ![self.comment isEqualToString:@""])
         return YES;
     else
         return NO;

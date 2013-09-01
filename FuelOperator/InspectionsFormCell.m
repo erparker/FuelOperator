@@ -202,7 +202,13 @@
         [self.answerButton setImage:[UIImage imageNamed:@"thumbsdown"] forState:UIControlStateNormal];
         self.answerButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
         
-        if(!_formAnswer.comment)
+        if(_formAnswer.comment)
+        {
+            self.commentNeededImageView.hidden = YES;
+            self.warningImageView.hidden = YES;
+            self.warningLabel.hidden = YES;
+        }
+        else
         {
             self.commentNeededImageView.hidden = NO;
             self.warningImageView.hidden = NO;

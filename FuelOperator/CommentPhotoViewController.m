@@ -11,6 +11,8 @@
 
 @interface CommentPhotoViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (nonatomic, strong) FormAnswer *answer;
+
 @property (nonatomic, strong) UIView *fakeNavBar;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *questionLabel;
@@ -36,11 +38,12 @@
 
 @implementation CommentPhotoViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithAnswer:(FormAnswer *)answer
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self = [super init];
+    if(self)
+    {
+        self.answer = answer;
     }
     return self;
 }
@@ -58,7 +61,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)]];
+    [self.scrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)]];
     
     //load the appropriate comment and images, if they exist
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -68,7 +71,7 @@
 //    NSString *commentPath = [documentsDirectory stringByAppendingPathComponent:commentFormat];
 //    
 //    NSString *comment = [[NSString alloc]initWithContentsOfFile:commentPath usedEncoding:nil error:nil];
-//    self.commentTextView.text = comment;
+//    self.commentTextView.text = self.answer.comment;
     
     
 //    NSString* path1 = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_image_%d_%d.png", self.tabName, self.row, 1]];
@@ -92,15 +95,15 @@
     
 }
 
-- (void)setAnswer:(FormAnswer *)answer
-{
-    _answer = answer;
-    
-    if(_answer.comment)
-        self.commentTextView.text = _answer.comment;
-    else
-        self.commentTextView.text = @"";
-}
+//- (void)setAnswer:(FormAnswer *)answer
+//{
+//    _answer = answer;
+//    
+//    if(_answer.comment)
+//        self.commentTextView.text = _answer.comment;
+//    else
+//        self.commentTextView.text = @"";
+//}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -158,6 +161,8 @@
 
 - (void)saveTapped:(id)sender
 {
+    [self.commentTextView resignFirstResponder];
+    
     //?? save the coments and images to the docs directory
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -185,6 +190,9 @@
 //        NSData* data = UIImagePNGRepresentation(self.image3);
 //        [data writeToFile:path atomically:YES];
 //    }
+    
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -271,6 +279,7 @@
         _commentTextView.layer.masksToBounds = YES;
         _commentTextView.font = [UIFont regularFontOfSize:18];
         _commentTextView.textColor = [UIColor fopDarkGreyColor];
+        _commentTextView.text = self.answer.comment;
         _commentTextView.delegate = self;
     }
     return _commentTextView;

@@ -38,7 +38,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
     
     self.navigationItem.titleView = self.listMapControl;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.addSiteBtn];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.addSiteBtn];
     [self.view addSubview:self.titleView];
     [self.view addSubview:self.switchView];
     [self.switchView addSubview:self.mapView];

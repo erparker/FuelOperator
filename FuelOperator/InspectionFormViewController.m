@@ -161,14 +161,18 @@
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
-    //?? reload visible table view
-//    if(self.facilityView.hidden)
+    //reload visible table view
+    if(!self.facilityView.hidden)
+        [self.facilityView.tableView reloadData];
+    else if(!self.tanksView.hidden)
+        [self.tanksView.tableView reloadData];
+    else if(!self.dispensersView.hidden)
+        [self.dispensersView.tableView reloadData];
 }
 
 - (void)editCommentPhotosForAnswer:(FormAnswer *)formAnswer
 {
-    CommentPhotoViewController *commentPhotoVC = [[CommentPhotoViewController alloc] init];
-    commentPhotoVC.answer = formAnswer;
+    CommentPhotoViewController *commentPhotoVC = [[CommentPhotoViewController alloc] initWithAnswer:formAnswer];
     commentPhotoVC.formCategoryDelegate = self;
     [self presentViewController:commentPhotoVC animated:YES completion:nil];
 }

@@ -11,12 +11,10 @@
 
 @interface CommentPhotoViewController : UIViewController
 
+- (id)initWithAnswer:(FormAnswer *)answer;
+
 @property (nonatomic, weak) id <FormCategoryDelegate> formCategoryDelegate;
 
-@property (nonatomic, strong) FormAnswer *answer;
 
-//@property (nonatomic, strong) NSString *question;
-//@property (nonatomic) NSInteger row;
-//@property (nonatomic, strong) NSString *tabName;
 
 @end
