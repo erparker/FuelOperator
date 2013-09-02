@@ -12,9 +12,9 @@
 
 - (BOOL)isAnswered
 {
-    if([self.answer integerValue] == 0)
+    if([self.answer integerValue] == kUnanswered)
         return NO;
-    if([self.answer integerValue] == 1)
+    if([self.answer integerValue] == kYES)
         return YES;
     
     if(self.comment && ![self.comment isEqualToString:@""])

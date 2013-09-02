@@ -2,7 +2,7 @@
 //  Photo.m
 //  FuelOperator
 //
-//  Created by Gary Robinson on 9/1/13.
+//  Created by Gary Robinson on 9/2/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -13,7 +13,7 @@
 @implementation Photo
 
 @dynamic index;
-@dynamic pngData;
+@dynamic jpgData;
 @dynamic formAnswer;
 
 @end

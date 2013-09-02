@@ -20,6 +20,7 @@
 @interface InspectionFormViewController () <UITableViewDataSource, UITableViewDelegate, FormCategoryDelegate>
 
 @property (nonatomic, strong) UILabel *navigationLabel;
+@property (nonatomic, strong) UIButton *sendButton;
 
 @property (nonatomic, strong) UIView *progressView;
 @property (nonatomic, strong) UILabel *progressLabel;
@@ -58,6 +59,7 @@
 	// Do any additional setup after loading the view.
     
     self.navigationItem.titleView = self.navigationLabel;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.sendButton];
         
     [self facilityButtonTapped:self];
 }
@@ -95,6 +97,23 @@
         [_navigationLabel sizeToFit];
     }
     return _navigationLabel;
+}
+
+- (UIButton*)sendButton
+{
+    if(_sendButton == nil)
+    {
+        _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_sendButton setTitle:@"Send" forState:UIControlStateNormal];
+        _sendButton.frame = CGRectMake(0, 0, 50, 30);
+        [_sendButton addTarget:self action:@selector(sendInspection:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _sendButton;
+}
+
+- (void)sendInspection:(UIButton *)sender
+{
+    [[OnlineService sharedService] sendInspection:self.inspection];
 }
 
 - (UIView*)progressView

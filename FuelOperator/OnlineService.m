@@ -21,6 +21,8 @@ static NSString * const kEncryptNumber = @"2";
 @property (nonatomic, strong) NSString *encryptedUserName;
 @property (nonatomic, strong) NSString *encryptedPassword;
 
+@property (nonatomic, strong) NSMutableArray *processingAnswers;
+
 @end
 
 @implementation OnlineService
@@ -103,6 +105,8 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
 {
+    [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
+    
     [self addQuestionsFromDate:dateFrom toDate:dateTo];
 }
 
@@ -244,6 +248,120 @@ static OnlineService *sharedOnlineService = nil;
      ];
 }
 
+- (void)sendInspection:(Inspection *)inspection
+{
+    [self.httpClient setParameterEncoding:AFFormURLParameterEncoding];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"inspection.inspectionID = %d", [inspection.inspectionID integerValue]];
+    self.processingAnswers = [[NSMutableArray alloc] initWithArray:[FormAnswer MR_findAllWithPredicate:pred]];
+    [self processNextAnswer];
+}
+
+- (void)processNextAnswer
+{
+    if(self.processingAnswers.count == 0)
+        return;
+    
+    FormAnswer *answer = [self.processingAnswers lastObject];
+    
+    //create JSON InspectionData object to send for this answer
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *photos = [[answer.photos allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+    
+    if(([answer.answer integerValue] == kNO) && (photos.count == 0))
+    {
+        //?? keep track of the invalid errors
+        [self.processingAnswers removeLastObject];
+        [self processNextAnswer];
+        return;
+    }
+    else if([answer.answer integerValue] == kUnanswered)
+    {
+        //?? keep track of the invalid errors
+        [self.processingAnswers removeLastObject];
+        [self processNextAnswer];
+        return;
+    }
+    
+    NSString *picture1 = nil;
+    if(photos.count >= 1)
+        picture1 = [NSString stringWithFormat:@"%d-1.jpg", [answer.formQuestion.questionID integerValue]];
+    NSString *picture2 = nil;
+    if(photos.count >= 2)
+        picture2 = [NSString stringWithFormat:@"%d-2.jpg", [answer.formQuestion.questionID integerValue]];
+    NSString *picture3 = nil;
+    if(photos.count >= 3)
+        picture3 = [NSString stringWithFormat:@"%d-3.jpg", [answer.formQuestion.questionID integerValue]];
+    
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setValue:answer.comment forKey:@"Comment"];
+    [dict setValue:answer.inspection.inspectionID forKey:@"InspectionID"];
+    [dict setValue:picture1 forKey:@"Picture1"];
+    [dict setValue:picture2 forKey:@"Picture2"];
+    [dict setValue:picture3 forKey:@"Picture3"];
+    [dict setValue:answer.formQuestion.questionID forKey:@"QuestionID"];
+    [dict setValue:[NSNumber numberWithBool:([answer.answer integerValue] == kYES)] forKey:@"Response"];
+    NSDictionary *params = [NSDictionary dictionaryWithDictionary:dict];
+    
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:params options:0/*NSJSONWritingPrettyPrinted*/ error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"posting answer to question %d, params %@", [answer.formQuestion.questionID integerValue], jsonString);
+    NSString *path = [NSString stringWithFormat:@"SaveInspectionData?SessionID=%@", self.sessionGuid];
+    
+    
+    BOOL method1 = YES;
+    if(method1)
+    {
+        [self.httpClient postPath:path parameters:params
+                          success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             NSLog(@"Success Block Hit!");
+             
+            [self.processingAnswers removeLastObject];
+            [self processNextAnswer];
+         }
+                          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"Failure Block Hit!");
+             
+             [self.processingAnswers removeLastObject];
+             [self processNextAnswer];
+         }
+         ];
+    }
+    else
+    {
+        NSMutableURLRequest *request = [self.httpClient multipartFormRequestWithMethod:@"POST" path:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+                                        {
+                                            [formData appendPartWithFormData:data name:@"test"];
+                                        }];
+        
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+                NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
+        }];
+        
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"Success Block Hit!");
+            
+            [self.processingAnswers removeLastObject];
+            [self processNextAnswer];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Failure Block Hit!, %@", error.description);
+            
+            [self.processingAnswers removeLastObject];
+            [self processNextAnswer];
+            
+        }];
+        
+        [operation start];
+    }
+    
+}
 
 
 

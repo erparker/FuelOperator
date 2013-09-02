@@ -58,7 +58,7 @@
         if(!a)
         {
             a = [FormAnswer MR_createEntity];
-            a.answer = [NSNumber numberWithInt:0];
+            a.answer = [NSNumber numberWithInt:kUnanswered];
             a.inspection = self.inspection;
             NSLog(@"added answer with questionID: %d, inspectionID: %d", [q.questionID integerValue], [self.inspection.inspectionID integerValue]);
             a.formQuestion = q;
@@ -145,23 +145,10 @@
     FormAnswer *answer = [self.formAnswers objectAtIndex:indexPath.row];
     
     //update the question state according to the tap
-//    BOOL wasAnswered = [answer isAnswered];
     NSInteger state = [answer.answer integerValue] + 1;
-    if(state > 2)
-        state = 0;
+    if(state > kNO)
+        state = kUnanswered;
     answer.answer = [NSNumber numberWithInt:state];
-//    BOOL isAnswered = [answer isAnswered];
-    
-//    //update the progress
-//    float progressDiff = 1.0 / (float)([self.inspection.formQuestions allObjects].count);
-//    float curProgress = [self.inspection.progress floatValue];
-//    if(wasAnswered && !isAnswered)
-//        curProgress -= progressDiff;
-//    else if(!wasAnswered && isAnswered)
-//        curProgress += progressDiff;
-//    self.inspection.progress = [NSNumber numberWithFloat:curProgress];
-//    
-//    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [self.formCategoryDelegate updateProgressView];
     
     //show the changes

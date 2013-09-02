@@ -8,6 +8,12 @@
 
 #import "FormAnswer.h"
 
+typedef enum AnswerType : NSUInteger {
+    kUnanswered,
+    kYES,
+    kNO
+} AnswerType;
+
 @interface FormAnswer (Additions)
 
 - (BOOL)isAnswered;

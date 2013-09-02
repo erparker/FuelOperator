@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Inspection.h"
 
 @interface OnlineService : NSObject
 
@@ -18,5 +19,6 @@
 
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo;
 
+- (void)sendInspection:(Inspection *)inspection;
 
 @end

@@ -36,7 +36,7 @@
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="pngData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="jpgData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="formAnswer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="photos" inverseEntity="FormAnswer" syncable="YES"/>
     </entity>
     <entity name="Station" representedClassName="Station" syncable="YES">

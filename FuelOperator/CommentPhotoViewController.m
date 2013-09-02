@@ -54,17 +54,17 @@
             if([p.index integerValue] == 0)
             {
                 self.photo1 = p;
-                self.image1 = [UIImage imageWithData:p.pngData];
+                self.image1 = [UIImage imageWithData:p.jpgData];
             }
             else if([p.index integerValue] == 1)
             {
                 self.photo2 = p;
-                self.image2 = [UIImage imageWithData:p.pngData];
+                self.image2 = [UIImage imageWithData:p.jpgData];
             }
             else if([p.index integerValue] == 2)
             {
                 self.photo3 = p;
-                self.image3 = [UIImage imageWithData:p.pngData];
+                self.image3 = [UIImage imageWithData:p.jpgData];
             }
         }
     }
@@ -161,7 +161,7 @@
             self.photo1 = [Photo MR_createEntity];
         
         self.photo1.index = [NSNumber numberWithInt:0];
-        self.photo1.pngData = UIImagePNGRepresentation(self.image1);
+        self.photo1.jpgData = UIImageJPEGRepresentation(self.image1, 1.0);
         self.photo1.formAnswer = self.answer;
     }
     else if(self.photo1)
@@ -176,7 +176,7 @@
             self.photo2 = [Photo MR_createEntity];
         
         self.photo2.index = [NSNumber numberWithInt:1];
-        self.photo2.pngData = UIImagePNGRepresentation(self.image2);
+        self.photo2.jpgData = UIImageJPEGRepresentation(self.image2, 1.0);
         self.photo2.formAnswer = self.answer;
     }
     else if(self.photo2)
@@ -191,7 +191,7 @@
             self.photo3 = [Photo MR_createEntity];
         
         self.photo3.index = [NSNumber numberWithInt:2];
-        self.photo3.pngData = UIImagePNGRepresentation(self.image3);
+        self.photo3.jpgData = UIImageJPEGRepresentation(self.image3, 1.0);
         self.photo3.formAnswer = self.answer;
     }
     else if(self.photo3)
