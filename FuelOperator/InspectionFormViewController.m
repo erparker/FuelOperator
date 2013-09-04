@@ -62,6 +62,8 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.sendButton];
         
     [self facilityButtonTapped:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(answersUpdated:) name:@"answersUpdated" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -83,6 +85,15 @@
     
     NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.station.companyName, inspection.station.location.city, inspection.station.location.state];
     self.navigationLabel.text = formTitle;
+    
+    [[OnlineService sharedService] getAnswersForInspection:inspection];
+}
+
+- (void)answersUpdated:(id)sender
+{
+    [self.facilityView.tableView reloadData];
+    [self.tanksView.tableView reloadData];
+    [self.dispensersView.tableView reloadData];
 }
 
 - (UILabel*)navigationLabel
