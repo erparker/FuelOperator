@@ -22,14 +22,6 @@
 
 @implementation SettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)loadView
 {
@@ -37,9 +29,11 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
     
-    [self.view addSubview:self.titleLabel];
+//    [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.headerImageView];
     [self.view addSubview:self.tableView];
+    
+    self.navigationItem.titleView = self.titleLabel;
 }
 
 - (void)viewDidLoad
@@ -48,22 +42,6 @@
 	// Do any additional setup after loading the view.
     
 }
-
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    
-//    AppDelegate *appDelegate = (AppDelegate*)([[UIApplication sharedApplication] delegate]);
-//    [appDelegate settingsWillAppear:self];
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//    
-//    AppDelegate *appDelegate = (AppDelegate*)([[UIApplication sharedApplication] delegate]);
-//    [appDelegate settingsWillDisappear:self];
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -75,7 +53,7 @@
 {
     if(_titleLabel == nil)
     {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.view.bounds.size.width-10, 50)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = [UIColor fopLightGreyColor];
         _titleLabel.text = @"FUEL OPERATOR";
@@ -143,6 +121,7 @@
         cellView = [[SettingsCellView alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, cell.contentView.frame.size.width)];
         cellView.tag = SETTINGS_CELL_VIEW_TAG;
         [cell.contentView addSubview:cellView];
+        cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
     }
     else
     {

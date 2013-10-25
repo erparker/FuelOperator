@@ -26,6 +26,7 @@
         [self addSubview:self.titleLabel];
         [self addSubview:self.iconView];
         [self addSubview:self.separatorView];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

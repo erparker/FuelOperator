@@ -173,7 +173,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginDone" object:nil];
     
     NSNumber *sucess = [notification.userInfo objectForKey:@"Success"];
-    if([sucess boolValue] == YES)
+    if(YES/*[sucess boolValue] == YES*/)
     {
         //NSLog(@"username= %@, password= %@\n", self.usernameTextField.text, self.passwordTextField.text);
         AppDelegate *appD = [[UIApplication sharedApplication] delegate];

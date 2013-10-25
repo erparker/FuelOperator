@@ -49,6 +49,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+//    self.navigationItem.title = @"";
+    
+    [self useCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,16 +88,20 @@
 {
     if(_listMapControl == nil)
     {
+        CGFloat width = 170;
+        _listMapControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - width/2, 10, width, 30)];
+        
         UIImage *listImage = [UIImage imageNamed:@"listView"];
         UIImage *mapImage = [UIImage imageNamed:@"mapView"];
-        NSArray *items = [[NSArray alloc] initWithObjects:listImage, mapImage, nil];
-        _listMapControl = [[UISegmentedControl alloc] initWithItems:items];
-        _listMapControl.frame = CGRectMake(320/2 - 170/2, 10, 170, 30);
+        [_listMapControl insertSegmentWithImage:listImage atIndex:0 animated:NO];
+        [_listMapControl insertSegmentWithImage:mapImage atIndex:1 animated:NO];
         _listMapControl.selectedSegmentIndex = 0;
+        
         [_listMapControl setBackgroundImage:[UIImage imageNamed:@"segemented-background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         [_listMapControl setBackgroundImage:[UIImage imageNamed:@"segemented-background-selected"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
         [_listMapControl setDividerImage:[UIImage imageNamed:@"segemented-background"] forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         [_listMapControl setDividerImage:[UIImage imageNamed:@"segemented-background"] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+        
         _listMapControl.layer.cornerRadius = 5;
         _listMapControl.layer.masksToBounds = YES;
         [_listMapControl addTarget:self action:@selector(toggleListMap:) forControlEvents:UIControlEventValueChanged];
@@ -146,7 +154,6 @@
     {
         _titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
         _titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise.png"]];
-        
         [_titleView addSubview:self.titleDateLabel];
     }
     return _titleView;

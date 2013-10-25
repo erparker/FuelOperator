@@ -132,7 +132,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FormAnswer *answer = [self.formAnswers objectAtIndex:indexPath.row];
-    [self.formCategoryDelegate editCommentPhotosForAnswer:answer];
+    if([answer.answer integerValue] == kNO)
+        [self.formCategoryDelegate editCommentPhotosForAnswer:answer];
 }
 
 - (void)didSelectAccessory:(id)sender event:(id)event

@@ -42,6 +42,10 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)attemptLogin:(NSString *)username password:(NSString *)password
 {
+    //??
+    [self loginDone:NO];
+    return;
+    
     self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURLString]];
     [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
     
@@ -106,8 +110,10 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
 {
-    [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
+    //??
+    return;
     
+    [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
     [self addQuestionsFromDate:dateFrom toDate:dateTo];
 }
 
@@ -202,8 +208,17 @@ static OnlineService *sharedOnlineService = nil;
             location.city = [dict objectForKey:@"City"];
             location.zipCode = [dict objectForKey:@"ZipCode"];
             location.state = [dict objectForKey:@"StateID"];
-            location.lattitude = [NSNumber numberWithFloat:[[dict objectForKey:@"Latitude"] floatValue]];
-            location.longitude = [NSNumber numberWithFloat:[[dict objectForKey:@"Longitude"] floatValue]];
+            if([dict objectForKey:@"Latitude"] && ([dict objectForKey:@"Latitude"] != [NSNull null]))
+            {
+                NSString *lat = [dict objectForKey:@"Latitude"];
+                location.lattitude = [NSNumber numberWithFloat:[lat floatValue]];
+//                location.lattitude = [NSNumber numberWithFloat:[[dict objectForKey:@"Latitude"] floatValue]];
+            }
+            if([dict objectForKey:@"Longitude"] && ([dict objectForKey:@"Longitude"] != [NSNull null]))
+            {
+                NSString *longitude = [dict objectForKey:@"Longitude"];
+                location.longitude = [NSNumber numberWithFloat:[longitude  floatValue]];
+            }
             location.station = station;
         }
     }
@@ -251,8 +266,11 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)getAnswersForInspection:(Inspection *)inspection
 {
+    //??
+    return;
+    
     NSInteger inspectionID = [inspection.inspectionID integerValue];
-    NSString *path = [NSString stringWithFormat:@"inspections/%@/%d", self.sessionGuid, inspectionID];
+    NSString *path = [NSString stringWithFormat:@"inspectionData/%@/%d", self.sessionGuid, inspectionID];
     [self.httpClient getPath:path parameters:nil
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -265,7 +283,7 @@ static OnlineService *sharedOnlineService = nil;
          {
              NSInteger questionID = [[dict objectForKey:@"QuestionID"] integerValue];
              
-             NSPredicate *pred = [NSPredicate predicateWithFormat:@"(formQuestion.questionID = %d) AND (inspection.inspectionID = %d)", inspectionID, questionID];
+             NSPredicate *pred = [NSPredicate predicateWithFormat:@"(formQuestion.questionID = %d) AND (inspection.inspectionID = %d)", questionID, inspectionID];
              FormAnswer *answer = [FormAnswer MR_findFirstWithPredicate:pred];
              
              //?? make a new one if it doesn't exist yet, update the existing one otherwise
@@ -276,7 +294,9 @@ static OnlineService *sharedOnlineService = nil;
                  FormQuestion *question = [FormQuestion MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"questionID = %d", questionID]];
                  answer.formQuestion = question;
              }
-             answer.comment = [dict objectForKey:@"Comment"];
+             
+             if([dict objectForKey:@"Comment"] != [NSNull null])
+                 answer.comment = [dict objectForKey:@"Comment"];
              
              BOOL response = [[dict objectForKey:@"Response"] boolValue];
              if(response)
@@ -299,37 +319,63 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)getPhotosForAnswer:(FormAnswer *)answer withDictionary:(NSDictionary *)dict
 {
-    //?? need to download the photos also
     NSArray *photos = [[answer.photos allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]]];
     Photo *photo;
-    if([dict objectForKey:@"Picture1"])
+    
+    for(NSInteger i=0; i<3; i++)
     {
-        //?? is there already a photo?
-        if(photos.count > 0)
+        NSString *key = [NSString stringWithFormat:@"Picture%d", i+1];
+        if([dict objectForKey:key] != [NSNull null])
         {
-            photo = [photos objectAtIndex:0];
-            //?? don't re-download the photo unless it has changed
+            if(photos.count > i)
+            {
+                photo = [photos objectAtIndex:i];
+                //?? don't re-download the photo unless it has changed
+            }
+            else
+            {
+                photo = [Photo MR_createEntity];
+                photo.index = [NSNumber numberWithInt:i];
+                photo.formAnswer = answer;
+                [self getPhoto:photo withDictionary:dict position:i+1];
+            }
         }
-        else
+        else if(photos.count > i)
         {
-            photo = [Photo MR_createEntity];
-            photo.index = [NSNumber numberWithInt:0];
-            
-            //?? download the actual photo and assign it to this object when it is done downloading
-            //GetImage/{sessionID}/{inspectionId}/{QuestionId}/{position}
+            //remove the photo if it exists
+            photo = [photos objectAtIndex:i];
+            [photo MR_deleteEntity];
         }
     }
-    else if(photos.count > 0)
-    {
-        //remove the photo if it exists
-        photo = [photos objectAtIndex:0];
-        [photo MR_deleteEntity];
-    }
+}
+
+- (void)getPhoto:(Photo *)photo withDictionary:(NSDictionary *)dict position:(NSInteger)position
+{
+    NSInteger questionID = [[dict objectForKey:@"QuestionID"] integerValue];
+    NSInteger inspectionID = [[dict objectForKey:@"InspectionID"] integerValue];
+    
+    NSString *path = [NSString stringWithFormat:@"GetImage/%@/%d/%d/%d", self.sessionGuid, inspectionID, questionID, position];
+    [self.httpClient getPath:path parameters:nil
+                     success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+//         UIImage *image = [UIImage imageWithData:(NSData *)(responseObject)];
+         photo.jpgData = (NSData *)(responseObject);
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         NSLog(@"");         
+     }
+                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Failed getPhoto");
+     }
+     ];
 }
 
 
 - (void)sendInspection:(Inspection *)inspection
 {
+    //??
+    return;
+    
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"inspection.inspectionID = %d", [inspection.inspectionID integerValue]];
     self.processingAnswers = [[NSMutableArray alloc] initWithArray:[FormAnswer MR_findAllWithPredicate:pred]];
     [self processNextAnswer];
@@ -390,27 +436,31 @@ static OnlineService *sharedOnlineService = nil;
     NSLog(@"posting answer to question %d, params %@", [answer.formQuestion.questionID integerValue], jsonString);
     NSString *path = [NSString stringWithFormat:@"SaveInspectionData?SessionID=%@", self.sessionGuid];
     
-    [self.httpClient setParameterEncoding:AFFormURLParameterEncoding];
-    [self.httpClient postPath:path parameters:params
-                      success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-        NSLog(@"Success Block Hit!");
+    NSMutableURLRequest *request = [self.httpClient requestWithMethod:@"POST" path:path parameters:nil/*params*/];
+    [request setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:data];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+        NSLog(@"JSON Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
+    }];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-         [self processNextPhoto:1];
-         
+        NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"Success Block Hit! %@", response);
+        [self processNextPhoto:1];
         [self.processingAnswers removeLastObject];
         [self processNextAnswer];
-     }
-                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Failure Block Hit!");
-         
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Failure Block Hit! %@", error.description);
          [self.processingAnswers removeLastObject];
          [self processNextAnswer];
-     }
-     ];
-
+    }];
     
+    [operation start];
+    
+   
 }
 
 - (void)processNextPhoto:(NSInteger)position
@@ -434,12 +484,15 @@ static OnlineService *sharedOnlineService = nil;
     }];
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success Photo Block Hit!");
+        
+        NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"Success Photo Block Hit! %@", response);
 
         [self.processingPhotos removeObjectAtIndex:0];
         [self processNextPhoto:(position+1)];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
         NSLog(@"Failure Photo Block Hit!, %@", error.description);
 
         [self.processingPhotos removeObjectAtIndex:0];

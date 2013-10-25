@@ -27,15 +27,6 @@
 
 @implementation UpcomingInspectionsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)loadView
 {
     [super loadView];
@@ -127,7 +118,7 @@
 {
     if(_tableView == nil)
     {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - self.navigationController.navigationBar.frame.size.height)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = [UIColor fopWhiteColor];
@@ -260,14 +251,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    self.navigationItem.title = @" ";
-    
-    NSDate *dateSelected = [self.startOfThisWeek dateByAddingTimeInterval:[NSDate secondsPerDay] * (indexPath.row + 7 * [self sectionMultiplier:indexPath.section])];
-       
     InspectionsListViewController *inspectionsListVC = [[InspectionsListViewController alloc] init];
+    NSDate *dateSelected = [self.startOfThisWeek dateByAddingTimeInterval:[NSDate secondsPerDay] * (indexPath.row + 7 * [self sectionMultiplier:indexPath.section])];
     inspectionsListVC.date = dateSelected;
     [self.navigationController pushViewController:inspectionsListVC animated:YES];
 }
+
+
 
 
 

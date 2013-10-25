@@ -15,7 +15,7 @@
 @interface RootContainerViewController ()
 
 @property (nonatomic, strong) UINavigationController *inspectionsNC;
-@property (nonatomic, strong) SettingsViewController *settingsVC;
+@property (nonatomic, strong) UINavigationController *settingsNC;
 @property (nonatomic, strong) UIView *blockingView;
 @property (nonatomic) BOOL settingsOpen;
 @property (nonatomic) CGFloat startPosition;
@@ -30,9 +30,9 @@
     
     self.settingsOpen = NO;
     
-    [self addChildViewController:self.settingsVC];
-    [self.view addSubview:self.settingsVC.view];
-    [self.settingsVC didMoveToParentViewController:self];
+    [self addChildViewController:self.settingsNC];
+    [self.view addSubview:self.settingsNC.view];
+    [self.settingsNC didMoveToParentViewController:self];
     
     [self addChildViewController:self.inspectionsNC];
     [self.view addSubview:self.inspectionsNC.view];
@@ -45,24 +45,26 @@
     {
         UpcomingInspectionsViewController *upcomingInspectionsVC = [[UpcomingInspectionsViewController alloc] init];
         _inspectionsNC = [[UINavigationController alloc] initWithRootViewController:upcomingInspectionsVC];
+        _inspectionsNC.navigationBar.translucent = NO;
         [_inspectionsNC.navigationBar addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(mainNavPanned:)]];
     }
     return _inspectionsNC;
 }
 
-- (SettingsViewController*)settingsVC
+- (UINavigationController*)settingsNC
 {
-    if(_settingsVC == nil)
+    if(_settingsNC == nil)
     {
-        _settingsVC = [[SettingsViewController alloc] init];
+        SettingsViewController *settingsVC = [[SettingsViewController alloc] init];
+        _settingsNC = [[UINavigationController alloc] initWithRootViewController:settingsVC];
     }
-    return _settingsVC;
+    return _settingsNC;
 }
 
 - (void)viewWillLayoutSubviews
 {
     self.inspectionsNC.view.frame = self.view.bounds;
-    self.settingsVC.view.frame = self.view.bounds;
+    self.settingsNC.view.frame = self.view.bounds;
 }
 
 - (UIView *)blockingView
@@ -70,8 +72,7 @@
     if(_blockingView == nil)
     {
         CGRect rect = CGRectMake(0, 0, self.inspectionsNC.view.frame.size.width, self.inspectionsNC.view.frame.size.height);
-//        CGFloat height = self.inspectionsNC.visibleViewController.view.frame.size.height;
-        _blockingView = [[UIView alloc] initWithFrame:rect/*CGRectMake(0, self.inspectionsNC.view.frame.size.height - height, self.inspectionsNC.visibleViewController.view.frame.size.width, height)*/];
+        _blockingView = [[UIView alloc] initWithFrame:rect];
         _blockingView.backgroundColor = [UIColor clearColor];
         _blockingView.userInteractionEnabled = YES;
         [_blockingView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(blockingViewTapped:)]];
@@ -87,6 +88,8 @@
 
 - (void)mainNavPanned:(UIPanGestureRecognizer *)pan
 {
+    NSLog(@"mainNavPanned");
+    
     if(pan.state == UIGestureRecognizerStateBegan)
         self.startPosition = self.inspectionsNC.view.frame.origin.x;
     
@@ -122,9 +125,13 @@
     
     [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^(void)
      {
+         NSLog(@"moving to %f", rect.origin.x);
          self.inspectionsNC.view.frame = rect;
          
      } completion:^(BOOL finished){
+         
+         CGFloat afterX = self.inspectionsNC.view.frame.origin.x;
+         NSLog(@"afterX = %f", afterX);
          
          self.settingsOpen = !self.settingsOpen;
          

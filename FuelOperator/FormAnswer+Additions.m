@@ -17,7 +17,7 @@
     if([self.answer integerValue] == kYES)
         return YES;
     
-    if(self.comment && ![self.comment isEqualToString:@""])
+    if(self.photos.count > 0/* self.comment && ![self.comment isEqualToString:@""]*/)
         return YES;
     else
         return NO;

@@ -113,7 +113,7 @@
         _warningLabel.backgroundColor = [UIColor clearColor];
         _warningLabel.font = [UIFont regularFontOfSize:14];
         _warningLabel.textColor = [UIColor redColor];
-        _warningLabel.text = @"Missing a comment and/or photo";
+        _warningLabel.text = @"Add photo documentation";
         _warningLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     }
     return _warningLabel;
@@ -176,7 +176,7 @@
     rect.size.width = 230;
     self.questionLabel.frame = rect;
     
-    if(_formAnswer.comment)
+    if(_formAnswer.photos.count > 0)
         self.commentImageView.hidden = NO;
     else
         self.commentImageView.hidden = YES;
@@ -202,7 +202,7 @@
         [self.answerButton setImage:[UIImage imageNamed:@"thumbsdown"] forState:UIControlStateNormal];
         self.answerButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
         
-        if(_formAnswer.comment)
+        if(_formAnswer.photos.count > 0)
         {
             self.commentNeededImageView.hidden = YES;
             self.warningImageView.hidden = YES;

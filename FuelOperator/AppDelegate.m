@@ -40,6 +40,7 @@
 {
     LoginViewController *loginController = [[LoginViewController alloc] init];
 	self.window.rootViewController = loginController;
+    self.window.tintColor = [UIColor whiteColor];
 	
 	[self.window makeKeyAndVisible];
 }
@@ -75,10 +76,12 @@
 										   [UIColor whiteColor], UITextAttributeTextColor,
 										   nil]];
     
-    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
-    UIImage *backImage = [UIImage imageNamed:@"btn-back"];
-    UIImage *image = [backImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backImage.size.width, 0, 0)];
-    [barButtonItem setBackButtonBackgroundImage:image forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
+//    UIImage *image = [UIImage imageNamed:@"btn-back"];
+//    UIImage *image = [backImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backImage.size.width, 0, 0)];
+//    [barButtonItem setBackButtonBackgroundImage:image forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -13,14 +13,11 @@
 
 +(OnlineService *)sharedService;
 
-- (void)attemptLogin:(NSString *)username password:(NSString *)password;
-
 @property (nonatomic, strong, readonly) NSString *sessionGuid;
 
+- (void)attemptLogin:(NSString *)username password:(NSString *)password;
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo;
-
 - (void)getAnswersForInspection:(Inspection *)inspection;
-
 - (void)sendInspection:(Inspection *)inspection;
 
 @end

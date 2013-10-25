@@ -94,6 +94,7 @@
     [self.facilityView.tableView reloadData];
     [self.tanksView.tableView reloadData];
     [self.dispensersView.tableView reloadData];
+    [self updateProgressView];
 }
 
 - (UILabel*)navigationLabel
@@ -184,6 +185,7 @@
             numAnswered++;
     }
     float value = (float)(numAnswered) / (float)(allAnswers.count);
+    NSLog(@"%d of %d questions answered", numAnswered, allAnswers.count);
     self.inspection.progress = [NSNumber numberWithFloat:value];
     self.progressSlider.value = [self.inspection.progress floatValue];
     NSInteger percent = (NSInteger)(self.progressSlider.value * 100. + 0.5);
