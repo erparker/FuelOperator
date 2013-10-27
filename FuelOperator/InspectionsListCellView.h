@@ -13,6 +13,7 @@
 @interface InspectionsListCellView : UIView
 
 @property (nonatomic, strong) Station *station;
+@property (nonatomic) CGFloat progress;
 
 //- (void)setName:(NSString *)name withAddressLine1:(NSString*)line1 andAddressLine2:(NSString*)line2;
 

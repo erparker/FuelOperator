@@ -60,6 +60,13 @@
     self.mapView.frame = CGRectMake(0, 0, self.switchView.frame.size.width, self.switchView.frame.size.height);
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
+
 - (void)setDate:(NSDate *)date
 {
     _date = date;
@@ -91,8 +98,8 @@
         _listMapControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - width/2, 10, width, 30)];
         _listMapControl.segmentedControlStyle = UISegmentedControlStyleBar;
         
-        UIImage *listImage = [UIImage imageNamed:@"listView"];
-        UIImage *mapImage = [UIImage imageNamed:@"mapView"];
+        UIImage *listImage = [[UIImage imageNamed:@"listView"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *mapImage = [[UIImage imageNamed:@"mapView"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [_listMapControl insertSegmentWithImage:listImage atIndex:0 animated:NO];
         [_listMapControl insertSegmentWithImage:mapImage atIndex:1 animated:NO];
         
@@ -239,6 +246,7 @@
     
     Inspection *inspection = [self.inspections objectAtIndex:indexPath.row];
     cellView.station = inspection.station;
+    cellView.progress = [inspection.progress floatValue];
     
     return cell;
 }

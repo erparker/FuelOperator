@@ -8,12 +8,15 @@
 
 #import "InspectionsListCellView.h"
 #import "AccessoryView.h"
+#import "CircularProgressView.h"
 
 @interface InspectionsListCellView ()
 
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *addressLine1Label;
 @property (nonatomic, strong) UILabel *addressLine2Label;
+@property (nonatomic, strong) UILabel *progressLabel;
+@property (nonatomic, strong) CircularProgressView *circularProgressView;
 @property (nonatomic, strong) AccessoryView *accessoryView;
 
 @end
@@ -30,6 +33,8 @@
         [self addSubview:self.nameLabel];
         [self addSubview:self.addressLine1Label];
         [self addSubview:self.addressLine2Label];
+        [self addSubview:self.circularProgressView];
+        [self addSubview:self.progressLabel];
         [self addSubview:self.accessoryView];
     }
     return self;
@@ -71,6 +76,27 @@
     return _addressLine2Label;
 }
 
+- (UILabel *)progressLabel
+{
+    if(_progressLabel == nil)
+    {
+        _progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 30, 30, 20)];
+        _progressLabel.font = [UIFont mediumFontOfSize:14];
+        _progressLabel.textColor = [UIColor fopDarkText];
+        _progressLabel.backgroundColor = [UIColor clearColor];
+    }
+    return _progressLabel;
+}
+
+- (CircularProgressView *)circularProgressView
+{
+    if(_circularProgressView == nil)
+    {
+        _circularProgressView = [[CircularProgressView alloc] initWithFrame:CGRectMake(240, 15, 50, 50)];
+    }
+    return _circularProgressView;
+}
+
 - (AccessoryView*)accessoryView
 {
     if(_accessoryView == nil)
@@ -87,6 +113,18 @@
     self.nameLabel.text = _station.companyName;
     self.addressLine1Label.text = _station.location.streetAddress;
     self.addressLine2Label.text = [NSString stringWithFormat:@"%@, %@ %@", _station.location.city, _station.location.state, _station.location.zipCode];
+}
+
+- (void)setProgress:(CGFloat)progress
+{
+    _progress = progress;
+    
+    NSInteger percent = (NSInteger)(progress * 100. + 0.5);
+    self.progressLabel.text = [NSString stringWithFormat:@"%d%%", percent];
+    [self.progressLabel sizeToFit];
+    self.progressLabel.center = CGPointMake(265, INSPECTIONS_LIST_CELL_HEIGHT/2);
+    
+    self.circularProgressView.progress = progress;
 }
 
 //- (void)setName:(NSString *)name withAddressLine1:(NSString*)line1 andAddressLine2:(NSString*)line2

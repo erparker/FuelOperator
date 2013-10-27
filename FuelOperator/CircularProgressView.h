@@ -1,5 +1,5 @@
 //
-//  FOSlider.h
+//  CircularProgressView.h
 //  FuelOperator
 //
 //  Created by Gary Robinson on 10/27/13.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FOSlider : UISlider
+@interface CircularProgressView : UIView
+
+@property (nonatomic) CGFloat progress;
 
 @end
