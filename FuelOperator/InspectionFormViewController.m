@@ -10,11 +10,10 @@
 #import "InspectionsFormCell.h"
 #import "CommentPhotoViewController.h"
 #import "FormCategoryView.h"
+//#import "FOSlider.h"
 
 #define HEADER_HEIGHT 25
-#define BUTTON_HEIGHT 47
 #define PROGRESS_HEIGHT 25
-#define NAV_BAR_HEIGHT 40
 
 
 @interface InspectionFormViewController () <UITableViewDataSource, UITableViewDelegate, FormCategoryDelegate>
@@ -58,6 +57,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self useCustomBackButton];
+    
     self.navigationItem.titleView = self.navigationLabel;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.sendButton];
         
@@ -73,10 +74,16 @@
     [self updateProgressView];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidLayoutSubviews
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.facilityView.frame = CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT);
+    self.facilityButton.frame = CGRectMake(0, self.view.bounds.size.height - BUTTON_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
+    
+    self.tanksView.frame = CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT);
+    self.tanksButton.frame = CGRectMake(self.view.bounds.size.width * 1./3., self.view.bounds.size.height - BUTTON_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
+    
+    self.dispensersView.frame = CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT);
+    self.dispensersButton.frame = CGRectMake(self.view.bounds.size.width * 2./3., self.view.bounds.size.height - BUTTON_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
 }
 
 - (void)setInspection:(Inspection *)inspection
@@ -144,7 +151,8 @@
 {
     if(_progressLabel == nil)
     {
-        _progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 100, 15)];
+        _progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, PROGRESS_HEIGHT)];
+        _progressLabel.center = CGPointMake(60, PROGRESS_HEIGHT/2 + 1);
         _progressLabel.backgroundColor = [UIColor clearColor];
         _progressLabel.textColor = [UIColor whiteColor];
         _progressLabel.font = [UIFont boldFontOfSize:12];
@@ -157,7 +165,7 @@
 {
     if(_progressSlider == nil)
     {
-        _progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(97, 0, 215, 9)];
+        _progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(97, -5, 215, 9)];
         _progressSlider.value = 0.;
         
         UIImage* minImage = [UIImage imageNamed:@"progressSliderYellow"];
@@ -169,6 +177,8 @@
         [_progressSlider setThumbImage:[[UIImage alloc] init] forState:UIControlStateNormal];
         [_progressSlider setThumbImage:[[UIImage alloc] init] forState:UIControlStateHighlighted];
         [_progressSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
+        
+//        _progressSlider.backgroundColor = [UIColor redColor];
     }
     return _progressSlider;
 }
@@ -213,7 +223,7 @@
 {
     if(_facilityView == nil)
     {
-        _facilityView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT - NAV_BAR_HEIGHT)];
+        _facilityView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT)];
         
         _facilityView.formCategoryDelegate = self;
         _facilityView.inspection = self.inspection;
@@ -231,7 +241,7 @@
 {
     if(_tanksView == nil)
     {
-        _tanksView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT - NAV_BAR_HEIGHT)];
+        _tanksView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT)];
         
         _tanksView.formCategoryDelegate = self;
         _tanksView.inspection = self.inspection;
@@ -249,7 +259,7 @@
 {
     if(_dispensersView == nil)
     {
-        _dispensersView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT - NAV_BAR_HEIGHT)];
+        _dispensersView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT)];
         
         _dispensersView.formCategoryDelegate = self;
         _dispensersView.inspection = self.inspection;
@@ -271,7 +281,7 @@
     if(_facilityButton == nil)
     {
         _facilityButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _facilityButton.frame = CGRectMake(0, self.view.bounds.size.height - BUTTON_HEIGHT - NAV_BAR_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
+        _facilityButton.frame = CGRectMake(0, self.view.bounds.size.height - BUTTON_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
         [_facilityButton setImage:[UIImage imageNamed:@"btn-facility-normal.png"] forState:UIControlStateNormal];
         [_facilityButton setImage:[UIImage imageNamed:@"btn-facility-selected.png"] forState:UIControlStateSelected];
         [_facilityButton setBackgroundImage:[UIImage imageNamed:@"btn-background-normal"] forState:UIControlStateNormal];
@@ -296,7 +306,7 @@
     if(_tanksButton == nil)
     {
         _tanksButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _tanksButton.frame = CGRectMake(self.view.bounds.size.width/3., self.view.bounds.size.height - BUTTON_HEIGHT - NAV_BAR_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
+        _tanksButton.frame = CGRectMake(self.view.bounds.size.width/3., self.view.bounds.size.height - BUTTON_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
         [_tanksButton setImage:[UIImage imageNamed:@"btn-tanks-normal"] forState:UIControlStateNormal];
         [_tanksButton setImage:[UIImage imageNamed:@"btn-tanks-selected"] forState:UIControlStateSelected];
         [_tanksButton setBackgroundImage:[UIImage imageNamed:@"btn-background-normal"] forState:UIControlStateNormal];
@@ -321,7 +331,7 @@
     if(_dispensersButton == nil)
     {
         _dispensersButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _dispensersButton.frame = CGRectMake(self.view.bounds.size.width * 2./3., self.view.bounds.size.height - BUTTON_HEIGHT - NAV_BAR_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
+        _dispensersButton.frame = CGRectMake(self.view.bounds.size.width * 2./3., self.view.bounds.size.height - BUTTON_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
         [_dispensersButton setImage:[UIImage imageNamed:@"btn-dispensers-normal"] forState:UIControlStateNormal];
         [_dispensersButton setImage:[UIImage imageNamed:@"btn-dispensers-selected"] forState:UIControlStateSelected];
         [_dispensersButton setBackgroundImage:[UIImage imageNamed:@"btn-background-normal"] forState:UIControlStateNormal];

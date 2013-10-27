@@ -38,6 +38,7 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        self.contentView.backgroundColor = [UIColor fopOffWhiteColor];
         [self.contentView addSubview:self.questionLabel];
         [self.contentView addSubview:self.commentNeededImageView];
         [self.contentView addSubview:self.warningImageView];

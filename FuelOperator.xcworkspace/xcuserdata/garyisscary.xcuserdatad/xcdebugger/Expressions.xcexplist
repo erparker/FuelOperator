@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[InspectionsListViewController switchView]:InspectionsListViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.view">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[FormCategoryView tableView:didSelectRowAtIndexPath:]:FormCategoryView.m">
          <PersistentStrings>
             <PersistentString
@@ -31,6 +39,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__32-[OnlineService login:password:]_block_invoke:OnlineService.m">
+      </ContextState>
+      <ContextState
          contextName = "__41-[OnlineService getAnswersForInspection:]_block_invoke:OnlineService.m">
          <PersistentStrings>
             <PersistentString
@@ -42,6 +53,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[InspectionFormViewController tableView:cellForRowAtIndexPath:]:InspectionFormViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "__34-[OnlineService processNextAnswer]_block_invoke_2:OnlineService.m">
          <PersistentStrings>
             <PersistentString
@@ -50,13 +64,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[InspectionFormViewController tableView:cellForRowAtIndexPath:]:InspectionFormViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__32-[OnlineService login:password:]_block_invoke:OnlineService.m">
+         contextName = "__41-[RootContainerViewController toggleOpen]_block_invoke67:RootContainerViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[FormCategoryView updateAnswers]:FormCategoryView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RootContainerViewController toggleOpen]:RootContainerViewController.m">
       </ContextState>
       <ContextState
          contextName = "__56-[OnlineService getScheduledInspectionsFromDate:toDate:]_block_invoke:OnlineService.m">

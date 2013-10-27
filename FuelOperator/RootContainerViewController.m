@@ -57,6 +57,7 @@
     {
         SettingsViewController *settingsVC = [[SettingsViewController alloc] init];
         _settingsNC = [[UINavigationController alloc] initWithRootViewController:settingsVC];
+        _settingsNC.navigationBar.translucent = NO;
     }
     return _settingsNC;
 }

@@ -13,6 +13,7 @@
 
 #define UPCOMING_INSPECTIONS_CELL_VIEW_TAG 2
 #define HEADER_HEIGHT 25
+#define NUM_SHOW_PREVIOUS_WEEKS 6
 
 @interface UpcomingInspectionsViewController ()
 
@@ -51,6 +52,11 @@
     [self updateInspections];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    self.tableView.frame = self.view.bounds;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -62,16 +68,10 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)updateInspections
 {
-    NSDate *start = [NSDate dateWithNumberOfDays:-14 sinceDate:[NSDate startOfTheWeekFromToday]];
-    NSDate *end = [NSDate dateWithNumberOfDays:6*7 sinceDate:start];
+    NSDate *start = [NSDate dateWithNumberOfDays:-NUM_SHOW_PREVIOUS_WEEKS*7 sinceDate:[NSDate startOfTheWeekFromToday]];
+    NSDate *end = [NSDate dateWithNumberOfDays:(8-NUM_SHOW_PREVIOUS_WEEKS)*7 sinceDate:start];
     [[OnlineService sharedService] updateInspectionsFromDate:start toDate:end];
 }
 
@@ -102,7 +102,7 @@
 {
     if(_titleLabel == nil)
     {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.text = @"Upcoming Inspections";
@@ -138,8 +138,8 @@
 
 - (NSInteger)sectionMultiplier:(NSInteger)section
 {
-    //also shows the previous 2 weeks
-    return (section - 2);
+    //also shows the previous NUM_SHOW_PREVIOUS_WEEKS weeks
+    return (section - NUM_SHOW_PREVIOUS_WEEKS);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

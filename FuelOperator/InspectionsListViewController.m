@@ -50,15 +50,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-//    self.navigationItem.title = @"";
-    
     [self useCustomBackButton];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidLayoutSubviews
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.switchView.frame = CGRectMake(0, self.titleView.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.titleView.frame.size.height);
+    self.tableView.frame = CGRectMake(0, 0, self.switchView.frame.size.width, self.switchView.frame.size.height);
+    self.mapView.frame = CGRectMake(0, 0, self.switchView.frame.size.width, self.switchView.frame.size.height);
 }
 
 - (void)setDate:(NSDate *)date
@@ -90,11 +89,13 @@
     {
         CGFloat width = 170;
         _listMapControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - width/2, 10, width, 30)];
+        _listMapControl.segmentedControlStyle = UISegmentedControlStyleBar;
         
         UIImage *listImage = [UIImage imageNamed:@"listView"];
         UIImage *mapImage = [UIImage imageNamed:@"mapView"];
         [_listMapControl insertSegmentWithImage:listImage atIndex:0 animated:NO];
         [_listMapControl insertSegmentWithImage:mapImage atIndex:1 animated:NO];
+        
         _listMapControl.selectedSegmentIndex = 0;
         
         [_listMapControl setBackgroundImage:[UIImage imageNamed:@"segemented-background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
@@ -183,7 +184,7 @@
 {
     if(_switchView == nil)
     {
-        _switchView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleView.frame.size.height, self.view.bounds.size.width, self.view.frame.size.height - self.titleView.frame.size.height - 50)];
+        _switchView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleView.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.titleView.frame.size.height - 60)];
     }
     return _switchView;
 }

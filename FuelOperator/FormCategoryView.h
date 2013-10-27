@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define BUTTON_HEIGHT 47
+
 @protocol FormCategoryDelegate <NSObject>
 
 - (void)updateProgressView;

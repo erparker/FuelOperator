@@ -28,4 +28,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (CGFloat)navHeight
+{
+    return self.navigationController.navigationBar.frame.size.height;
+}
+
 @end

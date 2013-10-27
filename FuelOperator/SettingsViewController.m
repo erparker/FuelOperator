@@ -67,7 +67,7 @@
 {
     if(_headerImageView == nil)
     {
-        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 10)];
+        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 10)];
         _headerImageView.image = [UIImage imageNamed:@"settings-gradient"];
         _headerImageView.layer.shadowOpacity = 0.25;
         _headerImageView.layer.shadowOffset = CGSizeMake(0, 0);
@@ -80,7 +80,7 @@
 {
     if(_tableView == nil)
     {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.bounds.size.width, 50*3)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 10, self.view.bounds.size.width, 50*3)];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.dataSource = self;
         _tableView.delegate = self;

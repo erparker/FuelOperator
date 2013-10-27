@@ -11,5 +11,6 @@
 @interface UIViewController (Additions)
 
 - (void)useCustomBackButton;
+- (CGFloat)navHeight;
 
 @end

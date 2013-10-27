@@ -42,10 +42,6 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)attemptLogin:(NSString *)username password:(NSString *)password
 {
-    //??
-    [self loginDone:NO];
-    return;
-    
     self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURLString]];
     [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
     
@@ -110,9 +106,6 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
 {
-    //??
-    return;
-    
     [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
     [self addQuestionsFromDate:dateFrom toDate:dateTo];
 }
@@ -266,9 +259,6 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)getAnswersForInspection:(Inspection *)inspection
 {
-    //??
-    return;
-    
     NSInteger inspectionID = [inspection.inspectionID integerValue];
     NSString *path = [NSString stringWithFormat:@"inspectionData/%@/%d", self.sessionGuid, inspectionID];
     [self.httpClient getPath:path parameters:nil
@@ -373,9 +363,6 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)sendInspection:(Inspection *)inspection
 {
-    //??
-    return;
-    
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"inspection.inspectionID = %d", [inspection.inspectionID integerValue]];
     self.processingAnswers = [[NSMutableArray alloc] initWithArray:[FormAnswer MR_findAllWithPredicate:pred]];
     [self processNextAnswer];

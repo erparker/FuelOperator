@@ -109,21 +109,25 @@
 {
     if(_fakeNavBar == nil)
     {
-        _fakeNavBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 45)];
+        _fakeNavBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 65)];
+        
+        UIImageView *fakeStatusBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"black-noise"]];
+        fakeStatusBar.frame = CGRectMake(0, 0, self.view.bounds.size.width, 20);
+        [_fakeNavBar addSubview:fakeStatusBar];
         
         UIImageView *gradient = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nav-gradient"]];
-        gradient.frame = _fakeNavBar.frame;
+        gradient.frame = CGRectMake(0, 20, self.view.bounds.size.width, 45);
         [_fakeNavBar addSubview:gradient];
         
         UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *cancelImage = [UIImage imageNamed:@"cancel-btn"];
         [cancelButton setImage:cancelImage forState:UIControlStateNormal];
-        cancelButton.frame = CGRectMake(8, 6, cancelImage.size.width, cancelImage.size.height);
+        cancelButton.frame = CGRectMake(8, 26, cancelImage.size.width, cancelImage.size.height);
         [cancelButton addTarget:self action:@selector(cancelTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_fakeNavBar addSubview:cancelButton];
         
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(cancelButton.frame.size.width, 3, 200, 45)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(cancelButton.frame.size.width, 23, 200, 45)];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.font = [UIFont boldFontOfSize:16];
         titleLabel.textColor = [UIColor whiteColor];
@@ -134,7 +138,7 @@
         UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *saveImage = [UIImage imageNamed:@"save-btn"];
         [saveButton setImage:saveImage forState:UIControlStateNormal];
-        saveButton.frame = CGRectMake(260, 6, saveImage.size.width, saveImage.size.height);
+        saveButton.frame = CGRectMake(260, 26, saveImage.size.width, saveImage.size.height);
         [saveButton addTarget:self action:@selector(saveTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_fakeNavBar addSubview:saveButton];
     }
@@ -208,7 +212,7 @@
 {
     if(_scrollView == nil)
     {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 45, self.view.bounds.size.width, self.view.bounds.size.height - 45)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height - 65)];
         _scrollView.backgroundColor = [UIColor fopOffWhiteColor];
         
         [_scrollView addSubview:self.questionLabel];

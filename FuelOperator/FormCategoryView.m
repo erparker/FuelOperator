@@ -34,6 +34,15 @@
     return self;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGRect rect = self.bounds;
+    rect.size.height -= BUTTON_HEIGHT;
+    self.tableView.frame = self.bounds;
+}
+
 - (UITableView *)tableView
 {
     if(_tableView == nil)
