@@ -16,5 +16,6 @@
 @property (nonatomic) CGFloat progress;
 
 //- (void)setName:(NSString *)name withAddressLine1:(NSString*)line1 andAddressLine2:(NSString*)line2;
+- (void)applyMapStyle;
 
 @end

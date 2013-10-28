@@ -19,6 +19,10 @@
 @property (nonatomic, strong) CircularProgressView *circularProgressView;
 @property (nonatomic, strong) AccessoryView *accessoryView;
 
+//map version
+@property (nonatomic) BOOL mapStyle;
+@property (nonatomic, strong) UIView *titleBackground;
+
 @end
 
 @implementation InspectionsListCellView
@@ -29,6 +33,8 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
+        
+        self.mapStyle = NO;
         
         [self addSubview:self.nameLabel];
         [self addSubview:self.addressLine1Label];
@@ -122,17 +128,45 @@
     NSInteger percent = (NSInteger)(progress * 100. + 0.5);
     self.progressLabel.text = [NSString stringWithFormat:@"%d%%", percent];
     [self.progressLabel sizeToFit];
-    self.progressLabel.center = CGPointMake(265, INSPECTIONS_LIST_CELL_HEIGHT/2);
+    if(!self.mapStyle)
+        self.progressLabel.center = CGPointMake(265, INSPECTIONS_LIST_CELL_HEIGHT/2);
+    else
+        self.progressLabel.center = CGPointMake(235, 55);
     
     self.circularProgressView.progress = progress;
 }
 
-//- (void)setName:(NSString *)name withAddressLine1:(NSString*)line1 andAddressLine2:(NSString*)line2
-//{
-//    self.nameLabel.text = name;
-//    self.addressLine1Label.text = line1;
-//    self.addressLine2Label.text = line2;
-//}
+- (void)applyMapStyle
+{
+    self.mapStyle = YES;
+    
+    [self addSubview:self.titleBackground];
+    [self sendSubviewToBack:self.titleBackground];
+    
+    //?? need a gas icon
+    UIImage *gasImage = [UIImage imageNamed:@"gas-icon"];
+    UIImageView *icon = [[UIImageView alloc] initWithImage:gasImage];
+    icon.frame = CGRectMake(10, 10, gasImage.size.width, gasImage.size.height);
+    [self addSubview:icon];
+    
+    self.nameLabel.textColor = [UIColor whiteColor];
+    self.nameLabel.frame = CGRectMake(25, 7, self.bounds.size.width - 20, 20);
+    
+    self.circularProgressView.frame = CGRectMake(215, 35, 40, 40);
+    self.progressLabel.font = [UIFont mediumFontOfSize:12];
+    
+    self.accessoryView.frame = CGRectMake(265, 52, 20, 20);
+}
+
+- (UIView *)titleBackground
+{
+    if(_titleBackground == nil)
+    {
+        _titleBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 30)];
+        _titleBackground.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
+    }
+    return _titleBackground;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

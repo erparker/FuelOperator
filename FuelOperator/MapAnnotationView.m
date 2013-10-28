@@ -7,110 +7,150 @@
 //
 
 #import "MapAnnotationView.h"
+#import "InspectionsListCellView.h"
+#import "InspectionFormViewController.h"
+
+@interface ArrowView : UIView
+
+@end
+
+@implementation ArrowView
+
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextBeginPath(context);
+    CGContextSetFillColorWithColor(context, [UIColor fopOffWhiteColor].CGColor);
+    
+    CGContextMoveToPoint(context, 0, 0);
+    CGContextAddLineToPoint(context, 10, 10);
+    CGContextAddLineToPoint(context, 20, 00);
+    CGContextAddLineToPoint(context, 0, 0);
+    
+    CGContextFillPath(context);
+}
+
+@end
 
 @interface MapAnnotationView ()
+{
+    float _offset;
+}
+@property (nonatomic, strong) UIView *calloutView;
+@property (nonatomic, strong) ArrowView *arrowView;
+@property (nonatomic, strong) InspectionsListCellView *inspectionView;
+@property (nonatomic) CGFloat calloutOffset;
 
 @end
 
 @implementation MapAnnotationView
 
-
-- (void)didAddSubview:(UIView *)subview
+- (void)setInspection:(Inspection *)inspection
 {
-    if([[[subview class] description] isEqualToString:@"UICalloutView"])
+    _inspection = inspection;
+    
+    self.inspectionView.station = inspection.station;
+    self.inspectionView.progress = [inspection.progress floatValue];
+}
+
+- (InspectionsListCellView *)inspectionView
+{
+    if(_inspectionView == nil)
     {
-        int image = 0;
-        for(UIView *subsubView in subview.subviews)
-        {
-            if([subsubView class] == [UIImageView class])
-            {
-                UIImageView *imageView = ((UIImageView *)subsubView);
-                switch (image)
-                {
-                    case 0:
-                        [imageView setImage:[UIImage imageNamed:@"mapAnnoLeft"]];
-                        break;
-                    case 1:
-                        [imageView setImage:[UIImage imageNamed:@"mapAnnoRight"]];
-                        break;
-                    case 3:
-                        [imageView setImage:[UIImage imageNamed:@"mapAnnoArrow"]];
-                        break;
-                    default:
-                        [imageView setImage:[UIImage imageNamed:@"mapAnnoMid"]];
-                        
-                        UIImage *gasIconImage = [UIImage imageNamed:@"mapCalloutGas"];
-                        UIImageView *gasIcon = [[UIImageView alloc] initWithImage:gasIconImage];
-                        gasIcon.frame = CGRectMake(10, 7, gasIconImage.size.width, gasIconImage.size.height);
-                        [imageView.superview addSubview:gasIcon];
-                        
-                        UILabel *annoTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 200, 30)];
-                        annoTitle.backgroundColor = [UIColor clearColor];
-                        annoTitle.textColor = [UIColor whiteColor];
-                        annoTitle.font = [UIFont regularFontOfSize:16];
-                        annoTitle.text = self.annotationTitle;
-                        [imageView.superview addSubview:annoTitle];
-                        
-                        UILabel *annoSubtitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 27, 200, 30)];
-                        annoSubtitle.backgroundColor = [UIColor clearColor];
-                        annoSubtitle.textColor = [UIColor fopDarkText];
-                        annoSubtitle.font = [UIFont regularFontOfSize:16];
-                        annoSubtitle.text = self.annotationSubtitle;
-                        [imageView.superview addSubview:annoSubtitle];
-                        
-                        UIView *tapView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 70)];
-                        tapView.backgroundColor = [UIColor clearColor];
-                        tapView.userInteractionEnabled = YES;
-                        MapGestureRecognizer *mapGesture = [[MapGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(mapCalloutTapped:)];
-                        mapGesture.annotationTitle = self.annotationTitle;
-                        mapGesture.annotationSubtitle = self.annotationSubtitle;
-                        mapGesture.inspection = self.inspection;
-                        [tapView addGestureRecognizer:mapGesture];
-                        [imageView.superview addSubview:tapView];
-                        [imageView.superview bringSubviewToFront:tapView];
-                        
-                        break;
-                }
-                image++;
-            }
-            else
-                [subsubView removeFromSuperview];
-        }
+        _inspectionView = [[InspectionsListCellView alloc] initWithFrame:CGRectMake(0,0,280,80)];
+        [_inspectionView applyMapStyle];
+    }
+    return _inspectionView;
+}
+
+- (ArrowView *)arrowView
+{
+    if(_arrowView == nil)
+    {
+        _arrowView = [[ArrowView alloc] initWithFrame:CGRectMake(0, 0, 20, 10)];
+        _arrowView.backgroundColor = [UIColor clearColor];
+    }
+    return _arrowView;
+}
+
+- (UIView *)calloutView
+{
+    if(_calloutView == nil)
+    {
+        _calloutView = [[UIView alloc] initWithFrame:CGRectMake(0,0,280,80)];
+        _calloutView.backgroundColor = [UIColor fopOffWhiteColor];
         
+        [_calloutView addSubview:self.inspectionView];
+        
+        _calloutView.userInteractionEnabled = YES;
+        [_calloutView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(calloutTapped:)]];
+        
+        _calloutView.layer.cornerRadius = 5;
+        _calloutView.layer.shadowOpacity = 0.8;
+        _calloutView.layer.shadowOffset = CGSizeMake(5, 5);
+        _calloutView.layer.shadowRadius = 10;
+        _calloutView.layer.masksToBounds = NO;
+    }
+    return _calloutView;
+}
+
+- (void)calloutTapped:(id)sender
+{
+    NSLog(@"calloutTapped");
+    
+    InspectionFormViewController *inspectionFormVC = [[InspectionFormViewController alloc] init];
+    inspectionFormVC.inspection = self.inspection;
+    [self.delegate.navigationController pushViewController:inspectionFormVC animated:YES];
+}
+
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    
+    if(selected)
+    {
+        CGRect frame = self.calloutView.frame;
+        frame.origin.x = self.bounds.origin.x - frame.size.width/2 + self.bounds.size.width/2;
+        _offset = self.frame.origin.x + frame.origin.x - 20;
+        frame.origin.x -= _offset;
+        frame.origin.y = self.bounds.origin.y - frame.size.height - 10;
+        self.calloutView.frame = frame;
+        //?? this is the bounds of the pin, so I need to offset my custom view from this
+        
+        self.inspection = _inspection;
+        
+        [self addSubview:self.calloutView];
+        
+        //?? needs a little work for when pin is right next to right or left edge
+        //?? maybe need to pan the map down if pin is right near the top too
+        self.arrowView.frame = CGRectMake(0, self.bounds.origin.y - 10, 20, 10);
+        [self addSubview:self.arrowView];
+    }
+    else
+    {
+        [self.calloutView removeFromSuperview];
+        [self.arrowView removeFromSuperview];
     }
 }
 
 -(UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event
 {
-    //test touched point in map view
-    //when hit test return nil callout close immediately by default
     UIView* hitView = [super hitTest:point withEvent:event];
-    // if hittest return nil test touch point
-    if (hitView == nil){
-        //dig view to find custom touchable view lately added by us
-        for(UIView *firstView in self.subviews){
-            if([firstView isKindOfClass:[NSClassFromString(@"UICalloutView") class]]){
-                for(UIView *touchableView in firstView.subviews){
-                    if([touchableView isKindOfClass:[UIView class]]){ //this is our touchable view class
-                        //define touchable area
-                        CGRect touchableArea = CGRectMake(firstView.frame.origin.x, firstView.frame.origin.y, touchableView.frame.size.width, touchableView.frame.size.height);
-                        //test touch point if in touchable area
-                        if (CGRectContainsPoint(touchableArea, point)){
-                            //if touch point is in touchable area return touchable view as a touched view
-                            hitView = touchableView;
-                        }
-                    }
-                }
-            }
-        }
+    if (hitView == nil && self.selected)
+    {
+        CGPoint pt = [self convertPoint:point toView:self.calloutView];
+        hitView = [self.calloutView hitTest:pt withEvent:event];
+//        if(hitView)
+//            NSLog(@"HitTest yes");
+//        NSLog(@"hitTest %f, %f", pt.x, pt.y);
     }
     return hitView;
 }
 
-//- (void)mapCalloutTapped:(id)sender
-//{
-//    NSLog(@"fuck");
-//}
+
 
 
 /*
@@ -125,7 +165,3 @@
 @end
 
 
-
-@implementation MapGestureRecognizer
-
-@end

@@ -25,6 +25,9 @@
          contextName = "__32-[OnlineService login:password:]_block_invoke_2:OnlineService.m">
       </ContextState>
       <ContextState
+         contextName = "-[CircularProgressView drawRect:]:CircularProgressView.m">
+      </ContextState>
+      <ContextState
          contextName = "-[OnlineService authenticate]:OnlineService.m">
       </ContextState>
       <ContextState
@@ -85,6 +88,17 @@
          <PersistentStrings>
             <PersistentString
                value = "path">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[InspectionFormViewController viewDidLayoutSubviews]:InspectionFormViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MapAnnotationView setSelected:]:MapAnnotationView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.calloutOffset">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

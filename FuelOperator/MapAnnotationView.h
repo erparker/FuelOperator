@@ -12,6 +12,7 @@
 #define MAP_ANNOTATION_VIEW_WIDTH 200
 #define MAP_ANNOTATION_VIEW_HEIGHT 30
 
+
 @interface MapAnnotationView : MKAnnotationView
 
 @property (nonatomic, strong) Inspection *inspection;
@@ -23,10 +24,3 @@
 @end
 
 
-@interface MapGestureRecognizer : UITapGestureRecognizer
-
-@property (nonatomic, strong) Inspection *inspection;
-@property (nonatomic, strong) NSString *annotationTitle;
-@property (nonatomic, strong) NSString *annotationSubtitle;
-
-@end

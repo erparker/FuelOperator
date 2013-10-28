@@ -317,23 +317,12 @@
         aView = mapView;
     }
     
-    aView.canShowCallout = YES;
+    aView.canShowCallout = NO;
     aView.annotation = annotation; 
     UIView* popupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAP_ANNOTATION_VIEW_WIDTH, MAP_ANNOTATION_VIEW_HEIGHT)];
     aView.leftCalloutAccessoryView = popupView;
     
     return aView;
-}
-
-- (void)mapCalloutTapped:(id)sender
-{
-    self.navigationItem.title = @" ";
-    
-    MapGestureRecognizer *mapGesture = (MapGestureRecognizer *)sender;
-    
-    InspectionFormViewController *inspectionFormVC = [[InspectionFormViewController alloc] init];
-    inspectionFormVC.inspection = mapGesture.inspection;
-    [self.navigationController pushViewController:inspectionFormVC animated:YES];
 }
 
 - (void)locationTapped:(id)sender
