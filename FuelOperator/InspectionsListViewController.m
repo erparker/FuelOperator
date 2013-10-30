@@ -71,7 +71,7 @@
 {
     _date = date;
     
-    self.inspections = [Inspection MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", _date, [NSDate dateWithNumberOfDays:1 sinceDate:_date]]];
+    self.inspections = [Inspection MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(user.login = %@) AND (date >= %@) AND (date < %@)", [User loggedInUser].login, _date, [NSDate dateWithNumberOfDays:1 sinceDate:_date]]];
     
     //format the date selected here like: "Mon Oct 6, 2012"
     NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];

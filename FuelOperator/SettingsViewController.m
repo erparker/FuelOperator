@@ -147,7 +147,6 @@
     {
         AppDelegate *appD = [[UIApplication sharedApplication] delegate];
         [appD logout:self];
-        //[[[UIApplication sharedApplication] delegate] performSelector:@selector(logout:)];
     }
 }
 

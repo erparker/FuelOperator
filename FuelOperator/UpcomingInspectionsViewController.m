@@ -243,7 +243,7 @@
     startDate = [NSDate dateWithNumberOfDays:(indexPath.row + 7 * [self sectionMultiplier:indexPath.section]) sinceDate:self.startOfThisWeek];
     endDate = [NSDate dateWithNumberOfDays:1 sinceDate:startDate];
     
-    NSArray *inspections = [Inspection MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate]];
+    NSArray *inspections = [Inspection MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(user.login = %@) AND (date >= %@) AND (date < %@)", [User loggedInUser].login, startDate, endDate]];
     return inspections.count;
 }
 

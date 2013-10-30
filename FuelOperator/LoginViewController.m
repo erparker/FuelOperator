@@ -95,7 +95,10 @@
     {
         _usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 137, 220, 40)];
         _usernameTextField.delegate = self;
-        //_usernameTextField.placeholder = @"User Name";
+        _usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+        _usernameTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _usernameTextField.placeholder = @"User Name";
+        _usernameTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"previousUserName"];
         _usernameTextField.font = [UIFont regularFontOfSize:24];
         _usernameTextField.textColor = [UIColor darkTextColor];
     }
@@ -108,7 +111,9 @@
     {
         _passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 190, 220, 40)];
         _passwordTextField.delegate = self;
-        //_passwordTextField.placeholder = @"Password";
+        _passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+        _passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _passwordTextField.placeholder = @"Password";
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.font = [UIFont regularFontOfSize:24];
         _passwordTextField.textColor = [UIColor darkTextColor];
@@ -154,35 +159,68 @@
     [self.passwordTextField resignFirstResponder];
     
     self.view.userInteractionEnabled = NO;
-//    self.usernameTextField.userInteractionEnabled = NO;
-//    self.passwordTextField.userInteractionEnabled = NO;
-//    self.loginButton.userInteractionEnabled = NO;
     [self.loginActivityView startAnimating];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginDone:) name:@"loginDone" object:nil];
-    [[OnlineService sharedService] attemptLogin:self.usernameTextField.text password:self.passwordTextField.text];
+    BOOL network = YES;//NO;
+    if(network)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginDone:) name:@"loginDone" object:nil];
+        [[OnlineService sharedService] attemptLogin:self.usernameTextField.text password:self.passwordTextField.text];
+    }
+    else
+        [self attemptLoginOffline];
 }
 
 - (void)loginDone:(NSNotification *)notification
 {
     self.view.userInteractionEnabled = YES;
-//    self.usernameTextField.userInteractionEnabled = YES;
-//    self.passwordTextField.userInteractionEnabled = YES;
-//    self.loginButton.userInteractionEnabled = YES;
     [self.loginActivityView stopAnimating];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginDone" object:nil];
     
     NSNumber *sucess = [notification.userInfo objectForKey:@"Success"];
-    if(YES/*[sucess boolValue] == YES*/)
+    if([sucess boolValue] == YES)
     {
-        //NSLog(@"username= %@, password= %@\n", self.usernameTextField.text, self.passwordTextField.text);
-        AppDelegate *appD = [[UIApplication sharedApplication] delegate];
-        [appD loginCompleted:self];
+        [[NSUserDefaults standardUserDefaults] setObject:self.usernameTextField.text forKey:@"previousUserName"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self loginSucceeded];
     }
     else
+        [self attemptLoginOffline];
+        
+}
+
+- (void)attemptLoginOffline
+{
+    BOOL loggedIn = NO;
+    User *offlineUser = [User MR_findFirstByAttribute:@"login" withValue:self.usernameTextField.text];
+    if(offlineUser)
     {
-        NSLog(@"login failed");
+        //?? prompt if user wants to login offline
+        
+        NSString *decryptedPassword = [NSString decrypt:offlineUser.password];
+        if([decryptedPassword isEqualToString:self.passwordTextField.text])
+        {
+            [User login:offlineUser];
+            loggedIn = YES;
+        }
     }
+    
+    if(loggedIn)
+        [self loginSucceeded];
+    else
+        [self loginFailed];
+}
+
+- (void)loginSucceeded
+{
+    AppDelegate *appD = [[UIApplication sharedApplication] delegate];
+    [appD loginCompleted:self];
+}
+
+- (void)loginFailed
+{
+    NSLog(@"login failed");
 }
 
 @end

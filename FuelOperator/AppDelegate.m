@@ -54,6 +54,7 @@
 
 - (void)logout:(id)sender
 {
+    [User logout];
     [self setupLoginScreen];
 }
 

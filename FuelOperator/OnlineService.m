@@ -18,6 +18,8 @@ static NSString * const kEncryptNumber = @"2";
 
 @property (nonatomic, strong) AFHTTPClient *httpClient;
 
+@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *encryptedUserName;
 @property (nonatomic, strong) NSString *encryptedPassword;
 
@@ -45,6 +47,8 @@ static OnlineService *sharedOnlineService = nil;
     self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURLString]];
     [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
     
+    self.userName = username;
+    self.password = password;
     self.encryptedUserName = nil;
     self.encryptedPassword = nil;
     
@@ -87,6 +91,17 @@ static OnlineService *sharedOnlineService = nil;
                          success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              _sessionGuid = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+             
+             User *user = [User MR_findFirstByAttribute:@"login" withValue:self.userName];
+             if(!user)
+             {
+                 user = [User MR_createEntity];
+                 user.login = self.userName;
+                 user.password = [NSString encrypt:self.password];
+             }
+             [User login:user];
+             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+             
              [self loginDone:YES];
          }
                          failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -100,6 +115,9 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)loginDone:(BOOL)success
 {
+    if(!success)
+        [User logout];
+    
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:success] forKey:@"Success"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"loginDone" object:nil userInfo:userInfo];
 }
@@ -183,6 +201,7 @@ static OnlineService *sharedOnlineService = nil;
             NSDate *date = [NSDate getDateFromJSON:dateString];
             NSLog(@"inspectionDate: %@", [formatter stringFromDate:date]);
             inspection = [Inspection MR_createEntity];
+            inspection.user = [User loggedInUser];
             inspection.date = date;
             inspection.progress = [NSNumber numberWithFloat:0.0];
             inspection.inspectionID = [dict objectForKey:@"InspectionID"];
