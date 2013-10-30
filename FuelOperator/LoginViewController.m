@@ -51,6 +51,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,7 +94,7 @@
 {
     if(_usernameTextField == nil)
     {
-        _usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 137, 220, 40)];
+        _usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 132, 220, 40)];
         _usernameTextField.delegate = self;
         _usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _usernameTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -109,7 +110,7 @@
 {
     if(_passwordTextField == nil)
     {
-        _passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 190, 220, 40)];
+        _passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 185, 220, 40)];
         _passwordTextField.delegate = self;
         _passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -151,6 +152,12 @@
         [_loginActivityView stopAnimating];
     }
     return _loginActivityView;
+}
+
+- (void)backgroundTapped:(id)sender
+{
+    [self.usernameTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
 }
 
 -(void)loginTapped:(id)sender

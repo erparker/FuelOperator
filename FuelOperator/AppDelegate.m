@@ -85,6 +85,9 @@
 //    [barButtonItem setBackButtonBackgroundImage:image forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    [[UITextField appearance] setTintColor:[UIColor blackColor]];
+    [[UITextView appearance] setTintColor:[UIColor blackColor]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
