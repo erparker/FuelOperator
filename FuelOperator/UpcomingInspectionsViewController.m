@@ -85,8 +85,9 @@
     if(_settingsBtn == nil)
     {
         _settingsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _settingsBtn.frame = CGRectMake(0, 0, 31, 31);
-        [_settingsBtn setImage:[UIImage imageNamed:@"btn-settings.png"] forState:UIControlStateNormal];
+        UIImage *image = [UIImage imageNamed:@"btn-settings"];
+        _settingsBtn.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+        [_settingsBtn setImage:image forState:UIControlStateNormal];
         [_settingsBtn addTarget:self action:@selector(toggleLeftView:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _settingsBtn;

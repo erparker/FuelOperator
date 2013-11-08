@@ -17,6 +17,7 @@
 		3C117D87181D8F4C009F5328 /* CircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C117D86181D8F4C009F5328 /* CircularProgressView.m */; };
 		3C1B6D7816F518A1007CD5F4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1B6D7716F518A1007CD5F4 /* MapKit.framework */; };
 		3C1B6D7D16F53A41007CD5F4 /* InspectionFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B6D7C16F53A41007CD5F4 /* InspectionFormViewController.m */; };
+		3C1B80FF182D555E00BC3D02 /* SettingsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B80FE182D555E00BC3D02 /* SettingsDetailViewController.m */; };
 		3C2610971721C1E8007589C1 /* InspectionsFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2610961721C1E8007589C1 /* InspectionsFormCell.m */; };
 		3C27781217108C9D000E4749 /* AccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C27781117108C9D000E4749 /* AccessoryView.m */; };
 		3C29B25D172C6BDA00380A96 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C29B25C172C6BD900380A96 /* CoreLocation.framework */; };
@@ -91,6 +92,8 @@
 		3C1B6D7716F518A1007CD5F4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3C1B6D7B16F53A41007CD5F4 /* InspectionFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionFormViewController.h; sourceTree = "<group>"; };
 		3C1B6D7C16F53A41007CD5F4 /* InspectionFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionFormViewController.m; sourceTree = "<group>"; };
+		3C1B80FD182D555E00BC3D02 /* SettingsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsDetailViewController.h; sourceTree = "<group>"; };
+		3C1B80FE182D555E00BC3D02 /* SettingsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsDetailViewController.m; sourceTree = "<group>"; };
 		3C2610951721C1E7007589C1 /* InspectionsFormCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionsFormCell.h; sourceTree = "<group>"; };
 		3C2610961721C1E8007589C1 /* InspectionsFormCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionsFormCell.m; sourceTree = "<group>"; };
 		3C27781017108C9D000E4749 /* AccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessoryView.h; sourceTree = "<group>"; };
@@ -276,6 +279,8 @@
 				3C0BA2AB17500E800043D256 /* RootContainerViewController.m */,
 				3C78336C16DDD65D0037ED08 /* SettingsViewController.h */,
 				3C78336D16DDD65D0037ED08 /* SettingsViewController.m */,
+				3C1B80FD182D555E00BC3D02 /* SettingsDetailViewController.h */,
+				3C1B80FE182D555E00BC3D02 /* SettingsDetailViewController.m */,
 				3C78336F16DDD78B0037ED08 /* UpcomingInspectionsViewController.h */,
 				3C78337016DDD78B0037ED08 /* UpcomingInspectionsViewController.m */,
 				3C441ABB16F3858000EB07EF /* InspectionsListViewController.h */,
@@ -521,6 +526,7 @@
 				3C063FB117CDE6F600BAF3FE /* FormAnswer+Additions.m in Sources */,
 				3CEE6BA6181B001400C6E43C /* UIViewController+Additions.m in Sources */,
 				3C41714417D4F4690090176E /* Photo.m in Sources */,
+				3C1B80FF182D555E00BC3D02 /* SettingsDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

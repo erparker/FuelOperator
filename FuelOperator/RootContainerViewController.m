@@ -46,7 +46,14 @@
         UpcomingInspectionsViewController *upcomingInspectionsVC = [[UpcomingInspectionsViewController alloc] init];
         _inspectionsNC = [[UINavigationController alloc] initWithRootViewController:upcomingInspectionsVC];
         _inspectionsNC.navigationBar.translucent = NO;
+        _inspectionsNC.view.frame = self.view.bounds;
+        _inspectionsNC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [_inspectionsNC.navigationBar addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(mainNavPanned:)]];
+        
+        _inspectionsNC.view.layer.shadowOpacity = 0.8;
+        _inspectionsNC.view.layer.shadowOffset = CGSizeMake(5, 5);
+        _inspectionsNC.view.layer.shadowRadius = 10;
+        _inspectionsNC.view.layer.masksToBounds = NO;
     }
     return _inspectionsNC;
 }
@@ -57,15 +64,12 @@
     {
         SettingsViewController *settingsVC = [[SettingsViewController alloc] init];
         _settingsNC = [[UINavigationController alloc] initWithRootViewController:settingsVC];
+        _settingsNC.view.frame = self.view.bounds;
+        _settingsNC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        
         _settingsNC.navigationBar.translucent = NO;
     }
     return _settingsNC;
-}
-
-- (void)viewWillLayoutSubviews
-{
-    self.inspectionsNC.view.frame = self.view.bounds;
-    self.settingsNC.view.frame = self.view.bounds;
 }
 
 - (UIView *)blockingView
@@ -89,8 +93,6 @@
 
 - (void)mainNavPanned:(UIPanGestureRecognizer *)pan
 {
-    NSLog(@"mainNavPanned");
-    
     if(pan.state == UIGestureRecognizerStateBegan)
         self.startPosition = self.inspectionsNC.view.frame.origin.x;
     
@@ -126,17 +128,13 @@
     
     [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^(void)
      {
-         NSLog(@"moving to %f", rect.origin.x);
          self.inspectionsNC.view.frame = rect;
          
      } completion:^(BOOL finished){
          
-         CGFloat afterX = self.inspectionsNC.view.frame.origin.x;
-         NSLog(@"afterX = %f", afterX);
-         
          self.settingsOpen = !self.settingsOpen;
          
-         //?? if menuOpen, any touch on mainVC should close it
+         //if menuOpen, any touch on mainVC should close it
          if(self.settingsOpen)
              [self.inspectionsNC.view addSubview:self.blockingView];
          else

@@ -168,7 +168,8 @@
     self.view.userInteractionEnabled = NO;
     [self.loginActivityView startAnimating];
     
-    BOOL network = YES;//NO;
+//    BOOL network = YES;
+    BOOL network = NO;
     if(network)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginDone:) name:@"loginDone" object:nil];

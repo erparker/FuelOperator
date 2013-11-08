@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "SettingsCellView.h"
 #import "AppDelegate.h"
+#import "SettingsDetailViewController.h"
 
 #define SETTINGS_CELL_VIEW_TAG 1
 
@@ -143,7 +144,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    if(indexPath.row == 2)
+    if(indexPath.row == 1)
+    {
+        SettingsDetailViewController *settingsDetailVC = [[SettingsDetailViewController alloc] init];
+        settingsDetailVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:settingsDetailVC animated:YES completion:nil];
+    }
+    else if(indexPath.row == 2)
     {
         AppDelegate *appD = [[UIApplication sharedApplication] delegate];
         [appD logout:self];
