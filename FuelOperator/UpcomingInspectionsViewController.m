@@ -13,16 +13,18 @@
 
 #define UPCOMING_INSPECTIONS_CELL_VIEW_TAG 2
 #define HEADER_HEIGHT 25
-#define NUM_SHOW_PREVIOUS_WEEKS 6
 
 @interface UpcomingInspectionsViewController ()
 
 @property (nonatomic, strong) UIButton *settingsBtn;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSDate *startOfThisWeek;
+
 @property (nonatomic) BOOL settingsOpen;
 @property (nonatomic) BOOL firstAppear;
+
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
 
 @end
 
@@ -57,26 +59,28 @@
     self.tableView.frame = self.view.bounds;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    if(self.firstAppear)
-    {
-        self.firstAppear = NO;
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    }
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    
+//    if(self.firstAppear)
+//    {
+//        self.firstAppear = NO;
+//        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+//    }
+//}
 
 - (void)updateInspections
 {
-    NSDate *start = [NSDate dateWithNumberOfDays:-NUM_SHOW_PREVIOUS_WEEKS*7 sinceDate:[NSDate startOfTheWeekFromToday]];
-    NSDate *end = [NSDate dateWithNumberOfDays:(8-NUM_SHOW_PREVIOUS_WEEKS)*7 sinceDate:start];
-    [[OnlineService sharedService] updateInspectionsFromDate:start toDate:end];
+    self.startDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
+    self.endDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"endDate"];
+    [[OnlineService sharedService] updateInspectionsFromDate:self.startDate toDate:self.endDate];
 }
 
 - (void)inspectionsUpdated:(id)sender
 {
+    self.startDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
+    self.endDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"endDate"];
     [self.tableView reloadData];
 }
 
@@ -127,25 +131,10 @@
     return _tableView;
 }
 
-- (NSDate *)startOfThisWeek
-{
-    if(_startOfThisWeek == nil)
-    {
-        _startOfThisWeek = [NSDate startOfTheWeekFromToday];
-    }
-    return _startOfThisWeek;
-}
-
-
-- (NSInteger)sectionMultiplier:(NSInteger)section
-{
-    //also shows the previous NUM_SHOW_PREVIOUS_WEEKS weeks
-    return (section - NUM_SHOW_PREVIOUS_WEEKS);
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 6;
+    NSInteger numberOfWeeks = [self.endDate timeIntervalSinceDate:self.startDate]/[NSDate secondsPerDay]/7;
+    return numberOfWeeks;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -166,8 +155,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/yy"];
     
-    NSDate *startOfWeek = [self.startOfThisWeek dateByAddingTimeInterval:[NSDate secondsPerDay] * 7.0 * [self sectionMultiplier:section]];
-    NSDate *endOfWeek = [self.startOfThisWeek dateByAddingTimeInterval:[NSDate secondsPerDay] * (6.0 + 7.0 * [self sectionMultiplier:section])];
+    NSDate *startOfWeek = [self.startDate dateByAddingTimeInterval:[NSDate secondsPerDay] * 7.0 * section];
+    NSDate *endOfWeek = [self.startDate dateByAddingTimeInterval:[NSDate secondsPerDay] * (6.0 + 7.0 * section)];
     headerLabel.text = [NSString stringWithFormat:@"%@ - %@", [formatter stringFromDate:startOfWeek], [formatter stringFromDate:endOfWeek]];
     
     [headerLabel sizeToFit];
@@ -238,12 +227,8 @@
 
 - (NSInteger)numInspectionsWithIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *startDate;
-    NSDate *endDate;
-    
-    startDate = [NSDate dateWithNumberOfDays:(indexPath.row + 7 * [self sectionMultiplier:indexPath.section]) sinceDate:self.startOfThisWeek];
-    endDate = [NSDate dateWithNumberOfDays:1 sinceDate:startDate];
-    
+    NSDate *startDate = [NSDate dateWithNumberOfDays:(indexPath.row + 7 * indexPath.section) sinceDate:self.startDate];
+    NSDate *endDate = [NSDate dateWithNumberOfDays:1 sinceDate:startDate];
     NSArray *inspections = [Inspection MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(user.login = %@) AND (date >= %@) AND (date < %@)", [User loggedInUser].login, startDate, endDate]];
     return inspections.count;
 }
@@ -251,9 +236,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
     InspectionsListViewController *inspectionsListVC = [[InspectionsListViewController alloc] init];
-    NSDate *dateSelected = [self.startOfThisWeek dateByAddingTimeInterval:[NSDate secondsPerDay] * (indexPath.row + 7 * [self sectionMultiplier:indexPath.section])];
+    NSDate *dateSelected = [NSDate dateWithNumberOfDays:(indexPath.row + 7 * indexPath.section) sinceDate:self.startDate];
     inspectionsListVC.date = dateSelected;
     [self.navigationController pushViewController:inspectionsListVC animated:YES];
 }

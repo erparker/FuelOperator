@@ -15,16 +15,28 @@
     return 60 * 60 * 24;
 }
 
-+ (NSDate *)startOfToday
++ (NSDate *)startOfDayWithDate:(NSDate *)date
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ) fromDate:[NSDate date]];
+    NSDateComponents *components = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ) fromDate:date];
     
     [components setHour:0];
     [components setMinute:0];
     [components setSecond:0];
     
     return [cal dateFromComponents:components];
+}
+
++ (NSDate *)startOfToday
+{
+    return [NSDate startOfDayWithDate:[NSDate date]];
+}
+
++ (NSDate *)startOfTheWeekFromDate:(NSDate *)date
+{
+    NSDateComponents *weekdayComponents = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date];
+    int currentWeekday = [weekdayComponents weekday]; //[1;7] ... 1 is sunday, 7 is saturday in gregorian calendar
+    return [[NSDate startOfDayWithDate:date] dateByAddingTimeInterval:(-1 * [NSDate secondsPerDay] * (currentWeekday - 1))];
 }
 
 + (NSDate *)startOfTheWeekFromToday

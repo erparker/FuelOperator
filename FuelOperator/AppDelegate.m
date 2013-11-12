@@ -11,6 +11,9 @@
 #import "TestFlight.h"
 #import "SeedDatabase.h"
 
+#define DEFAULT_NUM_WEEKS 4
+
+
 @interface AppDelegate ()
 
 @end
@@ -49,7 +52,27 @@
 
 - (void)loginCompleted:(id)sender
 {
+    [self initDates];
     self.window.rootViewController = self.rootViewController;
+}
+
+- (void)initDates
+{
+    NSDate *start = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
+    if(start == nil)
+    {
+        start = [NSDate startOfTheWeekFromToday];
+        [[NSUserDefaults standardUserDefaults] setObject:start forKey:@"startDate"];
+    }
+    
+    NSDate *end = [[NSUserDefaults standardUserDefaults] objectForKey:@"endDate"];
+    if(end == nil)
+    {
+        end = [NSDate dateWithNumberOfDays:DEFAULT_NUM_WEEKS*7 sinceDate:start];
+        [[NSUserDefaults standardUserDefaults] setObject:end forKey:@"endDate"];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)logout:(id)sender

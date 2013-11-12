@@ -12,18 +12,19 @@
 
 @property (nonatomic, strong) UIView *fakeNavBar;
 
-//@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) UILabel *startLabel;
 @property (nonatomic, strong) UITextField *startTextField;
-//@property (nonatomic, strong) UIDatePicker *startDatePicker;
 
-//@property (nonatomic, strong) NSDate *endDate;
+@property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic, strong) UILabel *endLabel;
 @property (nonatomic, strong) UITextField *endTextField;
-//@property (nonatomic, strong) UIDatePicker *endDatePicker;
 
 @property (nonatomic, strong) UILabel *serverURLLabel;
 @property (nonatomic, strong) UITextField *serverURLTextField;
+
+@property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) UIToolbar *doneKeyboardToolbar;
 
 @end
 
@@ -37,11 +38,9 @@
     
     [self.view addSubview:self.startLabel];
     [self.view addSubview:self.startTextField];
-//    [self.view addSubview:self.startDatePicker];
     
     [self.view addSubview:self.endLabel];
     [self.view addSubview:self.endTextField];
-//    [self.view addSubview:self.endDatePicker];
     
     [self.view addSubview:self.serverURLLabel];
     [self.view addSubview:self.serverURLTextField];
@@ -53,6 +52,9 @@
 	// Do any additional setup after loading the view.
 
     self.view.backgroundColor = [UIColor fopOffWhiteColor];
+    
+    self.startDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
+    self.endDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"endDate"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,6 +103,24 @@
     return _fakeNavBar;
 }
 
+- (void)cancelTapped:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)saveTapped:(id)sender
+{
+    self.startDate = [NSDate startOfTheWeekFromDate:self.startDate];
+    self.endDate = [NSDate dateWithNumberOfDays:7 sinceDate:[NSDate startOfTheWeekFromDate:self.endDate]];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:self.startDate forKey:@"startDate"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.endDate forKey:@"endDate"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[OnlineService sharedService] updateInspectionsFromDate:self.startDate toDate:self.endDate];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (UILabel *)startLabel
 {
     if(_startLabel == nil)
@@ -123,8 +143,20 @@
         _startTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         _startTextField.textColor = [UIColor darkTextColor];
         _startTextField.backgroundColor = [UIColor whiteColor];
+        
+        _startTextField.inputView = self.datePicker;
+        _startTextField.inputAccessoryView = self.doneKeyboardToolbar;
     }
     return _startTextField;
+}
+
+- (void)setStartDate:(NSDate *)startDate
+{
+    _startDate = startDate;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM/dd/yy"];
+    self.startTextField.text = [formatter stringFromDate:_startDate];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -133,17 +165,36 @@
     return YES;
 }
 
-//- (UIDatePicker *)startDatePicker
-//{
-//    if(_startDatePicker == nil)
-//    {
-//        _startDatePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 30, self.view.frame.size.width - 60, 200)];
-//        _startDatePicker.datePickerMode = UIDatePickerModeDate;
-//        _startDatePicker.tintColor = [UIColor whiteColor];
-//        _startDatePicker.backgroundColor = [UIColor whiteColor];
-//    }
-//    return _startDatePicker;
-//}
+- (UIDatePicker *)datePicker
+{
+    if(_datePicker == nil)
+    {
+        _datePicker = [[UIDatePicker alloc] init];
+        _datePicker.datePickerMode = UIDatePickerModeDate;
+        _datePicker.backgroundColor = [UIColor clearColor];
+    }
+    return _datePicker;
+}
+
+- (UIToolbar *)doneKeyboardToolbar
+{
+    if(_doneKeyboardToolbar == nil)
+    {
+        _doneKeyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+        _doneKeyboardToolbar.translucent = NO;
+        _doneKeyboardToolbar.barStyle = UIBarStyleBlack;
+        
+//        UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//        doneButton.frame = CGRectMake(0, 0, 100, 30);
+//        [doneButton setTitle:@"Done" forState:UIControlStateNormal];
+////        [doneButton sizeToFit];
+//        [doneButton addTarget:self action:@selector(doneTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem* doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTapped:)];// initWithCustomView:doneButton];
+        [_doneKeyboardToolbar setItems:[NSArray arrayWithObjects:doneBarButton, nil]];
+    }
+    return _doneKeyboardToolbar;
+}
 
 - (UILabel *)endLabel
 {
@@ -167,10 +218,21 @@
         _endTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         _endTextField.textColor = [UIColor darkTextColor];
         _endTextField.backgroundColor = [UIColor whiteColor];
+        
+        _endTextField.inputView = self.datePicker;
+        _endTextField.inputAccessoryView = self.doneKeyboardToolbar;
     }
     return _endTextField;
 }
 
+- (void)setEndDate:(NSDate *)endDate
+{
+    _endDate = endDate;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM/dd/yy"];
+    self.endTextField.text = [formatter stringFromDate:_endDate];
+}
 
 //- (UIDatePicker *)endDatePicker
 //{
@@ -188,7 +250,7 @@
 {
     if(_serverURLLabel == nil)
     {
-        _serverURLLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 190, self.view.frame.size.width-20, 30)];
+        _serverURLLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 200, self.view.frame.size.width-20, 30)];
         _serverURLLabel.textColor = [UIColor darkTextColor];
         _serverURLLabel.font = [UIFont regularFontOfSize:16];
         _serverURLLabel.text = @"Server URL";
@@ -209,6 +271,48 @@
         _serverURLTextField.backgroundColor = [UIColor whiteColor];
     }
     return _serverURLTextField;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if(textField == self.startTextField)
+    {
+        if([self.endTextField isFirstResponder])
+            return NO;
+        
+        self.datePicker.date = self.startDate;
+    }
+    else if(textField == self.endTextField)
+    {
+        if([self.startTextField isFirstResponder])
+            return NO;
+        
+        self.datePicker.date = self.endDate;
+    }
+    
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if(textField == self.startTextField)
+        self.startDate = self.datePicker.date;
+    else if(textField == self.endTextField)
+        self.endDate = self.datePicker.date;
+}
+
+- (void)doneTapped:(id)sender
+{
+    if([self.startTextField isFirstResponder])
+    {
+        self.startDate = self.datePicker.date;
+        [self.startTextField resignFirstResponder];
+    }
+    else if([self.endTextField isFirstResponder])
+    {
+        self.endDate = self.datePicker.date;
+        [self.endTextField resignFirstResponder];
+    }
 }
 
 @end

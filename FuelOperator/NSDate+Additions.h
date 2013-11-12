@@ -11,7 +11,9 @@
 @interface NSDate (Additions)
 
 + (NSTimeInterval)secondsPerDay;
++ (NSDate *)startOfDayWithDate:(NSDate *)date;
 + (NSDate *)startOfToday;
++ (NSDate *)startOfTheWeekFromDate:(NSDate *)date;
 + (NSDate *)startOfTheWeekFromToday;
 + (NSDate *)startOfNextWeekFromToday;
 + (NSDate *)dateWithNumberOfDays:(NSInteger)days sinceDate:(NSDate*)date;
