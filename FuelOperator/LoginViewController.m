@@ -19,6 +19,8 @@
 @property (nonatomic, strong) UITextField *passwordTextField;
 @property (nonatomic, strong) UIActivityIndicatorView *loginActivityView;
 
+@property (nonatomic, strong) UIToolbar *doneKeyboardToolbar;
+
 @end
 
 @implementation LoginViewController
@@ -51,7 +53,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)]];
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,6 +104,8 @@
         _usernameTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"previousUserName"];
         _usernameTextField.font = [UIFont regularFontOfSize:24];
         _usernameTextField.textColor = [UIColor darkTextColor];
+        
+        _usernameTextField.inputAccessoryView = self.doneKeyboardToolbar;
     }
     return _usernameTextField;
 }
@@ -118,8 +122,35 @@
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.font = [UIFont regularFontOfSize:24];
         _passwordTextField.textColor = [UIColor darkTextColor];
+        
+        _passwordTextField.inputAccessoryView = self.doneKeyboardToolbar;
     }
     return _passwordTextField;
+}
+
+- (UIToolbar *)doneKeyboardToolbar
+{
+    if(_doneKeyboardToolbar == nil)
+    {
+        _doneKeyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 35)];
+        _doneKeyboardToolbar.translucent = YES;
+        UIBarButtonItem* doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissKeyboard:)];
+        _doneKeyboardToolbar.tintColor = [UIColor fopDarkText];
+        [_doneKeyboardToolbar setItems:[NSArray arrayWithObjects:doneBarButton, nil]];
+    }
+    return _doneKeyboardToolbar;
+}
+
+- (void)dismissKeyboard:(id)sender
+{
+    [self.usernameTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (UIButton*)loginButton
@@ -136,12 +167,6 @@
     return _loginButton;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{    
-    [textField resignFirstResponder];
-    return YES;
-}
-
 - (UIActivityIndicatorView *)loginActivityView
 {
     if(_loginActivityView == nil)
@@ -154,16 +179,9 @@
     return _loginActivityView;
 }
 
-- (void)backgroundTapped:(id)sender
-{
-    [self.usernameTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
-}
-
 -(void)loginTapped:(id)sender
 {
-    [self.usernameTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
+    [self dismissKeyboard:self];
     
     self.view.userInteractionEnabled = NO;
     [self.loginActivityView startAnimating];

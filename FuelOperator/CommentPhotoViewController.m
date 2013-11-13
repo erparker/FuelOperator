@@ -37,6 +37,8 @@
 @property (nonatomic, strong) UIButton *takePhotoButton;
 @property (nonatomic) NSInteger removeIndex;
 
+@property (nonatomic, strong) UIToolbar *doneKeyboardToolbar;
+
 @end
 
 @implementation CommentPhotoViewController
@@ -84,7 +86,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self.scrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)]];
+    [self.scrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)]];
     
     self.imageView1.image = self.image1;
     self.imageView2.image = self.image2;
@@ -292,11 +294,32 @@
         _commentTextView.textColor = [UIColor fopDarkGreyColor];
         _commentTextView.text = self.answer.comment;
         _commentTextView.delegate = self;
+        _commentTextView.inputAccessoryView = self.doneKeyboardToolbar;
     }
     return _commentTextView;
 }
 
-- (void)viewTapped:(id)sender
+- (UIToolbar *)doneKeyboardToolbar
+{
+    if(_doneKeyboardToolbar == nil)
+    {
+        _doneKeyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 35)];
+        _doneKeyboardToolbar.translucent = YES;
+        UIBarButtonItem* doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissKeyboard:)];
+        UIBarButtonItem* flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIBarButtonItem* clearBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clearComment:)];
+        _doneKeyboardToolbar.tintColor = [UIColor fopDarkText];
+        [_doneKeyboardToolbar setItems:[NSArray arrayWithObjects:doneBarButton, flexibleSpace, clearBarButton, nil]];
+    }
+    return _doneKeyboardToolbar;
+}
+
+- (void)clearComment:(id)sender
+{
+    self.commentTextView.text = @"";
+}
+
+- (void)dismissKeyboard:(id)sender
 {
     [self.commentTextView resignFirstResponder];
 }

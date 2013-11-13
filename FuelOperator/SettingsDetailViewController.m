@@ -181,16 +181,9 @@
     if(_doneKeyboardToolbar == nil)
     {
         _doneKeyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-        _doneKeyboardToolbar.translucent = NO;
-        _doneKeyboardToolbar.barStyle = UIBarStyleBlack;
-        
-//        UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
-//        doneButton.frame = CGRectMake(0, 0, 100, 30);
-//        [doneButton setTitle:@"Done" forState:UIControlStateNormal];
-////        [doneButton sizeToFit];
-//        [doneButton addTarget:self action:@selector(doneTapped:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIBarButtonItem* doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTapped:)];// initWithCustomView:doneButton];
+        _doneKeyboardToolbar.translucent = YES;
+        UIBarButtonItem* doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTapped:)];
+        _doneKeyboardToolbar.tintColor = [UIColor fopDarkText];
         [_doneKeyboardToolbar setItems:[NSArray arrayWithObjects:doneBarButton, nil]];
     }
     return _doneKeyboardToolbar;
