@@ -240,12 +240,17 @@
 			children = (
 				3C78335B16DDD5E70037ED08 /* AppDelegate.h */,
 				3C78335C16DDD5E70037ED08 /* AppDelegate.m */,
-				3CB6FD5417BFD94000AEBF4A /* OnlineService.h */,
-				3CB6FD5517BFD94000AEBF4A /* OnlineService.m */,
-				3C78337B16DDE0B30037ED08 /* Categories */,
-				3C78337A16DDE06A0037ED08 /* ViewControllers */,
+				3C0BA2AA17500E800043D256 /* RootContainerViewController.h */,
+				3C0BA2AB17500E800043D256 /* RootContainerViewController.m */,
+				3C9CCC441835396100F219FF /* Login */,
+				3C9CCC411835379500F219FF /* Settings */,
+				3C9CCC421835384700F219FF /* InspectionsCalendar */,
+				3C9CCC43183538C000F219FF /* InspectionsList */,
+				3C78337A16DDE06A0037ED08 /* InspectionForm */,
 				3CF6E03116F0415C00C60DFB /* Views */,
+				3C9CCC451835397400F219FF /* Web Service */,
 				3C78338016DDE13E0037ED08 /* CoreData */,
+				3C78337B16DDE0B30037ED08 /* Categories */,
 				3C78337F16DDE1240037ED08 /* Resources */,
 				3CEE6BA2181AEC1C00C6E43C /* Images.xcassets */,
 				3C78335316DDD5E70037ED08 /* Supporting Files */,
@@ -267,27 +272,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3C78337A16DDE06A0037ED08 /* ViewControllers */ = {
+		3C78337A16DDE06A0037ED08 /* InspectionForm */ = {
 			isa = PBXGroup;
 			children = (
-				3CF6E04316F05A3D00C60DFB /* LoginViewController.h */,
-				3CF6E04416F05A3D00C60DFB /* LoginViewController.m */,
-				3C0BA2AA17500E800043D256 /* RootContainerViewController.h */,
-				3C0BA2AB17500E800043D256 /* RootContainerViewController.m */,
-				3C78336C16DDD65D0037ED08 /* SettingsViewController.h */,
-				3C78336D16DDD65D0037ED08 /* SettingsViewController.m */,
-				3C1B80FD182D555E00BC3D02 /* SettingsDetailViewController.h */,
-				3C1B80FE182D555E00BC3D02 /* SettingsDetailViewController.m */,
-				3C78336F16DDD78B0037ED08 /* UpcomingInspectionsViewController.h */,
-				3C78337016DDD78B0037ED08 /* UpcomingInspectionsViewController.m */,
-				3C441ABB16F3858000EB07EF /* InspectionsListViewController.h */,
-				3C441ABC16F3858000EB07EF /* InspectionsListViewController.m */,
 				3C1B6D7B16F53A41007CD5F4 /* InspectionFormViewController.h */,
 				3C1B6D7C16F53A41007CD5F4 /* InspectionFormViewController.m */,
 				3CB1EF3817065A460058CF9A /* CommentPhotoViewController.h */,
 				3CB1EF3917065A470058CF9A /* CommentPhotoViewController.m */,
+				3C2610951721C1E7007589C1 /* InspectionsFormCell.h */,
+				3C2610961721C1E8007589C1 /* InspectionsFormCell.m */,
+				3C063F8817CDC4D600BAF3FE /* FormCategoryView.h */,
+				3C063F8917CDC4D600BAF3FE /* FormCategoryView.m */,
 			);
-			name = ViewControllers;
+			name = InspectionForm;
 			sourceTree = "<group>";
 		};
 		3C78337B16DDE0B30037ED08 /* Categories */ = {
@@ -351,29 +348,72 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		3CF6E03116F0415C00C60DFB /* Views */ = {
+		3C9CCC411835379500F219FF /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				3C78336C16DDD65D0037ED08 /* SettingsViewController.h */,
+				3C78336D16DDD65D0037ED08 /* SettingsViewController.m */,
 				3CF6E03816F04B5C00C60DFB /* SettingsCellView.h */,
 				3CF6E03916F04B5C00C60DFB /* SettingsCellView.m */,
+				3C1B80FD182D555E00BC3D02 /* SettingsDetailViewController.h */,
+				3C1B80FE182D555E00BC3D02 /* SettingsDetailViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		3C9CCC421835384700F219FF /* InspectionsCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				3C78336F16DDD78B0037ED08 /* UpcomingInspectionsViewController.h */,
+				3C78337016DDD78B0037ED08 /* UpcomingInspectionsViewController.m */,
 				3CF6E04816F05F9000C60DFB /* UpcomingInspectionsCellView.h */,
 				3CF6E04916F05F9000C60DFB /* UpcomingInspectionsCellView.m */,
-				3C441AC116F38A3300EB07EF /* InspectionsListCellView.h */,
-				3C441AC216F38A3300EB07EF /* InspectionsListCellView.m */,
 				3C27781017108C9D000E4749 /* AccessoryView.h */,
 				3C27781117108C9D000E4749 /* AccessoryView.m */,
-				3CE0661A1718BBBD00E41881 /* InnerShadowView.h */,
-				3CE0661B1718BBBD00E41881 /* InnerShadowView.m */,
-				3C2610951721C1E7007589C1 /* InspectionsFormCell.h */,
-				3C2610961721C1E8007589C1 /* InspectionsFormCell.m */,
+			);
+			name = InspectionsCalendar;
+			sourceTree = "<group>";
+		};
+		3C9CCC43183538C000F219FF /* InspectionsList */ = {
+			isa = PBXGroup;
+			children = (
+				3C441ABB16F3858000EB07EF /* InspectionsListViewController.h */,
+				3C441ABC16F3858000EB07EF /* InspectionsListViewController.m */,
+				3C441AC116F38A3300EB07EF /* InspectionsListCellView.h */,
+				3C441AC216F38A3300EB07EF /* InspectionsListCellView.m */,
 				3C29B261172C726F00380A96 /* MapAnnotation.h */,
 				3C29B262172C726F00380A96 /* MapAnnotation.m */,
 				3C29B26B172C8EE500380A96 /* MapAnnotationView.h */,
 				3C29B26C172C8EE500380A96 /* MapAnnotationView.m */,
-				3C063F8817CDC4D600BAF3FE /* FormCategoryView.h */,
-				3C063F8917CDC4D600BAF3FE /* FormCategoryView.m */,
 				3C117D85181D8F4C009F5328 /* CircularProgressView.h */,
 				3C117D86181D8F4C009F5328 /* CircularProgressView.m */,
+			);
+			name = InspectionsList;
+			sourceTree = "<group>";
+		};
+		3C9CCC441835396100F219FF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3CF6E04316F05A3D00C60DFB /* LoginViewController.h */,
+				3CF6E04416F05A3D00C60DFB /* LoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		3C9CCC451835397400F219FF /* Web Service */ = {
+			isa = PBXGroup;
+			children = (
+				3CB6FD5417BFD94000AEBF4A /* OnlineService.h */,
+				3CB6FD5517BFD94000AEBF4A /* OnlineService.m */,
+			);
+			name = "Web Service";
+			sourceTree = "<group>";
+		};
+		3CF6E03116F0415C00C60DFB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3CE0661A1718BBBD00E41881 /* InnerShadowView.h */,
+				3CE0661B1718BBBD00E41881 /* InnerShadowView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
