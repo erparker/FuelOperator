@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TestFlight.h"
-#import "SeedDatabase.h"
 
 #define DEFAULT_NUM_WEEKS 4
 
@@ -23,13 +22,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [TestFlight takeOff:@"43e79f16-8771-4aaf-8797-fb338175a70d"];
+//    [TestFlight takeOff:@"43e79f16-8771-4aaf-8797-fb338175a70d"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"FuelOperator.sqllite"];
-//    [SeedDatabase populate];
     
     [self applyStyle];
     [self setupLoginScreen];
