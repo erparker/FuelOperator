@@ -90,7 +90,7 @@
 {
     _inspection = inspection;
     
-    NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.station.companyName, inspection.station.location.city, inspection.station.location.state];
+    NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.facility.storeCode, inspection.facility.city, inspection.facility.state];
     self.navigationLabel.text = formTitle;
     
     [[OnlineService sharedService] getAnswersForInspection:inspection];

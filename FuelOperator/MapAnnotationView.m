@@ -52,7 +52,7 @@
 {
     _inspection = inspection;
     
-    self.inspectionView.station = inspection.station;
+    self.inspectionView.facility = inspection.facility;
     self.inspectionView.progress = [inspection.progress floatValue];
 }
 

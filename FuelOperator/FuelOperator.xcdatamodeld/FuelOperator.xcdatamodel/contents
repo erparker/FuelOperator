@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13A598" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Facility" representedClassName="Facility" syncable="YES">
+        <attribute name="address1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facilityID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="lattitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="inspections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Inspection" inverseName="facility" inverseEntity="Inspection" syncable="YES"/>
+    </entity>
     <entity name="FormAnswer" representedClassName="FormAnswer" syncable="YES">
         <attribute name="answer" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,33 +30,18 @@
     </entity>
     <entity name="Inspection" representedClassName="Inspection" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="inspectionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="inspectionID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="scheduleID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="facility" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Facility" inverseName="inspections" inverseEntity="Facility" syncable="YES"/>
         <relationship name="formAnswers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="inspection" inverseEntity="FormAnswer" syncable="YES"/>
         <relationship name="formQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="inspections" inverseEntity="FormQuestion" syncable="YES"/>
-        <relationship name="station" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="inspections" inverseEntity="Station" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="inspections" inverseEntity="User" syncable="YES"/>
-    </entity>
-    <entity name="Location" representedClassName="Location" syncable="YES">
-        <attribute name="address2" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lattitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="streetAddress" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="station" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="location" inverseEntity="Station" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="jpgData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="formAnswer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="photos" inverseEntity="FormAnswer" syncable="YES"/>
-    </entity>
-    <entity name="Station" representedClassName="Station" syncable="YES">
-        <attribute name="companyName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="storeID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="inspections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Inspection" inverseName="station" inverseEntity="Inspection" syncable="YES"/>
-        <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="station" inverseEntity="Location" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="login" optional="YES" attributeType="String" syncable="YES"/>
@@ -54,10 +51,9 @@
     <elements>
         <element name="FormAnswer" positionX="-531" positionY="-261" width="128" height="118"/>
         <element name="FormQuestion" positionX="-513" positionY="-112" width="128" height="148"/>
-        <element name="Inspection" positionX="-756" positionY="-58" width="128" height="148"/>
-        <element name="Location" positionX="-351" positionY="81" width="128" height="165"/>
+        <element name="Inspection" positionX="-756" positionY="-58" width="128" height="163"/>
         <element name="Photo" positionX="-351" positionY="-261" width="128" height="88"/>
-        <element name="Station" positionX="-524" positionY="81" width="128" height="88"/>
+        <element name="Facility" positionX="-524" positionY="81" width="128" height="193"/>
         <element name="User" positionX="-927" positionY="-36" width="128" height="88"/>
     </elements>
 </model>

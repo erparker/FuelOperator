@@ -112,13 +112,13 @@
     return _accessoryView;
 }
 
-- (void)setStation:(Station *)station
+- (void)setFacility:(Facility *)facility
 {
-    _station = station;
+    _facility = facility;
     
-    self.nameLabel.text = _station.companyName;
-    self.addressLine1Label.text = _station.location.streetAddress;
-    self.addressLine2Label.text = [NSString stringWithFormat:@"%@, %@ %@", _station.location.city, _station.location.state, _station.location.zipCode];
+    self.nameLabel.text = _facility.storeCode;
+    self.addressLine1Label.text = _facility.address1;
+    self.addressLine2Label.text = [NSString stringWithFormat:@"%@, %@ %@", _facility.city, _facility.state, _facility.zip];
 }
 
 - (void)setProgress:(CGFloat)progress

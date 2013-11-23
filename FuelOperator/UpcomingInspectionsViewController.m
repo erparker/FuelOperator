@@ -54,6 +54,11 @@
     [self updateInspections];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLayoutSubviews
 {
     self.tableView.frame = self.view.bounds;

@@ -14,8 +14,10 @@
 +(OnlineService *)sharedService;
 
 @property (nonatomic, strong, readonly) NSString *sessionGuid;
+@property (nonatomic, strong) NSString *token;
 
 - (void)attemptLogin:(NSString *)username password:(NSString *)password;
+- (void)updateFacilities;
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo;
 - (void)getAnswersForInspection:(Inspection *)inspection;
 - (void)sendInspection:(Inspection *)inspection;

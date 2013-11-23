@@ -245,7 +245,7 @@
     }
     
     Inspection *inspection = [self.inspections objectAtIndex:indexPath.row];
-    cellView.station = inspection.station;
+    cellView.facility = inspection.facility;
     cellView.progress = [inspection.progress floatValue];
     
     return cell;
@@ -284,10 +284,10 @@
             Inspection *inspection = [self.inspections objectAtIndex:i];
 //            Station *station = [self.stations objectAtIndex:i];
             MapAnnotation *anno = [[MapAnnotation alloc] init];
-            anno.coordinate = CLLocationCoordinate2DMake([inspection.station.location.lattitude floatValue], [inspection.station.location.longitude floatValue]);
+            anno.coordinate = CLLocationCoordinate2DMake([inspection.facility.lattitude floatValue], [inspection.facility.longitude floatValue]);
             anno.inspection = inspection;
-            anno.annotationTitle = inspection.station.companyName;
-            anno.annotationSubtitle = [NSString stringWithFormat:@"%@, %@", inspection.station.location.city, inspection.station.location.state];
+            anno.annotationTitle = inspection.facility.storeCode;
+            anno.annotationSubtitle = [NSString stringWithFormat:@"%@, %@", inspection.facility.city, inspection.facility.state];
             anno.title = @" ";
             anno.subtitle = @" ";
             [_mapView addAnnotation:anno];
