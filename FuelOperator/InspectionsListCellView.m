@@ -134,6 +134,14 @@
         self.progressLabel.center = CGPointMake(235, 55);
     
     self.circularProgressView.progress = progress;
+    
+    BOOL hideProgress = NO;
+    if(progress <= 0)
+        hideProgress = YES;
+    
+    self.circularProgressView.hidden = hideProgress;
+    self.progressLabel.hidden = hideProgress;
+    
 }
 
 - (void)applyMapStyle

@@ -65,11 +65,13 @@ static OnlineService *sharedOnlineService = nil;
         }
         [User login:user];
         
-        [self updateFacilities];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+            [self updateFacilities];
+//        });
         
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        //?? also update the requiredTypes
         
-        [self loginDone:YES];
     }
                       failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
@@ -100,8 +102,11 @@ static OnlineService *sharedOnlineService = nil;
          
          for(NSDictionary *dict in results)
              [Facility updateOrCreateFromDictionary:dict];
-             
-         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         
+//         dispatch_async(dispatch_get_main_queue(), ^{
+             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+             [self loginDone:YES];
+//         });
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -112,25 +117,24 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
 {
-    //?? want to wait for the facilities to be updated first
-    
     NSDictionary *params = nil;//@{@"Authorization" : auth};
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM-dd-yy"];
-        
+    
     NSString *path = [NSString stringWithFormat:@"api/schedule/daterange/%@/%@", [formatter stringFromDate:dateFrom], [formatter stringFromDate:dateTo]];
     [self.httpClient getPath:path parameters:params
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         NSError *error;
-         NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         
-         for(NSDictionary *dict in results)
-             [Inspection updateOrCreateFromDictionary:dict];
+//         dispatch_async(dispatch_get_main_queue(), ^{
+             NSError *error;
+             NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+             
+             for(NSDictionary *dict in results)
+                 [Inspection updateOrCreateFromDictionary:dict];
 
-         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
-//         [self getScheduledInspectionsFromDate:dateFrom toDate:dateTo];
+             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
+//         });
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -139,29 +143,59 @@ static OnlineService *sharedOnlineService = nil;
      ];
 }
 
-
-- (void)getScheduledInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
+- (void)getQuestionsForInspection:(Inspection *)inspection
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM-dd-yyyy"];
-    NSString *stringFrom = [formatter stringFromDate:dateFrom];
-    NSString *stringTo = [formatter stringFromDate:dateTo];
-    
-    NSString *path = [NSString stringWithFormat:@"schedule/%@/%@/%@", self.sessionGuid, stringFrom, stringTo];
-    [self.httpClient getPath:path parameters:nil
-                     success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-//         [self addInspections:results];
-//         [self addQuestionsByScheduleFromDate:dateFrom toDate:dateTo];
-     }
-                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         
-     }
-     ];
+    NSArray *types = [[NSArray alloc] initWithObjects:@"facility", @"tanks", @"dispensers", nil];
+    for(NSString *type in types)
+    {
+        NSString *path = [NSString stringWithFormat:@"api/question/%@/%d", type, [inspection.inspectionID integerValue]];
+        [self.httpClient getPath:path parameters:nil
+                         success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             NSError *error;
+             NSDictionary *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+             NSArray *questions = [results objectForKey:@"Question"];
+             
+             for(NSDictionary *dict in questions)
+                 [FormQuestion updateOrCreateFromDictionary:dict andInspection:inspection];
+             
+//             dispatch_async(dispatch_get_main_queue(), ^{
+                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"questionsUpdated" object:nil];
+//             });
+         }
+                         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"failed get %@ questions for inspection", type);
+         }
+         ];
+    }
+
 }
+
+
+//- (void)getScheduledInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
+//{
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"MM-dd-yyyy"];
+//    NSString *stringFrom = [formatter stringFromDate:dateFrom];
+//    NSString *stringTo = [formatter stringFromDate:dateTo];
+//    
+//    NSString *path = [NSString stringWithFormat:@"schedule/%@/%@/%@", self.sessionGuid, stringFrom, stringTo];
+//    [self.httpClient getPath:path parameters:nil
+//                     success:^(AFHTTPRequestOperation *operation, id responseObject)
+//     {
+//         NSError *error;
+//         NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+////         [self addInspections:results];
+////         [self addQuestionsByScheduleFromDate:dateFrom toDate:dateTo];
+//     }
+//                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
+//     {
+//         
+//     }
+//     ];
+//}
 
 //- (void)addInspections:(NSArray *)inspectionData
 //{

@@ -19,6 +19,9 @@
 
 @property (nonatomic, strong) NSArray *formAnswers;
 
+@property (nonatomic, strong) NSMutableArray *categories;
+@property (nonatomic, strong) NSMutableArray *countPerCategory;
+
 @end
 
 @implementation FormCategoryView
@@ -60,6 +63,31 @@
 {
     _formQuestions = formQuestions;
     
+    //?? need to sort out the categories
+//    if(!self.singleCategory)
+//    {
+//        self.categories = [[NSMutableArray alloc] init];
+//        self.countPerCategory = [[NSMutableArray alloc] init];
+//        
+//        FormQuestion *first = [_formQuestions objectAtIndex:0];
+//        NSString *curCategory = first.subCategory;
+//        [self.categories addObject:curCategory];
+//        NSInteger count = 1;
+//        
+//        for(NSUInteger i=1; i<_formQuestions.count; i++)
+//        {
+//            FormQuestion *q = [_formQuestions objectAtIndex:i];
+//            if([q.subCategory isEqualToString:curCategory])
+//            {
+//                [self.countPerCategory addObject:[NSNumber numberWithInt:count]];
+//                count = 0;
+//                curCategory = q.subCategory;
+//                [self.categories addObject:curCategory];
+//            }
+//            count++;
+//        }
+//    }
+    
     NSMutableArray *answers = [[NSMutableArray alloc] initWithCapacity:_formQuestions.count];
     for(FormQuestion *q in _formQuestions)
     {
@@ -82,7 +110,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 1;
+    return 1;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

@@ -13,11 +13,12 @@
 + (Facility *)updateOrCreateFromDictionary:(NSDictionary *)dict
 {
     NSNumber *facilityID = [dict numberForKey:@"FacilityID"];
-    Facility *facility = [Facility MR_findFirstByAttribute:@"facilityID" withValue:[NSString stringWithFormat:@"%d", [facilityID integerValue]]];
+    Facility *facility = [Facility MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"facilityID == %d", [facilityID integerValue]]];
     if(!facility)
         facility = [Facility MR_createEntity];
     
     [facility updateFromDictionary:dict];
+    NSLog(@"saved facility with id %d", [facilityID integerValue]);
     return facility;
 }
 

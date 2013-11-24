@@ -13,7 +13,7 @@
 + (Inspection *)updateOrCreateFromDictionary:(NSDictionary *)dict
 {
     NSNumber *scheduleID = [dict numberForKey:@"ScheduleID"];
-    Inspection *inspection = [Inspection MR_findFirstByAttribute:@"scheduleID" withValue:[NSString stringWithFormat:@"%d", [scheduleID integerValue]]];
+    Inspection *inspection = [Inspection MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"scheduleID == %d", [scheduleID integerValue]]];
     if(!inspection)
         inspection = [Inspection MR_createEntity];
     
@@ -29,7 +29,7 @@
     self.inspectionID = [dict numberForKey:@"InspectionID"];
     
     NSNumber *facilityID = [dict numberForKey:@"FacilityID"];
-    Facility *facility = [Facility MR_findFirstByAttribute:@"facilityID" withValue:[NSString stringWithFormat:@"%d", [facilityID integerValue]]];
+    Facility *facility = [Facility MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"facilityID == %d", [facilityID integerValue]]];
     self.facility = facility;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

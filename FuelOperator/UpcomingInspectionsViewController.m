@@ -64,17 +64,6 @@
     self.tableView.frame = self.view.bounds;
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    
-//    if(self.firstAppear)
-//    {
-//        self.firstAppear = NO;
-//        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-//    }
-//}
-
 - (void)updateInspections
 {
     self.startDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];

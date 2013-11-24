@@ -21,6 +21,7 @@
 
 @property (nonatomic, weak) id <FormCategoryDelegate> formCategoryDelegate;
 
+@property (nonatomic) BOOL singleCategory;
 @property (nonatomic, strong) Inspection *inspection;
 @property (nonatomic, strong) NSArray *formQuestions;
 @property (nonatomic, strong) UITableView *tableView;

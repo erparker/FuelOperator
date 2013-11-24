@@ -32,6 +32,7 @@
     #import "FormAnswer.h"
     #import "FormAnswer+Additions.h"
     #import "FormQuestion.h"
+    #import "FormQuestion+Additions.h"
     #import "Facility.h"
     #import "Facility+Additions.h"
     #import "Photo.h"

@@ -1,19 +1,18 @@
 //
-//  User.m
+//  RequiredTypes.m
 //  FuelOperator
 //
 //  Created by Gary Robinson on 11/23/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
-#import "User.h"
-#import "Inspection.h"
+#import "RequiredTypes.h"
 
 
-@implementation User
+@implementation RequiredTypes
 
-@dynamic login;
-@dynamic password;
-@dynamic inspections;
+@dynamic requiredTypeID;
+@dynamic name;
+@dynamic shortName;
 
 @end

@@ -60,11 +60,16 @@
     [self useCustomBackButton];
     
     self.navigationItem.titleView = self.navigationLabel;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.sendButton];
-        
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.sendButton];
+    
     [self facilityButtonTapped:self];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(answersUpdated:) name:@"answersUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(questionsUpdated:) name:@"questionsUpdated" object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -93,14 +98,20 @@
     NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.facility.storeCode, inspection.facility.city, inspection.facility.state];
     self.navigationLabel.text = formTitle;
     
-    [[OnlineService sharedService] getAnswersForInspection:inspection];
+    [[OnlineService sharedService] getQuestionsForInspection:inspection];
 }
 
-- (void)answersUpdated:(id)sender
+- (void)questionsUpdated:(id)sender
 {
-    [self.facilityView.tableView reloadData];
-    [self.tanksView.tableView reloadData];
-    [self.dispensersView.tableView reloadData];
+    NSArray *facilityQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (groupID = %@)", self.inspection.inspectionID, @"0"]];
+    [self.facilityView setFormQuestions:facilityQuestions];
+    
+    NSArray *tanksQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (groupID = %@)", self.inspection.inspectionID, @"1"]];
+    [self.tanksView setFormQuestions:tanksQuestions];
+    
+    NSArray *dispensersQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (groupID = %@)", self.inspection.inspectionID, @"2"]];
+    [self.dispensersView setFormQuestions:dispensersQuestions];
+    
     [self updateProgressView];
 }
 
@@ -227,12 +238,7 @@
         
         _facilityView.formCategoryDelegate = self;
         _facilityView.inspection = self.inspection;
-        NSArray *allQuestions = [self.inspection.formQuestions allObjects];
-        NSArray *facilityQuestions = [allQuestions filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Facilities"]];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortOrder" ascending:YES];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        NSArray *sortedQuestions = [facilityQuestions sortedArrayUsingDescriptors:sortDescriptors];
-        _facilityView.formQuestions = sortedQuestions;
+        _facilityView.singleCategory = YES;
     }
     return _facilityView;
 }
@@ -245,12 +251,7 @@
         
         _tanksView.formCategoryDelegate = self;
         _tanksView.inspection = self.inspection;
-        NSArray *allQuestions = [self.inspection.formQuestions allObjects];
-        NSArray *facilityQuestions = [allQuestions filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Tanks"]];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortOrder" ascending:YES];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        NSArray *sortedQuestions = [facilityQuestions sortedArrayUsingDescriptors:sortDescriptors];
-        _tanksView.formQuestions = sortedQuestions;
+        _tanksView.singleCategory = NO;
     }
     return _tanksView;
 }
@@ -263,12 +264,7 @@
         
         _dispensersView.formCategoryDelegate = self;
         _dispensersView.inspection = self.inspection;
-        NSArray *allQuestions = [self.inspection.formQuestions allObjects];
-        NSArray *facilityQuestions = [allQuestions filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"type = %@", @"Dispensers"]];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortOrder" ascending:YES];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        NSArray *sortedQuestions = [facilityQuestions sortedArrayUsingDescriptors:sortDescriptors];
-        _dispensersView.formQuestions = sortedQuestions;
+        _dispensersView.singleCategory = NO;
     }
     return _dispensersView;
 }
