@@ -58,11 +58,11 @@
 		3CDFA02718415ABB009C839A /* FormQuestion+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA02618415ABB009C839A /* FormQuestion+Additions.m */; };
 		3CDFA02A18415FBC009C839A /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA02918415FBC009C839A /* Inspection.m */; };
 		3CDFA02D18415FBD009C839A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA02C18415FBD009C839A /* User.m */; };
-		3CDFA03018415FBD009C839A /* FormAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA02F18415FBD009C839A /* FormAnswer.m */; };
 		3CDFA03318415FBD009C839A /* Facility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03218415FBD009C839A /* Facility.m */; };
 		3CDFA03918415FBD009C839A /* RequiredTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03818415FBD009C839A /* RequiredTypes.m */; };
 		3CDFA03C18415FBD009C839A /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03B18415FBD009C839A /* Photo.m */; };
-		3CDFA042184168E7009C839A /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA041184168E7009C839A /* FormQuestion.m */; };
+		3CDFA04518432E58009C839A /* FormAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA04418432E58009C839A /* FormAnswer.m */; };
+		3CDFA04B1843332E009C839A /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA04A1843332E009C839A /* FormQuestion.m */; };
 		3CE0661C1718BBBD00E41881 /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0661B1718BBBD00E41881 /* InnerShadowView.m */; };
 		3CEE6BA3181AEC1C00C6E43C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CEE6BA2181AEC1C00C6E43C /* Images.xcassets */; };
 		3CEE6BA6181B001400C6E43C /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE6BA5181B001400C6E43C /* UIViewController+Additions.m */; };
@@ -160,16 +160,16 @@
 		3CDFA02918415FBC009C839A /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
 		3CDFA02B18415FBD009C839A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		3CDFA02C18415FBD009C839A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		3CDFA02E18415FBD009C839A /* FormAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormAnswer.h; sourceTree = "<group>"; };
-		3CDFA02F18415FBD009C839A /* FormAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormAnswer.m; sourceTree = "<group>"; };
 		3CDFA03118415FBD009C839A /* Facility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facility.h; sourceTree = "<group>"; };
 		3CDFA03218415FBD009C839A /* Facility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facility.m; sourceTree = "<group>"; };
 		3CDFA03718415FBD009C839A /* RequiredTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequiredTypes.h; sourceTree = "<group>"; };
 		3CDFA03818415FBD009C839A /* RequiredTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredTypes.m; sourceTree = "<group>"; };
 		3CDFA03A18415FBD009C839A /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		3CDFA03B18415FBD009C839A /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		3CDFA040184168E7009C839A /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
-		3CDFA041184168E7009C839A /* FormQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormQuestion.m; sourceTree = "<group>"; };
+		3CDFA04318432E58009C839A /* FormAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormAnswer.h; sourceTree = "<group>"; };
+		3CDFA04418432E58009C839A /* FormAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormAnswer.m; sourceTree = "<group>"; };
+		3CDFA0491843332E009C839A /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
+		3CDFA04A1843332E009C839A /* FormQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormQuestion.m; sourceTree = "<group>"; };
 		3CE0661A1718BBBD00E41881 /* InnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerShadowView.h; sourceTree = "<group>"; };
 		3CE0661B1718BBBD00E41881 /* InnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerShadowView.m; sourceTree = "<group>"; };
 		3CEE6BA2181AEC1C00C6E43C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -338,13 +338,13 @@
 		3C78338016DDE13E0037ED08 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				3CDFA040184168E7009C839A /* FormQuestion.h */,
-				3CDFA041184168E7009C839A /* FormQuestion.m */,
+				3CDFA04318432E58009C839A /* FormAnswer.h */,
+				3CDFA04418432E58009C839A /* FormAnswer.m */,
 				3C78336416DDD5E70037ED08 /* FuelOperator.xcdatamodeld */,
+				3CDFA0491843332E009C839A /* FormQuestion.h */,
+				3CDFA04A1843332E009C839A /* FormQuestion.m */,
 				3CDFA02818415FBC009C839A /* Inspection.h */,
 				3CDFA02918415FBC009C839A /* Inspection.m */,
-				3CDFA02E18415FBD009C839A /* FormAnswer.h */,
-				3CDFA02F18415FBD009C839A /* FormAnswer.m */,
 				3CDFA03A18415FBD009C839A /* Photo.h */,
 				3CDFA03B18415FBD009C839A /* Photo.m */,
 				3CDFA03718415FBD009C839A /* RequiredTypes.h */,
@@ -548,7 +548,7 @@
 				3C78335916DDD5E70037ED08 /* main.m in Sources */,
 				3C3D0C2B1820DAF6002F6536 /* NSData+Additions.m in Sources */,
 				3C78335D16DDD5E70037ED08 /* AppDelegate.m in Sources */,
-				3CDFA042184168E7009C839A /* FormQuestion.m in Sources */,
+				3CDFA04B1843332E009C839A /* FormQuestion.m in Sources */,
 				3C3D0C341820E3CD002F6536 /* User+Additions.m in Sources */,
 				3C78336616DDD5E70037ED08 /* FuelOperator.xcdatamodeld in Sources */,
 				3C78336E16DDD65D0037ED08 /* SettingsViewController.m in Sources */,
@@ -564,9 +564,9 @@
 				3C441AC316F38A3300EB07EF /* InspectionsListCellView.m in Sources */,
 				3C1B6D7D16F53A41007CD5F4 /* InspectionFormViewController.m in Sources */,
 				3CB1EF3A17065A470058CF9A /* CommentPhotoViewController.m in Sources */,
+				3CDFA04518432E58009C839A /* FormAnswer.m in Sources */,
 				3C27781217108C9D000E4749 /* AccessoryView.m in Sources */,
 				3CB6FD5617BFD94000AEBF4A /* OnlineService.m in Sources */,
-				3CDFA03018415FBD009C839A /* FormAnswer.m in Sources */,
 				3CE0661C1718BBBD00E41881 /* InnerShadowView.m in Sources */,
 				3C2610971721C1E8007589C1 /* InspectionsFormCell.m in Sources */,
 				3CDFA01818411F82009C839A /* Facility+Additions.m in Sources */,

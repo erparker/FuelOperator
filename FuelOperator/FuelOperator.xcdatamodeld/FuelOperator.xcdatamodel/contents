@@ -16,7 +16,7 @@
         <attribute name="answer" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateModified" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="formQuestion" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="formAnswers" inverseEntity="FormQuestion" syncable="YES"/>
+        <relationship name="formQuestion" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="formAnswer" inverseEntity="FormQuestion" syncable="YES"/>
         <relationship name="inspection" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Inspection" inverseName="formAnswers" inverseEntity="Inspection" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="formAnswer" inverseEntity="Photo" syncable="YES"/>
     </entity>
@@ -30,7 +30,8 @@
         <attribute name="questionID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="subCategory" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="formAnswers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="formQuestion" inverseEntity="FormAnswer" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="formAnswer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="formQuestion" inverseEntity="FormAnswer" syncable="YES"/>
         <relationship name="inspection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Inspection" inverseName="formQuestions" inverseEntity="Inspection" syncable="YES"/>
     </entity>
     <entity name="Inspection" representedClassName="Inspection" syncable="YES">
@@ -60,7 +61,7 @@
     </entity>
     <elements>
         <element name="FormAnswer" positionX="-506" positionY="-279" width="128" height="133"/>
-        <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="208"/>
+        <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="223"/>
         <element name="Inspection" positionX="-756" positionY="-58" width="128" height="163"/>
         <element name="Photo" positionX="-335" positionY="-270" width="128" height="88"/>
         <element name="Facility" positionX="-747" positionY="-292" width="128" height="193"/>

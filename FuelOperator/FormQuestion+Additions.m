@@ -10,7 +10,7 @@
 
 @implementation FormQuestion (Additions)
 
-+ (FormQuestion *)updateOrCreateFromDictionary:(NSDictionary *)dict andInspection:(Inspection *)inspection
++ (FormQuestion *)updateOrCreateFromDictionary:(NSDictionary *)dict andInspection:(Inspection *)inspection andType:(NSString *)type
 {
     NSNumber *questionID = [dict numberForKey:@"QuestionID"];
     FormQuestion *question = [FormQuestion MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"questionID == %d", [questionID integerValue]]];
@@ -18,6 +18,7 @@
     {
         question = [FormQuestion MR_createEntity];
         question.inspection = inspection;
+        question.type = type;
     }
     
     [question updateFromDictionary:dict];
@@ -34,6 +35,21 @@
     self.forceComment = [dict numberForKey:@"ForceComment"];
     self.answerRequired = [dict numberForKey:@"AnswerRequired"];
     self.imageRequired = [dict numberForKey:@"ImageRequired"];
+}
+
++ (NSString *)typeFacility
+{
+    return @"facility";
+}
+
++ (NSString *)typeTanks
+{
+    return @"tanks";
+}
+
++ (NSString *)typeDispensers
+{
+    return @"dispensers";
 }
 
 @end

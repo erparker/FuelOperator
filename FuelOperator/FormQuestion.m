@@ -2,7 +2,7 @@
 //  FormQuestion.m
 //  FuelOperator
 //
-//  Created by Gary Robinson on 11/23/13.
+//  Created by Gary Robinson on 11/25/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -22,7 +22,8 @@
 @dynamic forceComment;
 @dynamic answerRequired;
 @dynamic imageRequired;
-@dynamic formAnswers;
+@dynamic type;
+@dynamic formAnswer;
 @dynamic inspection;
 
 @end

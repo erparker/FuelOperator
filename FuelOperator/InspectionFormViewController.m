@@ -65,6 +65,7 @@
     [self facilityButtonTapped:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(questionsUpdated:) name:@"questionsUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inspectionStarted:) name:@"inspectionStarted" object:nil];
 }
 
 - (void)dealloc
@@ -98,18 +99,27 @@
     NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.facility.storeCode, inspection.facility.city, inspection.facility.state];
     self.navigationLabel.text = formTitle;
     
-    [[OnlineService sharedService] getQuestionsForInspection:inspection];
+    if([inspection.inspectionID integerValue] == 0)
+        [[OnlineService sharedService] startInspection:inspection];
+    else
+        [[OnlineService sharedService] getQuestionsForInspection:inspection];
+}
+
+- (void)inspectionStarted:(id)sender
+{
+    NSLog(@"");
+    [[OnlineService sharedService] getQuestionsForInspection:self.inspection];
 }
 
 - (void)questionsUpdated:(id)sender
 {
-    NSArray *facilityQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (groupID = %@)", self.inspection.inspectionID, @"0"]];
+    NSArray *facilityQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", self.inspection.inspectionID, [FormQuestion typeFacility]]];
     [self.facilityView setFormQuestions:facilityQuestions];
     
-    NSArray *tanksQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (groupID = %@)", self.inspection.inspectionID, @"1"]];
+    NSArray *tanksQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", self.inspection.inspectionID, [FormQuestion typeTanks]]];
     [self.tanksView setFormQuestions:tanksQuestions];
     
-    NSArray *dispensersQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (groupID = %@)", self.inspection.inspectionID, @"2"]];
+    NSArray *dispensersQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", self.inspection.inspectionID, [FormQuestion typeDispensers]]];
     [self.dispensersView setFormQuestions:dispensersQuestions];
     
     [self updateProgressView];

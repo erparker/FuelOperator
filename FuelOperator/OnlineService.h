@@ -19,6 +19,7 @@
 - (void)attemptLogin:(NSString *)username password:(NSString *)password;
 - (void)updateFacilities;
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo;
+- (void)startInspection:(Inspection *)inspection;
 - (void)getQuestionsForInspection:(Inspection *)inspection;
 
 

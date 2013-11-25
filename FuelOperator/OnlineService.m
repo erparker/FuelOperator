@@ -143,9 +143,30 @@ static OnlineService *sharedOnlineService = nil;
      ];
 }
 
+- (void)startInspection:(Inspection *)inspection
+{
+    NSString *path = [NSString stringWithFormat:@"api/inspection/start/%d/%d", [inspection.facility.facilityID integerValue], [inspection.scheduleID integerValue]];
+    [self.httpClient postPath:path parameters:nil
+                     success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error;
+         NSDictionary *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         
+         inspection.inspectionID = [results objectForKey:@"InspectionID"];
+         
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionStarted" object:nil];
+     }
+                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"failed startInspection");
+     }
+     ];
+}
+
 - (void)getQuestionsForInspection:(Inspection *)inspection
 {
-    NSArray *types = [[NSArray alloc] initWithObjects:@"facility", @"tanks", @"dispensers", nil];
+    NSArray *types = [[NSArray alloc] initWithObjects:[FormQuestion typeFacility], [FormQuestion typeTanks], [FormQuestion typeDispensers], nil];
     for(NSString *type in types)
     {
         NSString *path = [NSString stringWithFormat:@"api/question/%@/%d", type, [inspection.inspectionID integerValue]];
@@ -157,7 +178,7 @@ static OnlineService *sharedOnlineService = nil;
              NSArray *questions = [results objectForKey:@"Question"];
              
              for(NSDictionary *dict in questions)
-                 [FormQuestion updateOrCreateFromDictionary:dict andInspection:inspection];
+                 [FormQuestion updateOrCreateFromDictionary:dict andInspection:inspection andType:type];
              
 //             dispatch_async(dispatch_get_main_queue(), ^{
                  [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];

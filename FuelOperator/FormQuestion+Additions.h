@@ -10,7 +10,11 @@
 
 @interface FormQuestion (Additions)
 
-+ (FormQuestion *)updateOrCreateFromDictionary:(NSDictionary *)dict andInspection:(Inspection *)inspection;
++ (FormQuestion *)updateOrCreateFromDictionary:(NSDictionary *)dict andInspection:(Inspection *)inspection andType:(NSString *)type;
 - (void)updateFromDictionary:(NSDictionary *)dict;
+
++ (NSString *)typeFacility;
++ (NSString *)typeTanks;
++ (NSString *)typeDispensers;
 
 @end

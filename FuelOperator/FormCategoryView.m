@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSArray *formAnswers;
 
 @property (nonatomic, strong) NSMutableArray *categories;
-@property (nonatomic, strong) NSMutableArray *countPerCategory;
+@property (nonatomic, strong) NSMutableArray *questionsPerCategory;
 
 @end
 
@@ -64,40 +64,46 @@
     _formQuestions = formQuestions;
     
     //?? need to sort out the categories
-//    if(!self.singleCategory)
-//    {
-//        self.categories = [[NSMutableArray alloc] init];
-//        self.countPerCategory = [[NSMutableArray alloc] init];
-//        
-//        FormQuestion *first = [_formQuestions objectAtIndex:0];
-//        NSString *curCategory = first.subCategory;
-//        [self.categories addObject:curCategory];
-//        NSInteger count = 1;
-//        
-//        for(NSUInteger i=1; i<_formQuestions.count; i++)
-//        {
-//            FormQuestion *q = [_formQuestions objectAtIndex:i];
-//            if([q.subCategory isEqualToString:curCategory])
-//            {
-//                [self.countPerCategory addObject:[NSNumber numberWithInt:count]];
-//                count = 0;
-//                curCategory = q.subCategory;
-//                [self.categories addObject:curCategory];
-//            }
-//            count++;
-//        }
-//    }
+    if(!self.singleCategory)
+    {
+        self.categories = [[NSMutableArray alloc] init];
+        self.questionsPerCategory = [[NSMutableArray alloc] init];
+        
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"questionID" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+
+        NSString *curCategory = @"";
+        for(NSUInteger i=0; i<_formQuestions.count; i++)
+        {
+            FormQuestion *q = [_formQuestions objectAtIndex:i];
+            NSString *catName = q.subCategory;
+            if([q.groupID integerValue] != 0)
+                catName = [NSString stringWithFormat:@"%@ %@", q.mainCategory, q.subCategory];
+            if(![catName isEqualToString:curCategory])
+            {
+                curCategory =  catName;
+                [self.categories addObject:curCategory];
+                
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(mainCategory = %@) AND (subCategory = %@)", q.mainCategory, q.subCategory];
+                NSArray *sectionQuestions = [_formQuestions filteredArrayUsingPredicate:predicate];
+                NSArray *sortedQuestions = [sectionQuestions sortedArrayUsingDescriptors:sortDescriptors];
+                [self.questionsPerCategory addObject:sortedQuestions];
+                
+                NSLog(@"");
+            }
+        }
+    }
     
+    //make sure all the answers are created
     NSMutableArray *answers = [[NSMutableArray alloc] initWithCapacity:_formQuestions.count];
     for(FormQuestion *q in _formQuestions)
     {
-        FormAnswer *a = [FormAnswer MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"(formQuestion.questionID = %d) AND (inspection.inspectionID = %d)", [q.questionID integerValue], [self.inspection.inspectionID integerValue]]];
+        FormAnswer *a = q.formAnswer;
         if(!a)
         {
             a = [FormAnswer MR_createEntity];
             a.answer = [NSNumber numberWithInt:kUnanswered];
             a.inspection = self.inspection;
-            NSLog(@"added answer with questionID: %d, inspectionID: %d", [q.questionID integerValue], [self.inspection.inspectionID integerValue]);
             a.formQuestion = q;
         }
         [answers addObject:a];
@@ -110,11 +116,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if(self.singleCategory)
+        return 1;
+    else
+        return self.categories.count;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    if(self.singleCategory)
+        return nil;
+    
     CGRect rect = CGRectMake(0, 0, tableView.bounds.size.width, HEADER_HEIGHT);
     UIView *headerView = [[UIView alloc] initWithFrame:rect];
     headerView.backgroundColor = [UIColor fopYellowColor];
@@ -126,7 +138,7 @@
     headerLabel.font = [UIFont boldFontOfSize:18];
     headerLabel.textAlignment = NSTextAlignmentLeft;
     headerLabel.numberOfLines = 1;
-    headerLabel.text = @"Category 1";
+    headerLabel.text = [self.categories objectAtIndex:section];
     [headerLabel sizeToFit];
     headerLabel.frame = CGRectMake(5, 5, tableView.bounds.size.width - 5, headerLabel.frame.size.height);
     
@@ -137,19 +149,36 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if(self.singleCategory)
+        return 0;
+    
     return HEADER_HEIGHT;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.formQuestions.count;
+    if(self.singleCategory)
+        return self.formQuestions.count;
+    else
+    {
+        NSArray *questions = [self.questionsPerCategory objectAtIndex:section];
+        return questions.count;
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FormQuestion *question = [self.formQuestions objectAtIndex:indexPath.row];
-    FormAnswer *answer = [self.formAnswers objectAtIndex:indexPath.row];
-    return [InspectionsFormCell getCellHeightForQuestion:question withAnswer:answer];
+    FormQuestion *question;
+    if(self.singleCategory)
+        question = [self.formQuestions objectAtIndex:indexPath.row];
+    else
+    {
+        NSArray *questions = [self.questionsPerCategory objectAtIndex:indexPath.section];
+        question = [questions objectAtIndex:indexPath.row];
+    }
+    
+    return [InspectionsFormCell getCellHeightForQuestion:question withAnswer:question.formAnswer];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -160,7 +189,16 @@
     if (cell == nil)
         cell = [[InspectionsFormCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withTarget:self];
     
-    FormAnswer *answer = [self.formAnswers objectAtIndex:indexPath.row];
+    FormAnswer *answer;
+    if(self.singleCategory)
+        answer = [self.formAnswers objectAtIndex:indexPath.row];
+    else
+    {
+        NSArray *questions = [self.questionsPerCategory objectAtIndex:indexPath.section];
+        FormQuestion *question = [questions objectAtIndex:indexPath.row];
+        answer = question.formAnswer;
+    }
+    
     cell.formAnswer = answer;
     
     return cell;
@@ -168,7 +206,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FormAnswer *answer = [self.formAnswers objectAtIndex:indexPath.row];
+    FormAnswer *answer;
+    if(self.singleCategory)
+        answer = [self.formAnswers objectAtIndex:indexPath.row];
+    else
+    {
+        NSArray *questions = [self.questionsPerCategory objectAtIndex:indexPath.section];
+        FormQuestion *question = [questions objectAtIndex:indexPath.row];
+        answer = question.formAnswer;
+    }
+    
 //    if([answer.answer integerValue] == kNO)
         [self.formCategoryDelegate editCommentPhotosForAnswer:answer];
 }
@@ -180,7 +227,16 @@
     
     CGPoint currentTouchPosition = [touch locationInView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint: currentTouchPosition];
-    FormAnswer *answer = [self.formAnswers objectAtIndex:indexPath.row];
+    
+    FormAnswer *answer;
+    if(self.singleCategory)
+        answer = [self.formAnswers objectAtIndex:indexPath.row];
+    else
+    {
+        NSArray *questions = [self.questionsPerCategory objectAtIndex:indexPath.section];
+        FormQuestion *question = [questions objectAtIndex:indexPath.row];
+        answer = question.formAnswer;
+    }
     
     //update the question state according to the tap
     NSInteger state = [answer.answer integerValue] + 1;
