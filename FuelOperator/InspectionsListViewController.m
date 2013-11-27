@@ -75,7 +75,7 @@
     
     //format the date selected here like: "Mon Oct 6, 2012"
     NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
-    [dayFormatter setDateFormat:@"EE"];
+    [dayFormatter setDateFormat:@"EEEE"];
     NSString *day = [dayFormatter stringFromDate:_date];
     
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:_date];
@@ -84,10 +84,10 @@
     NSString *monthName = [[formatter monthSymbols] objectAtIndex:monthIndex];
     monthName = [monthName substringToIndex:3];
     
-    [formatter setDateFormat:@"dd, yyyy"];
+    [formatter setDateFormat:@"dd"];
     NSString *dayAndYear = [formatter stringFromDate:_date];
     
-    self.dateString = [NSString stringWithFormat:@"%@ %@ %@", day, monthName, dayAndYear];
+    self.dateString = [NSString stringWithFormat:@"%@, %@ %@", day, monthName, dayAndYear];
 }
 
 - (UISegmentedControl*)listMapControl
@@ -174,7 +174,7 @@
         _titleDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, self.view.bounds.size.width, 40)];
         _titleDateLabel.backgroundColor = [UIColor clearColor];
         _titleDateLabel.font = [UIFont thinFontOfSize:36];
-        _titleDateLabel.textColor = [UIColor fopLightGreyColor];
+        _titleDateLabel.textColor = [UIColor whiteColor];
         //?? do the day they picked
         _titleDateLabel.text = self.dateString;
     }
@@ -245,8 +245,7 @@
     }
     
     Inspection *inspection = [self.inspections objectAtIndex:indexPath.row];
-    cellView.facility = inspection.facility;
-    cellView.progress = [inspection.progress floatValue];
+    cellView.inspection = inspection;
     
     return cell;
 }

@@ -42,8 +42,8 @@
     [self.view addSubview:self.endLabel];
     [self.view addSubview:self.endTextField];
     
-    [self.view addSubview:self.serverURLLabel];
-    [self.view addSubview:self.serverURLTextField];
+//    [self.view addSubview:self.serverURLLabel];
+//    [self.view addSubview:self.serverURLTextField];
 }
 
 - (void)viewDidLoad

@@ -8,11 +8,9 @@
 
 #import "OnlineService.h"
 #import <AFNetworking/AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
-static NSString * const kBaseURLString = @"http://www.generationbay.com/";// @"http://54.215.179.28/FOService/RestService.svc/";
-static NSString * const kUsername = @"jinspector";
-static NSString * const kPassword = @"Testing";
-static NSString * const kEncryptNumber = @"2";
+static NSString * const kBaseURLString = @"http://www.generationbay.com/";
 
 @interface OnlineService ()
 
@@ -20,6 +18,9 @@ static NSString * const kEncryptNumber = @"2";
 
 @property (nonatomic, strong) NSMutableArray *processingAnswers;
 @property (nonatomic, strong) NSMutableArray *processingPhotos;
+
+@property (nonatomic, strong) Inspection *postingInspection;
+@property (nonatomic) NSInteger postAnswerIndex;
 
 @end
 
@@ -65,10 +66,8 @@ static OnlineService *sharedOnlineService = nil;
         }
         [User login:user];
         
-//        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-            [self updateFacilities];
-//        });
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        [self updateFacilities];
         
         //?? also update the requiredTypes
         
@@ -79,15 +78,6 @@ static OnlineService *sharedOnlineService = nil;
     }
      ];
     
-}
-
-- (void)loginDone:(BOOL)success
-{
-    if(!success)
-        [User logout];
-    
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:success] forKey:@"Success"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginDone" object:nil userInfo:userInfo];
 }
 
 - (void)updateFacilities
@@ -103,16 +93,23 @@ static OnlineService *sharedOnlineService = nil;
          for(NSDictionary *dict in results)
              [Facility updateOrCreateFromDictionary:dict];
          
-//         dispatch_async(dispatch_get_main_queue(), ^{
-             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-             [self loginDone:YES];
-//         });
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         [self loginDone:YES];
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"failed updateFacilities");
      }
      ];
+}
+
+- (void)loginDone:(BOOL)success
+{
+    if(!success)
+        [User logout];
+    
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:success] forKey:@"Success"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginDone" object:nil userInfo:userInfo];
 }
 
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
@@ -125,16 +122,14 @@ static OnlineService *sharedOnlineService = nil;
     [self.httpClient getPath:path parameters:params
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-//         dispatch_async(dispatch_get_main_queue(), ^{
-             NSError *error;
-             NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-             
-             for(NSDictionary *dict in results)
-                 [Inspection updateOrCreateFromDictionary:dict];
+         NSError *error;
+         NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         
+         for(NSDictionary *dict in results)
+             [Inspection updateOrCreateFromDictionary:dict];
 
-             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-             [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
-//         });
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -180,10 +175,8 @@ static OnlineService *sharedOnlineService = nil;
              for(NSDictionary *dict in questions)
                  [FormQuestion updateOrCreateFromDictionary:dict andInspection:inspection andType:type];
              
-//             dispatch_async(dispatch_get_main_queue(), ^{
-                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-                 [[NSNotificationCenter defaultCenter] postNotificationName:@"questionsUpdated" object:nil];
-//             });
+             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"questionsUpdated" object:nil];
          }
                          failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
@@ -192,6 +185,70 @@ static OnlineService *sharedOnlineService = nil;
          ];
     }
 
+}
+
+- (void)submitInspection:(Inspection *)inspection
+{
+    //?? what about posting photos?
+    self.postingInspection = inspection;
+    self.postAnswerIndex = 0;
+    [SVProgressHUD showImage:nil status:@"Submitting..."];
+    
+    [self postNextAnswer];
+}
+
+- (void)postNextAnswer
+{
+    NSString *path = [NSString stringWithFormat:@"api/question/saveanswer"];
+    
+    FormQuestion *question = [[self.postingInspection.formQuestions allObjects] objectAtIndex:self.postAnswerIndex];
+    NSDictionary *params = @{@"InspectionID" : self.postingInspection.inspectionID,
+                             @"QuestionID" : question.questionID,
+                             @"Answer" : [question.formAnswer answerText],
+                             @"Comments" : [question.formAnswer commentText] };
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:jsonData];
+    
+    NSMutableURLRequest *request = [self.httpClient requestWithMethod:@"POST" path:path parameters:nil/*params*/];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:body];
+    
+    [self.httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+
+    NSLog(@"%@", params);
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        //?? reduce the count of answers waiting before dismissing the hud
+        [self answerDone];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed post answer to questionID: %d", [question.questionID integerValue]);
+        [self answerDone];
+    }];
+    
+    [operation start];
+}
+
+- (void)answerDone
+{
+    [SVProgressHUD showProgress:((float)self.postAnswerIndex / (float)self.postingInspection.formQuestions.count)];
+    self.postAnswerIndex++;
+    
+    if(self.postAnswerIndex < self.postingInspection.formQuestions.count)
+    {
+        [self postNextAnswer];
+    }
+    else
+    {
+        self.postingInspection.submitted = [NSNumber numberWithBool:YES];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        [SVProgressHUD dismiss];
+        
+        //?? send off a notification
+    }
 }
 
 

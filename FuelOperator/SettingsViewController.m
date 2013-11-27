@@ -144,6 +144,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    if(indexPath.row == 0)
+    {
+        AppDelegate *appD = [[UIApplication sharedApplication] delegate];
+        [appD.rootViewController toggleOpen];
+    }
     if(indexPath.row == 1)
     {
         SettingsDetailViewController *settingsDetailVC = [[SettingsDetailViewController alloc] init];
@@ -153,6 +158,7 @@
     else if(indexPath.row == 2)
     {
         AppDelegate *appD = [[UIApplication sharedApplication] delegate];
+        [appD.rootViewController toggleOpen];
         [appD logout:self];
     }
 }

@@ -24,6 +24,6 @@
 
 
 
-- (void)sendInspection:(Inspection *)inspection;
+- (void)submitInspection:(Inspection *)inspection;
 
 @end

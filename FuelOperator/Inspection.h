@@ -2,7 +2,7 @@
 //  Inspection.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 11/23/13.
+//  Created by Gary Robinson on 11/25/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -17,9 +17,10 @@
 @property (nonatomic, retain) NSNumber * inspectionID;
 @property (nonatomic, retain) NSNumber * progress;
 @property (nonatomic, retain) NSNumber * scheduleID;
+@property (nonatomic, retain) NSNumber * submitted;
+@property (nonatomic, retain) Facility *facility;
 @property (nonatomic, retain) NSSet *formAnswers;
 @property (nonatomic, retain) NSSet *formQuestions;
-@property (nonatomic, retain) Facility *facility;
 @property (nonatomic, retain) User *user;
 @end
 

@@ -13,7 +13,7 @@
 //#import "FOSlider.h"
 
 #define HEADER_HEIGHT 25
-#define PROGRESS_HEIGHT 25
+#define PROGRESS_HEIGHT 35
 
 
 @interface InspectionFormViewController () <UITableViewDataSource, UITableViewDelegate, FormCategoryDelegate>
@@ -34,6 +34,9 @@
 @property (nonatomic, strong) FormCategoryView *dispensersView;
 @property (nonatomic, strong) UIButton *dispensersButton;
 
+@property (nonatomic, strong) UIActivityIndicatorView *activityView;
+
+
 @end
 
 @implementation InspectionFormViewController
@@ -49,6 +52,7 @@
     [self.view addSubview:self.tanksButton];
     [self.view addSubview:self.dispensersView];
     [self.view addSubview:self.dispensersButton];
+    [self.view addSubview:self.activityView];
     
 }
 
@@ -90,11 +94,15 @@
     
     self.dispensersView.frame = CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT);
     self.dispensersButton.frame = CGRectMake(self.view.bounds.size.width * 2./3., self.view.bounds.size.height - BUTTON_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
+    
+    self.activityView.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
 }
 
 - (void)setInspection:(Inspection *)inspection
 {
     _inspection = inspection;
+    
+    [self.activityView startAnimating];
     
     NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.facility.storeCode, inspection.facility.city, inspection.facility.state];
     self.navigationLabel.text = formTitle;
@@ -107,7 +115,6 @@
 
 - (void)inspectionStarted:(id)sender
 {
-    NSLog(@"");
     [[OnlineService sharedService] getQuestionsForInspection:self.inspection];
 }
 
@@ -123,7 +130,21 @@
     [self.dispensersView setFormQuestions:dispensersQuestions];
     
     [self updateProgressView];
+    
+    [self.activityView stopAnimating];
 }
+
+- (UIActivityIndicatorView *)activityView
+{
+    if(_activityView == nil)
+    {
+        _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        _activityView.hidesWhenStopped = YES;
+        [_activityView stopAnimating];
+    }
+    return _activityView;
+}
+
 
 - (UILabel*)navigationLabel
 {
@@ -146,14 +167,14 @@
         _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_sendButton setTitle:@"Send" forState:UIControlStateNormal];
         _sendButton.frame = CGRectMake(0, 0, 50, 30);
-        [_sendButton addTarget:self action:@selector(sendInspection:) forControlEvents:UIControlEventTouchUpInside];
+        [_sendButton addTarget:self action:@selector(submitInspection:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sendButton;
 }
 
-- (void)sendInspection:(UIButton *)sender
+- (void)submitInspection:(UIButton *)sender
 {
-    [[OnlineService sharedService] sendInspection:self.inspection];
+    [[OnlineService sharedService] submitInspection:self.inspection];
 }
 
 - (UIView*)progressView
@@ -161,7 +182,7 @@
     if(_progressView == nil)
     {
         _progressView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, PROGRESS_HEIGHT)];
-        _progressView.backgroundColor = [UIColor fopProgressBackgroundColor];
+        _progressView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
         [_progressView addSubview:self.progressLabel];
         [_progressView addSubview:self.progressSlider];
     }
@@ -172,12 +193,12 @@
 {
     if(_progressLabel == nil)
     {
-        _progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, PROGRESS_HEIGHT)];
-        _progressLabel.center = CGPointMake(60, PROGRESS_HEIGHT/2 + 1);
+        _progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, PROGRESS_HEIGHT)];
+        _progressLabel.center = CGPointMake(35, PROGRESS_HEIGHT/2 + 2);
         _progressLabel.backgroundColor = [UIColor clearColor];
         _progressLabel.textColor = [UIColor whiteColor];
         _progressLabel.font = [UIFont boldFontOfSize:12];
-        _progressLabel.text = @"0% Complete";
+        _progressLabel.text = @"0%";
     }
     return _progressLabel;
 }
@@ -186,10 +207,11 @@
 {
     if(_progressSlider == nil)
     {
-        _progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(97, -5, 215, 9)];
+        _progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(45, 0, 270, PROGRESS_HEIGHT)];
         _progressSlider.value = 0.;
         
         UIImage* minImage = [UIImage imageNamed:@"progressSliderYellow"];
+        CGSize size = minImage.size;
         minImage = [minImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
         UIImage* maxImage = [UIImage imageNamed:@"progressSliderBlack"];
         maxImage = [maxImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
@@ -220,7 +242,7 @@
     self.inspection.progress = [NSNumber numberWithFloat:value];
     self.progressSlider.value = [self.inspection.progress floatValue];
     NSInteger percent = (NSInteger)(self.progressSlider.value * 100. + 0.5);
-    self.progressLabel.text = [NSString stringWithFormat:@"%d%% Complete", percent];
+    self.progressLabel.text = [NSString stringWithFormat:@"%d%%", percent];
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     

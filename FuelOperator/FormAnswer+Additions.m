@@ -23,4 +23,21 @@
         return NO;
 }
 
+- (NSString *)answerText
+{
+    if([self.answer integerValue] == kYES)
+        return @"True";
+    
+    return @"False";
+}
+
+- (NSString *)commentText
+{
+    if(!self.comment)
+        return @"no comment";
+    
+    return self.comment;
+}
+
+
 @end

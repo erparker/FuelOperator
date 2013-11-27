@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UILabel *progressLabel;
 @property (nonatomic, strong) CircularProgressView *circularProgressView;
 @property (nonatomic, strong) AccessoryView *accessoryView;
+@property (nonatomic, strong) UIButton *submitButton;
 
 //map version
 @property (nonatomic) BOOL mapStyle;
@@ -42,6 +43,7 @@
         [self addSubview:self.circularProgressView];
         [self addSubview:self.progressLabel];
         [self addSubview:self.accessoryView];
+        [self addSubview:self.submitButton];
     }
     return self;
 }
@@ -112,13 +114,38 @@
     return _accessoryView;
 }
 
-- (void)setFacility:(Facility *)facility
+- (UIButton *)submitButton
 {
-    _facility = facility;
+    if(_submitButton == nil)
+    {
+        _submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _submitButton.frame = CGRectMake(230, 20, 60, 30);
+        _submitButton.layer.cornerRadius = 4;
+        [_submitButton setTitle:@"Submit" forState:UIControlStateNormal];
+        _submitButton.backgroundColor = [UIColor blackColor];
+        [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_submitButton addTarget:self action:@selector(submitTapped:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _submitButton;
+}
+
+- (void)submitTapped:(id)sender
+{
+    //?? submit the answers for this inspection
+    //?? show a HUD view
+    NSLog(@"submit tapped for inspectionID: %d", [self.inspection.inspectionID integerValue]);
+    [[OnlineService sharedService] submitInspection:self.inspection];
+}
+
+- (void)setInspection:(Inspection *)inspection
+{
+    _inspection = inspection;
     
-    self.nameLabel.text = _facility.storeCode;
-    self.addressLine1Label.text = _facility.address1;
-    self.addressLine2Label.text = [NSString stringWithFormat:@"%@, %@ %@", _facility.city, _facility.state, _facility.zip];
+    self.nameLabel.text = _inspection.facility.storeCode;
+    self.addressLine1Label.text = _inspection.facility.address1;
+    self.addressLine2Label.text = [NSString stringWithFormat:@"%@, %@ %@", _inspection.facility.city, _inspection.facility.state, _inspection.facility.zip];
+    
+    [self setProgress:[inspection.progress floatValue]];
 }
 
 - (void)setProgress:(CGFloat)progress
@@ -136,12 +163,16 @@
     self.circularProgressView.progress = progress;
     
     BOOL hideProgress = NO;
-    if(progress <= 0)
+    if(progress <= 0 || progress >= 1.0)
         hideProgress = YES;
     
     self.circularProgressView.hidden = hideProgress;
     self.progressLabel.hidden = hideProgress;
     
+    if(progress >= 1.0)
+        self.submitButton.hidden = NO;
+    else
+        self.submitButton.hidden = YES;
 }
 
 - (void)applyMapStyle

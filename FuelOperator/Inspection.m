@@ -2,7 +2,7 @@
 //  Inspection.m
 //  FuelOperator
 //
-//  Created by Gary Robinson on 11/23/13.
+//  Created by Gary Robinson on 11/25/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -19,9 +19,10 @@
 @dynamic inspectionID;
 @dynamic progress;
 @dynamic scheduleID;
+@dynamic submitted;
+@dynamic facility;
 @dynamic formAnswers;
 @dynamic formQuestions;
-@dynamic facility;
 @dynamic user;
 
 @end

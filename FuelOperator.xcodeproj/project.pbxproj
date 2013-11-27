@@ -56,13 +56,13 @@
 		3CDFA01B18412038009C839A /* NSDictionary+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA01A18412038009C839A /* NSDictionary+Additions.m */; };
 		3CDFA0211841417E009C839A /* Inspection+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA0201841417E009C839A /* Inspection+Additions.m */; };
 		3CDFA02718415ABB009C839A /* FormQuestion+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA02618415ABB009C839A /* FormQuestion+Additions.m */; };
-		3CDFA02A18415FBC009C839A /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA02918415FBC009C839A /* Inspection.m */; };
 		3CDFA02D18415FBD009C839A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA02C18415FBD009C839A /* User.m */; };
 		3CDFA03318415FBD009C839A /* Facility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03218415FBD009C839A /* Facility.m */; };
 		3CDFA03918415FBD009C839A /* RequiredTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03818415FBD009C839A /* RequiredTypes.m */; };
 		3CDFA03C18415FBD009C839A /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03B18415FBD009C839A /* Photo.m */; };
 		3CDFA04518432E58009C839A /* FormAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA04418432E58009C839A /* FormAnswer.m */; };
 		3CDFA04B1843332E009C839A /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA04A1843332E009C839A /* FormQuestion.m */; };
+		3CDFA04E1843FCA8009C839A /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA04D1843FCA8009C839A /* Inspection.m */; };
 		3CE0661C1718BBBD00E41881 /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0661B1718BBBD00E41881 /* InnerShadowView.m */; };
 		3CEE6BA3181AEC1C00C6E43C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CEE6BA2181AEC1C00C6E43C /* Images.xcassets */; };
 		3CEE6BA6181B001400C6E43C /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE6BA5181B001400C6E43C /* UIViewController+Additions.m */; };
@@ -156,8 +156,6 @@
 		3CDFA0201841417E009C839A /* Inspection+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Inspection+Additions.m"; sourceTree = "<group>"; };
 		3CDFA02518415ABB009C839A /* FormQuestion+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormQuestion+Additions.h"; sourceTree = "<group>"; };
 		3CDFA02618415ABB009C839A /* FormQuestion+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormQuestion+Additions.m"; sourceTree = "<group>"; };
-		3CDFA02818415FBC009C839A /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
-		3CDFA02918415FBC009C839A /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
 		3CDFA02B18415FBD009C839A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		3CDFA02C18415FBD009C839A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		3CDFA03118415FBD009C839A /* Facility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facility.h; sourceTree = "<group>"; };
@@ -170,6 +168,8 @@
 		3CDFA04418432E58009C839A /* FormAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormAnswer.m; sourceTree = "<group>"; };
 		3CDFA0491843332E009C839A /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
 		3CDFA04A1843332E009C839A /* FormQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormQuestion.m; sourceTree = "<group>"; };
+		3CDFA04C1843FCA8009C839A /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
+		3CDFA04D1843FCA8009C839A /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
 		3CE0661A1718BBBD00E41881 /* InnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerShadowView.h; sourceTree = "<group>"; };
 		3CE0661B1718BBBD00E41881 /* InnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerShadowView.m; sourceTree = "<group>"; };
 		3CEE6BA2181AEC1C00C6E43C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -341,10 +341,10 @@
 				3CDFA04318432E58009C839A /* FormAnswer.h */,
 				3CDFA04418432E58009C839A /* FormAnswer.m */,
 				3C78336416DDD5E70037ED08 /* FuelOperator.xcdatamodeld */,
+				3CDFA04C1843FCA8009C839A /* Inspection.h */,
+				3CDFA04D1843FCA8009C839A /* Inspection.m */,
 				3CDFA0491843332E009C839A /* FormQuestion.h */,
 				3CDFA04A1843332E009C839A /* FormQuestion.m */,
-				3CDFA02818415FBC009C839A /* Inspection.h */,
-				3CDFA02918415FBC009C839A /* Inspection.m */,
 				3CDFA03A18415FBD009C839A /* Photo.h */,
 				3CDFA03B18415FBD009C839A /* Photo.m */,
 				3CDFA03718415FBD009C839A /* RequiredTypes.h */,
@@ -576,12 +576,12 @@
 				3C0BA2AC17500E800043D256 /* RootContainerViewController.m in Sources */,
 				3CFBA4D0175946BC00F47978 /* NSDate+Additions.m in Sources */,
 				3C063F8A17CDC4D600BAF3FE /* FormCategoryView.m in Sources */,
+				3CDFA04E1843FCA8009C839A /* Inspection.m in Sources */,
 				3CDFA03318415FBD009C839A /* Facility.m in Sources */,
 				3CDFA0211841417E009C839A /* Inspection+Additions.m in Sources */,
 				3C3D0C261820D4E3002F6536 /* NSString+Additions.m in Sources */,
 				3CDFA01B18412038009C839A /* NSDictionary+Additions.m in Sources */,
 				3C063FB117CDE6F600BAF3FE /* FormAnswer+Additions.m in Sources */,
-				3CDFA02A18415FBC009C839A /* Inspection.m in Sources */,
 				3CDFA03918415FBD009C839A /* RequiredTypes.m in Sources */,
 				3CEE6BA6181B001400C6E43C /* UIViewController+Additions.m in Sources */,
 				3C1B80FF182D555E00BC3D02 /* SettingsDetailViewController.m in Sources */,

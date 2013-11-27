@@ -17,5 +17,7 @@ typedef enum AnswerType : NSUInteger {
 @interface FormAnswer (Additions)
 
 - (BOOL)isAnswered;
+- (NSString *)answerText;
+- (NSString *)commentText;
 
 @end

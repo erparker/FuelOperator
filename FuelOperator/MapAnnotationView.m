@@ -52,8 +52,7 @@
 {
     _inspection = inspection;
     
-    self.inspectionView.facility = inspection.facility;
-    self.inspectionView.progress = [inspection.progress floatValue];
+    self.inspectionView.inspection = inspection;
 }
 
 - (InspectionsListCellView *)inspectionView
