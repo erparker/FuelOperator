@@ -218,7 +218,6 @@ static OnlineService *sharedOnlineService = nil;
     
     [self.httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
 
-    NSLog(@"%@", params);
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
     {
@@ -247,7 +246,7 @@ static OnlineService *sharedOnlineService = nil;
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         [SVProgressHUD dismiss];
         
-        //?? send off a notification
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
     }
 }
 

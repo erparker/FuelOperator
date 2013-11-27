@@ -257,7 +257,8 @@
 
 - (void)editCommentPhotosForAnswer:(FormAnswer *)formAnswer
 {
-    CommentPhotoViewController *commentPhotoVC = [[CommentPhotoViewController alloc] initWithAnswer:formAnswer];
+    BOOL readOnly = [self.inspection.submitted boolValue];
+    CommentPhotoViewController *commentPhotoVC = [[CommentPhotoViewController alloc] initWithAnswer:formAnswer readOnly:readOnly];
     commentPhotoVC.formCategoryDelegate = self;
     [self presentViewController:commentPhotoVC animated:YES completion:nil];
 }

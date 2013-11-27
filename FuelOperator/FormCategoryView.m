@@ -222,6 +222,9 @@
 
 - (void)didSelectAccessory:(id)sender event:(id)event
 {
+    if(self.inspection.submitted)
+        return;
+    
     NSSet *touches = [event allTouches];
     UITouch *touch = [touches anyObject];
     

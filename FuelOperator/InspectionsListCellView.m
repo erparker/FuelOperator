@@ -19,6 +19,7 @@
 @property (nonatomic, strong) CircularProgressView *circularProgressView;
 @property (nonatomic, strong) AccessoryView *accessoryView;
 @property (nonatomic, strong) UIButton *submitButton;
+@property (nonatomic, strong) UIView *acceptedView;
 
 //map version
 @property (nonatomic) BOOL mapStyle;
@@ -44,6 +45,7 @@
         [self addSubview:self.progressLabel];
         [self addSubview:self.accessoryView];
         [self addSubview:self.submitButton];
+        [self addSubview:self.acceptedView];
     }
     return self;
 }
@@ -52,7 +54,7 @@
 {
     if(_nameLabel == nil)
     {
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.bounds.size.width - 20, 30)];
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.bounds.size.width - 100, 30)];
         _nameLabel.font = [UIFont mediumFontOfSize:18];
         _nameLabel.textColor = [UIColor fopDarkText];
         _nameLabel.backgroundColor = [UIColor clearColor];
@@ -64,7 +66,7 @@
 {
     if(_addressLine1Label == nil)
     {
-        _addressLine1Label = [[UILabel alloc] initWithFrame:CGRectMake(10, 35, self.bounds.size.width - 20, 20)];
+        _addressLine1Label = [[UILabel alloc] initWithFrame:CGRectMake(10, 35, self.bounds.size.width - 100, 20)];
         _addressLine1Label.font = [UIFont regularFontOfSize:16];
         _addressLine1Label.textColor = [UIColor fopDarkText];
         _addressLine1Label.backgroundColor = [UIColor clearColor];
@@ -76,7 +78,7 @@
 {
     if(_addressLine2Label == nil)
     {
-        _addressLine2Label = [[UILabel alloc] initWithFrame:CGRectMake(10, 55, self.bounds.size.width - 20, 20)];
+        _addressLine2Label = [[UILabel alloc] initWithFrame:CGRectMake(10, 55, self.bounds.size.width - 100, 20)];
         _addressLine2Label.font = [UIFont regularFontOfSize:16];
         _addressLine2Label.textColor = [UIColor fopDarkText];
         _addressLine2Label.backgroundColor = [UIColor clearColor];
@@ -114,6 +116,30 @@
     return _accessoryView;
 }
 
+- (UIView *)acceptedView
+{
+    if(_acceptedView == nil)
+    {
+        _acceptedView = [[UIView alloc] initWithFrame:CGRectMake(210, 0, 100, INSPECTIONS_LIST_CELL_HEIGHT)];
+        _acceptedView.backgroundColor = [UIColor clearColor];
+        
+        UIImage *image = [UIImage imageNamed:@"accepted"];
+        UIImageView *acceptedImageView = [[UIImageView alloc] initWithImage:image];
+        acceptedImageView.center = CGPointMake(image.size.width/2, INSPECTIONS_LIST_CELL_HEIGHT/2 - 3);
+        [_acceptedView addSubview:acceptedImageView];
+        
+        UILabel *acceptedLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 80, 30)];
+        [acceptedLabel setTextColor:[UIColor fopDarkText]];
+        [acceptedLabel setFont:[UIFont regularFontOfSize:16]];
+        acceptedLabel.backgroundColor = [UIColor clearColor];
+        acceptedLabel.text = @"Accepted";
+        [acceptedLabel sizeToFit];
+        acceptedLabel.center = CGPointMake(50, INSPECTIONS_LIST_CELL_HEIGHT/2);
+        [_acceptedView addSubview:acceptedLabel];
+    }
+    return _acceptedView;
+}
+
 - (UIButton *)submitButton
 {
     if(_submitButton == nil)
@@ -131,10 +157,14 @@
 
 - (void)submitTapped:(id)sender
 {
-    //?? submit the answers for this inspection
-    //?? show a HUD view
-    NSLog(@"submit tapped for inspectionID: %d", [self.inspection.inspectionID integerValue]);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inspectionSubmitted:) name:@"inspectionSubmitted" object:nil];
     [[OnlineService sharedService] submitInspection:self.inspection];
+}
+
+- (void)inspectionSubmitted:(id)sender
+{
+    [self setProgress:self.progress];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setInspection:(Inspection *)inspection
@@ -152,27 +182,40 @@
 {
     _progress = progress;
     
-    NSInteger percent = (NSInteger)(progress * 100. + 0.5);
-    self.progressLabel.text = [NSString stringWithFormat:@"%d%%", percent];
-    [self.progressLabel sizeToFit];
-    if(!self.mapStyle)
-        self.progressLabel.center = CGPointMake(265, INSPECTIONS_LIST_CELL_HEIGHT/2);
-    else
-        self.progressLabel.center = CGPointMake(235, 55);
-    
-    self.circularProgressView.progress = progress;
-    
-    BOOL hideProgress = NO;
-    if(progress <= 0 || progress >= 1.0)
-        hideProgress = YES;
-    
-    self.circularProgressView.hidden = hideProgress;
-    self.progressLabel.hidden = hideProgress;
-    
-    if(progress >= 1.0)
-        self.submitButton.hidden = NO;
-    else
+    if([self.inspection.submitted boolValue])
+    {
+        self.acceptedView.hidden = NO;
+        
+        self.circularProgressView.hidden = YES;
+        self.progressLabel.hidden = YES;
         self.submitButton.hidden = YES;
+    }
+    else
+    {
+        self.acceptedView.hidden = YES;
+        
+        NSInteger percent = (NSInteger)(progress * 100. + 0.5);
+        self.progressLabel.text = [NSString stringWithFormat:@"%d%%", percent];
+        [self.progressLabel sizeToFit];
+        if(!self.mapStyle)
+            self.progressLabel.center = CGPointMake(265, INSPECTIONS_LIST_CELL_HEIGHT/2);
+        else
+            self.progressLabel.center = CGPointMake(235, 55);
+        
+        self.circularProgressView.progress = progress;
+        
+        BOOL hideProgress = NO;
+        if(progress <= 0 || progress >= 1.0)
+            hideProgress = YES;
+        
+        self.circularProgressView.hidden = hideProgress;
+        self.progressLabel.hidden = hideProgress;
+        
+        if(progress >= 1.0)
+            self.submitButton.hidden = NO;
+        else
+            self.submitButton.hidden = YES;
+    }
 }
 
 - (void)applyMapStyle

@@ -11,6 +11,7 @@
 
 @interface CommentPhotoViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (nonatomic) BOOL readOnly;
 @property (nonatomic, strong) FormAnswer *answer;
 
 @property (nonatomic, strong) UIView *fakeNavBar;
@@ -43,11 +44,12 @@
 
 @implementation CommentPhotoViewController
 
-- (id)initWithAnswer:(FormAnswer *)answer
+- (id)initWithAnswer:(FormAnswer *)answer readOnly:(BOOL)readyOnly
 {
     self = [super init];
     if(self)
     {
+        self.readOnly = readyOnly;
         self.answer = answer;
         
         NSArray *photos = [self.answer.photos allObjects];
@@ -137,12 +139,15 @@
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [_fakeNavBar addSubview:titleLabel];
         
-        UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *saveImage = [UIImage imageNamed:@"save-btn"];
-        [saveButton setImage:saveImage forState:UIControlStateNormal];
-        saveButton.frame = CGRectMake(260, 26, saveImage.size.width, saveImage.size.height);
-        [saveButton addTarget:self action:@selector(saveTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [_fakeNavBar addSubview:saveButton];
+        if(!self.readOnly)
+        {
+            UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            UIImage *saveImage = [UIImage imageNamed:@"save-btn"];
+            [saveButton setImage:saveImage forState:UIControlStateNormal];
+            saveButton.frame = CGRectMake(260, 26, saveImage.size.width, saveImage.size.height);
+            [saveButton addTarget:self action:@selector(saveTapped:) forControlEvents:UIControlEventTouchUpInside];
+            [_fakeNavBar addSubview:saveButton];
+        }
     }
     return _fakeNavBar;
 }
@@ -295,6 +300,9 @@
         _commentTextView.text = self.answer.comment;
         _commentTextView.delegate = self;
         _commentTextView.inputAccessoryView = self.doneKeyboardToolbar;
+        
+        if(self.readOnly)
+            _commentTextView.userInteractionEnabled = NO;
     }
     return _commentTextView;
 }
@@ -505,6 +513,9 @@
 
 - (UIButton*)takePhotoButton
 {
+    if(self.readOnly)
+        return nil;
+    
     if(_takePhotoButton == nil)
     {
         _takePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];

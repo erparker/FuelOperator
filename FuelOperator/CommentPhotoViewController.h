@@ -11,7 +11,7 @@
 
 @interface CommentPhotoViewController : UIViewController
 
-- (id)initWithAnswer:(FormAnswer *)answer;
+- (id)initWithAnswer:(FormAnswer *)answer readOnly:(BOOL)readyOnly;
 
 @property (nonatomic, weak) id <FormCategoryDelegate> formCategoryDelegate;
 
