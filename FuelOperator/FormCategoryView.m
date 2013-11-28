@@ -33,8 +33,15 @@
         // Initialization code
         
         [self addSubview:self.tableView];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(answersUpdated:) name:@"answersUpdated" object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)layoutSubviews
@@ -88,8 +95,6 @@
                 NSArray *sectionQuestions = [_formQuestions filteredArrayUsingPredicate:predicate];
                 NSArray *sortedQuestions = [sectionQuestions sortedArrayUsingDescriptors:sortDescriptors];
                 [self.questionsPerCategory addObject:sortedQuestions];
-                
-                NSLog(@"");
             }
         }
     }
@@ -98,6 +103,7 @@
     NSMutableArray *answers = [[NSMutableArray alloc] initWithCapacity:_formQuestions.count];
     for(FormQuestion *q in _formQuestions)
     {
+        //?? need to download these from the server, only do this if there's no answer on the server
         FormAnswer *a = q.formAnswer;
         if(!a)
         {
@@ -111,6 +117,12 @@
     self.formAnswers = [NSArray arrayWithArray:answers];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
+    [[OnlineService sharedService] getUpdatedAnswers:self.formAnswers];
+}
+
+- (void)answersUpdated:(id)sender
+{
+    [self.formCategoryDelegate updateProgressView];
     [self.tableView reloadData];
 }
 
@@ -240,6 +252,8 @@
         FormQuestion *question = [questions objectAtIndex:indexPath.row];
         answer = question.formAnswer;
     }
+    
+    answer.dateModified = [NSDate date];
     
     //update the question state according to the tap
     NSInteger state = [answer.answer integerValue] + 1;

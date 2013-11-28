@@ -20,4 +20,6 @@ typedef enum AnswerType : NSUInteger {
 - (NSString *)answerText;
 - (NSString *)commentText;
 
+- (void)updateFromDictionary:(NSDictionary *)dict;
+
 @end

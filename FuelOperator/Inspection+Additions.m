@@ -27,6 +27,7 @@
     
     self.scheduleID = [dict numberForKey:@"ScheduleID"];
     self.inspectionID = [dict numberForKey:@"InspectionID"];
+    self.submitted = [NSNumber numberWithBool:[[dict objectForKey:@"InspectionCompleted"] boolValue]];
     
     NSNumber *facilityID = [dict numberForKey:@"FacilityID"];
     Facility *facility = [Facility MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"facilityID == %d", [facilityID integerValue]]];

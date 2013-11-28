@@ -184,8 +184,35 @@ static OnlineService *sharedOnlineService = nil;
          }
          ];
     }
-
 }
+
+- (void)getUpdatedAnswers:(NSArray *)answers
+{
+    for(NSUInteger i=0; i<answers.count; i++)
+    {
+        FormAnswer *answer = (FormAnswer *)[answers objectAtIndex:i];
+        
+        NSString *path = [NSString stringWithFormat:@"api/question/answer/%d", [answer.formQuestion.questionID integerValue]];
+        [self.httpClient getPath:path parameters:nil
+                         success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             NSError *error;
+             NSDictionary *result = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+             
+             [answer updateFromDictionary:result];
+             
+             if(i == (answers.count - 1))
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"answersUpdated" object:nil];
+         }
+                         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             if(i == (answers.count - 1))
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"answersUpdated" object:nil];
+         }
+         ];
+    }
+}
+
 
 - (void)submitInspection:(Inspection *)inspection
 {
