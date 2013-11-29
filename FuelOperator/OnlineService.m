@@ -248,10 +248,63 @@ static OnlineService *sharedOnlineService = nil;
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
     {
-        //?? reduce the count of answers waiting before dismissing the hud
-        [self answerDone];
+        [self uploadAnswerPhoto:0];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failed post answer to questionID: %d", [question.questionID integerValue]);
+        [self answerDone];
+    }];
+    
+    [operation start];
+}
+
+- (void)uploadAnswerPhoto:(NSInteger)index
+{
+    FormQuestion *question = [[self.postingInspection.formQuestions allObjects] objectAtIndex:self.postAnswerIndex];
+    if(!question.formAnswer.photos)
+    {
+        [self answerDone];
+        return;
+    }
+    if(index >= question.formAnswer.photos.count)
+    {
+        [self answerDone];
+        return;
+    }
+    
+    Photo *photo = [[question.formAnswer.photos allObjects] objectAtIndex:index];
+    if([photo.uploaded boolValue])
+    {
+        [self uploadAnswerPhoto:index+1];
+        return;
+    }
+    
+    NSString *path = [NSString stringWithFormat:@"api/question/attachimage/%d/%d", [question.inspection.inspectionID integerValue], [question.questionID integerValue]];
+    
+    NSMutableURLRequest *request;
+    request = [self.httpClient multipartFormRequestWithMethod:@"POST" path:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+               {
+                   [formData appendPartWithFileData:photo.jpgData name:@"photo" fileName:@"photofile.jpg" mimeType:@"image/jpeg"];
+               }];
+    
+    
+    AFJSONRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+        NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
+        
+//        if(_useHud)
+//        {
+//            [SVProgressHUD showProgress:(float)totalBytesWritten/(float)totalBytesExpectedToWrite status:@"Sending..." maskType:SVProgressHUDMaskTypeClear];
+//        }
+    }];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success Block Hit!, %@", responseObject);
+        photo.uploaded = [NSNumber numberWithBool:YES];
+        [self uploadAnswerPhoto:index+1];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed to upload photo");
         [self answerDone];
     }];
     
@@ -272,8 +325,19 @@ static OnlineService *sharedOnlineService = nil;
         self.postingInspection.submitted = [NSNumber numberWithBool:YES];
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         [SVProgressHUD dismiss];
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
+        
+        NSString *path = [NSString stringWithFormat:@"api/inspection/close/%d/%d", [self.postingInspection.inspectionID integerValue], [self.postingInspection.facility.facilityID integerValue]];
+        [self.httpClient postPath:path parameters:nil
+                         success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             
+         }
+                         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"failed to close inspection");
+         }
+         ];
     }
 }
 

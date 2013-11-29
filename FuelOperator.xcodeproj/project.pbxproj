@@ -50,6 +50,7 @@
 		3CA5EDDE17265A8600FD437F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA5EDDD17265A8600FD437F /* MobileCoreServices.framework */; };
 		3CB1EF3A17065A470058CF9A /* CommentPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1EF3917065A470058CF9A /* CommentPhotoViewController.m */; };
 		3CB6FD5617BFD94000AEBF4A /* OnlineService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6FD5517BFD94000AEBF4A /* OnlineService.m */; };
+		3CBC0EDE1848D9A2009C3820 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC0EDD1848D9A2009C3820 /* Photo.m */; };
 		3CD3E89A17343821004C0EA5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CD3E89917343821004C0EA5 /* Icon@2x.png */; };
 		3CD3E89C1734383E004C0EA5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CD3E89B1734383E004C0EA5 /* Icon.png */; };
 		3CDFA01818411F82009C839A /* Facility+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA01718411F82009C839A /* Facility+Additions.m */; };
@@ -59,7 +60,6 @@
 		3CDFA02D18415FBD009C839A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA02C18415FBD009C839A /* User.m */; };
 		3CDFA03318415FBD009C839A /* Facility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03218415FBD009C839A /* Facility.m */; };
 		3CDFA03918415FBD009C839A /* RequiredTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03818415FBD009C839A /* RequiredTypes.m */; };
-		3CDFA03C18415FBD009C839A /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03B18415FBD009C839A /* Photo.m */; };
 		3CDFA04518432E58009C839A /* FormAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA04418432E58009C839A /* FormAnswer.m */; };
 		3CDFA04B1843332E009C839A /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA04A1843332E009C839A /* FormQuestion.m */; };
 		3CDFA04E1843FCA8009C839A /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA04D1843FCA8009C839A /* Inspection.m */; };
@@ -146,6 +146,8 @@
 		3CB1EF3917065A470058CF9A /* CommentPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentPhotoViewController.m; sourceTree = "<group>"; };
 		3CB6FD5417BFD94000AEBF4A /* OnlineService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineService.h; sourceTree = "<group>"; };
 		3CB6FD5517BFD94000AEBF4A /* OnlineService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineService.m; sourceTree = "<group>"; };
+		3CBC0EDC1848D9A2009C3820 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		3CBC0EDD1848D9A2009C3820 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		3CD3E89917343821004C0EA5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		3CD3E89B1734383E004C0EA5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		3CDFA01618411F82009C839A /* Facility+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Facility+Additions.h"; sourceTree = "<group>"; };
@@ -162,8 +164,6 @@
 		3CDFA03218415FBD009C839A /* Facility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facility.m; sourceTree = "<group>"; };
 		3CDFA03718415FBD009C839A /* RequiredTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequiredTypes.h; sourceTree = "<group>"; };
 		3CDFA03818415FBD009C839A /* RequiredTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredTypes.m; sourceTree = "<group>"; };
-		3CDFA03A18415FBD009C839A /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		3CDFA03B18415FBD009C839A /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		3CDFA04318432E58009C839A /* FormAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormAnswer.h; sourceTree = "<group>"; };
 		3CDFA04418432E58009C839A /* FormAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormAnswer.m; sourceTree = "<group>"; };
 		3CDFA0491843332E009C839A /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
@@ -341,12 +341,12 @@
 				3CDFA04318432E58009C839A /* FormAnswer.h */,
 				3CDFA04418432E58009C839A /* FormAnswer.m */,
 				3C78336416DDD5E70037ED08 /* FuelOperator.xcdatamodeld */,
+				3CBC0EDC1848D9A2009C3820 /* Photo.h */,
+				3CBC0EDD1848D9A2009C3820 /* Photo.m */,
 				3CDFA04C1843FCA8009C839A /* Inspection.h */,
 				3CDFA04D1843FCA8009C839A /* Inspection.m */,
 				3CDFA0491843332E009C839A /* FormQuestion.h */,
 				3CDFA04A1843332E009C839A /* FormQuestion.m */,
-				3CDFA03A18415FBD009C839A /* Photo.h */,
-				3CDFA03B18415FBD009C839A /* Photo.m */,
 				3CDFA03718415FBD009C839A /* RequiredTypes.h */,
 				3CDFA03818415FBD009C839A /* RequiredTypes.m */,
 				3CDFA03118415FBD009C839A /* Facility.h */,
@@ -543,7 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CDFA03C18415FBD009C839A /* Photo.m in Sources */,
+				3CBC0EDE1848D9A2009C3820 /* Photo.m in Sources */,
 				3CDFA02718415ABB009C839A /* FormQuestion+Additions.m in Sources */,
 				3C78335916DDD5E70037ED08 /* main.m in Sources */,
 				3C3D0C2B1820DAF6002F6536 /* NSData+Additions.m in Sources */,

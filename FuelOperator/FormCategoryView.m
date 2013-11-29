@@ -234,7 +234,7 @@
 
 - (void)didSelectAccessory:(id)sender event:(id)event
 {
-    if(self.inspection.submitted)
+    if([self.inspection.submitted boolValue])
         return;
     
     NSSet *touches = [event allTouches];

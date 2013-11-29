@@ -173,6 +173,7 @@
         
         self.photo1.index = [NSNumber numberWithInt:0];
         self.photo1.jpgData = UIImageJPEGRepresentation(self.image1, 1.0);
+        self.photo1.uploaded = [NSNumber numberWithBool:NO];
         self.photo1.formAnswer = self.answer;
     }
     else if(self.photo1)
@@ -188,6 +189,7 @@
         
         self.photo2.index = [NSNumber numberWithInt:1];
         self.photo2.jpgData = UIImageJPEGRepresentation(self.image2, 1.0);
+        self.photo2.uploaded = [NSNumber numberWithBool:NO];
         self.photo2.formAnswer = self.answer;
     }
     else if(self.photo2)
@@ -203,6 +205,7 @@
         
         self.photo3.index = [NSNumber numberWithInt:2];
         self.photo3.jpgData = UIImageJPEGRepresentation(self.image3, 1.0);
+        self.photo3.uploaded = [NSNumber numberWithBool:NO];
         self.photo3.formAnswer = self.answer;
     }
     else if(self.photo3)

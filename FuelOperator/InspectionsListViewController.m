@@ -15,7 +15,7 @@
 
 #define INSPECTIONS_LIST_CELL_VIEW_TAG 3
 
-@interface InspectionsListViewController () <MKMapViewDelegate>
+@interface InspectionsListViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) UISegmentedControl *listMapControl;
 @property (nonatomic, strong) UIButton *addSiteBtn;
@@ -26,6 +26,8 @@
 @property (nonatomic, strong) UIView *switchView;
 
 @property (nonatomic, strong) NSArray *inspections;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end
 
@@ -326,11 +328,94 @@
 
 - (void)locationTapped:(id)sender
 {
-    //?? change the center of the map to the current location
-    //?? make the span 1.0 instead of 2.0
-    //?? zoom it so that all the pins can be seen
+    [self.locationManager startUpdatingLocation];
+    
+//    //?? change the center of the map to the current location
+//    //?? make the span 1.0 instead of 2.0
+//    //?? zoom it so that all the pins can be seen
+//    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(40.770951,-112.13501); //slc
+//    self.mapView.region = MKCoordinateRegionMake(center, MKCoordinateSpanMake(2.0, 2.0));
+}
+
+-(CLLocationManager *)locationManager
+{
+	if (_locationManager == nil)
+	{
+		_locationManager = [[CLLocationManager alloc] init];
+		_locationManager.delegate = self;
+		_locationManager.distanceFilter = kCLDistanceFilterNone;
+		_locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+	}
+	return _locationManager;
+}
+
+- (void)locationManager:(CLLocationManager *)locationManager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
+    if (locationAge > 5.0)
+        return;
+    
+    if (newLocation.horizontalAccuracy <= 1000.0f)
+    {
+        [locationManager stopUpdatingLocation];
+        
+        double minLat = newLocation.coordinate.latitude;
+        double maxLat = newLocation.coordinate.latitude;
+        double minLon = newLocation.coordinate.longitude;
+        double maxLon = newLocation.coordinate.longitude;
+        //set the map so that every inspection can be seen
+        for(Inspection *inspection in self.inspections)
+        {
+            if([inspection.facility.lattitude floatValue] < minLat)
+                minLat = [inspection.facility.lattitude floatValue];
+            if([inspection.facility.lattitude floatValue] > maxLat)
+                maxLat = [inspection.facility.lattitude floatValue];
+            if([inspection.facility.longitude floatValue] < minLon)
+                minLon = [inspection.facility.longitude floatValue];
+            if([inspection.facility.longitude floatValue] > maxLon)
+                maxLon = [inspection.facility.longitude floatValue];
+        }
+        
+        double latDelta = maxLat - minLat;
+        latDelta *= 1.1;
+        
+        double lonDelta = maxLon - minLon;
+        lonDelta *= 1.1;
+        
+        CLLocationCoordinate2D center = CLLocationCoordinate2DMake((minLat+maxLat)/2.0, (minLon+maxLon)/2.0);//newLocation.coordinate;
+        [self.mapView setRegion:MKCoordinateRegionMake(center, MKCoordinateSpanMake(latDelta, lonDelta)) animated:YES];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSString *errorString;
+    [manager stopUpdatingLocation];
+    switch([error code])
+    {
+        case kCLErrorDenied:
+            //Access denied by user
+            errorString = @"Access to Location Services denied by user";
+            //Do something...
+            break;
+        case kCLErrorLocationUnknown:
+            //Probably temporary...
+            errorString = @"Location data unavailable";
+            //Do something else...
+            break;
+        default:
+            errorString = @"An unknown error has occurred";
+            break;
+    }
+    
+    //?? notify the user
+    NSLog(@"%@", errorString);
+    
+    //fall back on a default location
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(40.770951,-112.13501); //slc
     self.mapView.region = MKCoordinateRegionMake(center, MKCoordinateSpanMake(2.0, 2.0));
+
 }
+
 
 @end

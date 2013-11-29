@@ -31,6 +31,14 @@
          contextName = "__32-[OnlineService login:password:]_block_invoke_2:OnlineService.m">
       </ContextState>
       <ContextState
+         contextName = "-[InspectionsListViewController locationManager:didUpdateToLocation:fromLocation:]:InspectionsListViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "newLocation.coordinate.latitude">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__41-[RootContainerViewController toggleOpen]_block_invoke67:RootContainerViewController.m">
       </ContextState>
       <ContextState

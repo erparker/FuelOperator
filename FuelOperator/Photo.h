@@ -2,7 +2,7 @@
 //  Photo.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 11/23/13.
+//  Created by Gary Robinson on 11/29/13.
 //  Copyright (c) 2013 GaryRobinson. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSNumber * index;
 @property (nonatomic, retain) NSData * jpgData;
+@property (nonatomic, retain) NSNumber * uploaded;
 @property (nonatomic, retain) FormAnswer *formAnswer;
 
 @end
