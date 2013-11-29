@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "InnerShadowView.h"
 #import "AppDelegate.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface LoginViewController ()  <UITextFieldDelegate>
 
@@ -246,7 +247,7 @@
 
 - (void)loginFailed
 {
-    NSLog(@"login failed");
+    [SVProgressHUD showImage:nil status:@"Login failed"];
 }
 
 @end

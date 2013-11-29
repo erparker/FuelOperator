@@ -28,6 +28,8 @@
 @property (nonatomic, strong) NSArray *inspections;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic) BOOL firstTimeMap;
+@property (nonatomic, strong) MKPointAnnotation *curLocationAnnotation;
 
 @end
 
@@ -38,6 +40,7 @@
     [super loadView];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
+    self.firstTimeMap = YES;
     
     self.navigationItem.titleView = self.listMapControl;
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.addSiteBtn];
@@ -135,6 +138,12 @@
     {
         [self.switchView addSubview:self.mapView];
         [self.tableView removeFromSuperview];
+        
+        if(self.firstTimeMap)
+        {
+            self.firstTimeMap = NO;
+            [self locationTapped:self];
+        }
     }
     
     [UIView commitAnimations];
@@ -303,27 +312,41 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)sender viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    MKAnnotationView *aView = [sender dequeueReusableAnnotationViewWithIdentifier:@"mapAnnotation"];
-    if(!aView)
+    if(annotation == self.curLocationAnnotation)
     {
-        MapAnnotationView *mapView = [[MapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"mapAnnotation"];
-        mapView.image = [UIImage imageNamed:@"mappin"];
-        
-        MapAnnotation *mapAnnotation = (MapAnnotation *)annotation;
-        mapView.inspection = mapAnnotation.inspection;
-        mapView.annotationTitle = mapAnnotation.annotationTitle;
-        mapView.annotationSubtitle = mapAnnotation.annotationSubtitle;
-        mapView.delegate = self;
-        
-        aView = mapView;
+        MKAnnotationView *aView = [sender dequeueReusableAnnotationViewWithIdentifier:@"curLocationAnnotation"];
+        if(!aView)
+        {
+            aView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"curLocationAnnotation"];
+        }
+        aView.canShowCallout = NO;
+        aView.annotation = annotation;
+        return aView;
     }
-    
-    aView.canShowCallout = NO;
-    aView.annotation = annotation; 
-    UIView* popupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAP_ANNOTATION_VIEW_WIDTH, MAP_ANNOTATION_VIEW_HEIGHT)];
-    aView.leftCalloutAccessoryView = popupView;
-    
-    return aView;
+    else
+    {
+        MKAnnotationView *aView = [sender dequeueReusableAnnotationViewWithIdentifier:@"mapAnnotation"];
+        if(!aView)
+        {
+            MapAnnotationView *mapView = [[MapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"mapAnnotation"];
+            mapView.image = [UIImage imageNamed:@"mappin"];
+            
+            MapAnnotation *mapAnnotation = (MapAnnotation *)annotation;
+            mapView.inspection = mapAnnotation.inspection;
+            mapView.annotationTitle = mapAnnotation.annotationTitle;
+            mapView.annotationSubtitle = mapAnnotation.annotationSubtitle;
+            mapView.delegate = self;
+            
+            aView = mapView;
+        }
+        
+        aView.canShowCallout = NO;
+        aView.annotation = annotation; 
+        UIView* popupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAP_ANNOTATION_VIEW_WIDTH, MAP_ANNOTATION_VIEW_HEIGHT)];
+        aView.leftCalloutAccessoryView = popupView;
+        
+        return aView;
+    }
 }
 
 - (void)locationTapped:(id)sender
@@ -335,6 +358,15 @@
 //    //?? zoom it so that all the pins can be seen
 //    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(40.770951,-112.13501); //slc
 //    self.mapView.region = MKCoordinateRegionMake(center, MKCoordinateSpanMake(2.0, 2.0));
+}
+
+- (MKPointAnnotation *)curLocationAnnotation
+{
+    if(_curLocationAnnotation == nil)
+    {
+        _curLocationAnnotation = [[MKPointAnnotation alloc] init];
+    }
+    return _curLocationAnnotation;
 }
 
 -(CLLocationManager *)locationManager
@@ -358,6 +390,9 @@
     if (newLocation.horizontalAccuracy <= 1000.0f)
     {
         [locationManager stopUpdatingLocation];
+        
+        self.curLocationAnnotation.coordinate = newLocation.coordinate;
+        [self.mapView addAnnotation:self.curLocationAnnotation];
         
         double minLat = newLocation.coordinate.latitude;
         double maxLat = newLocation.coordinate.latitude;
@@ -384,6 +419,7 @@
         
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake((minLat+maxLat)/2.0, (minLon+maxLon)/2.0);//newLocation.coordinate;
         [self.mapView setRegion:MKCoordinateRegionMake(center, MKCoordinateSpanMake(latDelta, lonDelta)) animated:YES];
+        
     }
 }
 

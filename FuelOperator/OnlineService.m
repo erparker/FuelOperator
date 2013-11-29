@@ -219,7 +219,7 @@ static OnlineService *sharedOnlineService = nil;
     //?? what about posting photos?
     self.postingInspection = inspection;
     self.postAnswerIndex = 0;
-    [SVProgressHUD showImage:nil status:@"Submitting..."];
+    [SVProgressHUD showProgress:0 status:@"Submitting..."];
     
     [self postNextAnswer];
 }
@@ -313,7 +313,7 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)answerDone
 {
-    [SVProgressHUD showProgress:((float)self.postAnswerIndex / (float)self.postingInspection.formQuestions.count)];
+    [SVProgressHUD showProgress:((float)self.postAnswerIndex / (float)self.postingInspection.formQuestions.count) status:@"Submitting..."];
     self.postAnswerIndex++;
     
     if(self.postAnswerIndex < self.postingInspection.formQuestions.count)

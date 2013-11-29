@@ -232,12 +232,15 @@
     [self addSubview:icon];
     
     self.nameLabel.textColor = [UIColor whiteColor];
-    self.nameLabel.frame = CGRectMake(25, 7, self.bounds.size.width - 20, 20);
+    self.nameLabel.frame = CGRectMake(25, 7, self.bounds.size.width - 100, 20);
     
     self.circularProgressView.frame = CGRectMake(215, 35, 40, 40);
     self.progressLabel.font = [UIFont mediumFontOfSize:12];
     
-    self.accessoryView.frame = CGRectMake(265, 52, 20, 20);
+    self.accessoryView.frame = CGRectMake(265, 49, 20, 20);
+    
+    self.acceptedView.frame = CGRectMake(180, 15, 100, INSPECTIONS_LIST_CELL_HEIGHT);
+    self.submitButton.frame = CGRectMake(190, 40, 60, 30);
 }
 
 - (UIView *)titleBackground
