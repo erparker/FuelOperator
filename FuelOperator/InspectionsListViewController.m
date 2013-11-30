@@ -12,6 +12,7 @@
 #import "InspectionFormViewController.h"
 #import "MapAnnotation.h"
 #import "MapAnnotationView.h"
+#import "SignatureViewController.h"
 
 #define INSPECTIONS_LIST_CELL_VIEW_TAG 3
 
@@ -55,7 +56,22 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(submitInspection:) name:@"submitInspection" object:nil];
+    
     [self useCustomBackButton];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)submitInspection:(NSNotification *)notification
+{
+    Inspection *inspection = [notification.userInfo objectForKey:@"inspection"];
+    SignatureViewController *sigVC = [[SignatureViewController alloc] init];
+    sigVC.inspection = inspection;
+    [self presentViewController:sigVC animated:YES completion:nil];
 }
 
 - (void)viewDidLayoutSubviews

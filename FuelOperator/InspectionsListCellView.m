@@ -158,7 +158,8 @@
 - (void)submitTapped:(id)sender
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inspectionSubmitted:) name:@"inspectionSubmitted" object:nil];
-    [[OnlineService sharedService] submitInspection:self.inspection];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"submitInspection" object:nil userInfo:[NSDictionary dictionaryWithObject:self.inspection forKey:@"inspection"]];
+//    [[OnlineService sharedService] submitInspection:self.inspection];
 }
 
 - (void)inspectionSubmitted:(id)sender

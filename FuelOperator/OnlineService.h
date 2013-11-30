@@ -24,6 +24,6 @@
 - (void)getUpdatedAnswers:(NSArray *)answers;
 
 
-- (void)submitInspection:(Inspection *)inspection;
+- (void)submitInspection:(Inspection *)inspection withSignatureImage:(UIImage *)image;
 
 @end

@@ -172,10 +172,10 @@
     return _sendButton;
 }
 
-- (void)submitInspection:(UIButton *)sender
-{
-    [[OnlineService sharedService] submitInspection:self.inspection];
-}
+//- (void)submitInspection:(UIButton *)sender
+//{
+//    [[OnlineService sharedService] submitInspection:self.inspection];
+//}
 
 - (UIView*)progressView
 {

@@ -21,6 +21,7 @@ static NSString * const kBaseURLString = @"http://www.generationbay.com/";
 
 @property (nonatomic, strong) Inspection *postingInspection;
 @property (nonatomic) NSInteger postAnswerIndex;
+@property (nonatomic, strong) UIImage *signatureImage;
 
 @end
 
@@ -214,11 +215,12 @@ static OnlineService *sharedOnlineService = nil;
 }
 
 
-- (void)submitInspection:(Inspection *)inspection
+- (void)submitInspection:(Inspection *)inspection  withSignatureImage:(UIImage *)image;
 {
-    //?? what about posting photos?
     self.postingInspection = inspection;
     self.postAnswerIndex = 0;
+    self.signatureImage = image;
+    
     [SVProgressHUD showProgress:0 status:@"Submitting..."];
     
     [self postNextAnswer];
@@ -317,28 +319,42 @@ static OnlineService *sharedOnlineService = nil;
     self.postAnswerIndex++;
     
     if(self.postAnswerIndex < self.postingInspection.formQuestions.count)
-    {
         [self postNextAnswer];
-    }
     else
-    {
-        self.postingInspection.submitted = [NSNumber numberWithBool:YES];
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-        [SVProgressHUD dismiss];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
+        [self closeInspection];
+}
+
+- (void)closeInspection
+{
+    NSString *path = [NSString stringWithFormat:@"api/inspection/close/%d/%d", [self.postingInspection.inspectionID integerValue], [self.postingInspection.facility.facilityID integerValue]];
+    
+    NSMutableURLRequest *request;
+    request = [self.httpClient multipartFormRequestWithMethod:@"POST" path:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+               {
+                   [formData appendPartWithFileData:UIImageJPEGRepresentation(self.signatureImage, 1.0) name:@"photo" fileName:@"photofile.jpg" mimeType:@"image/jpeg"];
+               }];
+    
+    AFJSONRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+        NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
+    }];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSString *path = [NSString stringWithFormat:@"api/inspection/close/%d/%d", [self.postingInspection.inspectionID integerValue], [self.postingInspection.facility.facilityID integerValue]];
-        [self.httpClient postPath:path parameters:nil
-                         success:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             
-         }
-                         failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             NSLog(@"failed to close inspection");
-         }
-         ];
-    }
+        self.postingInspection.submitted = [NSNumber numberWithBool:YES];
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         [SVProgressHUD dismiss];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
+    
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    
+        self.postingInspection.submitted = [NSNumber numberWithBool:NO];
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         [SVProgressHUD showImage:nil status:@"Failed to submit inspection"];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
+     }];
+    
+    [operation start];
 }
 
 
