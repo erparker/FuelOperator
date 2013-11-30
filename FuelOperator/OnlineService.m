@@ -226,7 +226,6 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)postNextAnswer
 {
-    NSString *path = [NSString stringWithFormat:@"api/question/saveanswer"];
     
     FormQuestion *question = [[self.postingInspection.formQuestions allObjects] objectAtIndex:self.postAnswerIndex];
     NSDictionary *params = @{@"InspectionID" : self.postingInspection.inspectionID,
@@ -237,6 +236,10 @@ static OnlineService *sharedOnlineService = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
     NSMutableData *body = [NSMutableData data];
     [body appendData:jsonData];
+    
+    NSString *path = [NSString stringWithFormat:@"api/question/saveanswer"];
+    if([question.formAnswer.answer integerValue] == kNO)
+        path = [NSString stringWithFormat:@"api/deficiency/save"];
     
     NSMutableURLRequest *request = [self.httpClient requestWithMethod:@"POST" path:path parameters:nil/*params*/];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -280,6 +283,8 @@ static OnlineService *sharedOnlineService = nil;
     }
     
     NSString *path = [NSString stringWithFormat:@"api/question/attachimage/%d/%d", [question.inspection.inspectionID integerValue], [question.questionID integerValue]];
+    if([question.formAnswer.answer integerValue] == kNO)
+        path = [NSString stringWithFormat:@"api/deficiency/attachimage/%d/%d", [question.inspection.inspectionID integerValue], [question.questionID integerValue]];
     
     NSMutableURLRequest *request;
     request = [self.httpClient multipartFormRequestWithMethod:@"POST" path:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
@@ -291,11 +296,6 @@ static OnlineService *sharedOnlineService = nil;
     AFJSONRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
     [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
         NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-        
-//        if(_useHud)
-//        {
-//            [SVProgressHUD showProgress:(float)totalBytesWritten/(float)totalBytesExpectedToWrite status:@"Sending..." maskType:SVProgressHUDMaskTypeClear];
-//        }
     }];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {

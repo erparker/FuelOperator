@@ -43,13 +43,20 @@
 
 - (void)updateFromDictionary:(NSDictionary *)dict
 {
+    if([self.answer integerValue] == kYES)
+        NSLog(@"");
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
     NSString *strDate = [dict objectForKey:@"LastUpdated"];
     NSDate *date = [formatter dateFromString:strDate];
     
     //check the updated date first to see if it is newer
-    if(self.dateModified && ([self.dateModified compare:date] == NSOrderedDescending))
+    if(!date)
+        return;
+    NSComparisonResult result = [self.dateModified compare:date];
+    if(self.dateModified && (result == NSOrderedDescending))
         return;
     
     self.dateModified = date;
