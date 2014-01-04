@@ -20,6 +20,8 @@
 @property (nonatomic, strong) UILabel *commentLabel;
 @property (nonatomic, strong) UIImageView *commentBackgroundView;
 @property (nonatomic, strong) UITextView *commentTextView;
+@property (nonatomic, strong) UILabel *repairedLabel;
+@property (nonatomic, strong) UISwitch *repairedSwitch;
 @property (nonatomic, strong) UILabel *photosLabel;
 @property (nonatomic, strong) UILabel *noPhotosLabel;
 @property (nonatomic, strong) Photo *photo1;
@@ -163,6 +165,7 @@
     
     //comments
     self.answer.comment = self.commentTextView.text;
+    self.answer.repairedOnSite = [NSNumber numberWithBool:self.repairedSwitch.on];
     [self.formCategoryDelegate updateProgressView];
     
     //images
@@ -229,6 +232,8 @@
         [_scrollView addSubview:self.commentLabel];
         [_scrollView addSubview:self.commentBackgroundView];
         [_scrollView addSubview:self.commentTextView];
+        [_scrollView addSubview:self.repairedLabel];
+        [_scrollView addSubview:self.repairedSwitch];
         [_scrollView addSubview:self.photosLabel];
         [_scrollView addSubview:self.noPhotosLabel];
         [_scrollView addSubview:self.imageView1];
@@ -335,11 +340,35 @@
     [self.commentTextView resignFirstResponder];
 }
 
+- (UILabel *)repairedLabel
+{
+    if(_repairedLabel == nil)
+    {
+        _repairedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 215 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 35)];
+        _repairedLabel.font = [UIFont boldFontOfSize:20];
+        _repairedLabel.textColor = [UIColor fopDarkGreyColor];
+        _repairedLabel.text = @"Repaired On-Site?";
+    }
+    return _repairedLabel;
+}
+
+- (UISwitch *)repairedSwitch
+{
+    if(_repairedSwitch == nil)
+    {
+        _repairedSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 20 - 50, 215 + self.questionLabel.frame.size.height, 50, 35)];
+        _repairedSwitch.on = [self.answer.repairedOnSite boolValue];
+        if(self.readOnly)
+            _repairedSwitch.userInteractionEnabled = NO;
+    }
+    return _repairedSwitch;
+}
+
 - (UILabel*)photosLabel
 {
     if(_photosLabel == nil)
     {
-        _photosLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 215 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 30)];
+        _photosLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 250 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 30)];
         _photosLabel.backgroundColor = [UIColor clearColor];
         _photosLabel.font = [UIFont boldFontOfSize:20];
         _photosLabel.textColor = [UIColor fopDarkGreyColor];
@@ -352,7 +381,7 @@
 {
     if(_noPhotosLabel == nil)
     {
-        _noPhotosLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 245 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 20)];
+        _noPhotosLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 280 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 20)];
         _noPhotosLabel.backgroundColor = [UIColor clearColor];
         _noPhotosLabel.font = [UIFont regularFontOfSize:16];
         _noPhotosLabel.textColor = [UIColor fopDarkGreyColor];
@@ -376,7 +405,7 @@
 {
     if(_imageView1 == nil)
     {
-        _imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(10, 255 + self.questionLabel.frame.size.height, 90, 70)];
+        _imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(10, 290 + self.questionLabel.frame.size.height, 90, 70)];
         _imageView1.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _imageView1;
@@ -387,7 +416,7 @@
     if(_removeImageButton1 == nil)
     {
         _removeImageButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        _removeImageButton1.frame = CGRectMake(10, 340 + self.questionLabel.frame.size.height, 90, 28);
+        _removeImageButton1.frame = CGRectMake(10, 375 + self.questionLabel.frame.size.height, 90, 28);
         [_removeImageButton1 setImage:[UIImage imageNamed:@"removeButtonImage"] forState:UIControlStateNormal];
         [_removeImageButton1 addTarget:self action:@selector(removeImageButton1Tapped:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -449,7 +478,7 @@
 {
     if(_imageView2 == nil)
     {
-        _imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(115, 255 + self.questionLabel.frame.size.height, 90, 70)];
+        _imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(115, 290 + self.questionLabel.frame.size.height, 90, 70)];
         _imageView2.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _imageView2;
@@ -460,7 +489,7 @@
     if(_removeImageButton2 == nil)
     {
         _removeImageButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        _removeImageButton2.frame = CGRectMake(115, 340 + self.questionLabel.frame.size.height, 90, 28);
+        _removeImageButton2.frame = CGRectMake(115, 375 + self.questionLabel.frame.size.height, 90, 28);
         [_removeImageButton2 setImage:[UIImage imageNamed:@"removeButtonImage"] forState:UIControlStateNormal];
         [_removeImageButton2 addTarget:self action:@selector(removeImageButton2Tapped:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -483,7 +512,7 @@
 {
     if(_imageView3 == nil)
     {
-        _imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(220, 255 + self.questionLabel.frame.size.height, 90, 70)];
+        _imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(220, 290 + self.questionLabel.frame.size.height, 90, 70)];
         _imageView3.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _imageView3;
@@ -494,7 +523,7 @@
     if(_removeImageButton3 == nil)
     {
         _removeImageButton3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        _removeImageButton3.frame = CGRectMake(220, 340 + self.questionLabel.frame.size.height, 90, 28);
+        _removeImageButton3.frame = CGRectMake(220, 375 + self.questionLabel.frame.size.height, 90, 28);
         [_removeImageButton3 setImage:[UIImage imageNamed:@"removeButtonImage"] forState:UIControlStateNormal];
         [_removeImageButton3 addTarget:self action:@selector(removeImageButton3Tapped:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -524,7 +553,7 @@
         _takePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *image = [UIImage imageNamed:@"take-photo-btn"];
         [_takePhotoButton setImage:image forState:UIControlStateNormal];
-        _takePhotoButton.frame = CGRectMake(10, 285 + self.questionLabel.frame.size.height, image.size.width, image.size.height);
+        _takePhotoButton.frame = CGRectMake(10, 320 + self.questionLabel.frame.size.height, image.size.width, image.size.height);
         [_takePhotoButton addTarget:self action:@selector(takePhotoTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _takePhotoButton;
@@ -586,7 +615,7 @@
         self.removeImageButton3.hidden = YES;
         
         CGRect rect = self.takePhotoButton.frame;
-        rect.origin.y = 285 + self.questionLabel.frame.size.height;
+        rect.origin.y = 320 + self.questionLabel.frame.size.height;
         self.takePhotoButton.frame = rect;
     }
     else
@@ -618,7 +647,7 @@
         }
         
         CGRect rect = self.takePhotoButton.frame;
-        rect.origin.y = 380 + self.questionLabel.frame.size.height;
+        rect.origin.y = 415 + self.questionLabel.frame.size.height;
         self.takePhotoButton.frame = rect;
     }
     

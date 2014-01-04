@@ -51,7 +51,7 @@
     self.firstAppear = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inspectionsUpdated:) name:@"inspectionsUpdated" object:nil];
-    [self updateInspections];
+//    [self updateInspections];
 }
 
 - (void)dealloc

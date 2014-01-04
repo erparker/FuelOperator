@@ -26,4 +26,6 @@
 @property (nonatomic, strong) NSArray *formQuestions;
 @property (nonatomic, strong) UITableView *tableView;
 
+- (id)initWithFrame:(CGRect)frame singleCategory:(BOOL)single;
+
 @end

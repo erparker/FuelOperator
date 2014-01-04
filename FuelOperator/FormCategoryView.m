@@ -26,12 +26,13 @@
 
 @implementation FormCategoryView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame singleCategory:(BOOL)single
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         
+        self.singleCategory = single;
         [self addSubview:self.tableView];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(answersUpdated:) name:@"answersUpdated" object:nil];

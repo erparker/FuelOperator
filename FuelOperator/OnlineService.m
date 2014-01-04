@@ -16,6 +16,7 @@ static NSString * const kBaseURLString = @"http://www.generationbay.com/";
 
 @property (nonatomic, strong) AFHTTPClient *httpClient;
 
+@property (nonatomic, strong) NSMutableArray *processingInspections;
 @property (nonatomic, strong) NSMutableArray *processingAnswers;
 @property (nonatomic, strong) NSMutableArray *processingPhotos;
 
@@ -126,17 +127,39 @@ static OnlineService *sharedOnlineService = nil;
          NSError *error;
          NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
          
+         self.processingInspections = [[NSMutableArray alloc] init];
          for(NSDictionary *dict in results)
-             [Inspection updateOrCreateFromDictionary:dict];
+         {
+             Inspection *inspection = [Inspection updateOrCreateFromDictionary:dict];
+             [self.processingInspections addObject:inspection];
+         }
 
-         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
+         //?? Download all the questions for each inspection also - i.e. start the inspection
+         [self processNextInspection];
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"failed getscedulesbydaterange");
      }
      ];
+}
+
+- (void)processNextInspection
+{
+    if(self.processingInspections.count == 0)
+    {
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
+        return;
+    }
+    
+    Inspection *inspection = [self.processingInspections objectAtIndex:0];
+    {
+        if([inspection.inspectionID integerValue] == 0)
+            [self startInspection:inspection];
+        else
+            [self getQuestionsForInspection:inspection];
+    }
 }
 
 - (void)startInspection:(Inspection *)inspection
@@ -151,7 +174,8 @@ static OnlineService *sharedOnlineService = nil;
          inspection.inspectionID = [results objectForKey:@"InspectionID"];
          
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionStarted" object:nil];
+//         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionStarted" object:nil];
+         [self getQuestionsForInspection:inspection];
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -177,7 +201,11 @@ static OnlineService *sharedOnlineService = nil;
                  [FormQuestion updateOrCreateFromDictionary:dict andInspection:inspection andType:type];
              
              [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-             [[NSNotificationCenter defaultCenter] postNotificationName:@"questionsUpdated" object:nil];
+//             [[NSNotificationCenter defaultCenter] postNotificationName:@"questionsUpdated" object:nil];
+             
+             if(self.processingInspections.count > 0)
+                 [self.processingInspections removeObjectAtIndex:0];
+             [self processNextInspection];
          }
                          failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
@@ -228,20 +256,20 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)postNextAnswer
 {
-    
     FormQuestion *question = [[self.postingInspection.formQuestions allObjects] objectAtIndex:self.postAnswerIndex];
+    
+    NSString *path = [NSString stringWithFormat:@"api/question/saveanswer"];
+    
     NSDictionary *params = @{@"InspectionID" : self.postingInspection.inspectionID,
                              @"QuestionID" : question.questionID,
                              @"Answer" : [question.formAnswer answerText],
                              @"Comments" : [question.formAnswer commentText] };
+    
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
     NSMutableData *body = [NSMutableData data];
     [body appendData:jsonData];
     
-    NSString *path = [NSString stringWithFormat:@"api/question/saveanswer"];
-    if([question.formAnswer.answer integerValue] == kNO)
-        path = [NSString stringWithFormat:@"api/deficiency/save"];
     
     NSMutableURLRequest *request = [self.httpClient requestWithMethod:@"POST" path:path parameters:nil/*params*/];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -253,12 +281,58 @@ static OnlineService *sharedOnlineService = nil;
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
     {
-        [self uploadAnswerPhoto:0];
+        [self saveDeficiency];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failed post answer to questionID: %d", [question.questionID integerValue]);
         [self answerDone];
     }];
+    
+    [operation start];
+}
+
+- (void)saveDeficiency
+{
+    FormQuestion *question = [[self.postingInspection.formQuestions allObjects] objectAtIndex:self.postAnswerIndex];
+    if([question.formAnswer.answer integerValue] != kNO)
+    {
+        [self uploadAnswerPhoto:0];
+        return;
+    }
+    
+    NSString *path = [NSString stringWithFormat:@"api/deficiency/save"];
+    
+    NSNumber *repaired = question.formAnswer.repairedOnSite;
+    if(!repaired)
+        repaired = [NSNumber numberWithBool:NO];
+    
+    NSDictionary *params = @{  @"InspectionID" : self.postingInspection.inspectionID,
+                               @"QuestionID" : question.questionID,
+                               @"Comments" : [question.formAnswer commentText],
+                               @"RepairedOnSite" : repaired }; //?? actually hook this up to UI
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:jsonData];
+    
+    
+    NSMutableURLRequest *request = [self.httpClient requestWithMethod:@"POST" path:path parameters:nil/*params*/];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:body];
+    
+    [self.httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         [self uploadAnswerPhoto:0];
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"failed post deficiency to questionID: %d", [question.questionID integerValue]);
+         [self answerDone];
+     }];
     
     [operation start];
 }

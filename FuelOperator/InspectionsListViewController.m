@@ -119,8 +119,15 @@
         _listMapControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2 - width/2, 10, width, 30)];
         _listMapControl.segmentedControlStyle = UISegmentedControlStyleBar;
         
-        UIImage *listImage = [[UIImage imageNamed:@"listView"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        UIImage *mapImage = [[UIImage imageNamed:@"mapView"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *listImage = [UIImage imageNamed:@"listView"];
+        UIImage *mapImage = [UIImage imageNamed:@"mapView"];
+        
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+        {
+            listImage = [listImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mapImage = [mapImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        }
+        
         [_listMapControl insertSegmentWithImage:listImage atIndex:0 animated:NO];
         [_listMapControl insertSegmentWithImage:mapImage atIndex:1 animated:NO];
         
@@ -284,6 +291,7 @@
     self.navigationItem.title = @" ";
     
     InspectionFormViewController *inspectionFormVC = [[InspectionFormViewController alloc] init];
+    CGRect test = inspectionFormVC.view.frame;
     
     Inspection *inspection = [self.inspections objectAtIndex:indexPath.row];
     inspectionFormVC.inspection = inspection;

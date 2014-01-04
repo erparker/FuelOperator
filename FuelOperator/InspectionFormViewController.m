@@ -16,7 +16,7 @@
 #define PROGRESS_HEIGHT 35
 
 
-@interface InspectionFormViewController () <UITableViewDataSource, UITableViewDelegate, FormCategoryDelegate>
+@interface InspectionFormViewController () </*UITableViewDataSource, UITableViewDelegate,*/ FormCategoryDelegate>
 
 @property (nonatomic, strong) UILabel *navigationLabel;
 @property (nonatomic, strong) UIButton *sendButton;
@@ -107,26 +107,30 @@
     NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.facility.storeCode, inspection.facility.city, inspection.facility.state];
     self.navigationLabel.text = formTitle;
     
-    if([inspection.inspectionID integerValue] == 0)
-        [[OnlineService sharedService] startInspection:inspection];
-    else
-        [[OnlineService sharedService] getQuestionsForInspection:inspection];
+//    if([inspection.inspectionID integerValue] == 0)
+//        [[OnlineService sharedService] startInspection:inspection];
+//    else
+//        [[OnlineService sharedService] getQuestionsForInspection:inspection];
+    [self questionsUpdated:self];
 }
 
 - (void)inspectionStarted:(id)sender
 {
-    [[OnlineService sharedService] getQuestionsForInspection:self.inspection];
+//    [[OnlineService sharedService] getQuestionsForInspection:self.inspection];
 }
 
 - (void)questionsUpdated:(id)sender
 {
     NSArray *facilityQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", self.inspection.inspectionID, [FormQuestion typeFacility]]];
+    self.facilityView.inspection = _inspection;
     [self.facilityView setFormQuestions:facilityQuestions];
     
     NSArray *tanksQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", self.inspection.inspectionID, [FormQuestion typeTanks]]];
+    self.tanksView.inspection = _inspection;
     [self.tanksView setFormQuestions:tanksQuestions];
     
     NSArray *dispensersQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", self.inspection.inspectionID, [FormQuestion typeDispensers]]];
+    self.dispensersView.inspection = _inspection;
     [self.dispensersView setFormQuestions:dispensersQuestions];
     
     [self updateProgressView];
@@ -267,11 +271,11 @@
 {
     if(_facilityView == nil)
     {
-        _facilityView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT)];
+        _facilityView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT) singleCategory:YES];
         
         _facilityView.formCategoryDelegate = self;
         _facilityView.inspection = self.inspection;
-        _facilityView.singleCategory = YES;
+//        _facilityView.singleCategory = YES;
     }
     return _facilityView;
 }
@@ -280,11 +284,11 @@
 {
     if(_tanksView == nil)
     {
-        _tanksView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT)];
+        _tanksView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT) singleCategory:NO];
         
         _tanksView.formCategoryDelegate = self;
         _tanksView.inspection = self.inspection;
-        _tanksView.singleCategory = NO;
+//        _tanksView.singleCategory = NO;
     }
     return _tanksView;
 }
@@ -293,11 +297,11 @@
 {
     if(_dispensersView == nil)
     {
-        _dispensersView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT)];
+        _dispensersView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT) singleCategory:NO];
         
         _dispensersView.formCategoryDelegate = self;
         _dispensersView.inspection = self.inspection;
-        _dispensersView.singleCategory = NO;
+//        _dispensersView.singleCategory = NO;
     }
     return _dispensersView;
 }

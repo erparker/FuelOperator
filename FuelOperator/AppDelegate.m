@@ -50,12 +50,6 @@
 
 - (void)loginCompleted:(id)sender
 {
-    [self initDates];
-    self.window.rootViewController = self.rootViewController;
-}
-
-- (void)initDates
-{
     NSDate *start = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
     if(start == nil)
     {
@@ -71,7 +65,18 @@
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+    self.window.rootViewController = self.rootViewController;
+    
+    //?? do the update from the server here
+    [[OnlineService sharedService] updateInspectionsFromDate:start toDate:end];
 }
+
+//- (void)initDates
+//{
+//    
+//}
 
 - (void)logout:(id)sender
 {
@@ -107,8 +112,11 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    [[UITextField appearance] setTintColor:[UIColor blackColor]];
-    [[UITextView appearance] setTintColor:[UIColor blackColor]];
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+    {
+        [[UITextField appearance] setTintColor:[UIColor blackColor]];
+        [[UITextView appearance] setTintColor:[UIColor blackColor]];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
