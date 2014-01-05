@@ -14,6 +14,7 @@
 		3C1B6D7816F518A1007CD5F4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1B6D7716F518A1007CD5F4 /* MapKit.framework */; };
 		3C1B6D7D16F53A41007CD5F4 /* InspectionFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B6D7C16F53A41007CD5F4 /* InspectionFormViewController.m */; };
 		3C1B80FF182D555E00BC3D02 /* SettingsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B80FE182D555E00BC3D02 /* SettingsDetailViewController.m */; };
+		3C1F1D891879C8970093AB3F /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1F1D881879C8970093AB3F /* Inspection.m */; };
 		3C2610971721C1E8007589C1 /* InspectionsFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2610961721C1E8007589C1 /* InspectionsFormCell.m */; };
 		3C27781217108C9D000E4749 /* AccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C27781117108C9D000E4749 /* AccessoryView.m */; };
 		3C29B25D172C6BDA00380A96 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C29B25C172C6BD900380A96 /* CoreLocation.framework */; };
@@ -64,7 +65,6 @@
 		3CDFA03318415FBD009C839A /* Facility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03218415FBD009C839A /* Facility.m */; };
 		3CDFA03918415FBD009C839A /* RequiredTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA03818415FBD009C839A /* RequiredTypes.m */; };
 		3CDFA04B1843332E009C839A /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA04A1843332E009C839A /* FormQuestion.m */; };
-		3CDFA04E1843FCA8009C839A /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA04D1843FCA8009C839A /* Inspection.m */; };
 		3CE0661C1718BBBD00E41881 /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0661B1718BBBD00E41881 /* InnerShadowView.m */; };
 		3CEE6BA3181AEC1C00C6E43C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CEE6BA2181AEC1C00C6E43C /* Images.xcassets */; };
 		3CEE6BA6181B001400C6E43C /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE6BA5181B001400C6E43C /* UIViewController+Additions.m */; };
@@ -91,6 +91,8 @@
 		3C1B6D7C16F53A41007CD5F4 /* InspectionFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionFormViewController.m; sourceTree = "<group>"; };
 		3C1B80FD182D555E00BC3D02 /* SettingsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsDetailViewController.h; sourceTree = "<group>"; };
 		3C1B80FE182D555E00BC3D02 /* SettingsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsDetailViewController.m; sourceTree = "<group>"; };
+		3C1F1D871879C8970093AB3F /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
+		3C1F1D881879C8970093AB3F /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
 		3C2610951721C1E7007589C1 /* InspectionsFormCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionsFormCell.h; sourceTree = "<group>"; };
 		3C2610961721C1E8007589C1 /* InspectionsFormCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionsFormCell.m; sourceTree = "<group>"; };
 		3C27781017108C9D000E4749 /* AccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessoryView.h; sourceTree = "<group>"; };
@@ -174,8 +176,6 @@
 		3CDFA03818415FBD009C839A /* RequiredTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredTypes.m; sourceTree = "<group>"; };
 		3CDFA0491843332E009C839A /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
 		3CDFA04A1843332E009C839A /* FormQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormQuestion.m; sourceTree = "<group>"; };
-		3CDFA04C1843FCA8009C839A /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
-		3CDFA04D1843FCA8009C839A /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
 		3CE0661A1718BBBD00E41881 /* InnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerShadowView.h; sourceTree = "<group>"; };
 		3CE0661B1718BBBD00E41881 /* InnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerShadowView.m; sourceTree = "<group>"; };
 		3CEE6BA2181AEC1C00C6E43C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -345,12 +345,12 @@
 			isa = PBXGroup;
 			children = (
 				3C78336416DDD5E70037ED08 /* FuelOperator.xcdatamodeld */,
+				3C1F1D871879C8970093AB3F /* Inspection.h */,
+				3C1F1D881879C8970093AB3F /* Inspection.m */,
 				3CBC0EE5184AAAAD009C3820 /* FormAnswer.h */,
 				3CBC0EE6184AAAAD009C3820 /* FormAnswer.m */,
 				3CBC0EDC1848D9A2009C3820 /* Photo.h */,
 				3CBC0EDD1848D9A2009C3820 /* Photo.m */,
-				3CDFA04C1843FCA8009C839A /* Inspection.h */,
-				3CDFA04D1843FCA8009C839A /* Inspection.m */,
 				3CDFA0491843332E009C839A /* FormQuestion.h */,
 				3CDFA04A1843332E009C839A /* FormQuestion.m */,
 				3CDFA03718415FBD009C839A /* RequiredTypes.h */,
@@ -587,8 +587,8 @@
 				3C0BA2AC17500E800043D256 /* RootContainerViewController.m in Sources */,
 				3CFBA4D0175946BC00F47978 /* NSDate+Additions.m in Sources */,
 				3C063F8A17CDC4D600BAF3FE /* FormCategoryView.m in Sources */,
-				3CDFA04E1843FCA8009C839A /* Inspection.m in Sources */,
 				3CDFA03318415FBD009C839A /* Facility.m in Sources */,
+				3C1F1D891879C8970093AB3F /* Inspection.m in Sources */,
 				3CDFA0211841417E009C839A /* Inspection+Additions.m in Sources */,
 				3CBC0EE1184A7777009C3820 /* SignatureViewController.m in Sources */,
 				3C3D0C261820D4E3002F6536 /* NSString+Additions.m in Sources */,

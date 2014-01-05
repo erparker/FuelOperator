@@ -37,6 +37,9 @@
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
 
 
+@property (nonatomic) BOOL keepTimerGoing;
+@property (nonatomic, strong) NSDate *startTime;
+
 @end
 
 @implementation InspectionFormViewController
@@ -69,7 +72,6 @@
     [self facilityButtonTapped:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(questionsUpdated:) name:@"questionsUpdated" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inspectionStarted:) name:@"inspectionStarted" object:nil];
 }
 
 - (void)dealloc
@@ -81,7 +83,21 @@
 {
     [super viewWillAppear:animated];
     
+    self.keepTimerGoing = NO;
     [self updateProgressView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    if(!self.keepTimerGoing)
+    {
+        float addedTime = [[NSDate date] timeIntervalSinceDate:self.startTime];
+        float totalTime = [self.inspection.totalTime floatValue] + addedTime;
+        self.inspection.totalTime = [NSNumber numberWithFloat:totalTime];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    }
 }
 
 - (void)viewDidLayoutSubviews
@@ -102,34 +118,27 @@
 {
     _inspection = inspection;
     
+    self.startTime = [NSDate date];
+    
     [self.activityView startAnimating];
     
     NSString *formTitle = [NSString stringWithFormat:@"%@ - %@, %@", inspection.facility.storeCode, inspection.facility.city, inspection.facility.state];
     self.navigationLabel.text = formTitle;
     
-//    if([inspection.inspectionID integerValue] == 0)
-//        [[OnlineService sharedService] startInspection:inspection];
-//    else
-//        [[OnlineService sharedService] getQuestionsForInspection:inspection];
     [self questionsUpdated:self];
-}
-
-- (void)inspectionStarted:(id)sender
-{
-//    [[OnlineService sharedService] getQuestionsForInspection:self.inspection];
 }
 
 - (void)questionsUpdated:(id)sender
 {
-    NSArray *facilityQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", self.inspection.inspectionID, [FormQuestion typeFacility]]];
+    NSArray *facilityQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", _inspection.inspectionID, [FormQuestion typeFacility]]];
     self.facilityView.inspection = _inspection;
     [self.facilityView setFormQuestions:facilityQuestions];
     
-    NSArray *tanksQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", self.inspection.inspectionID, [FormQuestion typeTanks]]];
+    NSArray *tanksQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", _inspection.inspectionID, [FormQuestion typeTanks]]];
     self.tanksView.inspection = _inspection;
     [self.tanksView setFormQuestions:tanksQuestions];
     
-    NSArray *dispensersQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", self.inspection.inspectionID, [FormQuestion typeDispensers]]];
+    NSArray *dispensersQuestions = [FormQuestion MR_findAllSortedBy:@"questionID" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(inspection.inspectionID = %@) AND (type = %@)", _inspection.inspectionID, [FormQuestion typeDispensers]]];
     self.dispensersView.inspection = _inspection;
     [self.dispensersView setFormQuestions:dispensersQuestions];
     
@@ -261,6 +270,7 @@
 
 - (void)editCommentPhotosForAnswer:(FormAnswer *)formAnswer
 {
+    self.keepTimerGoing = YES;
     BOOL readOnly = [self.inspection.submitted boolValue];
     CommentPhotoViewController *commentPhotoVC = [[CommentPhotoViewController alloc] initWithAnswer:formAnswer readOnly:readOnly];
     commentPhotoVC.formCategoryDelegate = self;

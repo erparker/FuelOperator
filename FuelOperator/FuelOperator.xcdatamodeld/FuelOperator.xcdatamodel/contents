@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13A598" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Facility" representedClassName="Facility" syncable="YES">
         <attribute name="address1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address2" optional="YES" attributeType="String" syncable="YES"/>
@@ -41,6 +41,7 @@
         <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="scheduleID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="submitted" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="totalTime" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="facility" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Facility" inverseName="inspections" inverseEntity="Facility" syncable="YES"/>
         <relationship name="formAnswers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormAnswer" inverseName="inspection" inverseEntity="FormAnswer" syncable="YES"/>
         <relationship name="formQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="inspection" inverseEntity="FormQuestion" syncable="YES"/>
@@ -66,7 +67,7 @@
         <element name="Facility" positionX="-747" positionY="-292" width="128" height="193"/>
         <element name="FormAnswer" positionX="-506" positionY="-279" width="128" height="148"/>
         <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="223"/>
-        <element name="Inspection" positionX="-756" positionY="-58" width="128" height="178"/>
+        <element name="Inspection" positionX="-756" positionY="-58" width="128" height="193"/>
         <element name="Photo" positionX="-335" positionY="-270" width="128" height="103"/>
         <element name="RequiredTypes" positionX="-351" positionY="-63" width="128" height="88"/>
         <element name="User" positionX="-927" positionY="-36" width="128" height="88"/>
