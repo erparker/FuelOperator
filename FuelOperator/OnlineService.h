@@ -27,5 +27,7 @@
 
 
 - (void)submitInspection:(Inspection *)inspection withSignatureImage:(UIImage *)image;
+- (void)pauseSubmission;
+- (void)restartSubmission;
 
 @end

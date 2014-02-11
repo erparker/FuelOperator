@@ -22,6 +22,7 @@ static NSString * const kBaseURLStringGenerationBay = @"http://www.generationbay
 @property (nonatomic, strong) NSMutableArray *processingPhotos;
 
 @property (nonatomic, strong) Inspection *postingInspection;
+@property (nonatomic) BOOL pauseSubmit;
 @property (nonatomic) NSInteger postAnswerIndex;
 @property (nonatomic, strong) UIImage *signatureImage;
 
@@ -36,6 +37,7 @@ static OnlineService *sharedOnlineService = nil;
     if(sharedOnlineService == nil)
     {
         sharedOnlineService = [[super allocWithZone:nil] init];
+        
     }
     return sharedOnlineService;
 }
@@ -292,6 +294,7 @@ static OnlineService *sharedOnlineService = nil;
 - (void)submitInspection:(Inspection *)inspection  withSignatureImage:(UIImage *)image;
 {
     self.postingInspection = inspection;
+    self.pauseSubmit = NO;
     self.postAnswerIndex = 0;
     self.signatureImage = image;
     
@@ -300,8 +303,26 @@ static OnlineService *sharedOnlineService = nil;
     [self postNextAnswer];
 }
 
+- (void)pauseSubmission
+{
+    if(self.postingInspection)
+        self.pauseSubmit = YES;
+}
+
+- (void)restartSubmission
+{
+    if(self.postingInspection)
+    {
+        self.pauseSubmit = NO;
+        [self postNextAnswer];
+    }
+}
+
 - (void)postNextAnswer
 {
+    if(self.pauseSubmit)
+        return;
+    
     FormQuestion *question = [[self.postingInspection.formQuestions allObjects] objectAtIndex:self.postAnswerIndex];
     
     NSString *path = [NSString stringWithFormat:@"api/question/saveanswer"];
@@ -465,6 +486,7 @@ static OnlineService *sharedOnlineService = nil;
         
         self.postingInspection.submitted = [NSNumber numberWithBool:YES];
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        self.postingInspection = nil;
          [SVProgressHUD dismiss];
          [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
     
@@ -472,6 +494,7 @@ static OnlineService *sharedOnlineService = nil;
     
         self.postingInspection.submitted = [NSNumber numberWithBool:NO];
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        self.postingInspection = nil;
          [SVProgressHUD showImage:nil status:@"Failed to submit inspection"];
          [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
      }];
