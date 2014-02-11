@@ -10,7 +10,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
-static NSString * const kBaseURLString = @"http://www.generationbay.com/";
+static NSString * const kBaseURLString = @"http://www.fueloperator.com/";
+static NSString * const kBaseURLStringGenerationBay = @"http://www.generationbay.com/";
 
 @interface OnlineService ()
 
@@ -40,9 +41,12 @@ static OnlineService *sharedOnlineService = nil;
 }
 
 
-- (void)attemptLogin:(NSString *)username password:(NSString *)password
+- (void)attemptLogin:(NSString *)username password:(NSString *)password baseURL:(NSString *)baseURL
 {
-    self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURLString]];
+    if(baseURL == nil)
+        baseURL = kBaseURLString;
+    
+    self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:baseURL]];
     [self.httpClient setParameterEncoding:AFFormURLParameterEncoding];
     
     NSDictionary *params = @{@"userName" : username,
@@ -158,7 +162,7 @@ static OnlineService *sharedOnlineService = nil;
         if([inspection.inspectionID integerValue] == 0)
             [self startInspection:inspection];
         else
-            [self getQuestionsForInspection:inspection];
+            [self getQuestionsForInspection2:inspection];
     }
 }
 
@@ -174,8 +178,8 @@ static OnlineService *sharedOnlineService = nil;
          inspection.inspectionID = [results objectForKey:@"InspectionID"];
          
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-//         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionStarted" object:nil];
-         [self getQuestionsForInspection:inspection];
+
+         [self getQuestionsForInspection2:inspection];
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -195,6 +199,7 @@ static OnlineService *sharedOnlineService = nil;
          {
              NSError *error;
              NSDictionary *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+             
              NSArray *questions = [results objectForKey:@"Question"];
              
              for(NSDictionary *dict in questions)
@@ -213,6 +218,47 @@ static OnlineService *sharedOnlineService = nil;
          }
          ];
     }
+}
+
+- (void)getQuestionsForInspection2:(Inspection *)inspection
+{
+    NSString *path = [NSString stringWithFormat:@"api/question/all/%d", [inspection.inspectionID integerValue]];
+    [self.httpClient getPath:path parameters:nil
+                     success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error;
+         NSDictionary *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         
+         NSDictionary *facility = results[@"Facility"];
+         NSArray *facilityQuestions = facility[@"Question"];
+         for(NSDictionary *dict in facilityQuestions)
+             [FormQuestion updateOrCreateFromDictionary:dict andInspection:inspection andType:[FormQuestion typeFacility]];
+         
+         NSDictionary *tank = results[@"Tank"];
+         NSArray *tankQuestions = tank[@"Question"];
+         for(NSDictionary *dict in tankQuestions)
+             [FormQuestion updateOrCreateFromDictionary:dict andInspection:inspection andType:[FormQuestion typeTanks]];
+         
+         NSDictionary *dispenser = results[@"Dispenser"];
+         NSArray *dispenserQuestions = dispenser[@"Question"];
+         for(NSDictionary *dict in dispenserQuestions)
+             [FormQuestion updateOrCreateFromDictionary:dict andInspection:inspection andType:[FormQuestion typeDispensers]];
+         
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         
+         if(self.processingInspections.count > 0)
+             [self.processingInspections removeObjectAtIndex:0];
+         [self processNextInspection];
+     }
+                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"failed get all questions for inspection %d", [inspection.inspectionID integerValue]);
+         
+         if(self.processingInspections.count > 0)
+             [self.processingInspections removeObjectAtIndex:0];
+         [self processNextInspection];
+     }
+     ];
 }
 
 - (void)getUpdatedAnswers:(NSArray *)answers

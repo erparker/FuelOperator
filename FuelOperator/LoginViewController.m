@@ -191,8 +191,22 @@
 //    BOOL network = NO;
     if(network)
     {
+        //parse out base url from userName, if its there
+        NSString *baseURL = nil;
+        NSString *userName = self.usernameTextField.text;
+        NSUInteger atIndex = [userName rangeOfString:@"@"].location;
+        if(atIndex != NSNotFound)
+        {
+            baseURL = [[userName substringFromIndex:atIndex+1] stringByAppendingString:@"/"];
+            if([baseURL rangeOfString:@"://"].location == NSNotFound)
+            {
+                NSString *httpPrefix = @"http://";
+                baseURL = [httpPrefix stringByAppendingString:baseURL];
+            }
+            userName = [userName substringToIndex:atIndex];
+        }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginDone:) name:@"loginDone" object:nil];
-        [[OnlineService sharedService] attemptLogin:self.usernameTextField.text password:self.passwordTextField.text];
+        [[OnlineService sharedService] attemptLogin:userName password:self.passwordTextField.text baseURL:baseURL];
     }
     else
         [self attemptLoginOffline];
