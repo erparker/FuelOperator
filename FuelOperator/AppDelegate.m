@@ -10,7 +10,6 @@
 #import "LoginViewController.h"
 #import "TestFlight.h"
 
-#define DEFAULT_NUM_WEEKS 4
 
 
 @interface AppDelegate ()
@@ -50,27 +49,11 @@
 
 - (void)loginCompleted:(id)sender
 {
-    NSDate *start = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
-    if(start == nil)
-    {
-        start = [NSDate startOfTheWeekFromToday];
-        [[NSUserDefaults standardUserDefaults] setObject:start forKey:@"startDate"];
-    }
-    
-    NSDate *end = [[NSUserDefaults standardUserDefaults] objectForKey:@"endDate"];
-    if(end == nil)
-    {
-        end = [NSDate dateWithNumberOfDays:DEFAULT_NUM_WEEKS*7 sinceDate:start];
-        [[NSUserDefaults standardUserDefaults] setObject:end forKey:@"endDate"];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     
     self.window.rootViewController = self.rootViewController;
     
-    //?? do the update from the server here
-    [[OnlineService sharedService] updateInspectionsFromDate:start toDate:end];
+    
 }
 
 //- (void)initDates

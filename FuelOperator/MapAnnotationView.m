@@ -101,6 +101,7 @@
     NSLog(@"calloutTapped");
     
     InspectionFormViewController *inspectionFormVC = [[InspectionFormViewController alloc] init];
+    CGRect test = inspectionFormVC.view.frame;
     inspectionFormVC.inspection = self.inspection;
     [self.delegate.navigationController pushViewController:inspectionFormVC animated:YES];
 }

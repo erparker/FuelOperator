@@ -82,7 +82,7 @@ static OnlineService *sharedOnlineService = nil;
     }
                       failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
-        [self loginDone:NO];
+        [self loginDone:NO tryOffline:YES];
     }
      ];
     
@@ -102,21 +102,24 @@ static OnlineService *sharedOnlineService = nil;
              [Facility updateOrCreateFromDictionary:dict];
          
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-         [self loginDone:YES];
+         [self loginDone:YES tryOffline:NO];
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
+         //?? need to end the login process gracefully
          NSLog(@"failed updateFacilities");
+         [self loginDone:NO tryOffline:NO];
      }
      ];
 }
 
-- (void)loginDone:(BOOL)success
+- (void)loginDone:(BOOL)success tryOffline:(BOOL)offline
 {
     if(!success)
         [User logout];
     
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:success] forKey:@"Success"];
+    NSDictionary *userInfo = @{@"Success" : @(success),
+                               @"TryOffline" : @(offline)};//[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:success] forKey:@"Success"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"loginDone" object:nil userInfo:userInfo];
 }
 
@@ -146,6 +149,10 @@ static OnlineService *sharedOnlineService = nil;
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"failed getscedulesbydaterange");
+         
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
+         
      }
      ];
 }

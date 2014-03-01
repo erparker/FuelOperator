@@ -218,7 +218,8 @@
     [self.loginActivityView stopAnimating];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginDone" object:nil];
     
-    NSNumber *sucess = [notification.userInfo objectForKey:@"Success"];
+    NSNumber *sucess = notification.userInfo[@"Success"];
+    NSNumber *tryOffline = notification.userInfo[@"TryOffline"];
     if([sucess boolValue] == YES)
     {
         [[NSUserDefaults standardUserDefaults] setObject:self.usernameTextField.text forKey:@"previousUserName"];
@@ -226,9 +227,13 @@
         
         [self loginSucceeded];
     }
-    else
+    else if([tryOffline boolValue] == YES)
+    {
         [self attemptLoginOffline];
-        
+    }
+    else
+        [self loginFailed];
+    
 }
 
 - (void)attemptLoginOffline
