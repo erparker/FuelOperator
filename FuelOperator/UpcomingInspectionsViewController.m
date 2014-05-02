@@ -53,27 +53,20 @@
     self.firstAppear = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inspectionsUpdated:) name:@"inspectionsUpdated" object:nil];
-//    [self updateInspections];
     
-    [SVProgressHUD showWithStatus:@"Updating Inspections"];
-    //[SVProgressHUD showImage:nil status:@"Updating Inspections"];
-    
-    
-    //?? do the update from the server here
+    //do the update from the server here
     NSDate *start = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
     if(start == nil)
     {
         start = [NSDate startOfTheWeekFromToday];
         [[NSUserDefaults standardUserDefaults] setObject:start forKey:@"startDate"];
     }
-    
     NSDate *end = [[NSUserDefaults standardUserDefaults] objectForKey:@"endDate"];
     if(end == nil)
     {
         end = [NSDate dateWithNumberOfDays:DEFAULT_NUM_WEEKS*7 sinceDate:start];
         [[NSUserDefaults standardUserDefaults] setObject:end forKey:@"endDate"];
     }
-    
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[OnlineService sharedService] updateInspectionsFromDate:start toDate:end];
@@ -89,17 +82,8 @@
     self.tableView.frame = self.view.bounds;
 }
 
-- (void)updateInspections
-{
-    self.startDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
-    self.endDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"endDate"];
-    [[OnlineService sharedService] updateInspectionsFromDate:self.startDate toDate:self.endDate];
-}
-
 - (void)inspectionsUpdated:(id)sender
 {
-    [SVProgressHUD dismiss];
-    
     self.startDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
     self.endDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"endDate"];
     [self.tableView reloadData];

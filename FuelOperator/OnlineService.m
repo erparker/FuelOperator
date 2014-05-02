@@ -17,6 +17,7 @@ static NSString * const kBaseURLStringGenerationBay = @"http://www.generationbay
 
 @property (nonatomic, strong) AFHTTPClient *httpClient;
 
+@property (nonatomic) NSInteger numProcessingInspections;
 @property (nonatomic, strong) NSMutableArray *processingInspections;
 @property (nonatomic, strong) NSMutableArray *processingAnswers;
 @property (nonatomic, strong) NSMutableArray *processingPhotos;
@@ -129,6 +130,8 @@ static OnlineService *sharedOnlineService = nil;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM-dd-yy"];
     
+    [SVProgressHUD showWithStatus:@"Updating Inspections"];
+    
     NSString *path = [NSString stringWithFormat:@"api/schedule/daterange/%@/%@", [formatter stringFromDate:dateFrom], [formatter stringFromDate:dateTo]];
     [self.httpClient getPath:path parameters:params
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -136,18 +139,23 @@ static OnlineService *sharedOnlineService = nil;
          NSError *error;
          NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
          
+         [SVProgressHUD showProgress:0 status:@"Updating Inspections"];
+         
          self.processingInspections = [[NSMutableArray alloc] init];
          for(NSDictionary *dict in results)
          {
              Inspection *inspection = [Inspection updateOrCreateFromDictionary:dict];
              [self.processingInspections addObject:inspection];
          }
+         
+         self.numProcessingInspections = self.processingInspections.count;
 
          //?? Download all the questions for each inspection also - i.e. start the inspection
          [self processNextInspection];
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
+         [SVProgressHUD dismiss];
          NSLog(@"failed getscedulesbydaterange");
          
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
@@ -161,10 +169,14 @@ static OnlineService *sharedOnlineService = nil;
 {
     if(self.processingInspections.count == 0)
     {
+        [SVProgressHUD dismiss];
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
         return;
     }
+    
+    float progress = (float)(self.numProcessingInspections - self.processingInspections.count) / (float)(self.numProcessingInspections);
+    [SVProgressHUD showProgress:progress status:@"Updating Inspections"];
     
     Inspection *inspection = [self.processingInspections objectAtIndex:0];
     {
@@ -231,6 +243,15 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)getQuestionsForInspection2:(Inspection *)inspection
 {
+    //?? only re-download the questions if I don't already have them - this will miss any changes on the server, but who cares
+    if(inspection.formQuestions.count > 0)
+    {
+        if(self.processingInspections.count > 0)
+            [self.processingInspections removeObjectAtIndex:0];
+        [self processNextInspection];
+        return;
+    }
+    
     NSString *path = [NSString stringWithFormat:@"api/question/all/%d", [inspection.inspectionID integerValue]];
     [self.httpClient getPath:path parameters:nil
                      success:^(AFHTTPRequestOperation *operation, id responseObject)

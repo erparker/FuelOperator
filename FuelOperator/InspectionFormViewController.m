@@ -350,8 +350,8 @@
     {
         _tanksButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _tanksButton.frame = CGRectMake(self.view.bounds.size.width/3., self.view.bounds.size.height - BUTTON_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
-        [_tanksButton setImage:[UIImage imageNamed:@"btn-tanks-normal"] forState:UIControlStateNormal];
-        [_tanksButton setImage:[UIImage imageNamed:@"btn-tanks-selected"] forState:UIControlStateSelected];
+        [_tanksButton setImage:[UIImage imageNamed:@"btn-dispensers-normal"] forState:UIControlStateNormal];
+        [_tanksButton setImage:[UIImage imageNamed:@"btn-dispensers-selected"] forState:UIControlStateSelected];
         [_tanksButton setBackgroundImage:[UIImage imageNamed:@"btn-background-normal"] forState:UIControlStateNormal];
         [_tanksButton setBackgroundImage:[UIImage imageNamed:@"btn-background-selected"] forState:UIControlStateSelected];
         [_tanksButton addTarget:self action:@selector(tanksButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -375,8 +375,8 @@
     {
         _dispensersButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _dispensersButton.frame = CGRectMake(self.view.bounds.size.width * 2./3., self.view.bounds.size.height - BUTTON_HEIGHT, self.view.bounds.size.width/3., BUTTON_HEIGHT);
-        [_dispensersButton setImage:[UIImage imageNamed:@"btn-dispensers-normal"] forState:UIControlStateNormal];
-        [_dispensersButton setImage:[UIImage imageNamed:@"btn-dispensers-selected"] forState:UIControlStateSelected];
+        [_dispensersButton setImage:[UIImage imageNamed:@"btn-tanks-normal"] forState:UIControlStateNormal];
+        [_dispensersButton setImage:[UIImage imageNamed:@"btn-tanks-selected"] forState:UIControlStateSelected];
         [_dispensersButton setBackgroundImage:[UIImage imageNamed:@"btn-background-normal"] forState:UIControlStateNormal];
         [_dispensersButton setBackgroundImage:[UIImage imageNamed:@"btn-background-selected"] forState:UIControlStateSelected];
         [_dispensersButton addTarget:self action:@selector(dispensersButtonTapped:) forControlEvents:UIControlEventTouchUpInside];

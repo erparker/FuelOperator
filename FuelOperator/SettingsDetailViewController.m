@@ -7,6 +7,7 @@
 //
 
 #import "SettingsDetailViewController.h"
+#import "AppDelegate.h"
 
 @interface SettingsDetailViewController () <UITextFieldDelegate>
 
@@ -110,8 +111,13 @@
 
 - (void)saveTapped:(id)sender
 {
+    if([self.startTextField isFirstResponder] || [self.endTextField isFirstResponder])
+        [self doneTapped:nil];
+        
     self.startDate = [NSDate startOfTheWeekFromDate:self.startDate];
-    self.endDate = [NSDate dateWithNumberOfDays:7 sinceDate:[NSDate startOfTheWeekFromDate:self.endDate]];
+    NSDate *startOfEndWeek = [NSDate startOfTheWeekFromDate:self.endDate];
+    if([self.endDate compare:startOfEndWeek] == NSOrderedDescending)
+        self.endDate = [NSDate dateWithNumberOfDays:7 sinceDate:[NSDate startOfTheWeekFromDate:self.endDate]];
     
     [[NSUserDefaults standardUserDefaults] setObject:self.startDate forKey:@"startDate"];
     [[NSUserDefaults standardUserDefaults] setObject:self.endDate forKey:@"endDate"];
@@ -119,6 +125,9 @@
     [[OnlineService sharedService] updateInspectionsFromDate:self.startDate toDate:self.endDate];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    AppDelegate *appD = [[UIApplication sharedApplication] delegate];
+    [appD.rootViewController toggleOpen];
 }
 
 - (UILabel *)startLabel

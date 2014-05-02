@@ -49,17 +49,8 @@
 
 - (void)loginCompleted:(id)sender
 {
-    
-    
     self.window.rootViewController = self.rootViewController;
-    
-    
 }
-
-//- (void)initDates
-//{
-//    
-//}
 
 - (void)logout:(id)sender
 {

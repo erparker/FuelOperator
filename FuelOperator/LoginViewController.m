@@ -70,7 +70,7 @@
         _appTitle = [[UILabel alloc] initWithFrame:CGRectZero];
         _appTitle.backgroundColor = [UIColor clearColor];
         _appTitle.text = @"FUEL OPERATOR";
-        _appTitle.font = [UIFont thinFontOfSize:36];
+        _appTitle.font = [UIFont lightFontOfSize:36];
         _appTitle.textColor = [UIColor fopLightGreyColor];
         _appTitle.numberOfLines = 1;
         [_appTitle sizeToFit];
