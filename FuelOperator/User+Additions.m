@@ -20,6 +20,9 @@ static User *currentUser = nil;
 + (void)login:(User *)user
 {
     currentUser = user;
+    
+    [[NSUserDefaults standardUserDefaults] setObject:user.login forKey:@"previousLogin"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 + (void)logout
 {

@@ -13,6 +13,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) RootContainerViewController *rootViewController;
+@property (copy) void (^backgroundFetchCompletionHandler)();
+
 
 - (void)loginCompleted:(id)sender;
 - (void)logout:(id)sender;

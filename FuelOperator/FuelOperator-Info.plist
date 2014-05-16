@@ -37,6 +37,10 @@
 		<string>eau_douce_sans_heavy.otf</string>
 		<string>eau_douce_sans_bold.otf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>

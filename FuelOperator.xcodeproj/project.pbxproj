@@ -478,6 +478,15 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = GaryRobinson;
+				TargetAttributes = {
+					3C78334616DDD5E70037ED08 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 3C78334216DDD5E70037ED08 /* Build configuration list for PBXProject "FuelOperator" */;
 			compatibilityVersion = "Xcode 3.2";

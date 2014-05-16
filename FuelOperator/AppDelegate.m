@@ -28,6 +28,9 @@
     
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"FuelOperator.sqllite"];
     
+    //background fetch every 12 hours
+    [application setMinimumBackgroundFetchInterval:[NSDate secondsPerDay]/2];
+    
     [self applyStyle];
     [self setupLoginScreen];
     
@@ -91,6 +94,26 @@
         [[UITextField appearance] setTintColor:[UIColor blackColor]];
         [[UITextView appearance] setTintColor:[UIColor blackColor]];
     }
+}
+
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backgroundLoginCompleted:) name:@"loginDone" object:nil];
+    self.backgroundFetchCompletionHandler = completionHandler;
+    [[OnlineService sharedService] attempBackgroundLogin];
+}
+
+- (void)backgroundLoginCompleted:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginDone" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataUpdated:) name:@"inspectionsUpdated" object:nil];
+    [[OnlineService sharedService] updateInspections];
+}
+
+- (void)dataUpdated:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"inspectionsUpdated" object:nil];
+    self.backgroundFetchCompletionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

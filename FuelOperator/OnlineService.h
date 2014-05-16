@@ -18,8 +18,10 @@
 @property (nonatomic, strong) NSString *baseURL;
 
 - (void)attemptLogin:(NSString *)username password:(NSString *)password baseURL:(NSString *)baseURL;
+- (void)attempBackgroundLogin;
+
 - (void)updateFacilities;
-- (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo;
+- (void)updateInspections;//FromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo;
 - (void)startInspection:(Inspection *)inspection;
 - (void)getQuestionsForInspection:(Inspection *)inspection;
 - (void)getQuestionsForInspection2:(Inspection *)inspection;

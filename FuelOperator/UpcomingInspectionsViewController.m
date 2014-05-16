@@ -12,7 +12,6 @@
 #import "AppDelegate.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
-#define DEFAULT_NUM_WEEKS 4
 #define UPCOMING_INSPECTIONS_CELL_VIEW_TAG 2
 #define HEADER_HEIGHT 25
 
@@ -54,22 +53,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inspectionsUpdated:) name:@"inspectionsUpdated" object:nil];
     
-    //do the update from the server here
-    NSDate *start = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
-    if(start == nil)
-    {
-        start = [NSDate startOfTheWeekFromToday];
-        [[NSUserDefaults standardUserDefaults] setObject:start forKey:@"startDate"];
-    }
-    NSDate *end = [[NSUserDefaults standardUserDefaults] objectForKey:@"endDate"];
-    if(end == nil)
-    {
-        end = [NSDate dateWithNumberOfDays:DEFAULT_NUM_WEEKS*7 sinceDate:start];
-        [[NSUserDefaults standardUserDefaults] setObject:end forKey:@"endDate"];
-    }
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    [[OnlineService sharedService] updateInspectionsFromDate:start toDate:end];
+    [[OnlineService sharedService] updateInspections];
 }
 
 - (void)dealloc

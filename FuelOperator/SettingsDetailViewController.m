@@ -122,7 +122,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:self.startDate forKey:@"startDate"];
     [[NSUserDefaults standardUserDefaults] setObject:self.endDate forKey:@"endDate"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [[OnlineService sharedService] updateInspectionsFromDate:self.startDate toDate:self.endDate];
+    [[OnlineService sharedService] updateInspections];
     
     [self dismissViewControllerAnimated:YES completion:nil];
     

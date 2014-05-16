@@ -10,6 +10,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
+#define DEFAULT_NUM_WEEKS 4
+
 static NSString * const kBaseURLString = @"http://www.fueloperator.com/";
 static NSString * const kBaseURLStringGenerationBay = @"http://www.generationbay.com/";
 
@@ -89,6 +91,17 @@ static OnlineService *sharedOnlineService = nil;
     
 }
 
+- (void)attempBackgroundLogin
+{
+    NSString *previousLoginName = [[NSUserDefaults standardUserDefaults] objectForKey:@"previousLogin"];
+    User *previousUser = [User MR_findFirstByAttribute:@"login" withValue:previousLoginName];
+    if(!previousUser)
+        return;
+        
+    NSString *decryptedPassword = [NSString decrypt:previousUser.password];
+    [self attemptLogin:previousUser.login password:decryptedPassword baseURL:kBaseURLString];
+}
+
 - (void)updateFacilities
 {
     NSDictionary *params = nil;
@@ -122,6 +135,26 @@ static OnlineService *sharedOnlineService = nil;
     NSDictionary *userInfo = @{@"Success" : @(success),
                                @"TryOffline" : @(offline)};//[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:success] forKey:@"Success"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"loginDone" object:nil userInfo:userInfo];
+}
+
+- (void)updateInspections
+{
+    //do the update from the server here
+    NSDate *start = [[NSUserDefaults standardUserDefaults] objectForKey:@"startDate"];
+    if(start == nil)
+    {
+        start = [NSDate startOfTheWeekFromToday];
+        [[NSUserDefaults standardUserDefaults] setObject:start forKey:@"startDate"];
+    }
+    NSDate *end = [[NSUserDefaults standardUserDefaults] objectForKey:@"endDate"];
+    if(end == nil)
+    {
+        end = [NSDate dateWithNumberOfDays:DEFAULT_NUM_WEEKS*7 sinceDate:start];
+        [[NSUserDefaults standardUserDefaults] setObject:end forKey:@"endDate"];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self updateInspectionsFromDate:start toDate:end];
 }
 
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
