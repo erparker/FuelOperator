@@ -9,6 +9,7 @@ DS_Store
 *.pbxuser
 *.xccheckout
 xcuserdata
+*.xcuserstate
 
 # Build products
 build/
@@ -24,4 +25,7 @@ build/
 *.dep
 
 Pods/
-Podfile.lock
+#Podfile.lock
+!Pods/Pods.xcconfig
+
+*.xcuserstate

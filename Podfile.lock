@@ -1,0 +1,45 @@
+PODS:
+  - AFNetworking (1.2.1)
+  - MagicalRecord (2.1):
+    - MagicalRecord/Core
+  - MagicalRecord/Core (2.1)
+  - RestKit (0.20.1):
+    - RestKit/Core
+  - RestKit/Core (0.20.1):
+    - RestKit/CoreData
+    - RestKit/Network
+    - RestKit/ObjectMapping
+  - RestKit/CoreData (0.20.1)
+  - RestKit/Network (0.20.1):
+    - AFNetworking (~> 1.2.0)
+    - RestKit/ObjectMapping
+    - RestKit/Support
+    - SOCKit
+  - RestKit/ObjectMapping (0.20.1)
+  - RestKit/Support (0.20.1):
+    - TransitionKit (= 1.1.0)
+  - SOCKit (1.1)
+  - SSToolkit (1.0.4)
+  - SVProgressHUD (0.9)
+  - TestFlightSDK (2.0.2)
+  - TransitionKit (1.1.0)
+
+DEPENDENCIES:
+  - AFNetworking (~> 1.2.0)
+  - MagicalRecord (~> 2.1)
+  - RestKit (~> 0.20.0rc1)
+  - SSToolkit (~> 1.0.2)
+  - SVProgressHUD (~> 0.9)
+  - TestFlightSDK (~> 2.0.0)
+
+SPEC CHECKSUMS:
+  AFNetworking: a44069e3c9c89867544f6639482f155c7e5f9b41
+  MagicalRecord: 017d1e956db6c65c3c2125cb9524eb93952ae144
+  RestKit: ceca63bc91172098c710c469facd2560e8a59164
+  SOCKit: 8871d058926a6c6cc144f0c5eee82c5d0ec274a3
+  SSToolkit: 689acaedac79c2079e492e528a55bcb5db9d98c4
+  SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
+  TestFlightSDK: f7cce3a6a27b6a347407e92568d1bf6187ba0b07
+  TransitionKit: ce931c4651134181e30f32295ed608834791a4af
+
+COCOAPODS: 0.32.1
