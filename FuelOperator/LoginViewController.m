@@ -222,9 +222,13 @@
     [self.loginActivityView stopAnimating];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginDone" object:nil];
     
-    NSNumber *sucess = notification.userInfo[@"Success"];
+    NSNumber *success = notification.userInfo[@"Success"];
     NSNumber *tryOffline = notification.userInfo[@"TryOffline"];
-    if([sucess boolValue] == YES)
+    
+    //Force login for now. Using predefined API key
+    success = [NSNumber numberWithBool:YES];
+    
+    if([success boolValue] == YES)
     {
         [[NSUserDefaults standardUserDefaults] setObject:self.usernameTextField.text forKey:@"previousUserName"];
         [[NSUserDefaults standardUserDefaults] synchronize];

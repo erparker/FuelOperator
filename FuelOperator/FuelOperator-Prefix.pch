@@ -39,5 +39,7 @@
     #import "Photo.h"
     #import "User.h"
     #import "User+Additions.h"
+
+    #import "Constants.h"
 #endif
 

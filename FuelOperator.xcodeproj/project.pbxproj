@@ -191,6 +191,7 @@
 		3CFBA4CE175946BC00F47978 /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
 		3CFBA4CF175946BC00F47978 /* NSDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Additions.m"; sourceTree = "<group>"; };
 		4C115DDE9BD140A08715A0B5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B736A40D1A451D5D00FF4C01 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +287,7 @@
 				3C78335A16DDD5E70037ED08 /* FuelOperator-Prefix.pch */,
 				3CD3E89B1734383E004C0EA5 /* Icon.png */,
 				3CD3E89917343821004C0EA5 /* Icon@2x.png */,
+				B736A40D1A451D5D00FF4C01 /* Constants.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
