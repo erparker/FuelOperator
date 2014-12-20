@@ -26,6 +26,7 @@
     #import "OnlineService.h"
 
     #import "CoreData+MagicalRecord.h"
+    #import <CoreData+MagicalRecord.h>
     #import "Form.h"
     #import "Inspection.h"
     #import "Inspection+Additions.h"
