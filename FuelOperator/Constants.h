@@ -9,6 +9,6 @@
 #ifndef FuelOperator_Constants_h
 #define FuelOperator_Constants_h
 
-#define USER_TEMP_KEY e6d34b9744cb09da8e50c2997b2f657c28d697fd
+#define USER_TEMP_KEY @"e6d34b9744cb09da8e50c2997b2f657c28d697fd"
 
 #endif

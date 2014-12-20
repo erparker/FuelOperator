@@ -61,32 +61,32 @@ static OnlineService *sharedOnlineService = nil;
     NSString *path = @"Token";
     [self.httpClient postPath:path parameters:params
                       success:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        NSError *error;
-        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-        self.token = [result objectForKey:@"access_token"];
-        NSString* auth = [NSString stringWithFormat:@"Bearer %@", self.token];
-        [self.httpClient setDefaultHeader:@"Authorization" value:auth];
-        
-        User *user = [User MR_findFirstByAttribute:@"login" withValue:username];
-        if(!user)
-        {
-            user = [User MR_createEntity];
-            user.login = username;
-            user.password = [NSString encrypt:password];
-        }
-        [User login:user];
-        
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-        [self updateFacilities];
-        
-        //?? also update the requiredTypes
-        
-    }
+     {
+         NSError *error;
+         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         self.token = [result objectForKey:@"access_token"];
+         NSString* auth = [NSString stringWithFormat:@"Bearer %@", self.token];
+         [self.httpClient setDefaultHeader:@"Authorization" value:auth];
+         
+         User *user = [User MR_findFirstByAttribute:@"login" withValue:username];
+         if(!user)
+         {
+             user = [User MR_createEntity];
+             user.login = username;
+             user.password = [NSString encrypt:password];
+         }
+         [User login:user];
+         
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         [self updateFacilities];
+         
+         //?? also update the requiredTypes
+         
+     }
                       failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
-        [self loginDone:NO tryOffline:YES];
-    }
+     {
+         [self loginDone:NO tryOffline:YES];
+     }
      ];
     
 }
@@ -97,7 +97,7 @@ static OnlineService *sharedOnlineService = nil;
     User *previousUser = [User MR_findFirstByAttribute:@"login" withValue:previousLoginName];
     if(!previousUser)
         return;
-        
+    
     NSString *decryptedPassword = [NSString decrypt:previousUser.password];
     [self attemptLogin:previousUser.login password:decryptedPassword baseURL:kBaseURLString];
 }
@@ -159,18 +159,26 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)updateInspectionsFromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo
 {
-    NSDictionary *params = nil;//@{@"Authorization" : auth};
+    NSDictionary *params = nil; //@{@"Authorization" : USER_TEMP_KEY, @"Content-Type" : @"application/json"};
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM-dd-yy"];
     
     [SVProgressHUD showWithStatus:@"Updating Inspections"];
     
-    NSString *path = [NSString stringWithFormat:@"api/schedule/daterange/%@/%@", [formatter stringFromDate:dateFrom], [formatter stringFromDate:dateTo]];
+//    NSString *path = [NSString stringWithFormat:@"api/schedule/daterange/%@/%@", [formatter stringFromDate:dateFrom], [formatter stringFromDate:dateTo]];
+    NSString *path = @"api/v1/inspections/";
+    [self.httpClient setDefaultHeader:@"Authorization" value:USER_TEMP_KEY];
+    [self.httpClient setDefaultHeader:@"Accept" value:@"application/json"];
     [self.httpClient getPath:path parameters:params
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSError *error;
          NSArray *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         
+         if (error) {
+             NSLog(@"Error parsing JSON: %@", error.localizedDescription);
+         }
          
          [SVProgressHUD showProgress:0 status:@"Updating Inspections"];
          
@@ -182,14 +190,14 @@ static OnlineService *sharedOnlineService = nil;
          }
          
          self.numProcessingInspections = self.processingInspections.count;
-
+         
          //?? Download all the questions for each inspection also - i.e. start the inspection
          [self processNextInspection];
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          [SVProgressHUD dismiss];
-         NSLog(@"failed getscedulesbydaterange");
+         NSLog(@"failed getscedulesbydaterange with error: %@", error.localizedDescription);
          
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
          [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionsUpdated" object:nil];
@@ -222,9 +230,9 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)startInspection:(Inspection *)inspection
 {
-    NSString *path = [NSString stringWithFormat:@"api/inspection/start/%d/%d", [inspection.facility.facilityID integerValue], [inspection.scheduleID integerValue]];
+    NSString *path = [NSString stringWithFormat:@"api/inspection/start/%ld/%ld", (long)[inspection.facility.facilityID integerValue], (long)[inspection.scheduleID integerValue]];
     [self.httpClient postPath:path parameters:nil
-                     success:^(AFHTTPRequestOperation *operation, id responseObject)
+                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSError *error;
          NSDictionary *results = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
@@ -232,12 +240,12 @@ static OnlineService *sharedOnlineService = nil;
          inspection.inspectionID = [results objectForKey:@"InspectionID"];
          
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-
+         
          [self getQuestionsForInspection2:inspection];
      }
-                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
-         NSLog(@"failed startInspection");
+         NSLog(@"failed startInspection with error: %@", error.localizedDescription);
      }
      ];
 }
@@ -247,7 +255,7 @@ static OnlineService *sharedOnlineService = nil;
     NSArray *types = [[NSArray alloc] initWithObjects:[FormQuestion typeFacility], [FormQuestion typeTanks], [FormQuestion typeDispensers], nil];
     for(NSString *type in types)
     {
-        NSString *path = [NSString stringWithFormat:@"api/question/%@/%d", type, [inspection.inspectionID integerValue]];
+        NSString *path = [NSString stringWithFormat:@"api/question/%@/%ld", type, (long)[inspection.inspectionID integerValue]];
         [self.httpClient getPath:path parameters:nil
                          success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
@@ -260,7 +268,7 @@ static OnlineService *sharedOnlineService = nil;
                  [FormQuestion updateOrCreateFromDictionary:dict andInspection:inspection andType:type];
              
              [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-//             [[NSNotificationCenter defaultCenter] postNotificationName:@"questionsUpdated" object:nil];
+             //             [[NSNotificationCenter defaultCenter] postNotificationName:@"questionsUpdated" object:nil];
              
              if(self.processingInspections.count > 0)
                  [self.processingInspections removeObjectAtIndex:0];
@@ -405,16 +413,16 @@ static OnlineService *sharedOnlineService = nil;
     [request setHTTPBody:body];
     
     [self.httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
-
+    
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        [self saveDeficiency];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"failed post answer to questionID: %d", [question.questionID integerValue]);
-        [self answerDone];
-    }];
+     {
+         [self saveDeficiency];
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"failed post answer to questionID: %d", [question.questionID integerValue]);
+         [self answerDone];
+     }];
     
     [operation start];
 }
@@ -546,19 +554,19 @@ static OnlineService *sharedOnlineService = nil;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         self.postingInspection.submitted = [NSNumber numberWithBool:YES];
-         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         self.postingInspection = nil;
-         [SVProgressHUD dismiss];
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
-    
+        [SVProgressHUD dismiss];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    
+        
         self.postingInspection.submitted = [NSNumber numberWithBool:NO];
-         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         self.postingInspection = nil;
-         [SVProgressHUD showImage:nil status:@"Failed to submit inspection"];
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
-     }];
+        [SVProgressHUD showImage:nil status:@"Failed to submit inspection"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
+    }];
     
     [operation start];
 }
